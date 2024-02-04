@@ -123,6 +123,16 @@ require('lazy').setup({
     },
   },
 
+  -- quick-scope
+  {
+    'jinh0/eyeliner.nvim',
+    config = function()
+      require 'eyeliner'.setup({
+        highlight_on_key = true
+      })
+    end
+  },
+
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {

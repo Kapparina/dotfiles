@@ -45,6 +45,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<Leader>e', vim.cmd.Ex, { desc = 'Explorer' })
+vim.keymap.set({'n', 'v'}, '<CR>', '<cmd>nohl<CR>', { silent = true, noremap = true })
 
 -- Configuring terminal to use
 vim.o.shell = 'pwsh.exe'
@@ -53,6 +54,16 @@ vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF %s; exit $LastExitCode'
 vim.o.shellquote = ''
 vim.o.shellxquote = ''
+
+-- Default sets
+vim.opt.showcmd = true
+vim.opt.showmatch = true
+vim.opt.ignorecase = true
+vim.opt.smartindent = true
+vim.opt.hlsearch = true
+vim.opt.errorbells = false
+vim.opt.incsearch = true
+vim.opt.showmode = true
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
@@ -78,10 +89,16 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-
+  {
+    'prichrd/netrw.nvim',
+    lazy = false,
+    priority = 998,
+    opts = {},
+  },
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
+  'tpope/vim-surround',
 
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
@@ -355,9 +372,6 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
-
--- Set highlight on search
-vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true

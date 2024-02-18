@@ -2,46 +2,22 @@
 create database BP_PRD collate Latin1_General_CI_AS
 go
 
-grant connect on database :: BP_PRD to [APAC\BOTPS001]
-go
-
-grant connect on database :: BP_PRD to [APAC\BOTPW002]
-go
-
-grant connect on database :: BP_PRD to [APAC\BOTRW001]
-go
-
-grant connect on database :: BP_PRD to [APAC\BluePrism_PROD_Administrators]
-go
-
-grant connect on database :: BP_PRD to [APAC\RegreSQ]
-go
-
-grant connect on database :: BP_PRD to [APAC\SQL_LGHBDVDB06_svc]
-go
-
-grant connect on database :: BP_PRD to [APAC\simpsad]
-go
-
-grant connect on database :: BP_PRD to [APAC\svc_RubrikBackup]
-go
-
 grant connect on database :: BP_PRD to dbo
 go
 
-create type dbo.ActiveDirectoryUserTableType as table
+create type BP_PRD.dbo.ActiveDirectoryUserTableType as table
 (
     securityidentifier nvarchar(256)
 )
 go
 
-create type sys.TT_ActiveDirectoryUserTableType_2AC04CAA as table
+create type BP_PRD.sys.TT_ActiveDirectoryUserTableType_2AC04CAA as table
 (
     securityidentifier nvarchar(256)
 )
 go
 
-create table dbo.BPAAlertsMachines
+create table BP_PRD.dbo.BPAAlertsMachines
 (
     MachineName nvarchar(128) not null
         constraint PK_BPAAlertsMachines
@@ -49,7 +25,7 @@ create table dbo.BPAAlertsMachines
 )
 go
 
-create table dbo.BPAAliveResources
+create table BP_PRD.dbo.BPAAliveResources
 (
     MachineName nvarchar(128)    not null,
     UserID      uniqueidentifier not null,
@@ -60,7 +36,7 @@ create table dbo.BPAAliveResources
 )
 go
 
-create table dbo.BPAAuditEvents
+create table BP_PRD.dbo.BPAAuditEvents
 (
     eventdatetime  datetime         not null,
     eventid        int identity,
@@ -86,7 +62,7 @@ create index IX_BPAAuditEvents_gTgtProcID
     on dbo.BPAAuditEvents (gTgtProcID)
 go
 
-create table dbo.BPACacheETags
+create table BP_PRD.dbo.BPACacheETags
 (
     [key] nvarchar(50)     not null
         constraint PK_BPACacheETags
@@ -95,7 +71,7 @@ create table dbo.BPACacheETags
 )
 go
 
-create table dbo.BPADBVersion
+create table BP_PRD.dbo.BPADBVersion
 (
     dbversion      nvarchar(50) not null
         constraint PK_BPADBVersion
@@ -108,7 +84,7 @@ create table dbo.BPADBVersion
 )
 go
 
-create table dbo.BPADataPipelineInput
+create table BP_PRD.dbo.BPADataPipelineInput
 (
     id         bigint identity
         primary key,
@@ -122,7 +98,7 @@ go
 grant delete, select on dbo.BPADataPipelineInput to BPA_DataGatewaysEngine
 go
 
-create table dbo.BPADataPipelineOutputConfig
+create table BP_PRD.dbo.BPADataPipelineOutputConfig
 (
     id                 int identity
         constraint PK_BPADataPipelineOutputConfig
@@ -148,7 +124,7 @@ create index Index_BPADataPipelineOutputConfig_Name
     on dbo.BPADataPipelineOutputConfig (name)
 go
 
-create table dbo.BPADataPipelineSettings
+create table BP_PRD.dbo.BPADataPipelineSettings
 (
     id                                    int              not null
         constraint PK_BPADataPipelineSettings
@@ -162,7 +138,7 @@ create table dbo.BPADataPipelineSettings
 )
 go
 
-create table dbo.BPADataTracker
+create table BP_PRD.dbo.BPADataTracker
 (
     dataname  nvarchar(64) not null
         constraint PK_BPADataTracker
@@ -171,7 +147,7 @@ create table dbo.BPADataTracker
 )
 go
 
-create table dbo.BPADocumentProcessingQueueOverride
+create table BP_PRD.dbo.BPADocumentProcessingQueueOverride
 (
     batchid uniqueidentifier not null
         constraint PK_BPADocumentProcessingQueueOverride
@@ -180,7 +156,7 @@ create table dbo.BPADocumentProcessingQueueOverride
 )
 go
 
-create table dbo.BPADocumentTypeDefaultQueue
+create table BP_PRD.dbo.BPADocumentTypeDefaultQueue
 (
     queue uniqueidentifier not null
         constraint PK_BPADocumentTypeDefaultQueue
@@ -188,14 +164,14 @@ create table dbo.BPADocumentTypeDefaultQueue
 )
 go
 
-create table dbo.BPADocumentTypeQueues
+create table BP_PRD.dbo.BPADocumentTypeQueues
 (
     documentType uniqueidentifier not null,
     queue        uniqueidentifier
 )
 go
 
-create table dbo.BPAEnvironmentType
+create table BP_PRD.dbo.BPAEnvironmentType
 (
     Id   int           not null
         primary key,
@@ -203,7 +179,7 @@ create table dbo.BPAEnvironmentType
 )
 go
 
-create table dbo.BPAEnvironment
+create table BP_PRD.dbo.BPAEnvironment
 (
     Id                int identity
         primary key
@@ -219,7 +195,7 @@ create table dbo.BPAEnvironment
 )
 go
 
-create table dbo.BPAEnvironmentVar
+create table BP_PRD.dbo.BPAEnvironmentVar
 (
     name        nvarchar(64)  not null
         constraint PK_BPAEnvironmentVar
@@ -231,7 +207,7 @@ create table dbo.BPAEnvironmentVar
 )
 go
 
-create table dbo.BPAExceptionType
+create table BP_PRD.dbo.BPAExceptionType
 (
     id   uniqueidentifier not null
         constraint PK_BPAExceptionType
@@ -242,7 +218,7 @@ create table dbo.BPAExceptionType
 )
 go
 
-create table dbo.BPAExternalProviderType
+create table BP_PRD.dbo.BPAExternalProviderType
 (
     id   int identity
         constraint PK_BPAExternalProviderType
@@ -251,7 +227,7 @@ create table dbo.BPAExternalProviderType
 )
 go
 
-create table dbo.BPAExternalProvider
+create table BP_PRD.dbo.BPAExternalProvider
 (
     id                     int identity
         constraint PK_BPAExternalProvider
@@ -268,7 +244,7 @@ create index IX_BPAExternalProvider_externalproviderid
     on dbo.BPAExternalProviderType (id)
 go
 
-create table dbo.BPAFont
+create table BP_PRD.dbo.BPAFont
 (
     name     nvarchar(255) not null
         constraint PK_BPAFont
@@ -278,7 +254,7 @@ create table dbo.BPAFont
 )
 go
 
-create table dbo.BPAKeyStore
+create table BP_PRD.dbo.BPAKeyStore
 (
     id          int identity
         constraint PK_BPAKeyStore
@@ -293,7 +269,7 @@ create table dbo.BPAKeyStore
 )
 go
 
-create table dbo.BPACredentials
+create table BP_PRD.dbo.BPACredentials
 (
     id             uniqueidentifier not null
         constraint PK_BPACredentials
@@ -312,7 +288,7 @@ create table dbo.BPACredentials
 )
 go
 
-create table dbo.BPACredentialsProperties
+create table BP_PRD.dbo.BPACredentialsProperties
 (
     id           uniqueidentifier not null
         constraint PK_BPACredentialsProperties
@@ -327,7 +303,7 @@ create table dbo.BPACredentialsProperties
 )
 go
 
-create table dbo.BPADataPipelineProcessConfig
+create table BP_PRD.dbo.BPADataPipelineProcessConfig
 (
     id         int identity
         primary key,
@@ -340,7 +316,7 @@ create table dbo.BPADataPipelineProcessConfig
 )
 go
 
-create table dbo.BPADataPipelineProcess
+create table BP_PRD.dbo.BPADataPipelineProcess
 (
     id          int identity
         primary key,
@@ -355,7 +331,7 @@ create table dbo.BPADataPipelineProcess
 )
 go
 
-create table dbo.BPAMIControl
+create table BP_PRD.dbo.BPAMIControl
 (
     id                int default 1  not null
         constraint PK_BPAMIControl
@@ -370,7 +346,7 @@ create table dbo.BPAMIControl
 )
 go
 
-create table dbo.BPAPackage
+create table BP_PRD.dbo.BPAPackage
 (
     id          int identity
         constraint PK_BPAPackage
@@ -385,7 +361,7 @@ create table dbo.BPAPackage
 )
 go
 
-create table dbo.BPAPackageCredential
+create table BP_PRD.dbo.BPAPackageCredential
 (
     packageid    int              not null
         constraint FK_BPAPackageCredential_BPAPackage
@@ -400,7 +376,7 @@ create table dbo.BPAPackageCredential
 )
 go
 
-create table dbo.BPAPackageEnvironmentVar
+create table BP_PRD.dbo.BPAPackageEnvironmentVar
 (
     packageid int          not null
         constraint FK_BPAPackageEnvironmentVar_BPAPackage
@@ -416,7 +392,7 @@ create table dbo.BPAPackageEnvironmentVar
 )
 go
 
-create table dbo.BPAPackageFont
+create table BP_PRD.dbo.BPAPackageFont
 (
     packageid int           not null
         constraint FK_BPAPackageFont_BPAPackage
@@ -431,7 +407,7 @@ create table dbo.BPAPackageFont
 )
 go
 
-create table dbo.BPAPasswordRules
+create table BP_PRD.dbo.BPAPasswordRules
 (
     id              int default 1 not null
         constraint PK_BPAPasswordRules
@@ -450,7 +426,7 @@ create table dbo.BPAPasswordRules
 )
 go
 
-create table dbo.BPAPerm
+create table BP_PRD.dbo.BPAPerm
 (
     id              int identity
         constraint PK_BPAPerm
@@ -468,7 +444,7 @@ create unique index UNQ_BPAPerm_name
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAPermGroup
+create table BP_PRD.dbo.BPAPermGroup
 (
     id              int identity
         constraint PK_BPAPermGroup
@@ -483,7 +459,7 @@ create unique index UNQ_BPAPermGroup_name
     on dbo.BPAPermGroup (name)
 go
 
-create table dbo.BPAPermGroupMember
+create table BP_PRD.dbo.BPAPermGroupMember
 (
     permgroupid int not null
         constraint FK_BPAPermGroupMember_BPAPermGroup
@@ -496,7 +472,7 @@ create table dbo.BPAPermGroupMember
 )
 go
 
-create table dbo.BPAProcessAttribute
+create table BP_PRD.dbo.BPAProcessAttribute
 (
     AttributeID   int not null
         constraint PK_BPAProcessStatus
@@ -505,7 +481,7 @@ create table dbo.BPAProcessAttribute
 )
 go
 
-create table dbo.BPAProcessEnvVar
+create table BP_PRD.dbo.BPAProcessEnvVar
 (
     processid uniqueidentifier not null,
     name      nvarchar(64)     not null,
@@ -514,7 +490,7 @@ create table dbo.BPAProcessEnvVar
 )
 go
 
-create table dbo.BPAProcessMITemplate
+create table BP_PRD.dbo.BPAProcessMITemplate
 (
     templatename    nvarchar(32)     not null,
     processid       uniqueidentifier not null,
@@ -525,7 +501,7 @@ create table dbo.BPAProcessMITemplate
 )
 go
 
-create table dbo.BPAPublicHolidayGroup
+create table BP_PRD.dbo.BPAPublicHolidayGroup
 (
     id   int identity
         constraint PK_BPAPublicHolidayGroup
@@ -536,7 +512,7 @@ create table dbo.BPAPublicHolidayGroup
 )
 go
 
-create table dbo.BPACalendar
+create table BP_PRD.dbo.BPACalendar
 (
     id                   int identity
         constraint PK_BPACalendar
@@ -555,7 +531,7 @@ create table dbo.BPACalendar
 )
 go
 
-create table dbo.BPANonWorkingDay
+create table BP_PRD.dbo.BPANonWorkingDay
 (
     calendarid    int      not null
         constraint FK_BPANonWorkingDay_BPACalendar
@@ -568,7 +544,7 @@ create table dbo.BPANonWorkingDay
 )
 go
 
-create table dbo.BPAPackageCalendar
+create table BP_PRD.dbo.BPAPackageCalendar
 (
     packageid  int not null
         constraint FK_BPAPackageCalendar_BPAPackage
@@ -583,7 +559,7 @@ create table dbo.BPAPackageCalendar
 )
 go
 
-create table dbo.BPAPublicHolidayShiftDayTypes
+create table BP_PRD.dbo.BPAPublicHolidayShiftDayTypes
 (
     id   int          not null
         constraint PK_BPAPublicHolidayShiftDayTypes
@@ -594,7 +570,7 @@ create table dbo.BPAPublicHolidayShiftDayTypes
 )
 go
 
-create table dbo.BPAPublicHoliday
+create table BP_PRD.dbo.BPAPublicHoliday
 (
     id                int not null
         constraint PK_BPAPublicHoliday
@@ -621,7 +597,7 @@ create table dbo.BPAPublicHoliday
 )
 go
 
-create table dbo.BPAPublicHolidayGroupMember
+create table BP_PRD.dbo.BPAPublicHolidayGroupMember
 (
     publicholidaygroupid int not null
         constraint FK_BPAPublicHolidayGroupMember_BPAPublicHolidayGroup
@@ -636,7 +612,7 @@ create table dbo.BPAPublicHolidayGroupMember
 )
 go
 
-create table dbo.BPAPublicHolidayWorkingDay
+create table BP_PRD.dbo.BPAPublicHolidayWorkingDay
 (
     calendarid      int not null
         constraint FK_BPAPublicHolidayWorkingDay_BPACalendar
@@ -651,7 +627,7 @@ create table dbo.BPAPublicHolidayWorkingDay
 )
 go
 
-create table dbo.BPAReport
+create table BP_PRD.dbo.BPAReport
 (
     reportid    uniqueidentifier not null
         constraint PK_BPAReport
@@ -662,7 +638,7 @@ create table dbo.BPAReport
 )
 go
 
-create table dbo.BPAResource
+create table BP_PRD.dbo.BPAResource
 (
     resourceid       uniqueidentifier                      not null
         constraint PK_BPAResource
@@ -697,7 +673,7 @@ create table dbo.BPAResource
 )
 go
 
-create table dbo.BPACredentialsResources
+create table BP_PRD.dbo.BPACredentialsResources
 (
     credentialid uniqueidentifier not null
         constraint FK_BPACredentialsResources_cred
@@ -725,7 +701,7 @@ create index INDEX_BPAResource_SSL
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAResourceAttribute
+create table BP_PRD.dbo.BPAResourceAttribute
 (
     AttributeID   int not null
         constraint PK_BPAResourceStatus
@@ -734,7 +710,7 @@ create table dbo.BPAResourceAttribute
 )
 go
 
-create table dbo.BPAResourceConfig
+create table BP_PRD.dbo.BPAResourceConfig
 (
     name   nvarchar(128) not null
         constraint PK_BPAResourceConfig
@@ -743,7 +719,7 @@ create table dbo.BPAResourceConfig
 )
 go
 
-create table dbo.BPAScenario
+create table BP_PRD.dbo.BPAScenario
 (
     scenarioid    uniqueidentifier not null,
     testnum       numeric          not null,
@@ -755,7 +731,7 @@ create table dbo.BPAScenario
 )
 go
 
-create table dbo.BPAScenarioDetail
+create table BP_PRD.dbo.BPAScenarioDetail
 (
     scenarioid uniqueidentifier not null,
     testnum    numeric          not null,
@@ -768,7 +744,7 @@ create table dbo.BPAScenarioDetail
 )
 go
 
-create table dbo.BPASchedule
+create table BP_PRD.dbo.BPASchedule
 (
     id            int identity
         constraint PK_BPASchedule
@@ -784,7 +760,7 @@ create table dbo.BPASchedule
 )
 go
 
-create table dbo.BPAPackageSchedule
+create table BP_PRD.dbo.BPAPackageSchedule
 (
     packageid  int not null
         constraint FK_BPAPackageSchedule_BPAPackage
@@ -799,7 +775,7 @@ create table dbo.BPAPackageSchedule
 )
 go
 
-create table dbo.BPAScheduleList
+create table BP_PRD.dbo.BPAScheduleList
 (
     id           int identity
         constraint PK_BPAScheduleList
@@ -821,7 +797,7 @@ create table dbo.BPAScheduleList
 )
 go
 
-create table dbo.BPAPackageScheduleList
+create table BP_PRD.dbo.BPAPackageScheduleList
 (
     packageid      int not null
         constraint FK_BPAPackageScheduleList_BPAPackage
@@ -836,7 +812,7 @@ create table dbo.BPAPackageScheduleList
 )
 go
 
-create table dbo.BPAScheduleListSchedule
+create table BP_PRD.dbo.BPAScheduleListSchedule
 (
     schedulelistid int not null
         constraint FK_BPAScheduleListSchedule_BPAScheduleList
@@ -851,7 +827,7 @@ create table dbo.BPAScheduleListSchedule
 )
 go
 
-create table dbo.BPAScheduleLog
+create table BP_PRD.dbo.BPAScheduleLog
 (
     id           int identity
         constraint PK_BPAScheduleLog
@@ -873,7 +849,7 @@ create table dbo.BPAScheduleLog
 )
 go
 
-create table dbo.BPAScheduleTrigger
+create table BP_PRD.dbo.BPAScheduleTrigger
 (
     id                int identity
         constraint PK_BPAScheduleTrigger
@@ -913,7 +889,7 @@ create index IX_BPAScheduleTrigger_schedule
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAScreenshot
+create table BP_PRD.dbo.BPAScreenshot
 (
     id             int identity
         constraint PK_BPAScreenshot
@@ -930,7 +906,7 @@ create table dbo.BPAScreenshot
 )
 go
 
-create table dbo.BPASkill
+create table BP_PRD.dbo.BPASkill
 (
     id        uniqueidentifier not null
         constraint PK_BPASkill
@@ -940,7 +916,7 @@ create table dbo.BPASkill
 )
 go
 
-create table dbo.BPASnapshotConfiguration
+create table BP_PRD.dbo.BPASnapshotConfiguration
 (
     id                     int identity
         constraint PK_BPASnapshotConfiguration
@@ -961,7 +937,7 @@ create table dbo.BPASnapshotConfiguration
 )
 go
 
-create table dbo.BPAStatistics
+create table BP_PRD.dbo.BPAStatistics
 (
     sessionid    uniqueidentifier not null,
     name         nvarchar(50)     not null,
@@ -975,7 +951,7 @@ create table dbo.BPAStatistics
 )
 go
 
-create table dbo.BPAStatus
+create table BP_PRD.dbo.BPAStatus
 (
     statusid    int not null
         constraint PK_BPAStatus
@@ -985,7 +961,7 @@ create table dbo.BPAStatus
 )
 go
 
-create table dbo.BPASysConfig
+create table BP_PRD.dbo.BPASysConfig
 (
     id                                int                          not null
         constraint PK_BPASysConfig
@@ -1028,7 +1004,7 @@ create table dbo.BPASysConfig
 )
 go
 
-create table dbo.BPASysWebConnectionSettings
+create table BP_PRD.dbo.BPASysWebConnectionSettings
 (
     maxidletime       int,
     connectionlimit   int,
@@ -1036,7 +1012,7 @@ create table dbo.BPASysWebConnectionSettings
 )
 go
 
-create table dbo.BPASysWebUrlSettings
+create table BP_PRD.dbo.BPASysWebUrlSettings
 (
     baseuri           varchar(max) not null,
     connectionlimit   int          not null,
@@ -1045,7 +1021,7 @@ create table dbo.BPASysWebUrlSettings
 )
 go
 
-create table dbo.BPATag
+create table BP_PRD.dbo.BPATag
 (
     id  int identity
         primary key
@@ -1059,7 +1035,7 @@ create unique index UNQ_BPATag_tag
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPATask
+create table BP_PRD.dbo.BPATask
 (
     id              int identity
         constraint PK_BPATask
@@ -1083,7 +1059,7 @@ create table dbo.BPATask
 )
 go
 
-create table dbo.BPATile
+create table BP_PRD.dbo.BPATile
 (
     id            uniqueidentifier not null
         constraint PK_BPATile
@@ -1099,7 +1075,7 @@ create table dbo.BPATile
 )
 go
 
-create table dbo.BPAPackageTile
+create table BP_PRD.dbo.BPAPackageTile
 (
     packageid int              not null
         constraint FK_BPAPackageTile_BPAPackage
@@ -1114,7 +1090,7 @@ create table dbo.BPAPackageTile
 )
 go
 
-create table dbo.BPATileDataSources
+create table BP_PRD.dbo.BPATileDataSources
 (
     spname   nvarchar(255) not null
         constraint PK_BPATileDataSources
@@ -1124,7 +1100,7 @@ create table dbo.BPATileDataSources
 )
 go
 
-create table dbo.BPAToolPosition
+create table BP_PRD.dbo.BPAToolPosition
 (
     UserID   uniqueidentifier,
     Name     nvarchar(100),
@@ -1140,7 +1116,7 @@ create clustered index INDEX_BPAToolPosition_userid_name
     on dbo.BPAToolPosition (UserID, Name)
 go
 
-create table dbo.BPATree
+create table BP_PRD.dbo.BPATree
 (
     id   int           not null
         primary key,
@@ -1148,7 +1124,7 @@ create table dbo.BPATree
 )
 go
 
-create table dbo.BPAGroup
+create table BP_PRD.dbo.BPAGroup
 (
     id           uniqueidentifier not null
         constraint PK_BPAGroup
@@ -1162,7 +1138,7 @@ create table dbo.BPAGroup
 )
 go
 
-create table dbo.BPAGroupGroup
+create table BP_PRD.dbo.BPAGroupGroup
 (
     groupid  uniqueidentifier not null
         constraint FK_BPAGroupGroup_BPAGroup_groupid
@@ -1178,7 +1154,7 @@ create table dbo.BPAGroupGroup
 )
 go
 
-create table dbo.BPAGroupResource
+create table BP_PRD.dbo.BPAGroupResource
 (
     groupid  uniqueidentifier not null
         constraint FK_BPAGroupResource_BPAGroup
@@ -1193,7 +1169,7 @@ create table dbo.BPAGroupResource
 )
 go
 
-create table dbo.BPAGroupTile
+create table BP_PRD.dbo.BPAGroupTile
 (
     groupid uniqueidentifier not null
         constraint FK_BPAGroupTile_BPAGroup
@@ -1208,7 +1184,7 @@ create table dbo.BPAGroupTile
 )
 go
 
-create table dbo.BPATreeDefaultGroup
+create table BP_PRD.dbo.BPATreeDefaultGroup
 (
     id      int identity,
     treeid  int              not null
@@ -1224,7 +1200,7 @@ create table dbo.BPATreeDefaultGroup
 )
 go
 
-create table dbo.BPATreePerm
+create table BP_PRD.dbo.BPATreePerm
 (
     id             int identity,
     treeid         int     not null
@@ -1238,7 +1214,7 @@ create table dbo.BPATreePerm
 )
 go
 
-create table dbo.BPAUser
+create table BP_PRD.dbo.BPAUser
 (
     userid                      uniqueidentifier                not null
         constraint PK_BPAUser
@@ -1266,7 +1242,7 @@ create table dbo.BPAUser
 )
 go
 
-create table dbo.BPADashboard
+create table BP_PRD.dbo.BPADashboard
 (
     id               uniqueidentifier not null
         constraint PK_BPADashboard
@@ -1281,7 +1257,7 @@ create table dbo.BPADashboard
 )
 go
 
-create table dbo.BPADashboardTile
+create table BP_PRD.dbo.BPADashboardTile
 (
     dashid       uniqueidentifier not null
         constraint FK_BPADashboardTile_BPADashboard
@@ -1299,7 +1275,7 @@ create table dbo.BPADashboardTile
 )
 go
 
-create table dbo.BPAGroupUser
+create table BP_PRD.dbo.BPAGroupUser
 (
     groupid  uniqueidentifier not null
         constraint FK_BPAGroupUser_BPAGroup
@@ -1314,7 +1290,7 @@ create table dbo.BPAGroupUser
 )
 go
 
-create table dbo.BPALicense
+create table BP_PRD.dbo.BPALicense
 (
     id                        int identity
         constraint PK_BPALicense
@@ -1331,7 +1307,7 @@ create table dbo.BPALicense
 )
 go
 
-create table dbo.BPALicenseActivationRequest
+create table BP_PRD.dbo.BPALicenseActivationRequest
 (
     RequestId       int identity
         constraint PK_User
@@ -1352,7 +1328,7 @@ create table dbo.BPALicenseActivationRequest
 )
 go
 
-create table dbo.BPAMappedActiveDirectoryUser
+create table BP_PRD.dbo.BPAMappedActiveDirectoryUser
 (
     bpuserid uniqueidentifier not null
         constraint UNQ_bpuserid
@@ -1369,7 +1345,7 @@ create index IX_BPAMappedActiveDirectoryUser_sid
     on dbo.BPAMappedActiveDirectoryUser (sid)
 go
 
-create table dbo.BPAPackageDashboard
+create table BP_PRD.dbo.BPAPackageDashboard
 (
     packageid int              not null
         constraint FK_BPAPackageDashboard_BPAPackage
@@ -1384,7 +1360,7 @@ create table dbo.BPAPackageDashboard
 )
 go
 
-create table dbo.BPAPassword
+create table BP_PRD.dbo.BPAPassword
 (
     id           int identity
         primary key,
@@ -1400,7 +1376,7 @@ create table dbo.BPAPassword
 )
 go
 
-create table dbo.BPAPref
+create table BP_PRD.dbo.BPAPref
 (
     id     int identity
         primary key
@@ -1415,7 +1391,7 @@ create table dbo.BPAPref
 )
 go
 
-create table dbo.BPAIntegerPref
+create table BP_PRD.dbo.BPAIntegerPref
 (
     prefid int not null
         constraint FK_BPAIntegerPref_BPAPref
@@ -1430,7 +1406,7 @@ create clustered index INDEX_BPAIntegerPref_prefid
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAProcess
+create table BP_PRD.dbo.BPAProcess
 (
     processid          uniqueidentifier not null
         constraint PK_BPAProcess
@@ -1459,7 +1435,7 @@ create table dbo.BPAProcess
 )
 go
 
-create table dbo.BPACredentialsProcesses
+create table BP_PRD.dbo.BPACredentialsProcesses
 (
     credentialid uniqueidentifier not null
         constraint FK_BPACredentials_RoleID
@@ -1472,7 +1448,7 @@ create table dbo.BPACredentialsProcesses
 )
 go
 
-create table dbo.BPAGroupProcess
+create table BP_PRD.dbo.BPAGroupProcess
 (
     groupid   uniqueidentifier not null
         constraint FK_BPAGroupProcess_BPAGroup
@@ -1488,7 +1464,7 @@ create table dbo.BPAGroupProcess
 )
 go
 
-create table dbo.BPAInternalAuth
+create table BP_PRD.dbo.BPAInternalAuth
 (
     UserID       uniqueidentifier        not null
         constraint FK_BPAInternalAuth_BPAUser
@@ -1507,7 +1483,7 @@ create table dbo.BPAInternalAuth
 )
 go
 
-create table dbo.BPAPackageProcess
+create table BP_PRD.dbo.BPAPackageProcess
 (
     packageid int              not null
         constraint FK_BPAPackageProcess_BPAPackage
@@ -1523,7 +1499,7 @@ create table dbo.BPAPackageProcess
 )
 go
 
-create table dbo.BPAProcessActionDependency
+create table BP_PRD.dbo.BPAProcessActionDependency
 (
     id             int identity
         constraint PK_BPAProcessActionDependency
@@ -1538,7 +1514,7 @@ create table dbo.BPAProcessActionDependency
 )
 go
 
-create table dbo.BPAProcessAlert
+create table BP_PRD.dbo.BPAProcessAlert
 (
     UserID    uniqueidentifier not null
         constraint FK_BPAAlert_BPAUser
@@ -1551,7 +1527,7 @@ create table dbo.BPAProcessAlert
 )
 go
 
-create table dbo.BPAProcessBackup
+create table BP_PRD.dbo.BPAProcessBackup
 (
     processid     uniqueidentifier not null
         constraint PK_BPAProcessBackup
@@ -1565,7 +1541,7 @@ create table dbo.BPAProcessBackup
 )
 go
 
-create table dbo.BPAProcessCalendarDependency
+create table BP_PRD.dbo.BPAProcessCalendarDependency
 (
     id              int identity
         constraint PK_BPAProcessCalendarDependency
@@ -1578,7 +1554,7 @@ create table dbo.BPAProcessCalendarDependency
 )
 go
 
-create table dbo.BPAProcessCredentialsDependency
+create table BP_PRD.dbo.BPAProcessCredentialsDependency
 (
     id                 int identity
         constraint PK_BPAProcessCredentialsDependency
@@ -1592,7 +1568,7 @@ create table dbo.BPAProcessCredentialsDependency
 )
 go
 
-create table dbo.BPAProcessElementDependency
+create table BP_PRD.dbo.BPAProcessElementDependency
 (
     id             int identity
         constraint PK_BPAProcessElementDependency
@@ -1607,7 +1583,7 @@ create table dbo.BPAProcessElementDependency
 )
 go
 
-create table dbo.BPAProcessEnvironmentVarDependency
+create table BP_PRD.dbo.BPAProcessEnvironmentVarDependency
 (
     id              int identity
         constraint PK_BPAProcessEnvironmentVarDependency
@@ -1621,7 +1597,7 @@ create table dbo.BPAProcessEnvironmentVarDependency
 )
 go
 
-create table dbo.BPAProcessFontDependency
+create table BP_PRD.dbo.BPAProcessFontDependency
 (
     id          int identity
         constraint PK_BPAProcessFontDependency
@@ -1634,7 +1610,7 @@ create table dbo.BPAProcessFontDependency
 )
 go
 
-create table dbo.BPAProcessIDDependency
+create table BP_PRD.dbo.BPAProcessIDDependency
 (
     id           int identity
         constraint PK_BPAProcessIDDependency
@@ -1648,7 +1624,7 @@ create table dbo.BPAProcessIDDependency
 )
 go
 
-create table dbo.BPAProcessLock
+create table BP_PRD.dbo.BPAProcessLock
 (
     processid    uniqueidentifier not null
         constraint PK_BPAProcessLock
@@ -1663,7 +1639,7 @@ create table dbo.BPAProcessLock
 )
 go
 
-create table dbo.BPAProcessNameDependency
+create table BP_PRD.dbo.BPAProcessNameDependency
 (
     id             int identity
         constraint PK_BPAProcessNameDependency
@@ -1677,7 +1653,7 @@ create table dbo.BPAProcessNameDependency
 )
 go
 
-create table dbo.BPAProcessParentDependency
+create table BP_PRD.dbo.BPAProcessParentDependency
 (
     id            int identity
         constraint PK_BPAProcessParentDependency
@@ -1690,7 +1666,7 @@ create table dbo.BPAProcessParentDependency
 )
 go
 
-create table dbo.BPAProcessQueueDependency
+create table BP_PRD.dbo.BPAProcessQueueDependency
 (
     id           int identity
         constraint PK_BPAProcessQueueDependency
@@ -1704,7 +1680,7 @@ create table dbo.BPAProcessQueueDependency
 )
 go
 
-create table dbo.BPAProcessSkillDependency
+create table BP_PRD.dbo.BPAProcessSkillDependency
 (
     id         int identity
         constraint PK_BPAProcessSkillDependency
@@ -1717,7 +1693,7 @@ create table dbo.BPAProcessSkillDependency
 )
 go
 
-create table dbo.BPAProcessWebApiDependency
+create table BP_PRD.dbo.BPAProcessWebApiDependency
 (
     id         int identity
         constraint PK_BPAProcessWebApiDependency
@@ -1730,7 +1706,7 @@ create table dbo.BPAProcessWebApiDependency
 )
 go
 
-create table dbo.BPAProcessWebServiceDependency
+create table BP_PRD.dbo.BPAProcessWebServiceDependency
 (
     id             int identity
         constraint PK_BPAProcessWebServiceDependency
@@ -1743,7 +1719,7 @@ create table dbo.BPAProcessWebServiceDependency
 )
 go
 
-create table dbo.BPARecent
+create table BP_PRD.dbo.BPARecent
 (
     id             uniqueidentifier not null
         constraint PK_BPARecent
@@ -1757,7 +1733,7 @@ create table dbo.BPARecent
 )
 go
 
-create table dbo.BPARelease
+create table BP_PRD.dbo.BPARelease
 (
     id            int identity
         constraint PK_BPARelease
@@ -1782,7 +1758,7 @@ create table dbo.BPARelease
 )
 go
 
-create table dbo.BPAReleaseEntry
+create table BP_PRD.dbo.BPAReleaseEntry
 (
     id        int identity
         constraint PK_BPAReleaseEntry
@@ -1798,7 +1774,7 @@ create table dbo.BPAReleaseEntry
 )
 go
 
-create table dbo.BPAScenarioLink
+create table BP_PRD.dbo.BPAScenarioLink
 (
     scenarioid   uniqueidentifier not null,
     processid    uniqueidentifier not null
@@ -1812,7 +1788,7 @@ create table dbo.BPAScenarioLink
 )
 go
 
-create table dbo.BPAScheduleAlert
+create table BP_PRD.dbo.BPAScheduleAlert
 (
     userid     uniqueidentifier not null
         constraint FK_BPAScheduleAlert_BPAUser
@@ -1827,7 +1803,7 @@ create table dbo.BPAScheduleAlert
 )
 go
 
-create table dbo.BPASkillVersion
+create table BP_PRD.dbo.BPASkillVersion
 (
     id               uniqueidentifier not null
         constraint PK_BPASkillVersion
@@ -1850,7 +1826,7 @@ create table dbo.BPASkillVersion
 )
 go
 
-create table dbo.BPAStringPref
+create table BP_PRD.dbo.BPAStringPref
 (
     prefid int not null
         constraint FK_BPAStringPref_BPAPref
@@ -1865,7 +1841,7 @@ create clustered index INDEX_BPAStringPref_prefid
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPATaskSession
+create table BP_PRD.dbo.BPATaskSession
 (
     taskid        int                                       not null
         constraint FK_BPATaskProcess_BPATask
@@ -1891,7 +1867,7 @@ create index IX_BPATaskSession_taskid
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAUserExternalIdentity
+create table BP_PRD.dbo.BPAUserExternalIdentity
 (
     bpuserid           uniqueidentifier not null
         constraint FK_BPAUserExternalIdentity_BPAUser
@@ -1910,7 +1886,7 @@ create index IX_BPAUserExternalIdentity_externalproviderid_externalid
     on dbo.BPAUserExternalIdentity (externalproviderid, externalid) include (bpuserid)
 go
 
-create table dbo.BPAUserRole
+create table BP_PRD.dbo.BPAUserRole
 (
     id              int identity
         constraint PK_BPAUserRole
@@ -1922,7 +1898,7 @@ create table dbo.BPAUserRole
 )
 go
 
-create table dbo.BPACredentialRole
+create table BP_PRD.dbo.BPACredentialRole
 (
     credentialid uniqueidentifier not null
         constraint FK_BPACredentialRole_BPACredential
@@ -1941,7 +1917,7 @@ create unique index UNQ_BPAUserRole_name
     on dbo.BPAUserRole (name)
 go
 
-create table dbo.BPAUserRoleAssignment
+create table BP_PRD.dbo.BPAUserRoleAssignment
 (
     userid     uniqueidentifier not null
         constraint FK_BPAUserRoleAssignment_BPAUser
@@ -1956,7 +1932,7 @@ create table dbo.BPAUserRoleAssignment
 )
 go
 
-create table dbo.BPAUserRolePerm
+create table BP_PRD.dbo.BPAUserRolePerm
 (
     userroleid int not null
         constraint FK_BPAUserRolePerm_BPAUserRole
@@ -1971,7 +1947,7 @@ create table dbo.BPAUserRolePerm
 )
 go
 
-create table dbo.BPAGroupUserRolePerm
+create table BP_PRD.dbo.BPAGroupUserRolePerm
 (
     groupid    uniqueidentifier not null
         constraint FK_BPAGroupUserRolePerm_BPAGroup
@@ -1991,7 +1967,7 @@ create table dbo.BPAGroupUserRolePerm
 )
 go
 
-create table dbo.BPAValAction
+create table BP_PRD.dbo.BPAValAction
 (
     actionid    int not null
         constraint PK_BPAValAction
@@ -2000,7 +1976,7 @@ create table dbo.BPAValAction
 )
 go
 
-create table dbo.BPAValCategory
+create table BP_PRD.dbo.BPAValCategory
 (
     catid       int not null
         constraint PK_BPAValCategory
@@ -2009,7 +1985,7 @@ create table dbo.BPAValCategory
 )
 go
 
-create table dbo.BPAValType
+create table BP_PRD.dbo.BPAValType
 (
     typeid      int not null
         constraint PK_BPAValType
@@ -2018,7 +1994,7 @@ create table dbo.BPAValType
 )
 go
 
-create table dbo.BPAValActionMap
+create table BP_PRD.dbo.BPAValActionMap
 (
     catid    int not null
         references dbo.BPAValCategory,
@@ -2031,7 +2007,7 @@ create table dbo.BPAValActionMap
 )
 go
 
-create table dbo.BPAValCheck
+create table BP_PRD.dbo.BPAValCheck
 (
     checkid     int                                  not null
         constraint PK_BPAValCheck
@@ -2047,7 +2023,7 @@ create table dbo.BPAValCheck
 )
 go
 
-create table dbo.BPAWebApiService
+create table BP_PRD.dbo.BPAWebApiService
 (
     serviceid                          uniqueidentifier         not null
         constraint PK_BPAWebApiService
@@ -2066,7 +2042,7 @@ create table dbo.BPAWebApiService
 )
 go
 
-create table dbo.BPAPackageWebApi
+create table BP_PRD.dbo.BPAPackageWebApi
 (
     packageid int              not null
         constraint FK_BPAPackageWebApi_BPAPackage
@@ -2081,7 +2057,7 @@ create table dbo.BPAPackageWebApi
 )
 go
 
-create table dbo.BPAWebApiAction
+create table BP_PRD.dbo.BPAWebApiAction
 (
     actionid                     int identity
         constraint PK_BPAWebApiAction
@@ -2109,7 +2085,7 @@ create index Index_BPAWebApiAction_serviced
     on dbo.BPAWebApiAction (serviceid)
 go
 
-create table dbo.BPAWebApiCustomOutputParameter
+create table BP_PRD.dbo.BPAWebApiCustomOutputParameter
 (
     id                  int identity
         constraint PK_BPAWebApiCustomOutputParameter
@@ -2128,7 +2104,7 @@ create index Index_BPAWebApiCustomOutputParameter_actionid
     on dbo.BPAWebApiCustomOutputParameter (actionid)
 go
 
-create table dbo.BPAWebApiHeader
+create table BP_PRD.dbo.BPAWebApiHeader
 (
     headerid  int identity
         constraint PK_BPAWebApiHeader
@@ -2152,7 +2128,7 @@ create index Index_BPAWebApiHeader_actionid
     on dbo.BPAWebApiHeader (actionid)
 go
 
-create table dbo.BPAWebApiParameter
+create table BP_PRD.dbo.BPAWebApiParameter
 (
     parameterid     int identity
         constraint PK_BPAWebApiParameter
@@ -2182,7 +2158,7 @@ create index Index_BPAWebApiParameter_actionid
     on dbo.BPAWebApiParameter (actionid)
 go
 
-create table dbo.BPAWebService
+create table BP_PRD.dbo.BPAWebService
 (
     serviceid   uniqueidentifier not null
         constraint PK_BPAWebService
@@ -2196,7 +2172,7 @@ create table dbo.BPAWebService
 )
 go
 
-create table dbo.BPAPackageWebService
+create table BP_PRD.dbo.BPAPackageWebService
 (
     packageid    int              not null
         constraint FK_BPAPackageWebService_BPAPackage
@@ -2211,7 +2187,7 @@ create table dbo.BPAPackageWebService
 )
 go
 
-create table dbo.BPAWebServiceAsset
+create table BP_PRD.dbo.BPAWebServiceAsset
 (
     serviceid uniqueidentifier not null
         constraint FK_BPAWebServiceAsset_BPAWebService
@@ -2226,7 +2202,7 @@ create clustered index Index_BPAWebServiceAsset_serviceid_assettype
     on dbo.BPAWebServiceAsset (serviceid, assettype)
 go
 
-create table dbo.BPAWebSkillVersion
+create table BP_PRD.dbo.BPAWebSkillVersion
 (
     versionid    uniqueidentifier not null
         constraint PK_BPAWebSkillVersion
@@ -2240,7 +2216,7 @@ create table dbo.BPAWebSkillVersion
 )
 go
 
-create table dbo.BPAWorkQueueFilter
+create table BP_PRD.dbo.BPAWorkQueueFilter
 (
     FilterID   uniqueidentifier not null
         constraint PK_BPAWorkQueueFilter
@@ -2253,7 +2229,7 @@ create table dbo.BPAWorkQueueFilter
 )
 go
 
-create table dbo.BPAWorkQueue
+create table BP_PRD.dbo.BPAWorkQueue
 (
     id                      uniqueidentifier                       not null,
     name                    nvarchar(255)                          not null
@@ -2292,7 +2268,7 @@ create table dbo.BPAWorkQueue
 )
 go
 
-create table dbo.BPAGroupQueue
+create table BP_PRD.dbo.BPAGroupQueue
 (
     groupid  uniqueidentifier not null
         constraint FK_BPAGroupQueue_BPAGroup
@@ -2307,7 +2283,7 @@ create table dbo.BPAGroupQueue
 )
 go
 
-create table dbo.BPAPackageWorkQueue
+create table BP_PRD.dbo.BPAPackageWorkQueue
 (
     packageid  int not null
         constraint FK_BPAPackageWorkQueue_BPAPackage
@@ -2322,7 +2298,7 @@ create table dbo.BPAPackageWorkQueue
 )
 go
 
-create table dbo.BPASession
+create table BP_PRD.dbo.BPASession
 (
     sessionid                 uniqueidentifier not null
         constraint PK_BPASession
@@ -2367,7 +2343,7 @@ create table dbo.BPASession
 )
 go
 
-create table dbo.BPAAlertEvent
+create table BP_PRD.dbo.BPAAlertEvent
 (
     AlertEventID          int identity
         constraint PK_BPAAlertEvent
@@ -2405,7 +2381,7 @@ create index Index_BPAAlertEvent_subscriberuserid_subscriberdate
     on dbo.BPAAlertEvent (SubscriberUserID, SubscriberDate)
 go
 
-create table dbo.BPAEnvLock
+create table BP_PRD.dbo.BPAEnvLock
 (
     name                   nvarchar(255) not null
         constraint PK_BPAEnvLock
@@ -2422,7 +2398,7 @@ create table dbo.BPAEnvLock
 )
 go
 
-create table dbo.BPAScheduleLogEntry
+create table BP_PRD.dbo.BPAScheduleLogEntry
 (
     id                bigint identity
         constraint PK_BPAScheduleLogEntry
@@ -2479,7 +2455,7 @@ create index IX_statusid_warningthreshold
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPASessionLog_NonUnicode
+create table BP_PRD.dbo.BPASessionLog_NonUnicode
 (
     logid               bigint identity
         constraint PK_BPASessionLog_NonUnicode
@@ -2513,7 +2489,7 @@ create index Index_BPASessionLog_NonUnicode_sessionnumber
     with (fillfactor = 90)
 go
 
-create table dbo.BPASessionLog_NonUnicode_pre65
+create table BP_PRD.dbo.BPASessionLog_NonUnicode_pre65
 (
     sessionnumber       int not null
         constraint FK_BPASessionLog_NonUnicode_BPASession_pre65
@@ -2547,7 +2523,7 @@ create index Index_SessionStageType
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPASessionLog_Unicode
+create table BP_PRD.dbo.BPASessionLog_Unicode
 (
     logid               bigint identity
         constraint PK_BPASessionLog_Unicode
@@ -2581,7 +2557,7 @@ create index Index_BPASessionLog_Unicode_sessionnumber
     with (fillfactor = 90)
 go
 
-create table dbo.BPASessionLog_Unicode_pre65
+create table BP_PRD.dbo.BPASessionLog_Unicode_pre65
 (
     sessionnumber       int not null
         constraint FK_BPASessionLog_Unicode_BPASession_pre65
@@ -2617,7 +2593,7 @@ create index INDEX_WorkQueueGuid
     on dbo.BPAWorkQueue (id)
 go
 
-create table dbo.BPAWorkQueueItem
+create table BP_PRD.dbo.BPAWorkQueueItem
 (
     id                     uniqueidentifier        not null,
     queueid                uniqueidentifier        not null,
@@ -2655,7 +2631,7 @@ create table dbo.BPAWorkQueueItem
 )
 go
 
-create table dbo.BPACaseLock
+create table BP_PRD.dbo.BPACaseLock
 (
     id        bigint           not null
         constraint PK_BPACaseLock
@@ -2762,7 +2738,7 @@ create index Index_BPAWorkQueueItem_queueident_finished
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAWorkQueueItemTag
+create table BP_PRD.dbo.BPAWorkQueueItemTag
 (
     queueitemident bigint not null
         constraint FK_BPAWorkQueueItemTag_BPAWorkQueueItem
@@ -2783,7 +2759,7 @@ create index Index_BPAWorkQueueItemTag_queueitemident
     with (pad_index = ON, fillfactor = 90)
 go
 
-create table dbo.BPAWorkQueueLog
+create table BP_PRD.dbo.BPAWorkQueueLog
 (
     logid      bigint identity
         primary key nonclustered,
@@ -2807,7 +2783,7 @@ create index INDEX_BPAWorkQueueLog_queueop
     on dbo.BPAWorkQueueLog (queueop)
 go
 
-create table dbo.BPMIConfiguredSnapshot
+create table BP_PRD.dbo.BPMIConfiguredSnapshot
 (
     snapshotid    bigint identity
         constraint PK_BPMIConfiguredSnapshot
@@ -2828,7 +2804,7 @@ create index Index_BPMIConfiguredSnapshot_queueident
     with (fillfactor = 90)
 go
 
-create table dbo.BPMIProductivityDaily
+create table BP_PRD.dbo.BPMIProductivityDaily
 (
     reportdate     smalldatetime not null,
     queueident     int           not null,
@@ -2851,7 +2827,7 @@ create table dbo.BPMIProductivityDaily
 )
 go
 
-create table dbo.BPMIProductivityMonthly
+create table BP_PRD.dbo.BPMIProductivityMonthly
 (
     reportyear     int not null,
     reportmonth    int not null,
@@ -2875,7 +2851,7 @@ create table dbo.BPMIProductivityMonthly
 )
 go
 
-create table dbo.BPMIProductivityShadow
+create table BP_PRD.dbo.BPMIProductivityShadow
 (
     ident            bigint identity
         constraint PK_BPMIProductivityShadow
@@ -2896,7 +2872,7 @@ create index Index_BPMIProductivityShadow_queueident_eventdatetime_eventid
     with (fillfactor = 90)
 go
 
-create table dbo.BPMIQueueInterimSnapshot
+create table BP_PRD.dbo.BPMIQueueInterimSnapshot
 (
     queueident             int            not null
         constraint PK_BPMIQueueInterimSnapshot
@@ -2918,7 +2894,7 @@ create table dbo.BPMIQueueInterimSnapshot
 )
 go
 
-create table dbo.BPMIQueueSnapshot
+create table BP_PRD.dbo.BPMIQueueSnapshot
 (
     id                       bigint identity
         constraint PK_BPMIQueueSnapshot
@@ -2954,7 +2930,7 @@ create index Index_BPMIQueueSnapshot_snapshotid_queueident
     with (fillfactor = 90)
 go
 
-create table dbo.BPMIQueueTrend
+create table BP_PRD.dbo.BPMIQueueTrend
 (
     id                              int identity
         constraint PK_BPMIQueueTrend
@@ -2989,7 +2965,7 @@ create index Index_BPMIQueueTrend_queueident
     with (fillfactor = 90)
 go
 
-create table dbo.BPMISnapshotTrigger
+create table BP_PRD.dbo.BPMISnapshotTrigger
 (
     queueident      int            not null,
     snapshotid      bigint         not null
@@ -3008,7 +2984,7 @@ create table dbo.BPMISnapshotTrigger
 )
 go
 
-create table dbo.BPMIUtilisationDaily
+create table BP_PRD.dbo.BPMIUtilisationDaily
 (
     reportdate smalldatetime    not null,
     resourceid uniqueidentifier not null,
@@ -3042,7 +3018,7 @@ create table dbo.BPMIUtilisationDaily
 )
 go
 
-create table dbo.BPMIUtilisationMonthly
+create table BP_PRD.dbo.BPMIUtilisationMonthly
 (
     reportyear  int              not null,
     reportmonth int              not null,
@@ -3077,7 +3053,7 @@ create table dbo.BPMIUtilisationMonthly
 )
 go
 
-create table dbo.BPMIUtilisationShadow
+create table BP_PRD.dbo.BPMIUtilisationShadow
 (
     sessionid     uniqueidentifier not null
         constraint PK_BPMIUtilisationShadow
@@ -3089,7 +3065,7 @@ create table dbo.BPMIUtilisationShadow
 )
 go
 
-create table dbo.SessionLog
+create table BP_PRD.dbo.SessionLog
 (
     SeqNo         int identity,
     SessionNumber int not null,
@@ -3097,7 +3073,7 @@ create table dbo.SessionLog
 )
 go
 
-create table sys.filestream_tombstone_2073058421
+create table BP_PRD.sys.filestream_tombstone_2073058421
 (
     oplsn_fseqno             int              not null,
     oplsn_bOffset            int              not null,
@@ -3121,7 +3097,7 @@ create index FSTSNCIdx
                                             oplsn_slotid)
 go
 
-create table sys.filetable_updates_2105058535
+create table BP_PRD.sys.filetable_updates_2105058535
 (
     table_id      bigint           not null,
     oplsn_fseqno  int              not null,
@@ -3135,7 +3111,7 @@ create unique clustered index FFtUpdateIdx
     on sys.filetable_updates_2105058535 (table_id, oplsn_fseqno, oplsn_bOffset, oplsn_slotid, item_guid)
 go
 
-create table sys.plan_persist_context_settings
+create table BP_PRD.sys.plan_persist_context_settings
 (
     context_settings_id       bigint   not null,
     set_options               int      not null,
@@ -3157,7 +3133,7 @@ create unique clustered index plan_persist_context_settings_cidx
     on sys.plan_persist_context_settings (context_settings_id desc)
 go
 
-create table sys.plan_persist_plan
+create table BP_PRD.sys.plan_persist_plan
 (
     plan_id                    bigint         not null,
     query_id                   bigint         not null,
@@ -3188,7 +3164,7 @@ create index plan_persist_plan_idx1
     on sys.plan_persist_plan (query_id desc)
 go
 
-create table sys.plan_persist_query
+create table BP_PRD.sys.plan_persist_query
 (
     query_id                        bigint         not null,
     query_text_id                   bigint         not null,
@@ -3234,7 +3210,7 @@ create index plan_persist_query_idx1
     on sys.plan_persist_query (query_text_id, context_settings_id)
 go
 
-create table sys.plan_persist_query_text
+create table BP_PRD.sys.plan_persist_query_text
 (
     query_text_id               bigint        not null,
     query_sql_text              nvarchar(max) collate SQL_Latin1_General_CP1_CI_AS,
@@ -3252,7 +3228,7 @@ create unique index plan_persist_query_text_idx1
     on sys.plan_persist_query_text (statement_sql_handle)
 go
 
-create table sys.plan_persist_runtime_stats
+create table BP_PRD.sys.plan_persist_runtime_stats
 (
     runtime_stats_id                bigint         not null,
     plan_id                         bigint         not null,
@@ -3317,7 +3293,7 @@ create unique index plan_persist_runtime_stats_idx1
     on sys.plan_persist_runtime_stats (runtime_stats_id)
 go
 
-create table sys.plan_persist_runtime_stats_interval
+create table BP_PRD.sys.plan_persist_runtime_stats_interval
 (
     runtime_stats_interval_id bigint         not null,
     start_time                datetimeoffset not null,
@@ -3334,7 +3310,7 @@ create index plan_persist_runtime_stats_interval_idx1
     on sys.plan_persist_runtime_stats_interval (end_time)
 go
 
-create table sys.queue_messages_1977058079
+create table BP_PRD.sys.queue_messages_1977058079
 (
     status                  tinyint          not null,
     priority                tinyint          not null,
@@ -3365,7 +3341,7 @@ create unique index queue_secondary_index
     with (allow_page_locks = OFF)
 go
 
-create table sys.queue_messages_2009058193
+create table BP_PRD.sys.queue_messages_2009058193
 (
     status                  tinyint          not null,
     priority                tinyint          not null,
@@ -3396,7 +3372,7 @@ create unique index queue_secondary_index
     with (allow_page_locks = OFF)
 go
 
-create table sys.queue_messages_2041058307
+create table BP_PRD.sys.queue_messages_2041058307
 (
     status                  tinyint          not null,
     priority                tinyint          not null,
@@ -3427,7 +3403,7 @@ create unique index queue_secondary_index
     with (allow_page_locks = OFF)
 go
 
-create table sys.sqlagent_job_history
+create table BP_PRD.sys.sqlagent_job_history
 (
     instance_id         int identity,
     job_id              uniqueidentifier not null,
@@ -3453,7 +3429,7 @@ create index sqlagent_job_history_nc1
     on sys.sqlagent_job_history (job_id)
 go
 
-create table sys.sqlagent_jobs
+create table BP_PRD.sys.sqlagent_jobs
 (
     job_id                uniqueidentifier not null,
     name                  sysname          not null collate SQL_Latin1_General_CP1_CI_AS,
@@ -3475,7 +3451,7 @@ create index sqlagent_jobs_nc1_name
     on sys.sqlagent_jobs (name)
 go
 
-create table sys.sqlagent_jobsteps
+create table BP_PRD.sys.sqlagent_jobsteps
 (
     job_id                uniqueidentifier not null,
     step_id               int              not null,
@@ -3517,7 +3493,7 @@ create unique index sqlagent_jobsteps_nc2
     on sys.sqlagent_jobsteps (step_uid)
 go
 
-create table sys.sqlagent_jobsteps_logs
+create table BP_PRD.sys.sqlagent_jobsteps_logs
 (
     log_id       int identity,
     log_text     nvarchar(max)    not null collate SQL_Latin1_General_CP1_CI_AS,
@@ -3530,7 +3506,7 @@ create index sqlagent_jobsteps_logs_nc1
     on sys.sqlagent_jobsteps_logs (step_uid, date_created)
 go
 
-create table sys.sysallocunits
+create table BP_PRD.sys.sysallocunits
 (
     auid       bigint    not null,
     type       tinyint   not null,
@@ -3554,7 +3530,7 @@ create unique index nc
     on sys.sysallocunits (ownerid, type, auid)
 go
 
-create table sys.sysasymkeys
+create table BP_PRD.sys.sysasymkeys
 (
     id         int            not null,
     name       sysname        not null,
@@ -3580,7 +3556,7 @@ create unique index nc3
     on sys.sysasymkeys (thumbprint)
 go
 
-create table sys.sysaudacts
+create table BP_PRD.sys.sysaudacts
 (
     class         tinyint not null,
     id            int     not null,
@@ -3596,7 +3572,7 @@ create unique clustered index clust
     on sys.sysaudacts (class, id, subid, grantee, audit_spec_id, type)
 go
 
-create table sys.sysbinobjs
+create table BP_PRD.sys.sysbinobjs
 (
     class    tinyint  not null,
     id       int      not null,
@@ -3618,7 +3594,7 @@ create unique index nc1
     on sys.sysbinobjs (class, nsid, name)
 go
 
-create table sys.sysbinsubobjs
+create table BP_PRD.sys.sysbinsubobjs
 (
     class   tinyint not null,
     idmajor int     not null,
@@ -3637,7 +3613,7 @@ create unique index nc1
     on sys.sysbinsubobjs (name, idmajor, class)
 go
 
-create table sys.sysbrickfiles
+create table BP_PRD.sys.sysbrickfiles
 (
     brickid           int           not null,
     dbid              int           not null,
@@ -3679,7 +3655,7 @@ create unique clustered index clst
     on sys.sysbrickfiles (dbid, pruid, fileid)
 go
 
-create table sys.syscerts
+create table BP_PRD.sys.syscerts
 (
     id             int            not null,
     name           sysname        not null,
@@ -3710,7 +3686,7 @@ create unique index nc3
     on sys.syscerts (thumbprint)
 go
 
-create table sys.syschildinsts
+create table BP_PRD.sys.syschildinsts
 (
     lsid      varbinary(85) not null,
     iname     sysname       not null,
@@ -3727,7 +3703,7 @@ create unique clustered index cl
     on sys.syschildinsts (lsid)
 go
 
-create table sys.sysclones
+create table BP_PRD.sys.sysclones
 (
     id       int    not null,
     subid    int    not null,
@@ -3745,7 +3721,7 @@ create unique clustered index clst
     on sys.sysclones (id, subid, partid, version, segid, cloneid)
 go
 
-create table sys.sysclsobjs
+create table BP_PRD.sys.sysclsobjs
 (
     class    tinyint  not null,
     id       int      not null,
@@ -3766,7 +3742,7 @@ create unique index nc
     on sys.sysclsobjs (name, class)
 go
 
-create table sys.syscolpars
+create table BP_PRD.sys.syscolpars
 (
     id          int      not null,
     number      smallint not null,
@@ -3795,7 +3771,7 @@ create unique index nc
     on sys.syscolpars (id, name, number)
 go
 
-create table sys.syscommittab
+create table BP_PRD.sys.syscommittab
 (
     commit_ts   bigint   not null,
     xdes_id     bigint   not null,
@@ -3814,7 +3790,7 @@ create unique index si_xdes_id
     on sys.syscommittab (xdes_id) include (dbfragid)
 go
 
-create table sys.syscompfragments
+create table BP_PRD.sys.syscompfragments
 (
     cprelid   int       not null,
     fragid    int       not null,
@@ -3831,7 +3807,7 @@ create unique clustered index clst
     on sys.syscompfragments (cprelid, fragid)
 go
 
-create table sys.sysconvgroup
+create table BP_PRD.sys.sysconvgroup
 (
     id         uniqueidentifier not null,
     service_id int              not null,
@@ -3844,7 +3820,7 @@ create unique clustered index clst
     on sys.sysconvgroup (id)
 go
 
-create table sys.syscscolsegments
+create table BP_PRD.sys.syscscolsegments
 (
     hobt_id                 bigint     not null,
     column_id               int        not null,
@@ -3870,7 +3846,7 @@ create unique clustered index clust
     with (data_compression = page)
 go
 
-create table sys.syscsdictionaries
+create table BP_PRD.sys.syscsdictionaries
 (
     hobt_id       bigint     not null,
     column_id     int        not null,
@@ -3890,7 +3866,7 @@ create unique clustered index clust
     with (data_compression = page)
 go
 
-create table sys.syscsrowgroups
+create table BP_PRD.sys.syscsrowgroups
 (
     hobt_id    bigint not null,
     segment_id int    not null,
@@ -3907,7 +3883,7 @@ create unique clustered index clust
     with (data_compression = page)
 go
 
-create table sys.sysdbfiles
+create table BP_PRD.sys.sysdbfiles
 (
     dbfragid int              not null,
     fileid   int              not null,
@@ -3920,7 +3896,7 @@ create unique clustered index clst
     on sys.sysdbfiles (dbfragid, fileid)
 go
 
-create table sys.sysdbfrag
+create table BP_PRD.sys.sysdbfrag
 (
     dbid    int     not null,
     fragid  int     not null,
@@ -3939,7 +3915,7 @@ create unique index nc1
     on sys.sysdbfrag (dbid, brickid, pruid)
 go
 
-create table sys.sysdbreg
+create table BP_PRD.sys.sysdbreg
 (
     id          int              not null,
     name        sysname          not null,
@@ -3967,7 +3943,7 @@ create unique index nc2
     on sys.sysdbreg (svcbrkrguid, scope)
 go
 
-create table sys.sysdercv
+create table BP_PRD.sys.sysdercv
 (
     diagid       uniqueidentifier not null,
     initiator    tinyint          not null,
@@ -4003,7 +3979,7 @@ create unique clustered index cl
     on sys.sysdercv (diagid, initiator)
 go
 
-create table sys.sysdesend
+create table BP_PRD.sys.sysdesend
 (
     handle    uniqueidentifier not null,
     diagid    uniqueidentifier not null,
@@ -4017,7 +3993,7 @@ create unique clustered index cl
     on sys.sysdesend (handle)
 go
 
-create table sys.sysendpts
+create table BP_PRD.sys.sysendpts
 (
     id        int      not null,
     name      sysname  not null,
@@ -4050,7 +4026,7 @@ create unique index nc1
     on sys.sysendpts (name)
 go
 
-create table sys.sysexttables
+create table BP_PRD.sys.sysexttables
 (
     object_id           int not null,
     data_source_id      int not null,
@@ -4066,7 +4042,7 @@ create unique clustered index clidx1
     on sys.sysexttables (object_id)
 go
 
-create table sys.sysfgfrag
+create table BP_PRD.sys.sysfgfrag
 (
     fgid     int not null,
     fgfragid int not null,
@@ -4080,7 +4056,7 @@ create unique clustered index cl
     on sys.sysfgfrag (fgid, fgfragid, dbfragid, phfgid)
 go
 
-create table sys.sysfiles1
+create table BP_PRD.sys.sysfiles1
 (
     status   int        not null,
     fileid   smallint   not null,
@@ -4089,7 +4065,7 @@ create table sys.sysfiles1
 )
 go
 
-create table sys.sysfoqueues
+create table BP_PRD.sys.sysfoqueues
 (
     id      int        not null,
     lsn     binary(10) not null,
@@ -4103,7 +4079,7 @@ create unique clustered index clst
     on sys.sysfoqueues (id, lsn)
 go
 
-create table sys.sysfos
+create table BP_PRD.sys.sysfos
 (
     id       int            not null,
     tgid     int            not null,
@@ -4128,7 +4104,7 @@ create unique index nc1
     on sys.sysfos (tgid, low, high)
 go
 
-create table sys.sysftinds
+create table BP_PRD.sys.sysftinds
 (
     id                int       not null,
     indid             int       not null,
@@ -4152,7 +4128,7 @@ create unique clustered index clst
     on sys.sysftinds (id)
 go
 
-create table sys.sysftproperties
+create table BP_PRD.sys.sysftproperties
 (
     property_list_id   int              not null,
     property_id        int              not null,
@@ -4175,7 +4151,7 @@ create unique index nonclstgi
     on sys.sysftproperties (property_list_id, guid_identifier, int_identifier)
 go
 
-create table sys.sysftsemanticsdb
+create table BP_PRD.sys.sysftsemanticsdb
 (
     database_id   int              not null,
     register_date datetime         not null,
@@ -4189,7 +4165,7 @@ create unique clustered index cl
     on sys.sysftsemanticsdb (database_id)
 go
 
-create table sys.sysftstops
+create table BP_PRD.sys.sysftstops
 (
     stoplistid int          not null,
     stopword   nvarchar(64) not null collate Latin1_General_BIN,
@@ -4202,7 +4178,7 @@ create unique clustered index clst
     on sys.sysftstops (stoplistid, stopword, lcid)
 go
 
-create table sys.sysguidrefs
+create table BP_PRD.sys.sysguidrefs
 (
     class  tinyint          not null,
     id     int              not null,
@@ -4220,7 +4196,7 @@ create unique index nc
     on sys.sysguidrefs (guid, class)
 go
 
-create table sys.sysidxstats
+create table BP_PRD.sys.sysidxstats
 (
     id        int     not null,
     indid     int     not null,
@@ -4244,7 +4220,7 @@ create unique index nc
     on sys.sysidxstats (name, id)
 go
 
-create table sys.sysiscols
+create table BP_PRD.sys.sysiscols
 (
     idmajor   int     not null,
     idminor   int     not null,
@@ -4265,7 +4241,7 @@ create unique index nc1
     on sys.sysiscols (idmajor, intprop, subid, idminor)
 go
 
-create table sys.syslnklgns
+create table BP_PRD.sys.syslnklgns
 (
     srvid   int      not null,
     lgnid   int,
@@ -4280,7 +4256,7 @@ create unique clustered index cl
     on sys.syslnklgns (srvid, lgnid)
 go
 
-create table sys.sysmultiobjrefs
+create table BP_PRD.sys.sysmultiobjrefs
 (
     class      tinyint not null,
     depid      int     not null,
@@ -4299,7 +4275,7 @@ create unique index nc1
     on sys.sysmultiobjrefs (indepid, class, indepsubid, depid, depsubid)
 go
 
-create table sys.sysnsobjs
+create table BP_PRD.sys.sysnsobjs
 (
     class    tinyint  not null,
     id       int      not null,
@@ -4320,7 +4296,7 @@ create unique index nc
     on sys.sysnsobjs (name, nsid, class)
 go
 
-create table sys.sysobjkeycrypts
+create table BP_PRD.sys.sysobjkeycrypts
 (
     class      tinyint        not null,
     id         int            not null,
@@ -4335,7 +4311,7 @@ create unique clustered index cl
     on sys.sysobjkeycrypts (class, id, thumbprint)
 go
 
-create table sys.sysobjvalues
+create table BP_PRD.sys.sysobjvalues
 (
     valclass tinyint not null,
     objid    int     not null,
@@ -4350,7 +4326,7 @@ create unique clustered index clst
     on sys.sysobjvalues (valclass, objid, subobjid, valnum)
 go
 
-create table sys.sysowners
+create table BP_PRD.sys.sysowners
 (
     id          int      not null,
     name        sysname  not null,
@@ -4377,7 +4353,7 @@ create unique index nc2
     on sys.sysowners (sid, id)
 go
 
-create table sys.sysphfg
+create table BP_PRD.sys.sysphfg
 (
     dbfragid int     not null,
     phfgid   int     not null,
@@ -4394,7 +4370,7 @@ create unique clustered index cl
     on sys.sysphfg (phfgid)
 go
 
-create table sys.syspriorities
+create table BP_PRD.sys.syspriorities
 (
     priority_id         int     not null,
     name                sysname not null,
@@ -4417,7 +4393,7 @@ create unique index nc2
     on sys.syspriorities (name)
 go
 
-create table sys.sysprivs
+create table BP_PRD.sys.sysprivs
 (
     class   tinyint not null,
     id      int     not null,
@@ -4433,7 +4409,7 @@ create unique clustered index clust
     on sys.sysprivs (class, id, subid, grantee, grantor, type)
 go
 
-create table sys.syspru
+create table BP_PRD.sys.syspru
 (
     brickid int not null,
     dbid    int not null,
@@ -4447,7 +4423,7 @@ create unique clustered index cl
     on sys.syspru (dbid, pruid)
 go
 
-create table sys.sysprufiles
+create table BP_PRD.sys.sysprufiles
 (
     dbfragid          int           not null,
     fileid            int           not null,
@@ -4487,7 +4463,7 @@ create unique clustered index clst
     on sys.sysprufiles (fileid)
 go
 
-create table sys.sysqnames
+create table BP_PRD.sys.sysqnames
 (
     qid  int            not null,
     hash int            not null,
@@ -4504,7 +4480,7 @@ create unique index nc1
     on sys.sysqnames (nid)
 go
 
-create table sys.sysremsvcbinds
+create table BP_PRD.sys.sysremsvcbinds
 (
     id     int     not null,
     name   sysname not null,
@@ -4526,7 +4502,7 @@ create unique index nc2
     on sys.sysremsvcbinds (scid, remsvc)
 go
 
-create table sys.sysrmtlgns
+create table BP_PRD.sys.sysrmtlgns
 (
     srvid  int      not null,
     name   sysname,
@@ -4540,7 +4516,7 @@ create unique clustered index cl
     on sys.sysrmtlgns (srvid, name)
 go
 
-create table sys.sysrowsetrefs
+create table BP_PRD.sys.sysrowsetrefs
 (
     class     tinyint not null,
     objid     int     not null,
@@ -4555,7 +4531,7 @@ create unique clustered index clust
     on sys.sysrowsetrefs (class, objid, indexid, rowsetnum)
 go
 
-create table sys.sysrowsets
+create table BP_PRD.sys.sysrowsets
 (
     rowsetid   bigint   not null,
     ownertype  tinyint  not null,
@@ -4582,7 +4558,7 @@ create unique clustered index clust
     on sys.sysrowsets (rowsetid)
 go
 
-create table sys.sysrscols
+create table BP_PRD.sys.sysrscols
 (
     rsid        bigint   not null,
     rscolid     int      not null,
@@ -4604,7 +4580,7 @@ create unique clustered index clst
     on sys.sysrscols (rsid, hbcolid)
 go
 
-create table sys.sysrts
+create table BP_PRD.sys.sysrts
 (
     id       int     not null,
     name     sysname not null,
@@ -4628,7 +4604,7 @@ create unique index nc2
     on sys.sysrts (name)
 go
 
-create table sys.sysscalartypes
+create table BP_PRD.sys.sysscalartypes
 (
     id          int      not null,
     schid       int      not null,
@@ -4658,7 +4634,7 @@ create unique index nc2
     on sys.sysscalartypes (name, schid)
 go
 
-create table sys.sysschobjs
+create table BP_PRD.sys.sysschobjs
 (
     id       int      not null,
     name     sysname  not null,
@@ -4691,7 +4667,7 @@ create index nc3
     on sys.sysschobjs (pid, pclass)
 go
 
-create table sys.sysseobjvalues
+create table BP_PRD.sys.sysseobjvalues
 (
     valclass tinyint not null,
     id       bigint  not null,
@@ -4706,7 +4682,7 @@ create unique clustered index clst
     on sys.sysseobjvalues (valclass, id, subid, valnum)
 go
 
-create table sys.syssingleobjrefs
+create table BP_PRD.sys.syssingleobjrefs
 (
     class      tinyint not null,
     depid      int     not null,
@@ -4725,7 +4701,7 @@ create unique index nc1
     on sys.syssingleobjrefs (indepid, class, indepsubid, depid, depsubid)
 go
 
-create table sys.syssoftobjrefs
+create table BP_PRD.sys.syssoftobjrefs
 (
     depclass    tinyint not null,
     depid       int     not null,
@@ -4747,7 +4723,7 @@ create unique index nc1
     on sys.syssoftobjrefs (indepname, indepschema, indepclass, depid, depclass, number)
 go
 
-create table sys.syssqlguides
+create table BP_PRD.sys.syssqlguides
 (
     id              int      not null,
     name            sysname  not null,
@@ -4774,7 +4750,7 @@ create unique index nc2
     on sys.syssqlguides (scopetype, scopeid, hash, id)
 go
 
-create table sys.systypedsubobjs
+create table BP_PRD.sys.systypedsubobjs
 (
     class       tinyint  not null,
     idmajor     int      not null,
@@ -4799,7 +4775,7 @@ create unique index nc
     on sys.systypedsubobjs (name, idmajor, class)
 go
 
-create table sys.sysusermsgs
+create table BP_PRD.sys.sysusermsgs
 (
     id        int            not null,
     msglangid smallint       not null,
@@ -4813,7 +4789,7 @@ create unique clustered index clst
     on sys.sysusermsgs (id, msglangid)
 go
 
-create table sys.syswebmethods
+create table BP_PRD.sys.syswebmethods
 (
     id      int          not null,
     nmspace nvarchar(384) collate Latin1_General_BIN,
@@ -4827,7 +4803,7 @@ create unique clustered index clst
     on sys.syswebmethods (id, nmspace, alias)
 go
 
-create table sys.sysxlgns
+create table BP_PRD.sys.sysxlgns
 (
     id      int      not null,
     name    sysname  not null,
@@ -4854,7 +4830,7 @@ create unique index nc2
     on sys.sysxlgns (sid)
 go
 
-create table sys.sysxmitbody
+create table BP_PRD.sys.sysxmitbody
 (
     msgref  bigint not null,
     count   int    not null,
@@ -4866,7 +4842,7 @@ create unique clustered index clst
     on sys.sysxmitbody (msgref)
 go
 
-create table sys.sysxmitqueue
+create table BP_PRD.sys.sysxmitqueue
 (
     dlgid        uniqueidentifier not null,
     finitiator   bit              not null,
@@ -4896,7 +4872,7 @@ create unique clustered index clst
     on sys.sysxmitqueue (dlgid, finitiator, msgseqnum)
 go
 
-create table sys.sysxmlcomponent
+create table BP_PRD.sys.sysxmlcomponent
 (
     id       int     not null,
     xsdid    int     not null,
@@ -4921,7 +4897,7 @@ create unique index nc1
     on sys.sysxmlcomponent (xsdid, uriord, qual, nameid, symspace, nmscope)
 go
 
-create table sys.sysxmlfacet
+create table BP_PRD.sys.sysxmlfacet
 (
     compid int      not null,
     ord    int      not null,
@@ -4935,7 +4911,7 @@ create unique clustered index cl
     on sys.sysxmlfacet (compid, ord)
 go
 
-create table sys.sysxmlplacement
+create table BP_PRD.sys.sysxmlplacement
 (
     placingid int not null,
     ordinal   int not null,
@@ -4955,7 +4931,7 @@ create unique index nc1
     on sys.sysxmlplacement (placedid, placingid, ordinal)
 go
 
-create table sys.sysxprops
+create table BP_PRD.sys.sysxprops
 (
     class tinyint not null,
     id    int     not null,
@@ -4969,7 +4945,7 @@ create unique clustered index clust
     on sys.sysxprops (class, id, subid, name)
 go
 
-create table sys.sysxsrvs
+create table BP_PRD.sys.sysxsrvs
 (
     id             int      not null,
     name           sysname  not null,
@@ -4992,7 +4968,7 @@ create unique index nc1
     on sys.sysxsrvs (name)
 go
 
-create table sys.trace_xe_action_map
+create table BP_PRD.sys.trace_xe_action_map
 (
     trace_column_id smallint     not null,
     package_name    nvarchar(60) not null collate SQL_Latin1_General_CP1_CI_AS,
@@ -5000,7 +4976,7 @@ create table sys.trace_xe_action_map
 )
 go
 
-create table sys.trace_xe_event_map
+create table BP_PRD.sys.trace_xe_event_map
 (
     trace_event_id smallint     not null,
     package_name   nvarchar(60) not null collate SQL_Latin1_General_CP1_CI_AS,
@@ -5008,10 +4984,6 @@ create table sys.trace_xe_event_map
 )
 go
 
-
-
--- Create the view - this effectively brings together the
--- start / end time from the log entries into the log itself
 create view BPVAnnotatedScheduleLog as
 select
   l.id,
@@ -5020,10 +4992,10 @@ select
   l.instancetime,
   l.servername,
   l.heartbeat,
-  estart.entrytime as "starttime",
-  efin.entrytime as "endtime",
-  efin.entrytype as "endtype",
-  efin.terminationreason as "endreason"
+  estart.entrytime as 'starttime',
+  efin.entrytime as 'endtime',
+  efin.entrytype as 'endtype',
+  efin.terminationreason as 'endreason'
 from BPAScheduleLog l
   join BPAScheduleLogEntry estart on estart.schedulelogid = l.id and estart.entrytype = 0
   left join BPAScheduleLogEntry efin on efin.schedulelogid = l.id and efin.entrytype in (1,2)
@@ -5032,22 +5004,13 @@ go
 create view BPVGroupTree as select 1 as placeholder
 go
 
-
-
--- All active objects
 CREATE view BPVGroupedActiveObjects as
 select * from BPVGroupedObjects where (attributes & 1) = 0;
 go
 
-
-
-
-  -- All active processes
-  CREATE view BPVGroupedActiveProcesses as
+CREATE view BPVGroupedActiveProcesses as
 select * from BPVGroupedProcesses where (attributes & 1) = 0;
 go
-
-
 
 CREATE view BPVGroupedGroups as
 select
@@ -5061,16 +5024,10 @@ select
     join BPAGroup sg on gg.memberid = sg.id;
 go
 
-
-
--- Just the VBOs and their groups
 CREATE view BPVGroupedObjects as
 select * from BPVGroupedProcessesObjects where processtype = 'O';
 go
 
-
-
--- Just the processes and their groups
 CREATE view BPVGroupedProcesses as
 select * from BPVGroupedProcessesObjects where processtype = 'P';
 go
@@ -5112,13 +5069,9 @@ select
     left join BPAProcessLock pl on pl.processid = p.processid;
 go
 
-
-
   CREATE view BPVGroupedPublishedProcesses as
 select * from BPVGroupedActiveProcesses where (attributes & 2) != 0;
 go
-
-
 
 CREATE view [BPVGroupedQueues] as
 select
@@ -5164,9 +5117,6 @@ FROM [BPAResource] r
 WHERE attributeId & 8 = 0;
 go
 
-
-
--- The tiles and their groups (null treeid, groupid, groupname if not in a group)
 CREATE view BPVGroupedTiles as
 select 
     g.treeid as treeid,
@@ -5209,8 +5159,6 @@ select
       on ura.userid = u.userid
 go
 
-
-
 CREATE VIEW BPVPools AS
 SELECT
     g.treeid AS treeid,
@@ -5228,49 +5176,41 @@ FROM BPAResource r
 WHERE attributeId & 8 = 8;
 go
 
-
-
 CREATE view BPVScriptEnvironment as
 select isnull(col_length('BPASysConfig', 'InstallInProgress'), 0) as InstallInProgress;
 go
 
-
-
--- Add a 'live session' view for use in most of the rest of the code
--- (so that it can ignore 'archived' views without other changes)
 create view BPVSession as
 select * from BPASession where statusid <> 6;
 go
 
-
-
 CREATE view BPVSessionInfo as
 select
-    s.sessionid           as "sessionid",
-    s.sessionnumber       as "sessionnumber",
-    s.startdatetime       as "startdatetime",
-    s.starttimezoneoffset as "starttimezoneoffset",
-    s.enddatetime         as "enddatetime",
-    s.endtimezoneoffset   as "endtimezoneoffset",
-    s.processid           as "processid",
-    p.name                as "processname",
-    s.starterresourceid   as "starterresourceid",
-    sr.name               as "starterresourcename",
-    s.starteruserid       as "starteruserid",
+    s.sessionid           as 'sessionid',
+    s.sessionnumber       as 'sessionnumber',
+    s.startdatetime       as 'startdatetime',
+    s.starttimezoneoffset as 'starttimezoneoffset',
+    s.enddatetime         as 'enddatetime',
+    s.endtimezoneoffset   as 'endtimezoneoffset',
+    s.processid           as 'processid',
+    p.name                as 'processname',
+    s.starterresourceid   as 'starterresourceid',
+    sr.name               as 'starterresourcename',
+    s.starteruserid       as 'starteruserid',
     isnull(su.username, '[' + su.systemusername + ']')
-                          as "starterusername",
-    s.runningresourceid   as "runningresourceid",
-    rr.name               as "runningresourcename",
-    s.runningosusername   as "runningosusername",
-    s.statusid            as "statusid",
-    s.startparamsxml      as "startparamsxml",
-    s.logginglevelsxml    as "logginglevelsxml",
-    s.sessionstatexml     as "sessionstatexml",
-    s.queueid             as "queueid",
-    s.lastupdated         as "lastupdated",
-    s.lastupdatedtimezoneoffset as "lastupdatedtimezoneoffset",
-    s.laststage           as "laststage",
-    s.warningthreshold    as "warningthreshold"
+                          as 'starterusername',
+    s.runningresourceid   as 'runningresourceid',
+    rr.name               as 'runningresourcename',
+    s.runningosusername   as 'runningosusername',
+    s.statusid            as 'statusid',
+    s.startparamsxml      as 'startparamsxml',
+    s.logginglevelsxml    as 'logginglevelsxml',
+    s.sessionstatexml     as 'sessionstatexml',
+    s.queueid             as 'queueid',
+    s.lastupdated         as 'lastupdated',
+    s.lastupdatedtimezoneoffset as 'lastupdatedtimezoneoffset',
+    s.laststage           as 'laststage',
+    s.warningthreshold    as 'warningthreshold'
 from BPASession s
     join BPAProcess p on s.processid = p.processid
     join BPAResource sr on s.starterresourceid = sr.resourceid
@@ -5278,8 +5218,6 @@ from BPASession s
     join BPAUser su on s.starteruserid = su.userid
 where s.statusid <> 6;
 go
-
-
 
 CREATE view BPVWorkQueueItem as
 select
@@ -5322,10 +5260,6 @@ select
     left join BPACaseLock lk on it.ident = lk.id;
 go
 
-
-
--- Alter the tag view to use the new column - no need for item-centric modifications
--- within the view now, that's all there in the computed column
 CREATE view BPViewWorkQueueItemTag (queueitemident, tag)
 as
     select it.queueitemident, t.tag
@@ -5337,10 +5271,6 @@ union
     where i.exception is not null;
 go
 
-
-
--- A 'bare' tag view which provides the same join as BPViewWorkQueueItemTag but
--- without including the the virtual tags - ie. not including the exception reason tag
 create view BPViewWorkQueueItemTagBare (queueitemident, tag)
 as
     select it.queueitemident, t.tag
@@ -5852,7 +5782,6 @@ SELECT
 FROM
 	sys.schemas
 go
-
 
 CREATE VIEW INFORMATION_SCHEMA.SEQUENCES
 AS
@@ -6462,7 +6391,6 @@ go
 
 grant select on sys.column_store_dictionaries to [public]
 go
-
 
 CREATE VIEW sys.column_store_row_groups AS
 
@@ -7183,7 +7111,6 @@ grant select on sys.destination_data_spaces to [public]
 go
 
 CREATE VIEW sys.dm_audit_actions AS
---	SELECT * FROM OpenRowset(TABLE DM_AUDIT_ACTIONS) dm
 	SELECT REVERSE(CONVERT(char(4), CONVERT(BINARY(4), [action_id]))) as [action_id], 
 		[action_name] as [name], 
 		(SELECT spt.name 
@@ -7605,7 +7532,6 @@ CREATE VIEW sys.dm_db_task_space_usage AS
 	FROM OpenRowset(TABLE DM_DB_TASK_SPACE_USAGE)
 go
 
-
 CREATE VIEW sys.dm_db_uncontained_entities
 AS
 	-- The class values correspond to the UNC classes defined in sys.syspalvalues.
@@ -7928,8 +7854,7 @@ CREATE VIEW sys.dm_exec_background_job_queue_stats AS
 	FROM OpenRowSet(TABLE DM_EXEC_BACKGROUND_JOB_QUEUE_STATS)
 go
 
-
-create view sys.dm_exec_cached_plans as select * from OpenRowset(TABLE SYSDMEXECCACHEDPLANS)
+create view BP_PRD.sys.dm_exec_cached_plans as select * from OpenRowset(TABLE SYSDMEXECCACHEDPLANS)
 go
 
 CREATE VIEW sys.dm_exec_connections AS
@@ -8083,7 +8008,6 @@ CREATE VIEW sys.dm_exec_requests AS
 	FROM OpenRowset(TABLE SYSREQUESTS)
 go
 
-
 CREATE VIEW sys.dm_exec_sessions AS
 	SELECT 
 		session_id, login_time, host_name, program_name, host_process_id,
@@ -8133,8 +8057,6 @@ CREATE VIEW sys.dm_exec_trigger_stats AS
 	FROM OpenRowset (TABLE TRIGGER_STATS) o
 	LEFT JOIN sys.syspalnames n ON n.class = 'OBTY' 
 		AND n.value = o.type
-
-go
 
 CREATE VIEW sys.dm_filestream_file_io_handles AS
     SELECT *
@@ -8406,12 +8328,12 @@ CREATE VIEW sys.dm_io_backup_tapes AS
 	FROM OpenRowset(TABLE TAPE_STATUS)
 go
 
-create view sys.dm_io_cluster_shared_drives
+create view BP_PRD.sys.dm_io_cluster_shared_drives
 as
 	select * from OpenRowset(TABLE SERVERSHAREDDRIVES)
 go
 
-create view sys.dm_io_cluster_valid_path_names
+create view BP_PRD.sys.dm_io_cluster_valid_path_names
 as
 	select * from OpenRowset(TABLE SERVERSHAREDVALIDPATHS)
 go
@@ -8457,7 +8379,7 @@ CREATE VIEW sys.dm_os_child_instances AS
 	SELECT * FROM OpenRowset(TABLE CHILDINSTANCES)
 go
 
-create view sys.dm_os_cluster_nodes
+create view BP_PRD.sys.dm_os_cluster_nodes
 as
 	select 
 		[NodeName],
@@ -8474,7 +8396,7 @@ as
 	from OpenRowset(TABLE VIRTUALSERVERNODES)
 go
 
-create view sys.dm_os_cluster_properties
+create view BP_PRD.sys.dm_os_cluster_properties
 as
 	select *
 	from OpenRowset(TABLE FCI_CONFIGS)
@@ -8595,7 +8517,7 @@ CREATE VIEW sys.dm_os_schedulers AS
 	FROM OpenRowSet(TABLE SYSSCHEDULERS)
 go
 
-create view sys.dm_os_server_diagnostics_log_configurations
+create view BP_PRD.sys.dm_os_server_diagnostics_log_configurations
 as
 	select *
 	from OpenRowset(TABLE DIAGLOG_CONFIGS)
@@ -9263,7 +9185,6 @@ go
 grant select on sys.extended_properties to [public]
 go
 
-
 CREATE VIEW sys.external_data_sources AS
 	SELECT
 		seds.data_source_id AS data_source_id,
@@ -9275,7 +9196,6 @@ CREATE VIEW sys.external_data_sources AS
 	FROM master.sys.sysextsources seds
 	WHERE has_access('ED', 0) = 1 -- catalog security check	
 go
-
 
 CREATE VIEW sys.external_file_formats AS
 	SELECT
@@ -9293,7 +9213,6 @@ CREATE VIEW sys.external_file_formats AS
 	FROM master.sys.sysextfileformats seff
 	WHERE has_access('EF', 0) = 1 -- catalog security check
 go
-
 
 CREATE VIEW sys.external_tables AS
 	SELECT
@@ -9753,7 +9672,6 @@ go
 
 grant select on sys.internal_tables to [public]
 go
-
 
 CREATE VIEW sys.key_constraints AS
 	SELECT o.name, o.object_id, o.principal_id, o.schema_id, o.parent_object_id,
@@ -11092,8 +11010,6 @@ AS
 	) AS PivotTable
 	LEFT JOIN sys.syspalvalues tes ON tes.class = 'EISP' and tes.value = scheme_id
 
-go
-
 grant select on sys.spatial_index_tessellations to [public]
 go
 
@@ -11344,7 +11260,6 @@ CREATE VIEW sys.sysaltfiles AS
 	WHERE f.filetype IN (0, 1) AND has_access('MF', 1) = 1 -- x_eft_SQLData, x_eft_SQLLog (bwkcmpt types)
 go
 
-
 CREATE VIEW sys.syscacheobjects (bucketid, cacheobjtype, objtype, objid, dbid, dbidexec, uid, refcounts, 
 		usecounts, pagesused, setopts, langid, dateformat, status, lasttime, maxexectime, avgexectime, lastreads,
 		lastwrites, sqlbytes, sql) AS
@@ -11358,7 +11273,7 @@ CREATE VIEW sys.syscacheobjects (bucketid, cacheobjtype, objtype, objid, dbid, d
 			CONVERT(int, LEN(CONVERT(nvarchar(max), fgs.text)) * 2), CONVERT(nvarchar(3900), fgs.text)
 	FROM (SELECT ecp.*, epa.attribute, epa.value
 		FROM sys.dm_exec_cached_plans ecp OUTER APPLY sys.dm_exec_plan_attributes(ecp.plan_handle) epa) as ecpa
-	PIVOT (MAX(ecpa.value) for ecpa.attribute IN ("set_options", "objectid", "dbid", "dbid_execute", "user_id", "language_id", "date_format", "status")) as pvt
+	PIVOT (MAX(ecpa.value) for ecpa.attribute IN ('set_options', 'objectid', 'dbid', 'dbid_execute', 'user_id', 'language_id', 'date_format', 'status')) as pvt
 	OUTER APPLY sys.dm_exec_sql_text(pvt.plan_handle) fgs
 go
 
@@ -11371,7 +11286,6 @@ CREATE VIEW sys.syscharsets AS
 	FROM OpenRowset(TABLE CHARSET)
 go
 
--- Return visible system objects in master database context
 CREATE VIEW sys.syscolumns AS
 	SELECT c.name, c.id, c.xtype,
 		typestat = convert(tinyint, c.status & 3),	-- (1-is_nullable) + is_ansi_padded * 2
@@ -11439,7 +11353,6 @@ go
 grant select on sys.syscolumns to [public]
 go
 
--- Return system objects in master database context
 CREATE VIEW sys.syscomments AS
 	SELECT o.id AS id,
 		convert(smallint, case when o.type in ('P', 'RF') then 1 else 0 end) AS number,
@@ -11812,7 +11725,6 @@ CREATE VIEW sys.sysmessages AS
 	FROM sys.messages
 go
 
--- Return visible system objects in master database context
 CREATE VIEW sys.sysobjects AS
 	SELECT name, 
 		id,
@@ -12287,8 +12199,6 @@ go
 grant select on sys.systypes to [public]
 go
 
--- Note: gid (max group id) not maintained, shiloh logic not correct anyway
---
 CREATE VIEW sys.sysusers AS
 	SELECT uid = convert(smallint, u.id),
 		status = convert(smallint, case u.type
@@ -12400,22 +12310,22 @@ CREATE VIEW sys.tcp_endpoints AS
 		AND has_access('HE', e.id) = 1
 go
 
-create view sys.trace_categories as select * from OpenRowset(TABLE SYSTRACECATEGORIES)
+create view BP_PRD.sys.trace_categories as select * from OpenRowset(TABLE SYSTRACECATEGORIES)
 go
 
-create view sys.trace_columns as select * from OpenRowset(TABLE SYSTRACECOLUMNS)
+create view BP_PRD.sys.trace_columns as select * from OpenRowset(TABLE SYSTRACECOLUMNS)
 go
 
-create view sys.trace_event_bindings as select * from OpenRowset(TABLE SYSTRACEEVENTBINDINGS)
+create view BP_PRD.sys.trace_event_bindings as select * from OpenRowset(TABLE SYSTRACEEVENTBINDINGS)
 go
 
-create view sys.trace_events as select * from OpenRowset(TABLE SYSTRACEEVENTS)
+create view BP_PRD.sys.trace_events as select * from OpenRowset(TABLE SYSTRACEEVENTS)
 go
 
-create view sys.trace_subclass_values as select * from OpenRowset(TABLE SYSTRACESUBCLASSVALUES)
+create view BP_PRD.sys.trace_subclass_values as select * from OpenRowset(TABLE SYSTRACESUBCLASSVALUES)
 go
 
-create view sys.traces as select * from OpenRowset(TABLE SYSTRACES)
+create view BP_PRD.sys.traces as select * from OpenRowset(TABLE SYSTRACES)
 go
 
 CREATE VIEW sys.transmission_queue AS
@@ -12568,26 +12478,24 @@ go
 grant select on sys.views to [public]
 go
 
-
-
 CREATE VIEW vw_Audit AS
 
 	SELECT	TOP 100 PERCENT
-		"BPAAuditEvents"."eventdatetime" as eventdatetime, "BPAAuditEvents"."eventid",
-		"BPAAuditEvents"."sCode", s."username" as [source user], "BPAAuditEvents"."sNarrative",
-		"BPAAuditEvents"."comments", t."username" as [target user], "BPAProcess"."name",
-		r."Name" as [target resource]
+		'BPAAuditEvents'.'eventdatetime' as eventdatetime, 'BPAAuditEvents'.'eventid',
+		'BPAAuditEvents'.'sCode', s.'username' as [source user], 'BPAAuditEvents'.'sNarrative',
+		'BPAAuditEvents'.'comments', t.'username' as [target user], 'BPAProcess'.'name',
+		r.'Name' as [target resource]
 		
-	FROM	"BPAAuditEvents" "BPAAuditEvents"
+	FROM	'BPAAuditEvents' 'BPAAuditEvents'
 
-	LEFT OUTER JOIN "BPAProcess" "BPAProcess"
-		ON "BPAAuditEvents"."gTgtProcID"="BPAProcess"."processid"	
-	LEFT OUTER JOIN "BPAUser" s
-		ON "BPAAuditEvents"."gSrcUserID"= s."userid"
-	LEFT OUTER JOIN "BPAUser" t
-		ON "BPAAuditEvents"."gTgtUserID"= t."userid"
-	LEFT OUTER JOIN "BPAResource" r
-		ON "BPAAuditEvents"."gTgtResourceID" = r."ResourceID"
+	LEFT OUTER JOIN 'BPAProcess' 'BPAProcess'
+		ON 'BPAAuditEvents'.'gTgtProcID'='BPAProcess'.'processid'	
+	LEFT OUTER JOIN 'BPAUser' s
+		ON 'BPAAuditEvents'.'gSrcUserID'= s.'userid'
+	LEFT OUTER JOIN 'BPAUser' t
+		ON 'BPAAuditEvents'.'gTgtUserID'= t.'userid'
+	LEFT OUTER JOIN 'BPAResource' r
+		ON 'BPAAuditEvents'.'gTgtResourceID' = r.'ResourceID'
 
 	ORDER BY eventdatetime
 go
@@ -12602,26 +12510,24 @@ PURPOSE        : Add improved view for audit log viewer
 NOTES          : 
 */
 
-
---Creates the new view
 CREATE VIEW vw_Audit_improved AS
 
 	SELECT	TOP 100 PERCENT
-		"BPAAuditEvents"."eventdatetime" as [Event Datetime], "BPAAuditEvents"."eventid" as [Event ID],
-		"BPAAuditEvents"."sCode" as Code, s."username" as [By User], "BPAAuditEvents"."sNarrative" as Narrative,
-		"BPAAuditEvents"."comments" as Comments, t."username" as [Target User], p."name" as [Target Process],
-		r."Name" as [Target Resource]
+		'BPAAuditEvents'.'eventdatetime' as [Event Datetime], 'BPAAuditEvents'.'eventid' as [Event ID],
+		'BPAAuditEvents'.'sCode' as Code, s.'username' as [By User], 'BPAAuditEvents'.'sNarrative' as Narrative,
+		'BPAAuditEvents'.'comments' as Comments, t.'username' as [Target User], p.'name' as [Target Process],
+		r.'Name' as [Target Resource]
 		
-	FROM	"BPAAuditEvents" "BPAAuditEvents"
+	FROM	'BPAAuditEvents' 'BPAAuditEvents'
 
-	LEFT OUTER JOIN "BPAProcess" p
-		ON "BPAAuditEvents"."gTgtProcID"= p."processid"	
-	LEFT OUTER JOIN "BPAUser" s
-		ON "BPAAuditEvents"."gSrcUserID"= s."userid"
-	LEFT OUTER JOIN "BPAUser" t
-		ON "BPAAuditEvents"."gTgtUserID"= t."userid"
-	LEFT OUTER JOIN "BPAResource" r
-		ON "BPAAuditEvents"."gTgtResourceID" = r."ResourceID"
+	LEFT OUTER JOIN 'BPAProcess' p
+		ON 'BPAAuditEvents'.'gTgtProcID'= p.'processid'	
+	LEFT OUTER JOIN 'BPAUser' s
+		ON 'BPAAuditEvents'.'gSrcUserID'= s.'userid'
+	LEFT OUTER JOIN 'BPAUser' t
+		ON 'BPAAuditEvents'.'gTgtUserID'= t.'userid'
+	LEFT OUTER JOIN 'BPAResource' r
+		ON 'BPAAuditEvents'.'gTgtResourceID' = r.'ResourceID'
 
 	ORDER BY eventdatetime
 go
@@ -12934,9 +12840,6 @@ go
 grant select on sys.xml_schema_wildcards to [public]
 go
 
-
-
-
 CREATE procedure [BPDS_AverageHandlingTime]
     @BPQueueName nvarchar(max) = null,
     @NumberOfDays int = 7
@@ -12947,7 +12850,7 @@ if @NumberOfDays < 1 or @NumberOfDays > 90
 else
     select
         ISNULL(q.name, '<unknown>') AS [Queue Name],
-        CAST(ISNULL(AVG(d.avgworktime), 0) as decimal(12,2)) as "Average Time"
+        CAST(ISNULL(AVG(d.avgworktime), 0) as decimal(12,2)) as 'Average Time'
     from BPMIProductivityDaily d
         left join BPAWorkQueue q on d.queueident = q.ident
     where d.reportdate >= (select MIN(TheDate) from ufn_GetReportDays(@NumberOfDays))
@@ -12961,10 +12864,6 @@ go
 grant execute on dbo.BPDS_AverageHandlingTime to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
-
-
 CREATE procedure [BPDS_AverageRetries]
     @BPQueueName nvarchar(max) = null,
     @NumberOfDays int = 7
@@ -12975,7 +12874,7 @@ if @NumberOfDays < 1 or @NumberOfDays > 90
 else
     select
         ISNULL(q.name, '<unknown>'),
-        CAST(ISNULL(AVG(d.avgretries), 0) as decimal(12,2)) as "Retries"
+        CAST(ISNULL(AVG(d.avgretries), 0) as decimal(12,2)) as 'Retries'
     from BPMIProductivityDaily d
         left join BPAWorkQueue q on d.queueident = q.ident
     where d.reportdate >= (select MIN(TheDate) from ufn_GetReportDays(@NumberOfDays))
@@ -12989,10 +12888,6 @@ go
 grant execute on dbo.BPDS_AverageRetries to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
-
-
 CREATE procedure [BPDS_DailyProductivity]
     @BPQueueName nvarchar(max) = null,
     @NumberOfDays int = 7
@@ -13002,7 +12897,7 @@ if @NumberOfDays < 1 or @NumberOfDays > 31
     raiserror('@NumberOfDays must be between 1 and 31', 11, 1);
 else
     select
-        DATENAME(day, dys.TheDate) + '-' + DATENAME(month, dys.TheDate) as "Day",
+        DATENAME(day, dys.TheDate) + '-' + DATENAME(month, dys.TheDate) as 'Day',
 		'Complete' as [ValueLabel], 
         ISNULL(SUM(d.created), 0) as New,
         ISNULL(SUM(d.deferred), 0) as Deferred,
@@ -13020,9 +12915,6 @@ go
 grant execute on dbo.BPDS_DailyProductivity to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
-
 CREATE procedure [BPDS_DailyUtilisation]
     @BPResourceName nvarchar(max) = null,
     @NumberOfDays int = 7,
@@ -13038,20 +12930,20 @@ else if @MaxResourceHours < 1 or @MaxResourceHours > 24
     raiserror('@MaxResourceHours must be between 1 and 24', 11, 1);
 else
     select
-        DATENAME(day, u.TheDate) + '-' + DATENAME(month, u.TheDate) as "Day",
+        DATENAME(day, u.TheDate) + '-' + DATENAME(month, u.TheDate) as 'Day',
 		@DisplayUnits as [ValueLabel],
         case when @DisplayUnits = 'second' then CAST(Total as decimal(12,2))
              when @DisplayUnits = 'hour' then CAST(Total/3600 as decimal(12,2))
              when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Total/(36*Resources*@MaxResourceHours) as decimal(12,2))
-             else CAST(Total/60 as decimal(12,2)) end as "Total"
+             else CAST(Total/60 as decimal(12,2)) end as 'Total'
     from (
         select
             dates.TheDate,
             CAST(ISNULL(SUM(d.hr0 + d.hr1 + d.hr2 + d.hr3 + d.hr4 + d.hr5 + d.hr6 + d.hr7 + 
                     d.hr8 + d.hr9 + d.hr10 + d.hr11 + d.hr12 + d.hr13 + d.hr14 + d.hr15 + 
                     d.hr16 + d.hr17 + d.hr18 + d.hr19 + d.hr20 + d.hr21 + d.hr22 + d.hr23), 0) as float)
-                    as "Total",
-            COUNT(distinct(d.resourceid)) as "Resources"
+                    as 'Total',
+            COUNT(distinct(d.resourceid)) as 'Resources'
         from ufn_GetReportDays(@NumberOfDays) dates
             left join BPMIUtilisationDaily d on d.reportdate = dates.TheDate
             left join BPAResource r on d.resourceid = r.resourceid
@@ -13064,8 +12956,6 @@ go
 
 grant execute on dbo.BPDS_DailyUtilisation to bpa_ExecuteSP_DataSource_bpSystem
 go
-
-
 
 CREATE PROCEDURE [BPDS_Exceptions] @BPQueueName  NVARCHAR(MAX) = NULL, 
                                   @NumberOfDays INT           = 3
@@ -13141,9 +13031,6 @@ go
 grant execute on dbo.BPDS_Exceptions to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
-
 CREATE procedure [BPDS_FTEProductivityComparison]
     @BPQueueName nvarchar(max) = null,
     @NumberOfMonths int = 6,
@@ -13187,8 +13074,6 @@ go
 
 grant execute on dbo.BPDS_FTEProductivityComparison to bpa_ExecuteSP_DataSource_bpSystem
 go
-
-
 
 CREATE procedure BPDS_HoursSpentWorkingQueuesByMonth
     @NumberOfMonths int = 6,
@@ -13244,8 +13129,6 @@ go
 grant execute on dbo.BPDS_HoursSpentWorkingQueuesByMonth to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
 CREATE procedure BPDS_LargestTables
 	@NumberOfTables int = 5
 as
@@ -13254,8 +13137,8 @@ if @NumberOfTables < 1 or @NumberOfTables > 25
 	raiserror('@NumberOfTables must be between 1 and 25', 11, 1);
 else
 	select top(@NumberOfTables)
-	    t.name as "Table Name",
-	    CAST(CAST((SUM(a.total_pages)*8) as decimal)/1024 as decimal(12,2)) as "Size (Mb)"
+	    t.name as 'Table Name',
+	    CAST(CAST((SUM(a.total_pages)*8) as decimal)/1024 as decimal(12,2)) as 'Size (Mb)'
 	from sys.tables t
 		inner join sys.indexes i on t.object_id = i.object_id
 		inner join sys.partitions p on i.object_id = p.object_id and i.index_id = p.index_id
@@ -13271,8 +13154,6 @@ go
 
 grant execute on dbo.BPDS_LargestTables to bpa_ExecuteSP_DataSource_bpSystem
 go
-
-
 
 CREATE procedure [BPDS_ProcessUtilisationByHour]
     @BPProcessName nvarchar(max) = null,
@@ -13290,45 +13171,45 @@ select
     ProcessName,
 	@DisplayUnits as [ValueLabel],
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval1/(Resources*7200/100) as decimal(12,2))
-         else CAST(Interval1/@Units as decimal(12,2)) end as "00:00",
+         else CAST(Interval1/@Units as decimal(12,2)) end as '00:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval2/(Resources*7200/100) as decimal(12,2))
-         else CAST(Interval2/@Units as decimal(12,2)) end as "02:00",
+         else CAST(Interval2/@Units as decimal(12,2)) end as '02:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval3/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval3/@Units as decimal(12,2)) end as "04:00",
+        else CAST(Interval3/@Units as decimal(12,2)) end as '04:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval4/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval4/@Units as decimal(12,2)) end as "06:00",
+        else CAST(Interval4/@Units as decimal(12,2)) end as '06:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval5/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval5/@Units as decimal(12,2)) end as "08:00",
+        else CAST(Interval5/@Units as decimal(12,2)) end as '08:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval6/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval6/@Units as decimal(12,2)) end as "10:00",
+        else CAST(Interval6/@Units as decimal(12,2)) end as '10:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval7/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval7/@Units as decimal(12,2)) end as "12:00",
+        else CAST(Interval7/@Units as decimal(12,2)) end as '12:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval8/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval8/@Units as decimal(12,2)) end as "14:00",
+        else CAST(Interval8/@Units as decimal(12,2)) end as '14:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval9/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval9/@Units as decimal(12,2)) end as "16:00",
+        else CAST(Interval9/@Units as decimal(12,2)) end as '16:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval10/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval10/@Units as decimal(12,2)) end as "18:00",
+        else CAST(Interval10/@Units as decimal(12,2)) end as '18:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval11/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval11/@Units as decimal(12,2)) end as "20:00",
+        else CAST(Interval11/@Units as decimal(12,2)) end as '20:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval12/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval12/@Units as decimal(12,2)) end as "22:00"
+        else CAST(Interval12/@Units as decimal(12,2)) end as '22:00'
 from (
     select
         p.name as ProcessName,
-        CAST(CAST(ISNULL(SUM(d.hr0 + d.hr1), 0) as decimal) as decimal(12,2)) as "Interval1",
-        CAST(CAST(ISNULL(SUM(d.hr2 + d.hr3), 0) as decimal) as decimal(12,2)) as "Interval2",
-        CAST(CAST(ISNULL(SUM(d.hr4 + d.hr5), 0) as decimal) as decimal(12,2)) as "Interval3",
-        CAST(CAST(ISNULL(SUM(d.hr6 + d.hr7), 0) as decimal) as decimal(12,2)) as "Interval4",
-        CAST(CAST(ISNULL(SUM(d.hr8 + d.hr9), 0) as decimal) as decimal(12,2)) as "Interval5",
-        CAST(CAST(ISNULL(SUM(d.hr10 + d.hr11), 0) as decimal) as decimal(12,2)) as "Interval6",
-        CAST(CAST(ISNULL(SUM(d.hr12 + d.hr13), 0) as decimal) as decimal(12,2)) as "Interval7",
-        CAST(CAST(ISNULL(SUM(d.hr14 + d.hr15), 0) as decimal) as decimal(12,2)) as "Interval8",
-        CAST(CAST(ISNULL(SUM(d.hr16 + d.hr17), 0) as decimal) as decimal(12,2)) as "Interval9",
-        CAST(CAST(ISNULL(SUM(d.hr18 + d.hr19), 0) as decimal) as decimal(12,2)) as "Interval10",
-        CAST(CAST(ISNULL(SUM(d.hr20 + d.hr21), 0) as decimal) as decimal(12,2)) as "Interval11",
-        CAST(CAST(ISNULL(SUM(d.hr22 + d.hr23), 0) as decimal) as decimal(12,2)) as "Interval12",
-        COUNT(distinct(d.resourceid)) as "Resources"
+        CAST(CAST(ISNULL(SUM(d.hr0 + d.hr1), 0) as decimal) as decimal(12,2)) as 'Interval1',
+        CAST(CAST(ISNULL(SUM(d.hr2 + d.hr3), 0) as decimal) as decimal(12,2)) as 'Interval2',
+        CAST(CAST(ISNULL(SUM(d.hr4 + d.hr5), 0) as decimal) as decimal(12,2)) as 'Interval3',
+        CAST(CAST(ISNULL(SUM(d.hr6 + d.hr7), 0) as decimal) as decimal(12,2)) as 'Interval4',
+        CAST(CAST(ISNULL(SUM(d.hr8 + d.hr9), 0) as decimal) as decimal(12,2)) as 'Interval5',
+        CAST(CAST(ISNULL(SUM(d.hr10 + d.hr11), 0) as decimal) as decimal(12,2)) as 'Interval6',
+        CAST(CAST(ISNULL(SUM(d.hr12 + d.hr13), 0) as decimal) as decimal(12,2)) as 'Interval7',
+        CAST(CAST(ISNULL(SUM(d.hr14 + d.hr15), 0) as decimal) as decimal(12,2)) as 'Interval8',
+        CAST(CAST(ISNULL(SUM(d.hr16 + d.hr17), 0) as decimal) as decimal(12,2)) as 'Interval9',
+        CAST(CAST(ISNULL(SUM(d.hr18 + d.hr19), 0) as decimal) as decimal(12,2)) as 'Interval10',
+        CAST(CAST(ISNULL(SUM(d.hr20 + d.hr21), 0) as decimal) as decimal(12,2)) as 'Interval11',
+        CAST(CAST(ISNULL(SUM(d.hr22 + d.hr23), 0) as decimal) as decimal(12,2)) as 'Interval12',
+        COUNT(distinct(d.resourceid)) as 'Resources'
     from ufn_GetReportDays(1) dates
         left join BPMIUtilisationDaily d on d.reportdate = dates.TheDate
         left join BPAProcess p on d.processid = p.processid
@@ -13343,9 +13224,6 @@ go
 grant execute on dbo.BPDS_ProcessUtilisationByHour to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
--- Stored procedure to return today's snapshot data against snapshot data specified in the parameters
 CREATE procedure [BPDS_QueueSnapshotAgainstTrend]
     @QueueName NVARCHAR(255) = NULL, 
     @TrendId INT = 1,
@@ -13379,7 +13257,6 @@ BEGIN
     SET @DontUseTimeRange = 0;
 END
 
--- Get queue ident and find out if trend data exists
 SELECT TOP 1
     @QueueIdent = BPAWorkQueue.ident, 
     @TrendDataNotAvailable = CASE WHEN BPMIQueueTrend.id IS NULL THEN 1 ELSE 0 END
@@ -13401,13 +13278,11 @@ BEGIN
     RETURN;
 END;
 
--- Get offset minutes 
 SELECT top 1 @OffsetMinutes = datepart(TZoffset, snapshotdate)
   FROM BPMIQueueSnapshot
   WHERE queueident = @QueueIdent
   ORDER BY snapshotdate DESC;
 
--- Work out the current day of the week (where Monday = 1 and Sunday = 7) based on the offset 
 SET @TodaysStartDateTime = DATEADD(MI, @OffsetMinutes, GETUTCDATE());
 SET @DayOfWeek = DATEPART(WEEKDAY, @TodaysStartDateTime) - 1
 IF @DayOfWeek = 0 SET @DayOfWeek = 7 
@@ -13431,7 +13306,6 @@ SET @ColumnName = CASE @ColumnIdentifier
     ELSE 'totalitems' 
 END;
 
--- Build query to compare current metric with trend data
 SET @Sql = 'SELECT [Time],
                    [Trend Metric],
                    [Current Metric]
@@ -13473,9 +13347,6 @@ go
 grant execute on dbo.BPDS_QueueSnapshotAgainstTrend to bpa_ExecuteSP_DataSource_bpSystem
 go
 
-
-
--- Stored procedure to return today's snapshot data against snapshot data specified in the parameters
 CREATE procedure BPDS_QueueSnapshotComparison
     @QueueName NVARCHAR(255) = NULL, 
     @NumberOfSnapshottedDaysPrevious INT = 1,
@@ -13525,12 +13396,10 @@ SET @ColumnName = CASE @ColumnIdentifier
     ELSE 'totalitems' 
 END;
 
--- Get the work queue ident
 SELECT TOP 1 @QueueIdent = ident
 FROM BPAWorkQueue
 WHERE [name] = @QueueName
 
--- Calculate "today" according to the queue timezone - not the server time
 SELECT top 1 @TimezoneOffset = DATEPART(TZoffset, snapshotdate)
   FROM BPMIQueueSnapshot
   WHERE queueident = @QueueIdent
@@ -13538,7 +13407,6 @@ SELECT top 1 @TimezoneOffset = DATEPART(TZoffset, snapshotdate)
 
 SET @Today = CAST(DATEADD(MI, @TimezoneOffset, GETUTCDATE()) AS DATE);
 
--- Get date of previous snapshot (taking into account any gaps)
 SELECT TOP 1 @PreviousSnapshotDate = CAST(snapshotdate AS DATE)
 FROM BPMIQueueSnapshot 
 WHERE queueident = @QueueIdent AND CAST(snapshotdate AS DATE) <= DATEADD(DAY, -@NumberOfSnapshottedDaysPrevious, @Today)
@@ -13550,7 +13418,6 @@ BEGIN
     RETURN;
 END;
 
--- Build query to compare current metric with 
 SET @Sql = 'SELECT [Time],
                    [Previous Metric],
                    [Current Metric]
@@ -13721,44 +13588,44 @@ select @Units = case when @DisplayUnits = 'second' then 1 when @DisplayUnits = '
 select 
     'Utilisation' AS [Queue Name],
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval1/(Resources*7200/100) as decimal(12,2))
-         else CAST(Interval1/@Units as decimal(12,2)) end as "00:00",
+         else CAST(Interval1/@Units as decimal(12,2)) end as '00:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval2/(Resources*7200/100) as decimal(12,2))
-         else CAST(Interval2/@Units as decimal(12,2)) end as "02:00",
+         else CAST(Interval2/@Units as decimal(12,2)) end as '02:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval3/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval3/@Units as decimal(12,2)) end as "04:00",
+        else CAST(Interval3/@Units as decimal(12,2)) end as '04:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval4/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval4/@Units as decimal(12,2)) end as "06:00",
+        else CAST(Interval4/@Units as decimal(12,2)) end as '06:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval5/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval5/@Units as decimal(12,2)) end as "08:00",
+        else CAST(Interval5/@Units as decimal(12,2)) end as '08:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval6/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval6/@Units as decimal(12,2)) end as "10:00",
+        else CAST(Interval6/@Units as decimal(12,2)) end as '10:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval7/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval7/@Units as decimal(12,2)) end as "12:00",
+        else CAST(Interval7/@Units as decimal(12,2)) end as '12:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval8/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval8/@Units as decimal(12,2)) end as "14:00",
+        else CAST(Interval8/@Units as decimal(12,2)) end as '14:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval9/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval9/@Units as decimal(12,2)) end as "16:00",
+        else CAST(Interval9/@Units as decimal(12,2)) end as '16:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval10/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval10/@Units as decimal(12,2)) end as "18:00",
+        else CAST(Interval10/@Units as decimal(12,2)) end as '18:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval11/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval11/@Units as decimal(12,2)) end as "20:00",
+        else CAST(Interval11/@Units as decimal(12,2)) end as '20:00',
     case when @DisplayUnits = 'percentage' and Resources > 0 then CAST(Interval12/(Resources*7200/100) as decimal(12,2))
-        else CAST(Interval12/@Units as decimal(12,2)) end as "22:00"
+        else CAST(Interval12/@Units as decimal(12,2)) end as '22:00'
 from (
     select
-        CAST(CAST(ISNULL(SUM(d.hr0 + d.hr1), 0) as decimal) as decimal(12,2)) as "Interval1",
-        CAST(CAST(ISNULL(SUM(d.hr2 + d.hr3), 0) as decimal) as decimal(12,2)) as "Interval2",
-        CAST(CAST(ISNULL(SUM(d.hr4 + d.hr5), 0) as decimal) as decimal(12,2)) as "Interval3",
-        CAST(CAST(ISNULL(SUM(d.hr6 + d.hr7), 0) as decimal) as decimal(12,2)) as "Interval4",
-        CAST(CAST(ISNULL(SUM(d.hr8 + d.hr9), 0) as decimal) as decimal(12,2)) as "Interval5",
-        CAST(CAST(ISNULL(SUM(d.hr10 + d.hr11), 0) as decimal) as decimal(12,2)) as "Interval6",
-        CAST(CAST(ISNULL(SUM(d.hr12 + d.hr13), 0) as decimal) as decimal(12,2)) as "Interval7",
-        CAST(CAST(ISNULL(SUM(d.hr14 + d.hr15), 0) as decimal) as decimal(12,2)) as "Interval8",
-        CAST(CAST(ISNULL(SUM(d.hr16 + d.hr17), 0) as decimal) as decimal(12,2)) as "Interval9",
-        CAST(CAST(ISNULL(SUM(d.hr18 + d.hr19), 0) as decimal) as decimal(12,2)) as "Interval10",
-        CAST(CAST(ISNULL(SUM(d.hr20 + d.hr21), 0) as decimal) as decimal(12,2)) as "Interval11",
-        CAST(CAST(ISNULL(SUM(d.hr22 + d.hr23), 0) as decimal) as decimal(12,2)) as "Interval12",
-        COUNT(distinct(r.resourceid)) as "Resources"
+        CAST(CAST(ISNULL(SUM(d.hr0 + d.hr1), 0) as decimal) as decimal(12,2)) as 'Interval1',
+        CAST(CAST(ISNULL(SUM(d.hr2 + d.hr3), 0) as decimal) as decimal(12,2)) as 'Interval2',
+        CAST(CAST(ISNULL(SUM(d.hr4 + d.hr5), 0) as decimal) as decimal(12,2)) as 'Interval3',
+        CAST(CAST(ISNULL(SUM(d.hr6 + d.hr7), 0) as decimal) as decimal(12,2)) as 'Interval4',
+        CAST(CAST(ISNULL(SUM(d.hr8 + d.hr9), 0) as decimal) as decimal(12,2)) as 'Interval5',
+        CAST(CAST(ISNULL(SUM(d.hr10 + d.hr11), 0) as decimal) as decimal(12,2)) as 'Interval6',
+        CAST(CAST(ISNULL(SUM(d.hr12 + d.hr13), 0) as decimal) as decimal(12,2)) as 'Interval7',
+        CAST(CAST(ISNULL(SUM(d.hr14 + d.hr15), 0) as decimal) as decimal(12,2)) as 'Interval8',
+        CAST(CAST(ISNULL(SUM(d.hr16 + d.hr17), 0) as decimal) as decimal(12,2)) as 'Interval9',
+        CAST(CAST(ISNULL(SUM(d.hr18 + d.hr19), 0) as decimal) as decimal(12,2)) as 'Interval10',
+        CAST(CAST(ISNULL(SUM(d.hr20 + d.hr21), 0) as decimal) as decimal(12,2)) as 'Interval11',
+        CAST(CAST(ISNULL(SUM(d.hr22 + d.hr23), 0) as decimal) as decimal(12,2)) as 'Interval12',
+        COUNT(distinct(r.resourceid)) as 'Resources'
     from ufn_GetReportDays(1) dates
         left join BPMIUtilisationDaily d on d.reportdate = dates.TheDate
         left join BPAResource r on d.resourceid = r.resourceid
@@ -13771,8 +13638,6 @@ go
 
 grant execute on dbo.BPDS_ResourceUtilisationByHour to bpa_ExecuteSP_DataSource_bpSystem
 go
-
-
 
 CREATE procedure [BPDS_TotalAutomations]
 as
@@ -13790,8 +13655,6 @@ go
 
 grant execute on dbo.BPDS_TotalAutomations to bpa_ExecuteSP_DataSource_bpSystem
 go
-
-
 
 CREATE procedure [BPDS_WorkforceAvailability]
 as
@@ -13839,7 +13702,6 @@ CREATE PROCEDURE GetQueueItemTags @QueueName NVARCHAR(max)
         GROUP BY QueueItems.ident
 go
 
-
 create procedure bpa_sp_dropdefault
 	@tableName nvarchar(256),
 	@columnName nvarchar(256)
@@ -13852,7 +13714,6 @@ as
 	execute (@Command);
 go
 
-
 create procedure bpa_sp_dropunique
 	@tableName nvarchar(256),
 	@columnName nvarchar(256)
@@ -13864,8 +13725,6 @@ as
 	    where t.name = @tableName and d.type=2 and d.is_unique=1 and c.name = @columnName;
 	execute (@Command);
 go
-
-
 
 CREATE PROC chk @id int,@cat int,@typeid int,@msg nvarchar(255)
 AS
@@ -13912,7 +13771,7 @@ AS
 		)
 go
 
-create function sys.dm_db_database_page_allocations
+create function BP_PRD.sys.dm_db_database_page_allocations
 	(
 	@DatabaseId			SMALLINT,
 	@TableId			INT 			= NULL,
@@ -13952,7 +13811,7 @@ AS
 	WHERE partition_number IS NOT NULL -- leaf nodes
 go
 
-create function sys.dm_db_index_operational_stats
+create function BP_PRD.sys.dm_db_index_operational_stats
 	(
 	@DatabaseId			SMALLINT	= 0,
 	@TableId			INT 		= 0,
@@ -13970,9 +13829,7 @@ as
 				@IndexId, 
 				@PartitionNumber)
 
-go
-
-create function sys.dm_db_index_physical_stats
+create function BP_PRD.sys.dm_db_index_physical_stats
 (
 	@DatabaseId			SMALLINT		= 0,
 	@ObjectId  			INT 			= 0,
@@ -14001,7 +13858,6 @@ AS
 		FROM OPENROWSET(TABLE MISSING_IDX_COLUMNS, @handle)
 go
 
-
 CREATE FUNCTION sys.dm_db_objects_disabled_on_compatibility_level_change(@compatibility_level int)
 RETURNS TABLE AS		
 	RETURN SELECT * FROM OPENROWSET(TABLE SYSTEM_REFERENCES, 0, @compatibility_level, NULL, NULL)
@@ -14027,7 +13883,6 @@ RETURNS TABLE
 AS
 	RETURN SELECT *	FROM OPENROWSET(TABLE DM_DB_STATS_PROPERTIES, @object_id, @stats_id)
 go
-
 
 CREATE FUNCTION sys.dm_exec_cached_plan_dependent_objects(@planhandle varbinary(64))
 RETURNS TABLE
@@ -14096,7 +13951,7 @@ AS
 	FROM OpenRowSet(TABLE DM_EXEC_XML_HANDLES, @spid)
 go
 
-create function sys.dm_fts_index_keywords(
+create function BP_PRD.sys.dm_fts_index_keywords(
     @dbid int,
     @objid int)
 returns table as return
@@ -14109,7 +13964,7 @@ returns table as return
 	group by keyword, colid, unusedPid
 go
 
-create function sys.dm_fts_index_keywords_by_document(
+create function BP_PRD.sys.dm_fts_index_keywords_by_document(
     @dbid int,
     @objid int)
 returns table as return
@@ -14123,7 +13978,7 @@ returns table as return
 	group by keyword, colid, unusedPid, docid
 go
 
-create function sys.dm_fts_index_keywords_by_property(
+create function BP_PRD.sys.dm_fts_index_keywords_by_property(
     @dbid int,
     @objid int)
 returns table as return
@@ -14137,7 +13992,7 @@ returns table as return
 	where compidx.internalPid > 0
 go
 
-create function sys.dm_fts_index_keywords_position_by_document(
+create function BP_PRD.sys.dm_fts_index_keywords_position_by_document(
     @dbid int,
     @objid int)
 returns table as return
@@ -14150,7 +14005,7 @@ returns table as return
 	from openrowset(TABLE FTCOMPINDEX, @dbid, @objid, 2) compidx 
 go
 
-create function sys.dm_fts_parser(
+create function BP_PRD.sys.dm_fts_parser(
     @querystring nvarchar(4000),
     @lcid int,
     @stoplistid int,
@@ -14244,8 +14099,7 @@ as
 	RETURN SELECT * FROM OpenRowset(TABLE DM_LOGPOOLMGR_STATS, @DatabaseId)
 go
 
-
-create function sys.dm_os_volume_stats
+create function BP_PRD.sys.dm_os_volume_stats
 	(
 	@DatabaseId		INT ,
 	@FileId				INT 
@@ -14254,7 +14108,6 @@ returns table
 as
 	return select * from OpenRowset (TABLE DB_STORAGE_VOLUME_PROPS, @DatabaseId, @FileId)
 go
-
 
 CREATE FUNCTION sys.dm_sql_referenced_entities(@name nvarchar(517), @referencing_class nvarchar(60)= N'OBJECT')
 RETURNS TABLE
@@ -14297,7 +14150,6 @@ AS
 						NULL)
 		   AND has_access('OD', object_id(@name)) = 1
 go
-
 
 CREATE FUNCTION sys.dm_sql_referencing_entities(@name nvarchar(517), @referenced_class nvarchar(60))
 	RETURNS TABLE
@@ -14353,7 +14205,7 @@ CREATE FUNCTION sys.dm_sql_referencing_entities(@name nvarchar(517), @referenced
 				END = 1
 go
 
-create function sys.fn_EnumCurrentPrincipals()
+create function BP_PRD.sys.fn_EnumCurrentPrincipals()
 RETURNS @mirrorinstances TABLE
 (
 	db_name						sysname,
@@ -14376,7 +14228,7 @@ return
 end
 go
 
-create function sys.fn_GetCurrentPrincipal
+create function BP_PRD.sys.fn_GetCurrentPrincipal
 (@db_name sysname)
 RETURNS sysname
 as 
@@ -14399,14 +14251,6 @@ begin
 end
 go
 
--------------------------------------------------------------------------------
--- Name: sys.fn_GetRowsetIdFromRowDump
---
--- Description:
---	Cracks the output of %%rowdump%% virtual column and returns the rowset id
---
--- Notes:
--------------------------------------------------------------------------------
 CREATE FUNCTION sys.fn_GetRowsetIdFromRowDump (@rowdump AS varbinary (max))
 RETURNS BIGINT
 AS
@@ -14430,8 +14274,7 @@ BEGIN
 END
 go
 
-
-create function sys.fn_IsBitSetInBitmask
+create function BP_PRD.sys.fn_IsBitSetInBitmask
 (@bitmask varbinary(500), @colid int)
     returns int
 as
@@ -14458,7 +14301,7 @@ begin
 end
 go
 
-create function sys.fn_MSdayasnumber (@day datetime)
+create function BP_PRD.sys.fn_MSdayasnumber (@day datetime)
 	returns int
 as
 begin
@@ -14466,11 +14309,7 @@ begin
 end
 go
 
--- Warning: Only use this function when enumerating deletes, but not changes.
--- If it was used for changes, the metadata type would falsely look like contents deferred.
--- If the download only subscriber has the row, it there also looks like contents deferred.
--- Consequently, CReplRowChange::Reconcile does nothing with that row.
-create function sys.fn_MSgeneration_downloadonly(
+create function BP_PRD.sys.fn_MSgeneration_downloadonly(
                 @generation bigint,
                 @tablenick int)
         returns bigint
@@ -14487,10 +14326,7 @@ begin
 end
 go
 
--- This function returns the dynamic filter login (suser_sname) corresponding to the given
--- value of partitionid. If the publication uses both hostname and suser_sname for filtering
--- it uses the current value of hostname set on the connection to get the correct partition id.
-create function sys.fn_MSget_dynamic_filter_login
+create function BP_PRD.sys.fn_MSget_dynamic_filter_login
 (
     @publication_number int,
     @partition_id int
@@ -14536,7 +14372,7 @@ begin
 end
 go
 
-create function sys.fn_MSorbitmaps (@bm1 varbinary(128), @bm2 varbinary(128))
+create function BP_PRD.sys.fn_MSorbitmaps (@bm1 varbinary(128), @bm2 varbinary(128))
 	returns varbinary(128)
 as
 begin
@@ -14548,8 +14384,7 @@ begin
 end
 go
 
-
-create function sys.fn_MSrepl_map_resolver_clsid (
+create function BP_PRD.sys.fn_MSrepl_map_resolver_clsid (
     @compatibility_level  int,                      /* use 70 as the default compatibility level */
     @article_resolver  nvarchar(255),               /* article resolver name for verification purposes */
     @resolver_clsid  nvarchar(60)                   /* resolver class ID to be mapped */
@@ -14765,7 +14600,7 @@ create function sys.fn_MSrepl_map_resolver_clsid (
     end
 go
 
-create function sys.fn_MStestbit (@bitmap varbinary(128), @colidx smallint)
+create function BP_PRD.sys.fn_MStestbit (@bitmap varbinary(128), @colidx smallint)
 returns bit
 as
 begin
@@ -14788,7 +14623,7 @@ begin
 end
 go
 
-create function sys.fn_MSvector_downloadonly(
+create function BP_PRD.sys.fn_MSvector_downloadonly(
                 @vector varbinary(2953),
                 @tablenick int)
         returns varbinary(311)
@@ -14811,8 +14646,7 @@ AS
 	FROM OpenRowSet(TABLE FN_MSXE_READ_EVENT_STREAM, @source, @source_opt, db_id ())
 go
 
--- This function takes returns the type of the schema change
-create function sys.fn_MapSchemaType (@schematype int, @schemasubtype int)
+create function BP_PRD.sys.fn_MapSchemaType (@schematype int, @schemasubtype int)
 returns sysname
 as
 begin
@@ -15002,7 +14836,6 @@ begin
     set @SCHEMA_TYPE_INCREMENTALFTPLOGIN = 1081
     set @SCHEMA_TYPE_INCREMENTALFTPPASSWORD = 1082
 
-
     --enum of constants
     declare  @schemasubtype_addcolumn int
             ,@schemasubtype_dropcolumn int
@@ -15158,15 +14991,7 @@ begin
 end
 go
 
--------------------------------------------------------------------------------
--- Name: sys.fn_PhysLocCracker 
---
--- Description:
---	Cracks the output of %%physloc%% virtual column
---
--- Notes:
--------------------------------------------------------------------------------
-create function sys.fn_PhysLocCracker (@physical_locator binary (8))
+create function BP_PRD.sys.fn_PhysLocCracker (@physical_locator binary (8))
 returns @dumploc_table table
 (
 	[file_id]	int not null,
@@ -15191,15 +15016,7 @@ begin
 end
 go
 
--------------------------------------------------------------------------------
--- Name: sys.fn_PhysLocFormatter 
---
--- Description:
---	Formats the output of %%physloc%% virtual column
---
--- Notes:
--------------------------------------------------------------------------------
-create function sys.fn_PhysLocFormatter (@physical_locator binary (8))
+create function BP_PRD.sys.fn_PhysLocFormatter (@physical_locator binary (8))
 returns varchar (128)
 as
 begin
@@ -15219,24 +15036,6 @@ begin
 				 cast (cast (@slot_id as int) as varchar) + ')'
 end
 go
-
--------------------------------------------------------------------------------
--- Name: sys.fn_RowDumpCracker 
---
--- Description:
---	Cracks the output of %%rowdump%% virtual column
---
--- Notes:
---	1. If inrowLength is 0 it implies the column is null or 0-length
---	2. If information about a column is not output then it must be a trailing 
---	   null or 0-length variable length column.
---	3. Filters out columns that have been dropped.
---	4. Filters out uniquifiers.
---	5. Does not report clustering key columns in non-clustered indexes
---    6. Rowdump format: this explains the constants used below
---		<rowset_id>|<colcount>|<col 1>| ... | <col N>
---		8 bytes    |4 bytes   |10bytes | ... | 10 bytes
--------------------------------------------------------------------------------
 
 CREATE FUNCTION sys.fn_RowDumpCracker (@rowdump AS varbinary (max))
 RETURNS @varColumns TABLE
@@ -15281,7 +15080,6 @@ begin
 
 	select @reserved_id = convert (int, convert (binary(4), reverse (substring (@rowdump, @offset, 4)))) 
 	set @offset = @offset + 4		-- Reserved ID is 4 bytes
-
 
 	select @column_count = convert (int, convert (binary(4), reverse (substring (@rowdump, @offset, 4)))) 
 
@@ -15389,8 +15187,6 @@ begin
 	return
 end
 
-go
-
 CREATE FUNCTION sys.fn_builtin_permissions
                  ( @level nvarchar(60) )
 RETURNS table
@@ -15400,7 +15196,7 @@ RETURN (
        )
 go
 
-create function sys.fn_cColvEntries_80
+create function BP_PRD.sys.fn_cColvEntries_80
     (@pubid uniqueidentifier, @artnick int)
     returns int
 as
@@ -15416,7 +15212,7 @@ begin
 end
 go
 
-create function [sys].[fn_cdc_check_parameters]				
+create function [BP_PRD.sys].[fn_cdc_check_parameters]				
 (														
 	@capture_instance sysname,
 	@from_lsn binary(10),
@@ -15494,7 +15290,7 @@ begin
 end																	
 go
 
-create function sys.fn_cdc_get_column_ordinal				
+create function BP_PRD.sys.fn_cdc_get_column_ordinal				
 (														
 	@capture_instance	sysname,
 	@column_name		sysname
@@ -15535,7 +15331,7 @@ begin
 end
 go
 
-create function [sys].[fn_cdc_get_max_lsn]()				
+create function [BP_PRD.sys].[fn_cdc_get_max_lsn]()				
 returns binary(10)
 as													
 begin
@@ -15552,7 +15348,7 @@ begin
 end													
 go
 
-create function [sys].[fn_cdc_get_min_lsn]				
+create function [BP_PRD.sys].[fn_cdc_get_min_lsn]				
 (														
 	@capture_instance	sysname											
 )														
@@ -15582,7 +15378,7 @@ begin
 end
 go
 
-create function sys.fn_cdc_has_column_changed				
+create function BP_PRD.sys.fn_cdc_has_column_changed				
 (														
 	@capture_instance		sysname,
 	@column_name			sysname,
@@ -15627,8 +15423,7 @@ begin
 end																				
 go
 
-
-create function [sys].[fn_cdc_hexstrtobin]
+create function [BP_PRD.sys].[fn_cdc_hexstrtobin]
 (
 	@hexstr nvarchar(40)
 ) 
@@ -15667,7 +15462,7 @@ begin
 end 
 go
 
-create function [sys].[fn_cdc_map_lsn_to_time]				
+create function [BP_PRD.sys].[fn_cdc_map_lsn_to_time]				
 (														
 	@lsn		binary(10)									
 )														
@@ -15685,7 +15480,7 @@ begin
 end													
 go
 
-create function [sys].[fn_cdc_map_time_to_lsn]				
+create function [BP_PRD.sys].[fn_cdc_map_time_to_lsn]				
 (														
 	@relational_operator nvarchar(30),
 	@tracking_time datetime									
@@ -15762,7 +15557,6 @@ AS
 			GROUP BY s.assembly_id
 go
 
-
 CREATE FUNCTION sys.fn_column_store_row_groups 
 	(
 	@obj_id BIGINT
@@ -15796,7 +15590,7 @@ AS
 	WHERE has_access('CO', rg.parent_object_id) = 1;
 go
 
-create function sys.fn_dblog
+create function BP_PRD.sys.fn_dblog
 	(
 		@start 	 nvarchar (25) = NULL,
 		@end   	 nvarchar (25) = NULL
@@ -15816,7 +15610,7 @@ as
  					 NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
 go
 
-create function sys.fn_dblog_xtp (
+create function BP_PRD.sys.fn_dblog_xtp (
 		@start 	 nvarchar (25) = NULL,
 		@end   	 nvarchar (25) = NULL
 	)
@@ -15831,7 +15625,7 @@ outer apply sys.xtp_process_logrec (
 	A.[RowLog Contents 3]) B
 go
 
-create function sys.fn_dump_dblog
+create function BP_PRD.sys.fn_dump_dblog
 	(
 		@start 	  nvarchar (25) = NULL,
 		@end   	  nvarchar (25) = NULL,
@@ -15973,7 +15767,7 @@ as
 		@fname64)
 go
 
-create function sys.fn_dump_dblog_xtp (
+create function BP_PRD.sys.fn_dump_dblog_xtp (
 		@start 	  nvarchar (25) = NULL,
 		@end   	  nvarchar (25) = NULL,
 		@devtype  nvarchar (260) = NULL, -- NULL(DISK) | DISK | TAPE | VIRTUAL_DEVICE
@@ -16119,7 +15913,7 @@ outer apply sys.xtp_process_logrec (
 	A.[RowLog Contents 3]) B
 go
 
-create function sys.fn_fIsColTracked
+create function BP_PRD.sys.fn_fIsColTracked
     (@artnick int)
     returns int
 as
@@ -16174,7 +15968,7 @@ go
 
 /* Shiloh fn_get_sql returned text column as TEXT instead of NTEXT. */
 /* Use the same time in Yukon as well. */
-create function sys.fn_get_sql(@handle varbinary(64))
+create function BP_PRD.sys.fn_get_sql(@handle varbinary(64))
 returns table
 as
 	return select 
@@ -16187,8 +15981,7 @@ as
 		sys.dm_exec_sql_text(@handle)
 go
 
-
-create function sys.fn_hadr_backup_is_preferred_replica (
+create function BP_PRD.sys.fn_hadr_backup_is_preferred_replica (
     @database_name sysname )
 returns bit
 as
@@ -16387,7 +16180,7 @@ begin
 end
 go
 
-create function sys.fn_helpcollations
+create function BP_PRD.sys.fn_helpcollations
 	(
 	)
 
@@ -16395,27 +16188,6 @@ returns table
 as
 	return select * from OpenRowset(TABLE COLLATIONS)
 go
-
-
---
--- Name:
---		fn_helpdatatypemap
---
--- Description:
---		Retrieve data type map as inline table
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
---
--- Notes:
---		Produces the full data type map based on input
---		parameters.  Includes filtered version based
---		on source and destination dbms, and defaults.
---
 
 CREATE FUNCTION sys.fn_helpdatatypemap
 (
@@ -16519,7 +16291,7 @@ BEGIN
 END
 go
 
-create function sys.fn_isrolemember
+create function BP_PRD.sys.fn_isrolemember
 (
     @mode int  -- 0 = generic pal role check in DB, 1 = DB owner role check, 2 = specific tran PAL role check
     ,@login sysname -- @login we need to check for
@@ -16604,7 +16376,7 @@ begin
 end
 go
 
-create function sys.fn_listextendedproperty
+create function BP_PRD.sys.fn_listextendedproperty
 	(@name sysname				= NULL,
 	@level0type	varchar(128)	= NULL,
 	@level0name	sysname			= NULL,
@@ -16653,16 +16425,11 @@ Some specific notes on values returned by 'major' for code below to work:
 	if @level0type = 'EVENT NOTIFICATION', then 'major' = 0 for parent_id of database
 	if @level1type is wildcarded object, 'major' returns schema_id
 
-
 Entity_Name( class, major_id, minor_id ) -- returns lowest-level name of entity. Note that this
 	will only be used for one cached-level entity. Also note that we always want to output the actual entity
 	name rather than the given entity-name, which may differ in case, etc.
 */
 
--- Validate Input: Any problems will return NULL 'class' (bad levels, types, names, etc)
--- Use Latin1_General_CI_AS for the input param used in constant comparison as otherwise the collation from 
--- the context/calling db will be used which could result in a problem. Example is Turkish_CS_AI_KS_WS with small 'i'.
--- 
 select	@level0type = UPPER(@level0type collate Latin1_General_CI_AS)
 		,@level1type = UPPER(@level1type collate Latin1_General_CI_AS) 
 		,@level2type = UPPER(@level2type collate Latin1_General_CI_AS)
@@ -16685,9 +16452,6 @@ select	@class = Convert(tinyint,
 if @class is NULL
 	return
 
--- Handle cases with no wildcards OR minor-id-only wildcards.  This will include simple wildcard across
--- all minor_id values (eg. 'INDEX', 'PARAMETER', 'COLUMN').
---
 if @major is not null and @minminor is not null and @maxminor is not null
 begin
 	insert @tab select @basetype, entity_name( major_id, minor_id, class ),
@@ -16698,13 +16462,8 @@ begin
 	return
 end
 
--- After this point, approach is to populate an id/name table to join with sysproperties for output.
---	Note that minor_id is 0 for all entitities below.
---
 declare @ids table (maj int primary key, nam sysname)
 
--- First handle single-level entities: @major will be NULL.  Order with pre-yukon queries first.
---
 if @major is null
 begin
 	if @level0name is not null -- level0 entity name could not be resolved
@@ -16742,9 +16501,6 @@ begin
 	else if @basetype = 'PLAN GUIDE' 
 		insert @ids select plan_guide_id, name from sys.plan_guides
 end
---
--- Next handle queries that can service multiple levels
---
 else if @basetype in ('TYPE','TRIGGER','EVENT NOTIFICATION')
 begin
 	if @basetype = 'TYPE'
@@ -16768,9 +16524,6 @@ begin
 			and parent_id = @major
 	end
 end
---
--- Handle entities with a @major that are schema-addressed-objects.
---
 else if @basetype in ('CONSTRAINT','LOGICAL FILE NAME','XML SCHEMA COLLECTION')
 begin
 	if @basetype = 'CONSTRAINT'
@@ -16783,9 +16536,6 @@ begin
 	else if @basetype = 'XML SCHEMA COLLECTION'
 		insert @ids select xml_collection_id, name from sys.xml_schema_collections where schema_id = @major
 end
---
--- Finally, handle schema-addressed objects (type-validation done for us in builtin)
---
 else
 begin
 	-- Get the objects that match: Use dot-separated types to do pattern match
@@ -16809,8 +16559,6 @@ begin
 				end )
 end
 
--- Now get properties from id-s obtained, and return
---
 insert @tab select @basetype, i.nam, p.name, p.value
 	from sys.extended_properties p join @ids i on p.class = @class and p.major_id = i.maj
 	where p.minor_id = 0 and (@name is null or @name = p.name)
@@ -16881,7 +16629,7 @@ AS
     END
 go
 
-create function sys.fn_numberOf1InBinaryAfterLoc (@byte binary, @loc int)
+create function BP_PRD.sys.fn_numberOf1InBinaryAfterLoc (@byte binary, @loc int)
 returns int
 as
 begin
@@ -16903,7 +16651,7 @@ begin
 end
 go
 
-create function sys.fn_numberOf1InVarBinary (@bm varbinary(128))
+create function BP_PRD.sys.fn_numberOf1InVarBinary (@bm varbinary(128))
 returns int
 as
 begin
@@ -16923,7 +16671,7 @@ begin
 end
 go
 
-create function sys.fn_repladjustcolumnmap
+create function BP_PRD.sys.fn_repladjustcolumnmap
 (
     @objid    int
     ,@total_col int
@@ -16994,31 +16742,6 @@ begin
 end
 go
 
---
--- Name: 
---	fn_repldecryptver4
--- 
--- Description: 
---	This function accepts an encrypted password as input 
---	and decrypts the value using the server provided crypto 
---	based on the master key created in the local database. 
---	If it detects that the logged on user is not DBO or that
---	the password has not been encrypted using the server dpapi
---	then the original password input is returned.
---
--- Parameters: 
---	See the procedure definition.
---
--- Returns: 
---	0 - On Success
---	1 - On Failure
---
--- Result: 
---	None
---
--- Security: 
---	DBO (func is public because snapshot agent calls it)
---
 CREATE FUNCTION sys.fn_repldecryptver4 
 (
 	@password nvarchar(524)
@@ -17044,20 +16767,7 @@ BEGIN
 END
 go
 
---
--- Name: fn_replformatdatetime
---
--- Description: This function encapsulates the definitive method for 
---              formatting a datetime field into a string in SQL Replication.
---
--- Parameter: @datetime datetime (mandatory)
---
--- Returns: nvarchar(50) (leaves room for modification in the future)
---
--- Security: Execute permission of this function is granted to public
---           (public interface object)
---
-create function sys.fn_replformatdatetime (
+create function BP_PRD.sys.fn_replformatdatetime (
     @datetime datetime
     ) returns nvarchar(50)
 as
@@ -17069,7 +16779,7 @@ begin
 end
 go
 
-create function sys.fn_replgetcolidfrombitmap (@columns binary(32))
+create function BP_PRD.sys.fn_replgetcolidfrombitmap (@columns binary(32))
 returns @colid table (colid int)
 as
 begin
@@ -17095,42 +16805,7 @@ begin
 end
 go
 
---
--- Name: fn_replgetparsedddlcmd
---
--- Description: This helper function strips out the first part 
---	of DDL cmd, up to the point right after object name.
---	
---
--- Parameters: 	
---	@ddlcmd nvarchar(max)
---	,@FirstToken sysname
---	,@objectType sysname	-- comlete form: e.g. procedure/function/tigger
---	,@dbname sysname		-- not quoted
---	,@owner sysname			-- not quoted
---	,@objname sysname		-- not quoted
---	,@targetobject nvarchar(512)-- applies to alter trigger only
---
--- Returns: nvarchar(max) 
---
--- Notes: this is an internal helper function which assumes
---	incoming @ddlcmd is always valid, it strips out the first 
---	part of ddl so we can reconstruct with alternate
---	destination table/owner if so desired, it also helps to 
---	to avoid blandly sending DDL with fully qualified table 
---	name including publisher database:
---	e.g. 
---	fn_replgetparsedddlcmd(N'table pubs.dbo.authors add newcol1 int'
---											,'alter'
---											,'table'
---											,'pubs'
---											,'dbo'
---											,'authors')
---	should return: N'add newcol1 int'
---		
--- Security: not exposed to public
--- 
-create function sys.fn_replgetparsedddlcmd (
+create function BP_PRD.sys.fn_replgetparsedddlcmd (
     @ddlcmd nvarchar(max)
 	,@FirstToken sysname
 	,@objectType sysname	-- comlete form: e.g. procedure/function/tigger
@@ -17156,27 +16831,18 @@ declare @left_quote bigint
 
 set @ddloffset = rtrim(ltrim(@ddlcmd))
 
--- strip out leading comments
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 set @ddlcmd_len = len(@ddloffset)
 
--- return N'' immediately if the ddl statement does not match first token, this
--- can happen after Katmai DDL improvement
 if lower(left(@ddloffset, len(@FirstToken)) collate SQL_Latin1_General_CP1_CS_AS) <> lower(@FirstToken collate SQL_Latin1_General_CP1_CS_AS)
 	return N''
 
--- start with striping off ALTER at the begining
 set @ddloffset = ltrim(right(@ddloffset, @ddlcmd_len - len(@FirstToken)))
 set @ddlcmd_len = len(@ddloffset)
 
--- strip out any possible comments between alter and next token
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 set @ddlcmd_len = len(@ddloffset)
 
--- now strip out objectType token, 
--- remember, this function is only used by DDL trigger where we know @ddlcmd coming in is valid
--- watch out for space after the second token, e.g. alter proc instead of alter procedure
--- watch out for comments, e.g. alter proc/*..*/myproc instead of alter procedure
 set @first_space = patindex('% %', @ddloffset)
 set @left_quote = patindex('%/*%', @ddloffset)
 set @first_tab = patindex('%' + char(9)	+ '%', @ddloffset) -- char(9) is tab
@@ -17199,35 +16865,21 @@ else
 	set @left_quote = len(@objectType) + 1
 set @ddloffset = substring(@ddloffset, @left_quote, @ddlcmd_len - @left_quote + 1)
 
--- In the case where there are tabs between @ObjectType token and object name,
--- ltrim doesn't trim tabs.  Use patindex to find the first character
--- that is not a space or a tab, then take the substring after that leading
--- whitespace.
 set @ddlcmd_len = len(@ddloffset)
 
--- Use patindex regular expression to find first char that is not space or tab
--- Then take substring to effectively do a ltrim that will also trim tabs.
 set @start_pos = patindex('%[^' + ' ' + char(9) + ']%', @ddloffset)
 set @ddloffset = substring(@ddloffset, @start_pos, @ddlcmd_len - @start_pos + 1)
 
--- strip out any possible comments between @ObjectType token and object name
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 
--- now strip out object name
--- deal with the following possibilities: w or w/o quotes
--- [db].[owner].[obj]
 set @old_ddloffset = @ddloffset
 set @ddloffset = sys.fn_replremovefullobj(@ddloffset, @dbname, @owner, @objname)
 
---This is to handle the case of a duplicate trigger from switch partition
 if @old_ddloffset = @ddloffset
 	return N''
 
--- might as well strip out any possible comments between object name and definition
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 
---alter trigger trigger_name on [db].[owner].[obj] as .... has the same issue, parse to the point before as
---so we can substitute with alter trigger trigger_name on [dest_owner].[dest_obj] as 
 if UPPER(@objectType) = N'TRIGGER' and @targetobject is not NULL and len(@targetobject) > 0
 begin 
 	-- remove leading newline
@@ -17250,8 +16902,7 @@ return (@ddloffset)
 end
 go
 
-
-create function sys.fn_replp2pversiontotranid (@varbin varbinary(32))
+create function BP_PRD.sys.fn_replp2pversiontotranid (@varbin varbinary(32))
 returns nvarchar(40)
 as
 begin
@@ -17259,7 +16910,7 @@ begin
 end
 go
 
-create function sys.fn_replreplacesinglequote (
+create function BP_PRD.sys.fn_replreplacesinglequote (
     @pstrin nvarchar(max) )
 returns nvarchar(max)
 as
@@ -17268,7 +16919,7 @@ begin
 end
 go
 
-create function sys.fn_replreplacesinglequoteplusprotectstring (
+create function BP_PRD.sys.fn_replreplacesinglequoteplusprotectstring (
     @pstrin nvarchar(4000) )
 returns nvarchar(4000)
 as
@@ -17287,8 +16938,7 @@ begin
 end
 go
 
-create function sys.fn_repluniquename (
--- cannot use newid() in a UDF
+create function BP_PRD.sys.fn_repluniquename (
     @guid uniqueidentifier = NULL,
     @prefix1 sysname = NULL,
     @prefix2 sysname = NULL,
@@ -17315,8 +16965,7 @@ begin
 end
 go
 
-
-create function sys.fn_replvarbintoint (@varbin varbinary(32))
+create function BP_PRD.sys.fn_replvarbintoint (@varbin varbinary(32))
 returns int
 as
 begin
@@ -17324,7 +16973,7 @@ begin
 end
 go
 
-create function sys.fn_servershareddrives
+create function BP_PRD.sys.fn_servershareddrives
 	(
 	)
 returns @tab table(DriveName nchar(1) NOT NULL)
@@ -17336,7 +16985,6 @@ begin
 	return
 end
 go
-
 
 CREATE FUNCTION sys.fn_sqlagent_job_history(
     @job_id UNIQUEIDENTIFIER NULL,
@@ -17384,7 +17032,6 @@ BEGIN
 END
 go
 
-
 CREATE FUNCTION sys.fn_sqlagent_jobs(
     @job_id UNIQUEIDENTIFIER NULL 
  )
@@ -17420,7 +17067,6 @@ BEGIN
     RETURN
 END
 go
-
 
 CREATE FUNCTION sys.fn_sqlagent_jobsteps(
     @job_id UNIQUEIDENTIFIER NULL,
@@ -17492,7 +17138,6 @@ BEGIN
 END
 go
 
-
 CREATE FUNCTION sys.fn_sqlagent_jobsteps_logs(
     @step_uid UNIQUEIDENTIFIER NULL
  )
@@ -17518,7 +17163,6 @@ BEGIN
     RETURN
 END
 go
-
 
 CREATE FUNCTION sys.fn_sqlagent_subsystems()
 RETURNS @subsystems TABLE (
@@ -17547,7 +17191,7 @@ BEGIN
 END
 go
 
-create function sys.fn_sqlvarbasetostr (
+create function BP_PRD.sys.fn_sqlvarbasetostr (
     @ssvar sql_variant
 )
 returns nvarchar(max)
@@ -17589,7 +17233,7 @@ begin
 end
 go
 
-create function sys.fn_trace_geteventinfo
+create function BP_PRD.sys.fn_trace_geteventinfo
 	(@handle int
 	)
 
@@ -17604,7 +17248,7 @@ begin
 end -- fn_trace_geteventinfo
 go
 
-create function sys.fn_trace_getfilterinfo
+create function BP_PRD.sys.fn_trace_getfilterinfo
 	(@handle int = 0
 	)
 
@@ -17621,7 +17265,7 @@ begin
 end -- fn_trace_getfilterinfo
 go
 
-create function sys.fn_trace_getinfo
+create function BP_PRD.sys.fn_trace_getinfo
 	(@handle int = 0
 	)
 returns @tab table(traceid int NOT NULL,
@@ -17636,7 +17280,7 @@ begin
 end -- fn_trace_getinfo
 go
 
-create function sys.fn_trace_gettable
+create function BP_PRD.sys.fn_trace_gettable
 	(@filename nvarchar(4000), 
 	 @numfiles int = -1)
 	 
@@ -17726,7 +17370,7 @@ AS
 	RETURN SELECT * FROM OPENROWSET(TABLE VALIDATEPLANGUIDE, @plan_guide_id)
 go
 
-create function sys.fn_varbintohexstr 
+create function BP_PRD.sys.fn_varbintohexstr 
 (
     @pbinin varbinary(max) 
 )
@@ -17737,7 +17381,7 @@ begin
 end
 go
 
-create function sys.fn_varbintohexsubstring (
+create function BP_PRD.sys.fn_varbintohexsubstring (
 	@fsetprefix bit = 1		-- append '0x' to the output
 	,@pbinin varbinary(max) -- input binary stream
 	,@startoffset int = 1	 -- starting offset 
@@ -17807,7 +17451,7 @@ begin
 end
 go
 
-create function sys.fn_virtualfilestats
+create function BP_PRD.sys.fn_virtualfilestats
 	(
 	@DatabaseId Int = -1,
 	@FileId Int = -1
@@ -17837,7 +17481,7 @@ begin
 end -- fn_virtualfilestats
 go
 
-create function sys.fn_virtualservernodes
+create function BP_PRD.sys.fn_virtualservernodes
 	(
 	)
 returns @tab table(NodeName sysname NOT NULL, status int, status_description nvarchar(32), is_current_owner bit)
@@ -17876,40 +17520,6 @@ BEGIN
                     end
 END
 go
-
-create procedure sys.sp_AddFunctionalUnitToComponent() as
--- missing source code
-go
-
-create procedure sys.sp_FuzzyLookupTableMaintenanceInstall(@etiTableName nvarchar(1024)) as
--- missing source code
-go
-
-create procedure sys.sp_FuzzyLookupTableMaintenanceInvoke(@etiTableName nvarchar(1024)) as
--- missing source code
-go
-
-create procedure sys.sp_FuzzyLookupTableMaintenanceUninstall(@etiTableName nvarchar(1024)) as
--- missing source code
-go
-
-
---
--- Name:    
---          sp_IHScriptIdxFile
---          
--- Description: 
---          Script snaphot IDX file contents
---  
--- Security: 
---          Public (for use by snapshot agent)
---
--- Returns:
---          Success or failure
---			Temp table (#proctext) with commands
---      
--- Owner:   
---          <current owner> 
 
 CREATE PROCEDURE sys.sp_IHScriptIdxFile
 (
@@ -17994,7 +17604,6 @@ BEGIN
 			SET @useUnique = 0
 		END
 
-
 		-- Generate indexes
 		exec @retcode = sys.sp_IHscriptindexes
 							@article_id		= @article_id,
@@ -18019,24 +17628,6 @@ RETURNSCRIPT:
 	RETURN @retcode
 END
 go
-
-
---
--- Name:    
---          sp_IHScriptSchFile
---          
--- Description: 
---          Script snaphot SCH file contents
---  
--- Security: 
---          Public (for use by snapshot agent)
---
--- Returns:
---          Success or failure
---			Temp table (#proctext) with commands
---      
--- Owner:   
---          <current owner> 
 
 CREATE PROCEDURE sys.sp_IHScriptSchFile
 (
@@ -18164,42 +17755,6 @@ RETURNSCRIPT:
 END
 go
 
-
---
--- Name:
---		sp_IHValidateRowFilter
---
--- Description:
---		Validate a supplied row filter for an article within
---		a heterogeneous publication.
---
--- Inputs:
---		@publisher		== name of Oracle publisher
---		@owner			== table owner
---		@table			== table name
---		@columnmask		== mask identifying columns in article
---		@rowfilter		== row filter
---
--- Returns:
---		Return rowset with a single int value (0 for valid filter clause, 1 for invalid filter clause)
---
---		Return code (0 for success, 1 for failure)
---
---		NOTE:  Failure to provide a valid filter clause is not a failure
---		       with respect to the return code.
---
--- Security:
---		public -- call must be sysadmin
---
--- Notes:
---		This stored procedure is provided so that user interface can
---		pre-validate a user supplied filter priot to using it when
---		publishing an article.
---
---      If @columnmask is NULL, it is assumed that all columns of the
---      table are published.  If not secified, @columnmask defaults to NULL.
---
-
 CREATE PROCEDURE sys.sp_IHValidateRowFilter
 (
 	@publisher		sysname,
@@ -18261,43 +17816,6 @@ BEGIN
 END
 go
 
-
---
--- Name:
---		sp_IHXactSetJob
---
--- Description:
---		Manage the Oracle Poll Job used to force polling intervals
---		when the number of monitored changes exceeds a defined
---		threshold.
---
--- Inputs:
---		@publisher		== name of Oracle publisher
---		@enabled		== enabled flag
---		@interval		== minutes between Poll Job executions
---		@threshold		== number of changes to be exceeded
---					       prior to forcing new poll interval.
---		@LRinterval		== minutes between Poll Job executions
---                         when log reder is active
---		@LRthreshold	== number of changes to be exceeded
---					       prior to forcing new poll interval
---                         when log reader is active
---
--- Returns:
---		Return code (0 for success, 1 for failure)
---
--- Security:
---		public -- call must be sysadmin
---
--- Notes:
---		This stored procedure is provided so that the administrator of Oracle
---		publishing can activate, deactivate, and modify the parameters that
---		configure the execution of the Poll Job run at the Oracle database.
---      The settings are retained at the publisher in HREPL_XactSetJob.
---      All parameters default to NULL.  NULL parameters are not reset at the
---      publisher.
---
-
 CREATE PROCEDURE sys.sp_IHXactSetJob
 (
 	@publisher		sysname,
@@ -18351,29 +17869,7 @@ BEGIN
 END
 go
 
-
---
--- Name:
---		sp_IH_LR_GetCacheData
---
--- Description:
---		Retrieve meta data for Log Reader cache
---
--- Inputs:
---		@publisher		== publisher name
---
--- Returns:
---		Return code (1 for error, 0 for success)
---
--- Security:
---		Internal
--- Requires Certificate signature for catalog access
---
--- Notes:
---		Used by heterogeneous Log Reader for Oracle publishers
---
-
-create PROCEDURE sys.sp_IH_LR_GetCacheData
+create PROCEDURE BP_PRD.sys.sp_IH_LR_GetCacheData
 (
 	@publisher sysname 
 )
@@ -18592,7 +18088,6 @@ begin
 end
 go
 
-
 CREATE PROCEDURE sys.sp_IHadd_sync_command
 (
 	@publisher_id		smallint = NULL,
@@ -18678,7 +18173,6 @@ BEGIN
 		RETURN (1)
 END
 go
-
 
 CREATE PROCEDURE sys.sp_IHarticlecolumn
 (
@@ -18910,7 +18404,6 @@ BEGIN
 		FROM	IHpublishercolumns ihpc LEFT OUTER JOIN @coldatamap cdm
           ON    ihpc.column_ordinal = cdm.column_ordinal
 		WHERE	ihpc.table_id = @table_id
---          AND   ihpc.column_ordinal = cdm.column_ordinal
 		ORDER BY ihpc.column_ordinal
     END
     ELSE
@@ -19127,7 +18620,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_IHget_loopback_detection
 (
     @publisher sysname,
@@ -19177,8 +18669,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSCleanupForPullReinit (
+create procedure BP_PRD.sys.sp_MSCleanupForPullReinit (
     @publication         sysname,
     @publisher_db        sysname,
     @publisher             sysname = NULL
@@ -19215,7 +18706,7 @@ create procedure sys.sp_MSCleanupForPullReinit (
     return @retcode
 go
 
-create procedure sys.sp_MSFixSubColumnBitmaps
+create procedure BP_PRD.sys.sp_MSFixSubColumnBitmaps
         @artid uniqueidentifier,
         @bm varbinary(128)
 as
@@ -19241,7 +18732,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSGetCurrentPrincipal
+create procedure BP_PRD.sys.sp_MSGetCurrentPrincipal
 @db_name sysname
 ,@current_principal sysname output
 as 
@@ -19250,8 +18741,7 @@ select @current_principal = sys.fn_GetCurrentPrincipal (@db_name)
 end
 go
 
-
-create proc sys.sp_MSGetServerProperties
+create proc BP_PRD.sys.sp_MSGetServerProperties
 as
    set nocount on
 
@@ -19285,9 +18775,7 @@ as
                        END,
           startup_account = @startup_account
 
-go
-
-create procedure sys.sp_MSIfExistsSubscription
+create procedure BP_PRD.sys.sp_MSIfExistsSubscription
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -19354,7 +18842,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSNonSQLDDL(
+create procedure BP_PRD.sys.sp_MSNonSQLDDL(
 @qual_source_object nvarchar(540),
 @pubid uniqueidentifier,
 @columnName sysname,
@@ -19448,7 +18936,6 @@ AS
         ,@schemasubtype_disableconstraint = 15  		        --N'DISABLECONSTRAINT'
         ,@schemasubtype_enableconstraintall = 16    	        --N'ENABLECONSTRAINT'
         ,@schemasubtype_disableconstraintall = 17   	        --N'DISABLECONSTRAINT'
-
 
     --don't worry about non-sql if you don't own this publication
     select @publisher=publisher, @publisher_db=publisher_db from dbo.sysmergepublications where pubid=@pubid
@@ -19748,18 +19235,7 @@ AS
 return (0)
 go
 
--- ===========================
--- Name:            sp_MSNonSQLDDLForSchemaDDL
--- Description:      translate DDL for schema change so SSCE can pick up
--- Caller:            sp_MSmerge_alterview
---                        sp_MSmerge_altertrigger
---                        sp_MSmerge_schemaonly
--- Security:         Public interface, in resource DB
--- Returns:          0 : success
---                        1 : failure          
--- Owner:           zhenl
--- ===========================
-create procedure sys.sp_MSNonSQLDDLForSchemaDDL(
+create procedure BP_PRD.sys.sp_MSNonSQLDDLForSchemaDDL(
 @artid uniqueidentifier,
 @pubid uniqueidentifier,
 @ddlcmd nvarchar(max)
@@ -19769,12 +19245,11 @@ AS
     return 0
 go
 
-
 /*
  * The following three scripts must retain the SQLOLE nomenclature as we provide them to be an informative
  * notification to downlevel connections.
  */
-create procedure sys.sp_MSSQLDMO70_version
+create procedure BP_PRD.sys.sp_MSSQLDMO70_version
 as
 	/* localize message without changing message number */
 	declare @errtxt nvarchar(1024)
@@ -19793,8 +19268,7 @@ as
 	RETURN 1
 go
 
-
-create procedure sys.sp_MSSQLDMO80_version
+create procedure BP_PRD.sys.sp_MSSQLDMO80_version
 as
 	/* localize message without changing message number */
 	declare @errtxt nvarchar(1024)
@@ -19813,8 +19287,7 @@ as
 	RETURN 1
 go
 
-
-create procedure sys.sp_MSSQLDMO90_version
+create procedure BP_PRD.sys.sp_MSSQLDMO90_version
 as
 	/* Values for this are same as @@microsoftversion */
    /* @@microsoftversion format is 0xaaiibbbb (aa = major, ii = minor, bb[bb] = build #) */
@@ -19825,9 +19298,7 @@ as
 	select N'Microsoft SQLDMO Scripts' = @i, N'Version' = convert(binary(4), @i)
 go
 
-
-
-create procedure sys.sp_MSSQLOLE65_version
+create procedure BP_PRD.sys.sp_MSSQLOLE65_version
 as
 	/* localize message without changing message number */
 	declare @errtxt nvarchar(1024)
@@ -19846,8 +19317,7 @@ as
 	RETURN 1
 go
 
-
-create procedure sys.sp_MSSQLOLE_version
+create procedure BP_PRD.sys.sp_MSSQLOLE_version
 as
 	/* localize message without changing message number */
 	declare @errtxt nvarchar(1024)
@@ -19866,8 +19336,7 @@ as
 	RETURN 1
 go
 
-
-create proc sys.sp_MSSetServerProperties
+create proc BP_PRD.sys.sp_MSSetServerProperties
    @auto_start    INT   = NULL   -- 1 or 0, while 1 = auto start, 0 = manual start
 as
    set nocount on
@@ -19903,10 +19372,7 @@ as
          RAISERROR(14546, 16, 1, '@auto_start')
    END
 
-go
-
-
-create proc sys.sp_MSSharedFixedDisk
+create proc BP_PRD.sys.sp_MSSharedFixedDisk
 as
    set nocount on
 
@@ -19940,17 +19406,7 @@ as
    select 'name' = name, 'low free' = low, 'high free' = high, 'media type' = media from #Tmp1, #Tmp2
           where (SUBSTRING(#Tmp1.name, 1, 1)) like (SUBSTRING(#Tmp2.drivename, 1, 1))
 
-go
-
-
----------------------------- sp_MS_marksystemobject -----------------------------
--- FOR INTERNAL USE ONLY ... DO NOT DOCUMENT --
--- This procedure sets a bit in sysobjects.  This bit has no meaning, various
---	groups (starfigther, davinci, replication) use it for different things
--- MSQL makes no warranty, express or implied, on what objects will or will
---	not have this bit set.  Use at your own risk.
---   
-create procedure sys.sp_MS_marksystemobject
+create procedure BP_PRD.sys.sp_MS_marksystemobject
 	@objname    nvarchar(517),  -- 517 is max for two part name
 	@namespace	varchar(10) = NULL		-- database, server or null
 as
@@ -20059,21 +19515,7 @@ as
     return (0)	-- sp_MS_marksystemobject
 go
 
-
---
--- Name: sp_MS_replication_installed
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MS_replication_installed
+create procedure BP_PRD.sys.sp_MS_replication_installed
 as
     set nocount on
     declare @isinstalled int
@@ -20100,8 +19542,7 @@ as
     return (1)
 go
 
-
-create procedure sys.sp_MSacquireHeadofQueueLock
+create procedure BP_PRD.sys.sp_MSacquireHeadofQueueLock
 @process_name                   sysname,
 @queue_timeout                  int = 0,  -- means wait in definitely
 @no_result                      bit = 0,
@@ -20115,8 +19556,6 @@ declare @retcode        int
 declare @max_waiting    int
 declare @lock_acquired  bit
 
--- Security Checking 
--- sysadmin or db_owner or PAL user of some publication have access
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck
 if (@retcode <> 0) or (@@error <> 0)
 begin
@@ -20145,8 +19584,6 @@ begin
         select @DbPrincipal = N'db_owner'
 end
 
-
---quick peek and leave
 if @return_immediately=1
     begin
         --take a peek: return without wait regardless of whether the lock 
@@ -20168,37 +19605,23 @@ if @return_immediately=1
         return (0)              -- OK
     end     
 
--- from now on, @return_immediately=0
--- if @queue_timeout=0, means waiting indefinitely
 if @queue_timeout=0
     select @max_waiting = NULL
 else
---otherwise convert to minisecond and pass it down.
     select @max_waiting = @queue_timeout * 1000
-
 
 select @delay_time=0
 select @entry_date=getdate()
 
--- First try to acquire EXCLUSIVE lock which signfies at front of queue.
--- i.e. I'm next.
-
 exec @retcode=sys.sp_getapplock @process_name, @LockMode=N'Exclusive',
     @LockOwner=N'Session', @LockTimeout=@max_waiting, @DbPrincipal=@DbPrincipal
 
--- We shouldn't return from above until we have it 
--- RC should be either 0 (got immediately) or 1 (waited and got it eventually) or -1 (timed out); Exit on anything else.
--- We need value -1 because @LockTimeout value is no longer NULL, 
--- meaning waiting indefinitely. It is possible 
--- that we waited for a given length of time and timed out
 IF (@retcode <> 0 and @retcode <> 1) and @retcode<>-1
     BEGIN
         RAISERROR(21413, 16, -1)
         RETURN(@retcode)
     END
     
--- Im-first lock is to be released after successfully 
--- obtained a slot lock later.
 select @delay_time=datediff(ss, @entry_date, getdate())
 if @retcode=-1
     select @lock_acquired=0
@@ -20213,27 +19636,21 @@ end
 RETURN(0)
 go
 
-
-create procedure sys.sp_MSacquireSlotLock 
+create procedure BP_PRD.sys.sp_MSacquireSlotLock 
 @process_name                   sysname,
 @concurrent_max                 int,
 @queue_timeout                  int = 0,
--- means wait in definitely
 @return_immediately             bit = 0,
--- if set to 1, take a peek at the server and return immediately.
 @DbPrincipal                    sysname = NULL
 AS
 declare @entry_date     datetime
 declare @slot_name      nvarchar(150)  -- OUTPUT 
--- must give back slot acquired to caller so caller can later release.
 declare @basetime       datetime
 declare @delaytime      datetime
 declare @retcode        int
 declare @i              int
 declare @lock_acquired  bit
 
--- Security Checking 
--- sysadmin or db_owner or replication agent have access
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck 
 if (@retcode <> 0) or (@@error <> 0)
 begin
@@ -20264,14 +19681,9 @@ end
 
 select @entry_date=getdate()
 select @delaytime = '00:00:02' 
---polling interval is defaulted to 2 seconds
 
 SET @slot_name=NULL -- If terminate anywhere unexpectedly, dont want to give 
                     -- caller a lock they didnt really get.
-
--- We are at front of queue, so check if any available 'slot' is open.   
--- We do not wait at all for these locks, and hence 
--- expect either it was granted or timed out (-1).
 
 SET @i=1
 
@@ -20301,7 +19713,7 @@ WHILE (@i <= @concurrent_max)
     
         IF (@retcode = 0)       -- got lock for that slot - cleanup and leave.
             BEGIN
-                -- Release the "Im first lock"
+                -- Release the 'Im first lock'
                 exec @retcode=sys.sp_releaseapplock @process_name,@LockOwner=N'Session',@DbPrincipal=@DbPrincipal
                 IF (@retcode <> 0)
                 BEGIN
@@ -20345,7 +19757,7 @@ WHILE (@i <= @concurrent_max)
 RETURN(0)
 go
 
-create procedure sys.sp_MSacquireserverresourcefordynamicsnapshot (
+create procedure BP_PRD.sys.sp_MSacquireserverresourcefordynamicsnapshot (
     @publication sysname,
     @max_concurrent_dynamic_snapshots int
     )
@@ -20428,29 +19840,7 @@ Failure:
 end
 go
 
---
--- Name: sp_MSacquiresnapshotdeliverysessionlock
---
--- Description: This procedure is used by the distribution/merge agent to 
---              acquire a subscription database specific application lock
---              during snapshot delivery. This application lock can be used for
---              coordination with any user application that does not wish to 
---              be exposed to inconsistent data at the subscription database
---              while a snapshot is being delivered.
--- 
--- Returns: 0 - succeeded
---          1 - failed
---
--- Notes: i) This procedure should be executed by the distribution/merge agent
---        at the subscription database.
---        ii) This procedure will block until the application lock is acquired.
---
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_MSacquiresnapshotdeliverysessionlock
+create procedure BP_PRD.sys.sp_MSacquiresnapshotdeliverysessionlock
 as
 begin
     set nocount on
@@ -20471,7 +19861,7 @@ begin
     -- the snapshot progress table
     if object_id('dbo.MSsnapshotdeliveryprogress') is null
     begin
-        create table dbo.MSsnapshotdeliveryprogress 
+        create table BP_PRD.create table dbo.MSsnapshotdeliveryprogress 
         (
            session_token nvarchar(260) not null,
            progress_token_hash int not null,
@@ -20521,7 +19911,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSactivate_auto_sub
+create procedure BP_PRD.sys.sp_MSactivate_auto_sub
 (
     @publication			sysname,
     @article				sysname,
@@ -20637,25 +20027,7 @@ UNDO:
 END
 go
 
---
--- Name: sp_MSactivatelogbasedarticleobject
---
--- Description: This procedure is called by the snapshot agent to activate
---              a single logbased article object.
--- 
--- Parameter: @qualified_logbased_object_name 
---
--- Returns: 0 - succeeded 
---          1 - failed
---
--- Notes: This procedure must be called within a user transaction or it
---        will result in a no-op.
---
--- Security: Public interface, will result in no-op if called by non-db_owner
---           or non-replication agent.
--- Requires Certificate signature for catalog access
--- 
-create procedure sys.sp_MSactivatelogbasedarticleobject (
+create procedure BP_PRD.sys.sp_MSactivatelogbasedarticleobject (
     @qualified_logbased_object_name nvarchar(517)
     )
 as
@@ -20703,23 +20075,7 @@ begin
 end
 go
 
---
--- Name: sp_MSactivateprocedureexecutionarticleobject
---
--- Description: This procedure is called by the snapshot agent to activate
---              a single procedure execution article object.
---
--- Parameters: @qualified_procedure_execution_object_name
---             @is_repl_serializable_only
---
--- Notes: This procedure must be called within a user transaction or it will
---        result in a no-op.
---
--- Security: Public interface object, will result in no-op if called by
---           non-db_owner or non-replication agent.
--- Requires Certificate signature for catalog access
--- 
-create procedure sys.sp_MSactivateprocedureexecutionarticleobject (
+create procedure BP_PRD.sys.sp_MSactivateprocedureexecutionarticleobject (
     @qualified_procedure_execution_object_name nvarchar(517),
     @is_repl_serializable_only bit
     )
@@ -20861,7 +20217,6 @@ begin
         RAISERROR (21084, 16, -1, @publication)
         return 1   
     end
-
 
     /*
     **  To return two more parameters for the purpose of anonymous monitoring
@@ -21180,7 +20535,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSadd_compensating_cmd
+create procedure BP_PRD.sys.sp_MSadd_compensating_cmd
 (
     @orig_srv sysname,
     @orig_db sysname,
@@ -21483,7 +20838,7 @@ BEGIN
 
     IF (sys.fn_MSrepl_isdistdb (DB_NAME()) != 1)
     BEGIN
-        -- "sp_MSadd_subscription can only be executed in the distribution database."
+        -- 'sp_MSadd_subscription can only be executed in the distribution database.'
         RAISERROR(21482, 16, -1, 'sp_MSadd_subscription', 'distribution')
         RETURN 1
     END
@@ -21491,14 +20846,14 @@ BEGIN
 	IF @offloadagent IS NOT NULL
 		AND @offloadagent != 0
 	BEGIN
-		-- "Parameter '@offloadagent' is no longer supported."
+		-- 'Parameter '@offloadagent' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadagent')
 		RETURN 1
 	END
 
 	IF ISNULL(@offloadserver, N'') != N''
 	BEGIN
-		-- "Parameter '@offloadserver' is no longer supported."
+		-- 'Parameter '@offloadserver' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadserver')
 		RETURN 1
 	END
@@ -21752,7 +21107,7 @@ BEGIN
 
 		IF @agent_id IS NULL
 		BEGIN
-			-- "The subscription could not be found."
+			-- 'The subscription could not be found.'
 			RAISERROR (20021, 16, -1)
 			GOTO UNDO
 		END
@@ -21852,7 +21207,7 @@ BEGIN
 		end
 		
 		-- Add Perfmon instance
-		dbcc addinstance ("SQL Replication Distribution", @name)
+		dbcc addinstance ('SQL Replication Distribution', @name)
 
 	    IF @local_job = 1
 	    BEGIN
@@ -21893,7 +21248,7 @@ BEGIN
 
 				IF datalength(@command) + datalength(@optional_cmdline) > 8000
 				BEGIN
-					-- "The @optional_command_line is too long. Use an agent definition file."
+					-- 'The @optional_command_line is too long. Use an agent definition file.'
 				    RAISERROR(20018, 16, -1)
 				    GOTO UNDO
 				END
@@ -22161,9 +21516,9 @@ BEGIN
     if @perfmon_increment = 1
     begin
         if @runstatus = @startup
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Distribution", 1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Distribution', 1)
         else if (@runstatus = @succeed or @runstatus = @retry or @runstatus = @failure)
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Distribution", -1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Distribution', -1)
     end
 
     -- Get agent name, publisher id and publisher_db
@@ -22221,8 +21576,8 @@ BEGIN
 
         set @last_delivery_latency = isnull(@last_delivery_latency, 0)
 	    -- Set Startup Perfmon counters
-        dbcc addinstance ("SQL Replication Distribution", @agent_name)
-        dbcc setinstance ("SQL Replication Distribution", "Dist:Delivery Latency", @agent_name, @last_delivery_latency)
+        dbcc addinstance ('SQL Replication Distribution', @agent_name)
+        dbcc setinstance ('SQL Replication Distribution', 'Dist:Delivery Latency', @agent_name, @last_delivery_latency)
 
     	IF @prev_runstatus IN (@startup, @retry)
     	BEGIN
@@ -22319,10 +21674,10 @@ BEGIN
     --, no need to write those to perfmon
     if @runstatus = @idle or (@runstatus = @inprogress and @new_delivered_transactions > 0 and @new_delivered_commands > 0)
     begin
-        dbcc addinstance ("SQL Replication Distribution", @agent_name)
-        dbcc incrementinstance ("SQL Replication Distribution", "Dist:Delivered Trans/sec", @agent_name, @new_delivered_transactions)
-        dbcc incrementinstance ("SQL Replication Distribution", "Dist:Delivered Cmds/sec", @agent_name, @new_delivered_commands)
-        dbcc setinstance ("SQL Replication Distribution", "Dist:Delivery Latency", @agent_name, @delivery_latency)
+        dbcc addinstance ('SQL Replication Distribution', @agent_name)
+        dbcc incrementinstance ('SQL Replication Distribution', 'Dist:Delivered Trans/sec', @agent_name, @new_delivered_transactions)
+        dbcc incrementinstance ('SQL Replication Distribution', 'Dist:Delivered Cmds/sec', @agent_name, @new_delivered_commands)
+        dbcc setinstance ('SQL Replication Distribution', 'Dist:Delivery Latency', @agent_name, @delivery_latency)
     end
 
     /* 
@@ -22413,7 +21768,7 @@ BEGIN
     if (@raiserror_status = @validation_failure or @raiserror_status = @validation_success or
 		@raiserror_status = @error_skipped)
     begin
-        -- Get the "real" publication name (as opposed to 'ALL') and article name
+        -- Get the 'real' publication name (as opposed to 'ALL') and article name
         select @article_id = article_id from MSrepl_commands with (nolock)
         where publisher_database_id = @publisher_database_id
         and xact_seqno = @xactseq
@@ -22454,7 +21809,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSadd_dynamic_snapshot_location (
+create procedure BP_PRD.sys.sp_MSadd_dynamic_snapshot_location (
             @publication sysname, 
             @partition_id int,
             @dynsnap_location nvarchar(255)) 
@@ -22489,7 +21844,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSadd_filteringcolumn 
+create procedure BP_PRD.sys.sp_MSadd_filteringcolumn 
 	@pubid uniqueidentifier,
 	@tablenick int,
 	@column_name sysname
@@ -22523,7 +21878,7 @@ as
 	end
 go
 
-create procedure sys.sp_MSadd_log_shipping_error_detail 
+create procedure BP_PRD.sys.sp_MSadd_log_shipping_error_detail 
 (
     @agent_id uniqueidentifier     -- primary/secondary ID
     ,@agent_type tinyint              -- 0 = Backup, 1 = Copy, 2 = Restore
@@ -22625,7 +21980,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_MSadd_log_shipping_history_detail 
+create procedure BP_PRD.sys.sp_MSadd_log_shipping_history_detail 
 (
     @agent_id uniqueidentifier     -- primary/secondary ID
     ,@agent_type tinyint              -- 0 = Backup, 1 = Copy, 2 = Restore
@@ -23103,7 +22458,7 @@ BEGIN
     END
     
     -- Add Perfmon instance
-    dbcc addinstance ("SQL Replication Logreader", @name)
+    dbcc addinstance ('SQL Replication Logreader', @name)
 
     IF @local_job = 1 and @job_existing = 0
     BEGIN            
@@ -23342,9 +22697,9 @@ BEGIN
     if @perfmon_increment = 1
     begin
         if @runstatus = @startup
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Logreader", 1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Logreader', 1)
         else if (@runstatus = @succeed or @runstatus = @retry or @runstatus = @failure)
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Logreader", -1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Logreader', -1)
     end
 
     -- The initial values provided below are needed for the first entry for the agent that
@@ -23363,7 +22718,6 @@ BEGIN
 
         if(@update_existing_row = 1 and substring(@comments, 1, 7) = N'<stats ')
     	set @update_existing_row = 0
-
 
     /* Get start_time for latest agent run */
     select @agent_name = N'DEFAULTAGENT'
@@ -23401,14 +22755,14 @@ BEGIN
 			SELECT @start_time = @prev_start_time
 		END
 
-        -- New logreader message "Validating publisher" has runstatus = 1
-        -- and precedes message "Initializing". Only the first of these startup
+        -- New logreader message 'Validating publisher' has runstatus = 1
+        -- and precedes message 'Initializing'. Only the first of these startup
         -- messages should set startup for Perfmon counters.
 		IF @prev_runstatus != @startup
 		BEGIN
 		    -- Set Startup Perfmon counters
-            dbcc addinstance ("SQL Replication Logreader", @agent_name)
-            dbcc setinstance ("SQL Replication Logreader", "Logreader:Delivery Latency", @agent_name, @last_delivery_latency )
+            dbcc addinstance ('SQL Replication Logreader', @agent_name)
+            dbcc setinstance ('SQL Replication Logreader', 'Logreader:Delivery Latency', @agent_name, @last_delivery_latency )
         END
     END
 
@@ -23486,10 +22840,10 @@ BEGIN
     -- Note that Startup perfmon counters are set above
     if @runstatus = @idle or @runstatus = @inprogress
     begin
-        dbcc addinstance ("SQL Replication Logreader", @agent_name)
-        dbcc incrementinstance ("SQL Replication Logreader", "Logreader:Delivered Trans/sec", @agent_name, @latest_delivered_transactions)
-        dbcc incrementinstance ("SQL Replication Logreader", "Logreader:Delivered Cmds/sec", @agent_name, @latest_delivered_commands)
-        dbcc setinstance ("SQL Replication Logreader", "Logreader:Delivery Latency", @agent_name, @delivery_latency)
+        dbcc addinstance ('SQL Replication Logreader', @agent_name)
+        dbcc incrementinstance ('SQL Replication Logreader', 'Logreader:Delivered Trans/sec', @agent_name, @latest_delivered_transactions)
+        dbcc incrementinstance ('SQL Replication Logreader', 'Logreader:Delivered Cmds/sec', @agent_name, @latest_delivered_commands)
+        dbcc setinstance ('SQL Replication Logreader', 'Logreader:Delivery Latency', @agent_name, @delivery_latency)
     end
 
     /* 
@@ -23674,7 +23028,7 @@ begin
 
     IF (sys.fn_MSrepl_isdistdb (DB_NAME()) != 1)
     BEGIN
-	   	-- "sp_MSadd_merge_agent can only be executed in the distribution database."
+	   	-- 'sp_MSadd_merge_agent can only be executed in the distribution database.'
         RAISERROR(21482, 16, -1, 'sp_MSadd_merge_agent', 'distribution')
         RETURN 1
     END
@@ -23682,14 +23036,14 @@ begin
     IF @offloadagent IS NOT NULL
 		AND @offloadagent != 0
 	BEGIN
-		-- "Parameter '@offloadagent' is no longer supported."
+		-- 'Parameter '@offloadagent' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadagent')
 		RETURN 1
 	END
 
 	IF ISNULL(@offloadserver, N'') != N''
 	BEGIN
-		-- "Parameter '@offloadserver' is no longer supported."
+		-- 'Parameter '@offloadserver' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadserver')
 		RETURN 1
 	END
@@ -23955,7 +23309,7 @@ begin
 	        set @active_end_date = 99991231
 
 		-- Add Perfmoon instance
-		dbcc addinstance ("SQL Replication Merge", @name)
+		dbcc addinstance ('SQL Replication Merge', @name)
 		 
 	   	IF @local_job = 1
 	    BEGIN
@@ -24088,7 +23442,6 @@ UNDO:
     RETURN(1)
 end
 go
-
 
 CREATE PROCEDURE sys.sp_MSadd_merge_anonymous_agent 
 (
@@ -24256,7 +23609,6 @@ begin
 		update dbo.MSmerge_agents set subscriber_name = @subscriber_name
 	        where anonymous_subid=@subid  -- subid guarantees uniqueness
 	end
-
 
 	if @by_pass = 0 and @subscriber_version < 90 --by pass the checking if retention is NULL or 0 or if yukon
 	begin
@@ -24434,9 +23786,9 @@ BEGIN
     if @perfmon_increment = 1
     begin
         if @runstatus = @startup
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Merge", 1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Merge', 1)
         else if (@runstatus = @succeed or @runstatus = @retry or @runstatus = @failure)
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Merge", -1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Merge', -1)
     end
 
     SELECT @agent_name = name, @publisher_id = publisher_id, @publisher_db = publisher_db, 
@@ -24522,16 +23874,16 @@ BEGIN
     -- Set Perfmon counters
     if @runstatus = @idle or @runstatus = @inprogress
     begin
-        dbcc addinstance ("SQL Replication Merge", @agent_name)
+        dbcc addinstance ('SQL Replication Merge', @agent_name)
 
 		set @changes = @download_inserts + @download_updates + @download_deletes                             
-        dbcc incrementinstance ("SQL Replication Merge", "Downloaded Changes", @agent_name, @changes)
+        dbcc incrementinstance ('SQL Replication Merge', 'Downloaded Changes', @agent_name, @changes)
 
 		set @changes = @upload_updates + @upload_inserts + @upload_deletes 
-        dbcc incrementinstance ("SQL Replication Merge", "Uploaded Changes", @agent_name, @changes)
+        dbcc incrementinstance ('SQL Replication Merge', 'Uploaded Changes', @agent_name, @changes)
 
         set @perfmon_conflict_count = @download_conflicts + @upload_conflicts
-        dbcc incrementinstance ("SQL Replication Merge", "Conflicts", @agent_name, @perfmon_conflict_count)
+        dbcc incrementinstance ('SQL Replication Merge', 'Conflicts', @agent_name, @perfmon_conflict_count)
     end
 
     if @runstatus = @inprogress  or @runstatus = @idle			-- if it is in progress, then do incremental change
@@ -24661,8 +24013,6 @@ BEGIN
 END
 go
 
-
--- Requires Certificate signature for catalog access
 CREATE PROCEDURE sys.sp_MSadd_merge_history90
 (
     @session_id                                 int output,   
@@ -24797,7 +24147,7 @@ begin
          -- increment agent counter on the distributor side (@subid is null)
          if ( ( @subid is null )  and ( @runstatus = @startup ))
          begin
-	        dbcc incrementinstance ("SQL Replication Agents", "Running", "Merge", 1)    
+	        dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Merge', 1)    
 	  end
 
     end
@@ -24884,7 +24234,6 @@ begin
                 where session_id = @session_id               
          end
 
-
             -- perfmon counter
 
             declare @change_count int
@@ -24892,16 +24241,16 @@ begin
             -- only log the counter change on the distributor side (@subid is null)
             if ( ( @subid is null )  and ( @runstatus = @idle or @runstatus = @inprogress ))
             begin
-                dbcc addinstance ("SQL Replication Merge", @agent_name)
+                dbcc addinstance ('SQL Replication Merge', @agent_name)
 
                 select @change_count = @session_download_inserts + @session_download_updates + @session_download_deletes
-                dbcc incrementinstance ("SQL Replication Merge", "Downloaded Changes/sec", @agent_name, @change_count)
+                dbcc incrementinstance ('SQL Replication Merge', 'Downloaded Changes/sec', @agent_name, @change_count)
 
                 select @change_count = @session_upload_updates + @session_upload_inserts + @session_upload_deletes
-                dbcc incrementinstance("SQL Replication Merge", "Uploaded Changes/sec", @agent_name, @change_count)
+                dbcc incrementinstance('SQL Replication Merge', 'Uploaded Changes/sec', @agent_name, @change_count)
 
                 select @change_count = @session_download_conflicts + @session_upload_conflicts
-                dbcc incrementinstance("SQL Replication Merge", "Conflicts/sec", @agent_name, @change_count);
+                dbcc incrementinstance('SQL Replication Merge', 'Conflicts/sec', @agent_name, @change_count);
             end 
             
     end
@@ -25060,7 +24409,7 @@ begin
         -- we only log the perfmon couter on the distributor side (@subit is null)
         if (( @subid is null ) and (@runstatus = @succeed or @runstatus=@retry or @runstatus = @failure ))
         begin
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Merge", -1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Merge', -1)
         end
         
     end
@@ -25194,14 +24543,14 @@ begin
 	IF @offloadagent IS NOT NULL
 		AND @offloadagent != 0
 	BEGIN
-		-- "Parameter '@offloadagent' is no longer supported."
+		-- 'Parameter '@offloadagent' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadagent')
 		RETURN 1
 	END
 
 	IF ISNULL(@offloadserver, N'') != N''
 	BEGIN
-		-- "Parameter '@offloadserver' is no longer supported."
+		-- 'Parameter '@offloadserver' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadserver')
 		RETURN 1
 	END
@@ -25371,9 +24720,8 @@ FAILURE:
 end
 go
 
-
 /* Add the replication command to the database - Used by snapshot */
-create procedure sys.sp_MSadd_mergereplcommand (
+create procedure BP_PRD.sys.sp_MSadd_mergereplcommand (
     @publication        sysname,
     @article            sysname = NULL,
     @schematype         int,
@@ -25871,7 +25219,7 @@ BEGIN
         -- MSMQ subscription only allowed for platforms that support MSMQ 2.0
         -- version 5.0.2195 or higher
         --
-        create table #tosversion ( propid int, propname sysname collate database_default, value int, charvalue nvarchar(255) collate database_default)
+        create table #tosversion ( propid int, propname BP_PRD.create table #tosversion ( propid int, propname sysname collate database_default, value int, charvalue nvarchar(255) collate database_default)
         insert into #tosversion (propid, propname, value, charvalue)
             exec master.dbo.xp_msver N'WindowsVersion'
 
@@ -26380,7 +25728,6 @@ BEGIN
 			,@agentclassname sysname
 			,@prev_runstatus int
 
-
     --
     -- security check
     -- only db_owner can execute this
@@ -26447,9 +25794,9 @@ BEGIN
 	if @perfmon_increment = 1
 	begin
 		if @runstatus = @startup
-			dbcc incrementinstance ("SQL Replication Agents", "Running", "QueueReader", 1)
+			dbcc incrementinstance ('SQL Replication Agents', 'Running', 'QueueReader', 1)
 		else if (@runstatus = @succeed or @runstatus = @retry or @runstatus = @failure)
-			dbcc incrementinstance ("SQL Replication Agents", "Running", "QueueReader", -1)
+			dbcc incrementinstance ('SQL Replication Agents', 'Running', 'QueueReader', -1)
 	end
 
 	-- Get start_time for latest agent run
@@ -26497,9 +25844,7 @@ BEGIN
 	-- Set Perfmon counters
 	if @runstatus = @idle or @runstatus = @inprogress
 	begin
-		dbcc addinstance ("SQL Replication QueueReader", @agent_name)
---		dbcc incrementinstance ("SQL Replication QueueReader", "QueueReader:Delivered Cmds/sec", @agent_name, @cmdprocessed_rate)
---		dbcc incrementinstance ("SQL Replication QueueReader", "QueueReader:Delivered Trans/sec", @agent_name, @transaction_rate)
+		dbcc addinstance ('SQL Replication QueueReader', @agent_name)
 	end
 
 	--
@@ -28098,7 +27443,6 @@ INSERT_CMDS:
 			substring(@12data,40,@cmd_data_len) )
     end
 
-
     IF @13data is null
       return
     IF datalength( @13data ) > 39
@@ -28190,7 +27534,6 @@ INSERT_CMDS:
 			convert(bit,substring(@14data,33 ,1)), 
 			substring(@14data,40,@cmd_data_len) )
     end
-
 
     IF @15data is null
       return
@@ -28284,7 +27627,6 @@ INSERT_CMDS:
 			substring(@16data,40,@cmd_data_len) )
     end
 
-
     IF @17data is null
       return
     IF datalength( @17data ) > 39
@@ -28330,7 +27672,6 @@ INSERT_CMDS:
 			convert(bit,substring(@17data,33 ,1)), 
 			substring(@17data,40,@cmd_data_len) )
     end
-
 
     IF @18data is null
       return
@@ -28378,7 +27719,6 @@ INSERT_CMDS:
 			substring(@18data,40,@cmd_data_len) )
     end
 
-
     IF @19data is null
       return
     IF datalength( @19data ) > 39
@@ -28424,7 +27764,6 @@ INSERT_CMDS:
 			convert(bit,substring(@19data,33 ,1)), 
 			substring(@19data,40,@cmd_data_len) )
     end
-
 
     IF @20data is null
       return
@@ -28656,7 +27995,6 @@ INSERT_CMDS:
 			substring(@24data,40,@cmd_data_len) )
     end
 
-
     IF @25data is null
       return
     IF datalength( @25data ) > 39
@@ -28703,7 +28041,6 @@ INSERT_CMDS:
 			substring(@25data,40,@cmd_data_len) )
     end
 
-
     IF @26data is null
       return
     IF datalength( @26data ) > 39
@@ -28749,7 +28086,6 @@ INSERT_CMDS:
 			convert(bit,substring(@26data,33 ,1)), 
 			substring(@26data,40,@cmd_data_len) )
     end
-
 
     IF @@ERROR <> 0
       return (1)
@@ -28868,15 +28204,6 @@ begin
 	end
 
 	-- Insert into the Event log
---       if (@add_event_log = 1) and (is_member('db_owner') = 1)
---       begin
---       	if @event_log_context is not null
---       		select @event_log_text = @event_log_context + @error_text
---    	else
---       		select @event_log_text = @error_text
---		select @event_log_text = @source_name + ' -(' + @error_code + ') ' + @event_log_text
---           	exec master.dbo.xp_logevent  70000, @event_log_text, 'ERROR'
---       end
 	        
 	INSERT INTO dbo.MSrepl_errors (id, time, error_type_id, source_type_id, source_name,
 				error_code, error_text, xact_seqno, command_id, session_id)
@@ -29658,7 +28985,7 @@ BEGIN
     END
 
     -- Add Perfmon instance
-    dbcc addinstance ("SQL Replication Snapshot", @name)
+    dbcc addinstance ('SQL Replication Snapshot', @name)
 
     IF @local_job = 1 and @job_existing = 0
     BEGIN
@@ -29894,9 +29221,9 @@ BEGIN
     if @perfmon_increment = 1
     begin
         if @runstatus = @startup
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Snapshot", 1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Snapshot', 1)
         else if (@runstatus = @succeed or @runstatus = @retry or @runstatus = @failure)
-            dbcc incrementinstance ("SQL Replication Agents", "Running", "Snapshot", -1)
+            dbcc incrementinstance ('SQL Replication Agents', 'Running', 'Snapshot', -1)
     end
 
     /* Get start_time for latest agent run */
@@ -29947,9 +29274,9 @@ BEGIN
     -- Set Perfmon counters
     if @runstatus = @idle or @runstatus = @inprogress
     begin
-        dbcc addinstance ("SQL Replication Snapshot", @agent_name)
-        dbcc incrementinstance ("SQL Replication Snapshot", "Snapshot:Delivered Cmds/sec", @agent_name, @delivered_commands)
-		dbcc incrementinstance ("SQL Replication Snapshot", "Snapshot:Delivered Trans/sec", @agent_name, @delivered_transactions)
+        dbcc addinstance ('SQL Replication Snapshot', @agent_name)
+        dbcc incrementinstance ('SQL Replication Snapshot', 'Snapshot:Delivered Cmds/sec', @agent_name, @delivered_commands)
+		dbcc incrementinstance ('SQL Replication Snapshot', 'Snapshot:Delivered Trans/sec', @agent_name, @delivered_transactions)
     end
 
     /* 
@@ -30050,7 +29377,7 @@ BEGIN
     -- Security Check
     IF IS_SRVROLEMEMBER ('sysadmin') != 1
     BEGIN
-    	-- "You do not have sufficient permission to run this command."
+    	-- 'You do not have sufficient permission to run this command.'
         RAISERROR(14260, 16, -1)
         RETURN 1
     END
@@ -30391,14 +29718,14 @@ begin
     IF @offloadagent IS NOT NULL
 		AND @offloadagent != 0
 	BEGIN
-		-- "Parameter '@offloadagent' is no longer supported."
+		-- 'Parameter '@offloadagent' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadagent')
 		RETURN 1
 	END
 
 	IF ISNULL(@offloadserver, N'') != N''
 	BEGIN
-		-- "Parameter '@offloadserver' is no longer supported."
+		-- 'Parameter '@offloadserver' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadserver')
 		RETURN 1
 	END
@@ -30803,7 +30130,7 @@ begin
         goto UNDO
 
     -- For shiloh, always add virtual anonymous entry for attach logic
-    -- If anonymous publication, add "virtual anonymous" subscription
+    -- If anonymous publication, add 'virtual anonymous' subscription
     -- when adding the virtual subscription
     if @subscriber_id = @virtual
     begin
@@ -30884,34 +30211,7 @@ BEGIN
 END
 go
 
---
--- Name: 
---		sp_MSadd_tracer_history
--- 
--- Description: 
---		The children history rows (MStracer_history) track the amount 
---		of time it took the distribution agent to retrieve the trace record 
---		from the distribution db and apply at the subscriber. This procedure will
---		also insert a single row for each active subscription. In the anonymous case,
---		the subscription must have sync'd once for a row to be added. The row will
---		contain a null value for the subscriber_commit time until the distrib agent
---		applies the tracer token at the subscriber.
---  
--- Parameters: 
---		@tracer_id			int    			newly inserted tracer token id
---		@subscribers_found	bit output		output val specifying whether or not subscribers were found
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Sysadmin (never run by dist agent)
---
-create procedure sys.sp_MSadd_tracer_history
+create procedure BP_PRD.sys.sp_MSadd_tracer_history
 (
 	@tracer_id	int
 )
@@ -31004,36 +30304,7 @@ Err_Handler:
 end
 go
 
---
--- Name: 
---		sp_MSadd_tracer_token
--- 
--- Description: 
---		This procedure will log the parent tracer record token row (MStracer_tokens).
---		A tracer record parent token row is defined as the record which 
---		tracks the amount of time it took from when the tracer was inserted 
---		into the log to when the logreader picked it up and inserted it into
---		at the distribution database. We call it the parent because there is
---		there is only one per tracer token inserted into the publisher.
---  
--- Parameters: 
---		@publisher			sysname			publisher name
---		@publisher_db		sysname			publisher database
---		@publication		sysname			publication
---		@tracer_id			int    			outputs the newly inserted tracer token id
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Sysadmin (never run by dist agent)
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSadd_tracer_token
+create procedure BP_PRD.sys.sp_MSadd_tracer_token
 (
 	@publisher			sysname,
 	@publisher_db		sysname,
@@ -31123,7 +30394,7 @@ Err_Handler:
 end
 go
 
-create procedure sys.sp_MSaddanonymousreplica
+create procedure BP_PRD.sys.sp_MSaddanonymousreplica
     (@publication         sysname,
      @publisher            sysname,
      @publisherDB        sysname,
@@ -31172,10 +30443,6 @@ end
 if @sync_type = 1 select @sync_typestr = 'automatic'
     else select @sync_typestr = 'none'
 
--- this change is made so that we will try to add pull/anonymous subscriptions, even if
--- there is a already a subscription for that publication, however the subscription type
--- does not match. In this way we can prevent users from using incorrect subscription type
--- through command line or merge control. 
 if object_id('sysmergepublications') is not NULL
 begin
     select @pubid=pubid from dbo.sysmergepublications 
@@ -31204,7 +30471,6 @@ begin
     end
 end
 
--- Call this SP to add this replica
 exec @retcode = sys.sp_addmergepullsubscription 
     @publication = @publication,
     @publisher = @publisher,
@@ -31215,44 +30481,7 @@ IF @retcode<>0 or @@ERROR<>0 return (1)
 return (0)
 go
 
---
--- Name: sp_MSadddynamicsnapshotjobatdistributor
---
--- Description: This function is called by sp_MSaddmergedynamicsnapshotjob 
---              at the publisher to set up a dynamic snapshot job in msdb
---              at the distributor. 
--- Notes: This procedure will only perform implicit checking for scheduling 
---        parameters as most parameters are expected to have been checked 
---        in sp_MSaddmergedynamicsnapshotjob
---
--- Parameters: @regular_snapshot_jobid uniqueidentifier (mandatory)
---             @dynamic_filter_login sysname (optional, default null)
---             @dynamic_filter_hostname sysname (optional, default null)
---             @dynamic_snapshot_location nvarchar(255) (mandatory)
---             @dynamic_snapshot_jobid uniqueidentifier (mandatory)
---             Scheduling information:
---             @freqtype int (optional, default 4 == Daily)
---             @freqinterval int (optional, default 1 == Every day)
---             @freqsubtype int (optional, default 4 (Sub interval = Minute))
---             @freqsubinterval int (optional, default 5 == Every five minutes)
---             @freqrelativeinterval int (optional, default 1) 
---             @freqrecurrencefactor int (optional, default 0) 
---             @activestartdate int (optional, default 0 == Today)
---             @activeenddate int (optional, default 99991231) 
---             @activestarttimeofday int (optional, default 0 == Now)        
---             @activeendtimeofday int (optional, default 235959)
---             @partition_id int (optional, default null)
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Only members of the 'sysadmin' server role and members of the 
---           'db_owner' database role at the distributor can call this 
---           procedure. This procedure is intended to be called through 
---           the distributor_admin remote login in the case where
---           the distributor is a different machine from the publisher. 
---
-create procedure sys.sp_MSadddynamicsnapshotjobatdistributor 
+create procedure BP_PRD.sys.sp_MSadddynamicsnapshotjobatdistributor 
 (
     @regular_snapshot_jobid uniqueidentifier,
     @dynamic_filter_login sysname = null,
@@ -31385,7 +30614,6 @@ begin
         return 1
     end
 
-
     BEGIN TRAN
 
     -- need to do this so that ident_current does not change after the read and insert
@@ -31517,7 +30745,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_MSaddguidcolumn
+create procedure BP_PRD.sys.sp_MSaddguidcolumn
     @source_owner    sysname,
     @source_table     sysname         /* table name */
 as
@@ -31664,7 +30892,7 @@ UNDO:
     return (1)    
 go
 
-create procedure sys.sp_MSaddguidindex
+create procedure BP_PRD.sys.sp_MSaddguidindex
     @publication     sysname,
     @source_owner    sysname,
     @source_table     sysname        
@@ -31797,9 +31025,7 @@ as
     return (0)
 go
 
-
--- Called at the subscriber
-create procedure sys.sp_MSaddinitialarticle(
+create procedure BP_PRD.sys.sp_MSaddinitialarticle(
     @article                sysname,        /* Name of the article */
     @artid                  uniqueidentifier,           /* Article ID */
     @pubid                  uniqueidentifier,           /* Publication ID */
@@ -31850,7 +31076,6 @@ create procedure sys.sp_MSaddinitialarticle(
     declare @preserve_rowguidcol_previous bit
     declare @qualified_name nvarchar(270)
 
-
     /*
     ** Check for subscribing permission
     */
@@ -31864,7 +31089,7 @@ create procedure sys.sp_MSaddinitialarticle(
     END
 
     -- If this is a no-sync subscription then the article should exist before
-    -- we can create entry in sysmergearticles.
+    -- we can create entry in BP_PRD.create entry in sysmergearticles.
 
     if exists (select * from dbo.sysmergesubscriptions
                 where upper(subscriber_server collate SQL_Latin1_General_CP1_CS_AS) = upper(publishingservername() collate SQL_Latin1_General_CP1_CS_AS)
@@ -31911,15 +31136,14 @@ create procedure sys.sp_MSaddinitialarticle(
     
     if (@filter_clause='') set @filter_clause = NULL
     
-    -- If that article is already part of another publication, reuse its "upload_options" property.
+    -- If that article is already part of another publication, reuse its 'upload_options' property.
     set @upload_options_previous= (select top 1 upload_options 
                                     from dbo.sysmergearticles
                                     where artid = @artid)
     if @upload_options_previous is not null
         set @upload_options= @upload_options_previous
 
-
-        -- If that article is already of another publication, reuse its "delete_tracking" property.
+        -- If that article is already of another publication, reuse its 'delete_tracking' property.
     -- 1 is default so look for 0.
     set @delete_tracking_previous= 1
     select @delete_tracking_previous= delete_tracking from dbo.sysmergearticles
@@ -31928,7 +31152,7 @@ create procedure sys.sp_MSaddinitialarticle(
     if 0 = @delete_tracking_previous
         set @delete_tracking=0
 
-        -- If that article is already of another publication, reuse its "stream_blob_columns" property.
+        -- If that article is already of another publication, reuse its 'stream_blob_columns' property.
     -- 1 is default so look for 0.
     set @stream_blob_columns_previous= 1
     select @stream_blob_columns_previous= stream_blob_columns from dbo.sysmergearticles
@@ -31937,14 +31161,14 @@ create procedure sys.sp_MSaddinitialarticle(
     if 0 = @stream_blob_columns_previous
         set @stream_blob_columns=0
 
-    -- If that article is already part of another publication, reuse its "compensate_for_errors" property.
+    -- If that article is already part of another publication, reuse its 'compensate_for_errors' property.
     set @compensate_for_errors_previous= (select top 1 compensate_for_errors 
                                                                                         from dbo.sysmergearticles
                                                                                 where artid = @artid)
     if @compensate_for_errors_previous is not null
         set @compensate_for_errors= @compensate_for_errors_previous
    
-    -- If that article is already part of another publication, reuse its "preserve_rowguidcol" property.
+    -- If that article is already part of another publication, reuse its 'preserve_rowguidcol' property.
     set @preserve_rowguidcol_previous= (select top 1 preserve_rowguidcol 
                                                from dbo.sysmergearticles
                                            where artid = @artid)
@@ -32059,8 +31283,7 @@ create procedure sys.sp_MSaddinitialarticle(
     RETURN 0
 go
 
-
-create procedure sys.sp_MSaddinitialpublication(
+create procedure BP_PRD.sys.sp_MSaddinitialpublication(
     @publisher              sysname,
     @publisher_db           sysname,
     @publication            sysname,            /* Name of the publication */
@@ -32135,7 +31358,7 @@ create procedure sys.sp_MSaddinitialpublication(
 
     -- this proc gets called when we are adding the publication on the subscriber when a merge for
     -- this subscriber with the given publication happens for the first time. However, we could have
-    -- a publication entry already if we know about this publication as a "global replica". To understand
+    -- a publication entry already if we know about this publication as a 'global replica'. To understand
     -- why a publication entry could already exists check sp_MScreateglobalreplica where we create a
     -- sysmergepublications entry for each publication replica (pubid = subid) we see
     -- however, this subscriber could be subscribing to this publication for the first time.
@@ -32329,7 +31552,7 @@ FAILURE:
     RETURN (1)
 go
 
-create procedure sys.sp_MSaddinitialschemaarticle(
+create procedure BP_PRD.sys.sp_MSaddinitialschemaarticle(
     @name                 sysname,
     @destination_object   sysname,
     @destination_owner    sysname,
@@ -32450,8 +31673,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSaddinitialsubscription(
+create procedure BP_PRD.sys.sp_MSaddinitialsubscription(
     @pubid                  uniqueidentifier,       /* Publication ID */
     @subid                  uniqueidentifier,       /* Subscription's replica ID */
     @replicastate               uniqueidentifier,
@@ -32664,7 +31886,7 @@ FAILURE:
     RETURN 1
 go
 
-create procedure sys.sp_MSaddlightweightmergearticle
+create procedure BP_PRD.sys.sp_MSaddlightweightmergearticle
 	@pubid				uniqueidentifier,
 	@article_name		sysname,
 	@artid				uniqueidentifier,
@@ -32740,21 +31962,21 @@ as
 		end
 	end
 
-	-- If that article is already part of another publication, reuse its "upload_options" property.
+	-- If that article is already part of another publication, reuse its 'upload_options' property.
 	set @upload_options_previous = (select top 1 upload_options 
 									from dbo.sysmergearticles
 									where artid = @artid)
 	if @upload_options_previous is not null
 		set @upload_options = @upload_options_previous
 
-	-- If that article is already part of another publication, reuse its "compensate_for_errors" property.
+	-- If that article is already part of another publication, reuse its 'compensate_for_errors' property.
 	set @compensate_for_errors_previous= (select top 1 compensate_for_errors 
 											 from dbo.sysmergearticles
 											 where artid = @artid)
 	if @compensate_for_errors_previous is not null
 		set @compensate_for_errors= @compensate_for_errors_previous
 				
-	-- If that article is already part of another publication, reuse its "delete_tracking" property.
+	-- If that article is already part of another publication, reuse its 'delete_tracking' property.
 	set @deletetracking_previous= 1
 	select @deletetracking_previous= delete_tracking  from dbo.sysmergearticles
 										where artid = @artid and
@@ -32762,7 +31984,7 @@ as
 	if 0 = @deletetracking_previous
 		set @delete_tracking= 0
 		
-	-- If that article is already part of another publication, reuse its "stream_blob_columns" property.
+	-- If that article is already part of another publication, reuse its 'stream_blob_columns' property.
 	set @stream_blob_columns_previous= 1
 	select @stream_blob_columns_previous= stream_blob_columns  from dbo.sysmergearticles
 										where artid = @artid and
@@ -32853,63 +32075,7 @@ as
 	return 0
 go
 
---
--- Name: sp_MSaddmergedynamicsnapshotjob
---
--- Description: This procedure sets up a SQL Server Agent job for dynamic 
---				snapshot generation and associates a row in 
---				MSdynamicsnapshotjobs for the job to the specified publication.
---
--- Notes: 1) If a local path is specified for the @dynamic_snapshot_location,
---			 the local path of the Distribution server will be used. 
---		  2) This procedure will not check whether the given path is already in
---			 use by another dynamic snapshot generation job. Sharing the same
---			 dynamic snapshot location among different dynamic snapshot 
---			 generation jobs can lead to file corruption and/or snapshot files 
---			 being overwritten.	 
---		  3) A regular snapshot job must be added for the publication before
---			 a dynamic snapshot generation job can be scheduled.
---		  4) This procedure will not check for the existence of the given
---			 dynamic snapshot location.
---		  5) The specified publication must be enabled for dynamic filtering.
---		  6) If @dynamic_snapshot_jobname is specified, it must be unique 
---			 among all the jobs at the distributor's msdb. If it is left
---			 unspecified, a job name will be generated according to the
---			 following rule:
---			 'dyn_' + (job name for the regular snapshot job) + (guid string)
---			 Note that (job name for the regular snapshot job) can be truncated
---			 if the resulting name is too long.
--- 
--- Parameters: @publication sysname (mandatory)
---			   @dynamic_filter_login sysname (optional, default null)
---			   @dynamic_filter_hostname sysname (optional, default null)
---			   @dynamic_snapshot_location nvarchar(255) (mandatory)
---			   @dynamic_snapshot_jobid (optional, output, default null)
---			   @dynamic_snapshot_jobname (optional, output, default null)
---			   Scheduling information:
---			   @frequency_type int (optional, default 4 == Daily)
---			   @frequency_interval int (optional, default 1 == Every day)
---			   @frequency_subday int (optional, default 4 (Sub interval = Minute))
---			   @frequency_subday_interval int (optional, default 5 == Every five minutes)
---			   @frequency_relative_interval int (optional, default 1) 
---			   @frequency_recurrence_factor int (optional, default 0) 
---			   @active_start_date int (optional, default 0 == Today)
---			   @active_end_date int (optional, default 99991231) 
---			   @active_start_time_of_day int (optional, default 0 == Now)
---			   @active_end_time_of_day int (optional, default 235959)
---
--- Returns: 0 - succeeded
---			1 - failed
---
--- Result set (upon successful completion of the operation):
---			dynamic_snapshot_jobname sysname
---			dynamic_snapshot_jobid uniqueidentifier
--- Security: Only members of the 'sysadmin' server role and members of the
---			 'db_owner' database role can invoke this procedure successfully.
---			 Security check is performed inside the procedure.
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSaddmergedynamicsnapshotjob (
+create procedure BP_PRD.sys.sp_MSaddmergedynamicsnapshotjob (
     @publication sysname,
     @dynamic_filter_login sysname = null,
     @dynamic_filter_hostname sysname = null,
@@ -33098,7 +32264,6 @@ begin
         select @computed_dynsnap_location = 0
     end
 
-
     -- Get distributor information for RPC
     exec @retcode = sys.sp_MSrepl_getdistributorinfo @distributor = @distributor output,
                                            @distribdb = @distribdb output,
@@ -33202,10 +32367,7 @@ Failure:
 end
 go
 
-
-
-
-create procedure sys.sp_MSaddmergetriggers 
+create procedure BP_PRD.sys.sp_MSaddmergetriggers 
     @source_table         nvarchar(517),                /* was type varchar(92), table name */
     @table_owner        sysname = NULL,
     @column_tracking     int = NULL,                /* Is column tracking on - default is FALSE */
@@ -33481,7 +32643,7 @@ begin
                 end
                 if object_id(@beforeview, 'V') is NULL
                 begin
-                    set @cmd = 'create view dbo.' + @beforeview + ' as
+                    set @cmd = 'create view BP_PRD.create view dbo.' + @beforeview + ' as
                         select * from dbo.' + @before_name 
                     execute (@cmd)
                     if @@ERROR<>0 goto FAILURE
@@ -33557,8 +32719,6 @@ begin
 							on smsf.art_nickname = sma.nickname
 							where smsf.art_nickname = @tablenick) > 1000
 
---					(select count(*) from dbo.sysmergesubsetfilters where art_nickname = @tablenick
---                        or join_nickname = @tablenick) >= 10 -- arbitrary limit.
 						-- if there is a logical record then the update trigger has rows larger than nvarchar(4000)
                         -- if there are too many join filters on an article, the number of characters
                         -- in the sync view definition could be more than nvarchar(4000) which
@@ -33586,7 +32746,6 @@ begin
                 select @trigger_type = @trigger_type + 1
             end
 
-
             -- generate view here that uses the triggers
             select @instrigid = object_id(quotename(@owner) + '.' + quotename(@instrigname))
             select @updtrigid = object_id(quotename(@owner) + '.' + quotename(@updtrigname))
@@ -33607,7 +32766,7 @@ begin
                 end
                 if object_id(@beforeview, 'V') is NULL
                 begin
-                    set @cmd = 'create view dbo.' + @beforeview + ' as
+                    set @cmd = 'create view BP_PRD.create view dbo.' + @beforeview + ' as
                         select * from dbo.' + @before_name + ' where
                             trigger_nestlevel(' + convert(nvarchar,@instrigid) + ') > 0 or
                             trigger_nestlevel(' + convert(nvarchar,@updtrigid) + ') > 0 or
@@ -33624,7 +32783,7 @@ begin
             end
             
             set @cmd = '
-                create view dbo.' + @viewname + ' as
+                create view BP_PRD.create view dbo.' + @viewname + ' as
                 select * from dbo.MSmerge_contents where
                 trigger_nestlevel(' + convert(nvarchar,@instrigid) + ') > 0 or
                 trigger_nestlevel(' + convert(nvarchar,@updtrigid) + ') > 0 or
@@ -33640,7 +32799,7 @@ begin
             if @@ERROR<>0 goto FAILURE
 
             set @cmd = '
-                create view dbo. ' + @tsview + ' as
+                create view BP_PRD.create view dbo. ' + @tsview + ' as
                 select * from dbo.MSmerge_tombstone where
                 trigger_nestlevel(' + convert(nvarchar,@instrigid) + ') > 0 or
                 trigger_nestlevel(' + convert(nvarchar,@updtrigid) + ') > 0 or
@@ -33657,7 +32816,7 @@ begin
             if (exists (select * from sysmergearticles where artid = @artid and pubid in (select pubid from sysmergepublications where use_partition_groups = 1)))
             begin
                 set @cmd = '
-                    create view dbo.' + @current_mappings_viewname + ' as
+                    create view BP_PRD.create view dbo.' + @current_mappings_viewname + ' as
                     select * from dbo.MSmerge_current_partition_mappings where
                     trigger_nestlevel(' + convert(nvarchar,@instrigid) + ') > 0 or
                     trigger_nestlevel(' + convert(nvarchar,@updtrigid) + ') > 0 or
@@ -33672,7 +32831,7 @@ begin
                 if @@ERROR<>0 goto FAILURE
                 
                 set @cmd = '
-                    create view dbo.' + @past_mappings_viewname + ' as
+                    create view BP_PRD.create view dbo.' + @past_mappings_viewname + ' as
                     select * from dbo.MSmerge_past_partition_mappings where
                     trigger_nestlevel(' + convert(nvarchar,@instrigid) + ') > 0 or
                     trigger_nestlevel(' + convert(nvarchar,@updtrigid) + ') > 0 or
@@ -33688,7 +32847,7 @@ begin
             end
             
             set @cmd = '
-                create view dbo.' + @genhistory_viewname + ' as
+                create view BP_PRD.create view dbo.' + @genhistory_viewname + ' as
                 select * from dbo.MSmerge_genhistory where
                 trigger_nestlevel(' + convert(nvarchar,@instrigid) + ') > 0 or
                 trigger_nestlevel(' + convert(nvarchar,@updtrigid) + ') > 0 or
@@ -33768,8 +32927,7 @@ FAILURE:
 end
 go
 
-
-create procedure sys.sp_MSaddmergetriggers_from_template 
+create procedure BP_PRD.sys.sp_MSaddmergetriggers_from_template 
 	@tablenickstr			nvarchar(15),
     @source_table         nvarchar(270),                /* was type varchar(92), table name */
     @table_owner        sysname,
@@ -34090,8 +33248,7 @@ AS
     return 0
 go
 
-
-create procedure sys.sp_MSaddmergetriggers_internal 
+create procedure BP_PRD.sys.sp_MSaddmergetriggers_internal 
     @source_table         sysname,                /* was type varchar(92), table name */
     @table_owner        sysname,
     @column_tracking     int,                /* Is column tracking on - default is FALSE */
@@ -34352,7 +33509,6 @@ AS
             select @is_top_level_logical_record_parent = 1
     end
 
--- ins_ trigger generation
 if @trigger_type = 0
 begin
     -- UNDONE maybe remove null guid checks in SQL SERVER 7.0
@@ -34459,7 +33615,6 @@ create trigger ' + @quoted_trigname + ' on ' + @quoted_db_source_table_name +
         insert into #tmptriggercmd (phase, cmdtext) values (1, @command)
         select @command=''
     end
-
 
     select @command = @command + '
     declare @article_rows_inserted int
@@ -35791,7 +34946,6 @@ create trigger ' + @quoted_trigname + ' on ' + @quoted_db_source_table_name + ' 
             insert into #tmptriggercmd (phase, cmdtext) values (3, @command)
         end
 
-
         -- this expansion code is only needed on the publisher
         if @article_published = 1
         begin
@@ -35913,7 +35067,6 @@ create trigger ' + @quoted_trigname + ' on ' + @quoted_db_source_table_name + ' 
             where generation = @child_newgen 
             if @@error<>0 goto FAILURE
         end'
-
 
                 insert into #tmptriggercmd (phase, cmdtext) values(14, @command3)
                             
@@ -36116,7 +35269,7 @@ FAILURE:
     drop table #tmptriggercmd
 go
 
-create procedure sys.sp_MSaddpeerlsn
+create procedure BP_PRD.sys.sp_MSaddpeerlsn
 (
 	@originator					sysname,
 	@originator_db				sysname,
@@ -36186,7 +35339,6 @@ begin
 		goto FAILURE
        end
 
-
      if object_id(N'dbo.MSpeer_originatorid_history', N'U') is not NULL
      begin
         if @originator_id is not NULL and not exists(select * from dbo.MSpeer_originatorid_history where originator_publication = @originator_publication
@@ -36222,7 +35374,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSaddsubscriptionarticles
+create procedure BP_PRD.sys.sp_MSaddsubscriptionarticles
 (
     @publisher 		sysname,
     @publisher_db 	sysname,
@@ -36413,19 +35565,6 @@ begin
 end
 go
 
---
--- Name: sp_MSagent_retry_stethoscope
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: Public procedure invoked via RPC. db_owner check
--- Requires Certificate signature for catalog access
---
 CREATE PROCEDURE sys.sp_MSagent_retry_stethoscope
 AS
 BEGIN
@@ -36472,7 +35611,7 @@ BEGIN
     -- Has to be executed from distribution database
     IF sys.fn_MSrepl_isdistdb (db_name()) != 1
     BEGIN
-    	-- sp_MSagent_retry_stethoscope can only be executed in the "distribution" database.
+    	-- sp_MSagent_retry_stethoscope can only be executed in the 'distribution' database.
         RAISERROR(21482, 16, -1, 'sp_MSagent_retry_stethoscope', 'distribution')
         RETURN 1
     END
@@ -36728,7 +35867,7 @@ BEGIN
         -- Get the agent name
         select @agent_name = name, @job_id = job_id from MSsnapshot_agents where id = @agent_id
 
-        -- Log a "No action" message on behalf of the agent
+        -- Log a 'No action' message on behalf of the agent
         exec sys.sp_MSadd_snapshot_history
             @agent_id = @agent_id,
             @runstatus = 6,     -- Failure status
@@ -36739,7 +35878,6 @@ BEGIN
     end
     close hC_snapshot_suspect
     deallocate hC_snapshot_suspect
-
 
     -- If a running logreader agent has not logged a history message within the specified
     -- heartbeat_interval then raise a agent suspect error
@@ -36761,7 +35899,7 @@ BEGIN
         -- Get the agent name
         select @agent_name = name, @job_id = job_id from MSlogreader_agents where id = @agent_id
 
-        -- Log a "No action" message on behalf of the agent
+        -- Log a 'No action' message on behalf of the agent
         select @publisher_id = publisher_id, @publisher_db = publisher_db from MSlogreader_agents where id = @agent_id
         select @publisher = srvname from master.dbo.sysservers where srvid = @publisher_id
         exec sys.sp_MSadd_logreader_history
@@ -36795,7 +35933,7 @@ BEGIN
 		begin
 			select @heartbeat_failure = 1
 
-			-- Log a "No action" message on behalf of the agent
+			-- Log a 'No action' message on behalf of the agent
 			exec sys.sp_MSadd_distribution_history
 				@agent_id = @agent_id,
 				@runstatus = 6,     -- Failure status
@@ -36836,7 +35974,7 @@ BEGIN
 		where agent_id = @agent_id 
 		order by session_id desc
 
-        -- Log a "No action" message on behalf of the agent
+        -- Log a 'No action' message on behalf of the agent
         exec sys.sp_MSadd_merge_history
             @agent_id = @agent_id,
             @runstatus = 6,     -- Failure status
@@ -36869,7 +36007,7 @@ BEGIN
         -- Get the agent name
         select @agent_name = name, @job_id = job_id from MSqreader_agents where id = @agent_id
 
-        -- Log a "No action" message on behalf of the agent
+        -- Log a 'No action' message on behalf of the agent
         exec sys.sp_MSadd_qreader_history
             @agent_id = @agent_id,
             @runstatus = 6,     -- Failure status
@@ -36883,17 +36021,17 @@ BEGIN
 
     -- Log all is fine message
     if @heartbeat_failure = 0
-        -- "Detected heartbeat for all running Replication Agents"
+        -- 'Detected heartbeat for all running Replication Agents'
 		set @comments = formatmessage(20556)    
 	else
-        -- "Could not detected heartbeat for all running Replication Agents"
+        -- 'Could not detected heartbeat for all running Replication Agents'
 		set @comments = formatmessage(20580)    
 
     raiserror (20554, 10, -1, @heartbeat_interval)
 END
 go
 
-create procedure sys.sp_MSallocate_new_identity_range
+create procedure BP_PRD.sys.sp_MSallocate_new_identity_range
     @subid uniqueidentifier,
     @artid uniqueidentifier,
     @range_type tinyint, -- 1=publisher range, 2=subscriber range
@@ -36942,7 +36080,6 @@ as
     begin
         select @is_pub_range = 0
     end
-
 
     -- do the following resetting of pub's max_used to reflect the max_used only if 
     -- this is a root publisher and not if it is a republisher
@@ -37164,9 +36301,7 @@ as
     
     return 0
 
-go
-
-create procedure sys.sp_MSalreadyhavegeneration
+create procedure BP_PRD.sys.sp_MSalreadyhavegeneration
     (@genguid uniqueidentifier, 
      @subscribernick binary(6),
      @compatlevel int = 10) -- backward compatibility level, default=Sphinx
@@ -37280,7 +36415,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSarticlecleanup
+create procedure BP_PRD.sys.sp_MSarticlecleanup
     @pubid uniqueidentifier, 
     @artid uniqueidentifier, 
     @ignore_merge_metadata bit = 0,
@@ -37314,7 +36449,6 @@ as
     declare @preserve_rowguidcol bit
     declare @constraintname nvarchar(258)
     declare @genview sysname
-
 
     -- to be called after article is set up in a subscriber
 
@@ -37613,9 +36747,7 @@ as
 		exec sys.sp_MSreset_synctran_bit @owner=N'', @table=@source_table
 	end
 
-go
-
-create procedure sys.sp_MSbrowsesnapshotfolder 
+create procedure BP_PRD.sys.sp_MSbrowsesnapshotfolder 
 (
     @publisher     sysname,
     @publisher_db  sysname,
@@ -37726,8 +36858,7 @@ begin
 end
 go
 
--- This proc caches agent profile paramaters on the subscriber database
-create procedure sys.sp_MScache_agent_parameter(
+create procedure BP_PRD.sys.sp_MScache_agent_parameter(
     @profile_name           sysname,
     @parameter_name         sysname,
     @parameter_value        nvarchar(255)
@@ -37779,8 +36910,7 @@ create procedure sys.sp_MScache_agent_parameter(
     END
 go
 
-
-create procedure [sys].[sp_MScdc_capture_job]
+create procedure [BP_PRD.sys].[sp_MScdc_capture_job]
 as
 begin
 	set nocount on
@@ -37868,7 +36998,7 @@ begin
 END
 go
 
-create procedure [sys].[sp_MScdc_cleanup_job]
+create procedure [BP_PRD.sys].[sp_MScdc_cleanup_job]
 as
 begin
 	declare @retcode int
@@ -37930,7 +37060,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScdc_db_ddl_event 
+create procedure BP_PRD.sys.sp_MScdc_db_ddl_event 
 (
 	@EventData xml
 )
@@ -38011,7 +37141,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScdc_ddl_event
+create procedure BP_PRD.sys.sp_MScdc_ddl_event
 (
 	@EventData xml
 )
@@ -38051,7 +37181,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScdc_logddl 
+create procedure BP_PRD.sys.sp_MScdc_logddl 
 (
 	@source_object_id int
 	,@ddl_command nvarchar(max)
@@ -38254,29 +37384,7 @@ begin
 end
 go
 
-
---
--- Name: 
---		sp_MSchange_distribution_agent_properties
--- 
--- Description: 
---		Update distribution agent properties..
---
--- Parameters: 
---	 	See the procedure definition.
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		SA
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSchange_distribution_agent_properties
+create procedure BP_PRD.sys.sp_MSchange_distribution_agent_properties
 (
 	@publisher 		sysname,
 	@publisher_db	sysname,
@@ -38387,7 +37495,7 @@ begin
 		end
 		else
 		begin
-			-- "'@value' is not a valid value for the '@property' parameter. The value must be 0 or 1."
+			-- ''@value' is not a valid value for the '@property' parameter. The value must be 0 or 1.'
 			raiserror (21406, 16, -1, @value, @property)
 			goto FAILURE
 		end
@@ -38504,7 +37612,7 @@ begin
 	end
 	else
 	begin
-		-- "Invalid property name '@property'."
+		-- 'Invalid property name '@property'.'
 		raiserror (21348, 16, -1, @property)
 		goto FAILURE
 	end
@@ -38521,7 +37629,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSchange_logreader_agent_properties
+create procedure BP_PRD.sys.sp_MSchange_logreader_agent_properties
 (
 	@publisher					sysname,
 	@publisher_db 				sysname,
@@ -38619,7 +37727,7 @@ begin
 				AND @pubsecmode != 0
 				AND @job_login is not NULL
 			begin
-				-- "@job_login can only be specified/changed for heterogeneous publications when the publisher security_mode (for sp_adddistpublisher) is set to 0."
+				-- '@job_login can only be specified/changed for heterogeneous publications when the publisher security_mode (for sp_adddistpublisher) is set to 0.'
 				RAISERROR(21842, 16, -1, '@job_login', 'the publisher security_mode (for sp_adddistpublisher)', '0')
 				goto FAILED
 			end
@@ -38660,29 +37768,7 @@ FAILED:
 end
 go
 
-
---
--- Name: 
---		sp_MSchange_merge_agent_properties
--- 
--- Description: 
---		Update merge agent properties..
---
--- Parameters: 
---	 	See the procedure definition.
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		SA
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSchange_merge_agent_properties
+create procedure BP_PRD.sys.sp_MSchange_merge_agent_properties
 (
 	@publisher 		sysname,
 	@publisher_db	sysname,
@@ -38790,7 +37876,7 @@ begin
 		end
 		else
 		begin
-			-- "'@value' is not a valid value for the '@property' parameter. The value must be 0 or 1."
+			-- ''@value' is not a valid value for the '@property' parameter. The value must be 0 or 1.'
 			raiserror (21406, 16, -1, '@value', '@property')
 			return 1
 		end
@@ -38852,7 +37938,7 @@ begin
 		end
 		else
 		begin
-			-- "'@value' is not a valid value for the '@property' parameter. The value must be 0 or 1."
+			-- ''@value' is not a valid value for the '@property' parameter. The value must be 0 or 1.'
 			raiserror (21406, 16, -1, '@value', '@property')
 			return 1
 		end
@@ -38909,7 +37995,7 @@ begin
 	end 
 	else
 	begin
-		-- "Invalid property name '@property'."
+		-- 'Invalid property name '@property'.'
 		raiserror (21348, 16, -1, @property)
 		return 1
 	end
@@ -38918,7 +38004,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSchange_mergearticle (
+create procedure BP_PRD.sys.sp_MSchange_mergearticle (
     @pubid uniqueidentifier,
     @artid uniqueidentifier,
     @property sysname = NULL,
@@ -39308,7 +38394,7 @@ create procedure sys.sp_MSchange_mergearticle (
     return 0
 go
 
-create procedure sys.sp_MSchange_mergepublication (
+create procedure BP_PRD.sys.sp_MSchange_mergepublication (
     @pubid uniqueidentifier,
     @property sysname = NULL,
     @value nvarchar(2000) = NULL
@@ -39435,7 +38521,7 @@ UNDO:
     
 go
 
-create procedure sys.sp_MSchange_originatorid
+create procedure BP_PRD.sys.sp_MSchange_originatorid
 (
 	@originator_node			sysname,
 	@originator_db			sysname,
@@ -39512,9 +38598,7 @@ FAILURE:
 end
 go
 
--- @value has to be unicode too.
-
-create procedure sys.sp_MSchange_priority (@subid uniqueidentifier, @value nvarchar(255))
+create procedure BP_PRD.sys.sp_MSchange_priority (@subid uniqueidentifier, @value nvarchar(255))
 as
     declare @retcode int
     exec @retcode = dbo.sp_MSreplcheck_subscribe
@@ -39626,7 +38710,7 @@ BEGIN
             -- MSMQ subscription only allowed for platforms that support MSMQ 2.0
             -- version 5.0.2195 or higher
             --
-            create table #tosversion ( propid int, propname sysname collate database_default, value int, charvalue nvarchar(255) collate database_default)
+            create table #tosversion ( propid int, propname BP_PRD.create table #tosversion ( propid int, propname sysname collate database_default, value int, charvalue nvarchar(255) collate database_default)
             insert into #tosversion (propid, propname, value, charvalue)
                 exec master.dbo.xp_msver N'WindowsVersion'
 
@@ -39722,8 +38806,7 @@ UNDO:
 END
 go
 
-
-create procedure sys.sp_MSchange_retention (@pubid uniqueidentifier, @value nvarchar(255))
+create procedure BP_PRD.sys.sp_MSchange_retention (@pubid uniqueidentifier, @value nvarchar(255))
 as
     declare @re_pubid            uniqueidentifier 
     declare @artid                uniqueidentifier
@@ -39789,7 +38872,7 @@ UNDO:
     return(1)
 go
 
-create procedure sys.sp_MSchange_retention_period_unit (@pubid uniqueidentifier, @value tinyint)
+create procedure BP_PRD.sys.sp_MSchange_retention_period_unit (@pubid uniqueidentifier, @value tinyint)
 as
     declare @re_pubid            uniqueidentifier 
     declare @artid                uniqueidentifier
@@ -39855,7 +38938,7 @@ UNDO:
     return(1)
 go
 
-create procedure sys.sp_MSchange_snapshot_agent_properties
+create procedure BP_PRD.sys.sp_MSchange_snapshot_agent_properties
 (
 	@publisher						sysname,
 	@publisher_db					sysname,
@@ -39969,7 +39052,7 @@ begin
 				AND @pubsecmode != 0
 				AND @job_login is not NULL
 			begin
-				-- "@job_login can only be specified/changed for heterogeneous publications when the publisher security_mode (for sp_adddistpublisher) is set to 0."
+				-- '@job_login can only be specified/changed for heterogeneous publications when the publisher security_mode (for sp_adddistpublisher) is set to 0.'
 				RAISERROR(21842, 16, -1, '@job_login', 'the publisher security_mode (for sp_adddistpublisher)', '0')
 				goto FAILED
 			end
@@ -40131,8 +39214,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSchangearticleresolver (
+create procedure BP_PRD.sys.sp_MSchangearticleresolver (
 @article_resolver       nvarchar(255),
 @resolver_clsid         nvarchar(40),
 @artid                  uniqueidentifier,
@@ -40156,23 +39238,7 @@ as
     return (0)     
 go
 
---
--- Name: sp_MSchangedynamicsnapshotjobatdistributor
---
--- Description: This function is called by sp_changeddynamicsnapshot_job 
---              at the publisher to change the schedule of a dynamic snapshot job 
---              at the distributor. 
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Only members of the 'sysadmin' server role and members of the 
---           'db_owner' database role at the distributor can call this 
---           procedure. This procedure is intended to be called through 
---           the distributor_admin remote login in the case where
---           the distributor is a different machine from the publisher. 
---
-create procedure sys.sp_MSchangedynamicsnapshotjobatdistributor 
+create procedure BP_PRD.sys.sp_MSchangedynamicsnapshotjobatdistributor 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -40293,23 +39359,7 @@ UNDO:
 end
 go
 
---
--- Name: sp_MSchangedynsnaplocationatdistributor
---
--- Description: This function is called by sp_MSrefreshdynamicsnapshotlocations 
---              at the publisher to change the dynamic snapshot location command line
---              parameter value in an existing dynamic snapshot job
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Only members of the 'sysadmin' server role and members of the 
---           'db_owner' database role at the distributor can call this 
---           procedure. This procedure is intended to be called through 
---           the distributor_admin remote login in the case where
---           the distributor is a different machine from the publisher. 
---
-create procedure sys.sp_MSchangedynsnaplocationatdistributor 
+create procedure BP_PRD.sys.sp_MSchangedynsnaplocationatdistributor 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -40425,9 +39475,7 @@ UNDO:
 end
 go
 
-
-
-create procedure sys.sp_MSchangeobjectowner(
+create procedure BP_PRD.sys.sp_MSchangeobjectowner(
     @tablename sysname,
     @dest_owner    sysname
 )AS
@@ -40456,12 +39504,11 @@ create procedure sys.sp_MSchangeobjectowner(
     return(0)    
 go
 
-
 /*
   *  This proc will discover if the specified subid is a subscriber to the specified pubid.
   *  Currently, this is a one level check, it does not support n-level re-publishing.
 */
-create procedure sys.sp_MScheckIsPubOfSub
+create procedure BP_PRD.sys.sp_MScheckIsPubOfSub
     @pubid uniqueidentifier,
     @subid uniqueidentifier,
     @pubOfSub bit output
@@ -40517,7 +39564,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScheck_agent_instance
+create procedure BP_PRD.sys.sp_MScheck_agent_instance
     @application_name 	sysname,
     @agent_type 		int = NULL
 as
@@ -40574,7 +39621,7 @@ as
     end
 go
 
-create procedure sys.sp_MScheck_dropobject
+create procedure BP_PRD.sys.sp_MScheck_dropobject
 (
 	@objid int
 )
@@ -40600,7 +39647,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScheck_logicalrecord_metadatamatch
+create procedure BP_PRD.sys.sp_MScheck_logicalrecord_metadatamatch
     (@metadata_type tinyint, 
      @parent_nickname int,
      @parent_rowguid uniqueidentifier,
@@ -40662,7 +39709,7 @@ as
     return 0
 go
 
-create proc sys.sp_MScheck_merge_subscription_count 
+create proc BP_PRD.sys.sp_MScheck_merge_subscription_count 
 (
     @publisher sysname,
     @publisher_engine_edition int,
@@ -40771,7 +39818,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScheck_pull_access
+create procedure BP_PRD.sys.sp_MScheck_pull_access
 (
     @agent_id int = 0,
 	@agent_type int = 0, 		-- 0 is tran; 1 is merge
@@ -40979,7 +40026,7 @@ NO_ACCESS:
 end
 go
 
-create procedure sys.sp_MScheck_snapshot_agent 
+create procedure BP_PRD.sys.sp_MScheck_snapshot_agent 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -41048,8 +40095,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MScheck_subscription
+create procedure BP_PRD.sys.sp_MScheck_subscription
 (
 	@publication	sysname,
 	@pub_type       int,
@@ -41174,7 +40220,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MScheck_subscription_expiry 
+create procedure BP_PRD.sys.sp_MScheck_subscription_expiry 
     @pubid uniqueidentifier,
     @subscriber sysname,
     @subscriber_db sysname,
@@ -41245,14 +40291,7 @@ AS
     else
         select @expired = 0
 
-go
-
--- This proc checks if there is already a subscriber with the given partition.
--- if that subscriber does not match with the given subscriber and subscriber db it sets 
--- the @valid bit to false. If it has to delete the other subscription for the same 
--- partition (This is only done if the force_delete_other bit is set) then it returns
--- a value of 1 in the force_delete_other bit else returns a value of 0 in the force_delete_other bit
-create procedure sys.sp_MScheck_subscription_partition
+create procedure BP_PRD.sys.sp_MScheck_subscription_partition
     @pubid uniqueidentifier,
     @subid uniqueidentifier,
     @subscriber sysname,
@@ -41426,7 +40465,6 @@ begin
 end
 go
 
-
 CREATE PROCEDURE sys.sp_MScheckexistsgeneration
     (@genguid uniqueidentifier, @gen bigint output, @pubid uniqueidentifier = NULL)
 as
@@ -41457,7 +40495,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MScheckexistsrecguid
+create procedure BP_PRD.sys.sp_MScheckexistsrecguid
 	@recguid	uniqueidentifier,
 	@exists		bit output
 as
@@ -41478,7 +40516,6 @@ as
 	return 0
 go
 
-
 /*
   *  This proc is called on subscriber when the merge agent wants to do
   * consolidation of generations. This proc checks of the last sync failed.
@@ -41486,7 +40523,7 @@ go
   * This procs checks for any generations with genstatus of 4 in the genshistory
   * table to make this determination.  
 */
-create procedure sys.sp_MScheckfailedprevioussync
+create procedure BP_PRD.sys.sp_MScheckfailedprevioussync
     @pubid uniqueidentifier,
     @last_sync_failed bit output
 as
@@ -41517,8 +40554,7 @@ as
     return 0
 go
 
-
-create procedure sys.sp_MScheckidentityrange 
+create procedure BP_PRD.sys.sp_MScheckidentityrange 
     @pubid              uniqueidentifier,
     @artname            sysname,
     @next_seed          bigint,
@@ -41609,7 +40645,7 @@ FAILURE:
     return(1)
 go
 
-create procedure sys.sp_MSchecksharedagentforpublication 
+create procedure BP_PRD.sys.sp_MSchecksharedagentforpublication 
 (
     @publisher_id int
     ,@publisher_db sysname
@@ -41656,7 +40692,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSchecksnapshotstatus
+create procedure BP_PRD.sys.sp_MSchecksnapshotstatus
     @publication        sysname
 AS
     declare @db_name        sysname
@@ -41811,8 +40847,7 @@ FAILURE:
    	return (1)		
 go
 
-
-create procedure sys.sp_MScleanup_conflict
+create procedure BP_PRD.sys.sp_MScleanup_conflict
 @pubid					uniqueidentifier,
 @conflict_retention int = NULL
 AS
@@ -41880,7 +40915,7 @@ FAILURE:
 	return (1)
 go
 
-create procedure sys.sp_MScleanup_publication_ADinfo 
+create procedure BP_PRD.sys.sp_MScleanup_publication_ADinfo 
 @name             sysname,
 @database         sysname
 AS
@@ -41915,7 +40950,7 @@ if (select category & @mergepublish_bit from master.dbo.sysdatabases where name 
     end
 go
 
-create proc sys.sp_MScleanup_subscription_distside_entry 
+create proc BP_PRD.sys.sp_MScleanup_subscription_distside_entry 
     @publisher sysname,
     @publisher_db sysname,
     @publication sysname,
@@ -41986,25 +41021,6 @@ begin
 end
 go
 
---
--- Name: sp_MScleanupdynamicsnapshotfolder
---
--- Description: This procedure is used to cleanup the specified dynamic 
---              snapshot folder. It is designed to be called through the 
---              distributor RPC link.
---
--- Parameters: @publisher                   sysname
---             @publisher_db                sysname
---             @publication                 sysname
---             @dynamic_filter_login        sysname
---             @dynamic_filter_hostname     sysname
---             @dynamic_snapshot_location   nvarchar(260)
---             @partition_id                int
---
---
--- Security: Public procedure invoked via RPC. db_owner check
--- Requires Certificate signature for catalog access
--- 
 CREATE PROCEDURE sys.sp_MScleanupdynamicsnapshotfolder
 (
     @publisher                   sysname,
@@ -42073,7 +41089,6 @@ begin
 
     declare @publication_snapshot_folder nvarchar(260)
 
-
     if substring(@dynamic_snapshot_location, len(@dynamic_snapshot_location), 1) <> N'\'
     begin
         set @dynamic_snapshot_location = @dynamic_snapshot_location + N'\'
@@ -42087,7 +41102,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScleanupdynsnapshotvws
+create procedure BP_PRD.sys.sp_MScleanupdynsnapshotvws
 as
 begin
     set nocount on    
@@ -42146,32 +41161,7 @@ Failure:
 end
 go
 
---
--- Name: sp_MScleanupmergepublisher_internal
--- 
--- Description: This procedure currently performs the following function(s):
---              1) Cleans up all the stale dynamic snapshot views
---              in all databases enabled for merge replication. This 
---              procedure should normally be called at merge publisher startup.
---              
--- Notes: 1)This procedure is enabled as a startup procedure when a database is
---        enabled as a first merge publisher database on the server and it 
---        will be unmarked as a startup procedure when the last merge publisher
---        database is disabled.
---        2)Errors within the SP are mostly ignored.
---        3)This procedure can also be used by admins/securityadmins to perform
---        manual cleanup of all dynamic snapshot views. Note that cleaning up the 
---        dynamic snapshot views can disrupt dynamic snapshots that are being generated.
---        
--- Returns: (undefined)
---
--- Security: Only members of the sysadmin fixed server role can execute this
---           procedure successfully. So for this procedure to function proprely 
---           as a startup procedure, the MSSQLServer service account must be a 
---           member of the sysadmin role.
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MScleanupmergepublisher_internal
+create procedure BP_PRD.sys.sp_MScleanupmergepublisher_internal
 as
 begin
     set nocount on
@@ -42221,19 +41211,7 @@ begin
 end
 go
 
---
--- Name: sp_MSclear_dynamic_snapshot_location
---
--- Descriptions: 
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSclear_dynamic_snapshot_location (@publication sysname, @partition_id int = NULL, @deletefolder bit = 0) 
+create procedure BP_PRD.sys.sp_MSclear_dynamic_snapshot_location (@publication sysname, @partition_id int = NULL, @deletefolder bit = 0) 
 as
 begin
 	set nocount on
@@ -42365,7 +41343,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSclearresetpartialsnapshotprogressbit
+create procedure BP_PRD.sys.sp_MSclearresetpartialsnapshotprogressbit
 (
     @agent_id int
 )
@@ -42394,7 +41372,7 @@ begin
 end
 go
 
-create procedure sys.sp_MScomputelastsentgen
+create procedure BP_PRD.sys.sp_MScomputelastsentgen
     (@repid uniqueidentifier)
 as
     declare @retcode int
@@ -42427,9 +41405,7 @@ as
         end
     end
 
-go
-
-create procedure sys.sp_MScomputemergearticlescreationorder
+create procedure BP_PRD.sys.sp_MScomputemergearticlescreationorder
     @publication sysname
 AS
     SET NOCOUNT ON
@@ -42621,7 +41597,7 @@ Failure:
 	RETURN (1)
 go
 
-create procedure sys.sp_MScomputemergeunresolvedrefs
+create procedure BP_PRD.sys.sp_MScomputemergeunresolvedrefs
     @publication sysname, -- Must provide the publication name
     @article sysname = '%' -- '%' means all articles in the specified publication, otherwise an exact match is performed
 AS
@@ -42658,7 +41634,7 @@ AS
 		ON u.schema_id = o.schema_id		  
 go
 
-create procedure sys.sp_MSconflicttableexists 
+create procedure BP_PRD.sys.sp_MSconflicttableexists 
     @pubid uniqueidentifier,
     @artid uniqueidentifier,
     @exists int output
@@ -42670,7 +41646,6 @@ as
     
     EXEC @retcode = dbo.sp_MSreplcheck_subscribe
     if @@ERROR <> 0 or @retcode <> 0 return(1)
-
 
     set @exists= 0
     
@@ -42700,8 +41675,7 @@ as
     return 0
 go
 
-
-create procedure sys.sp_MScreate_all_article_repl_views
+create procedure BP_PRD.sys.sp_MScreate_all_article_repl_views
     @snapshot_application_finished bit = 0
 as
     declare @pubid uniqueidentifier, @artid uniqueidentifier, @retcode int
@@ -42754,9 +41728,7 @@ error:
     return @retcode
 go
 
-
-
-create procedure sys.sp_MScreate_article_repl_views
+create procedure BP_PRD.sys.sp_MScreate_article_repl_views
     @publication sysname
 as
     declare @pubid uniqueidentifier, @artid uniqueidentifier, @retcode int
@@ -42797,7 +41769,7 @@ error:
     return @retcode
 go
 
-create procedure sys.sp_MScreate_dist_tables
+create procedure BP_PRD.sys.sp_MScreate_dist_tables
 AS
 begin
     DECLARE @Cmd varchar(4000)
@@ -42987,7 +41959,6 @@ begin
 
     END
 
-
 	IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'MSarticles' and type = 'U')
 	BEGIN
 		/****************************************************************************/
@@ -43140,7 +42111,6 @@ begin
 	
    END
 
-
    IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'MSrepl_transactions' and type = 'U')
    BEGIN
       /****************************************************************************/
@@ -43186,7 +42156,6 @@ begin
       raiserror('Creating table MSrepl_commands', 0,1)
       /****************************************************************************/
 
-
       CREATE TABLE dbo.MSrepl_commands (
 	      publisher_database_id int not null,
 	      xact_seqno varbinary(16) not null,
@@ -43199,7 +42168,6 @@ begin
 	      hashkey int default 0,
 	      originator_lsn varbinary(16) NULL
       )
-
 
       exec dbo.sp_MS_marksystemobject 'MSrepl_commands'
 
@@ -43593,7 +42561,6 @@ begin
 			ALTER TABLE MSsnapshot_agents ADD job_step_uid uniqueidentifier NULL
 		END
    END
-
 
    IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'MSlogreader_agents' and type = 'U')
    BEGIN
@@ -44026,7 +42993,7 @@ begin
 	begin 	  
 		raiserror('Creating table MSrepl_identity_range',0,1)
 
-		create table dbo.MSrepl_identity_range (
+		create table BP_PRD.create table dbo.MSrepl_identity_range (
 			publisher 			  sysname not NULL, 
 			publisher_db			  sysname not NULL,
 			tablename 			  sysname not NULL,
@@ -44259,7 +43226,7 @@ begin
     if (object_id('dbo.MSpublicationthresholds') is null)
     begin
         raiserror('Creating table MSpublicationthresholds', 0,1)
-        create table dbo.MSpublicationthresholds
+        create table BP_PRD.create table dbo.MSpublicationthresholds
         (
             publication_id int not null
             ,metric_id int not null
@@ -44453,7 +43420,6 @@ begin
         exec dbo.sp_MS_marksystemobject 'IHindextypes'
     END
 
-
     IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'IHpublisherindexes' and type = 'U')
     BEGIN
         /****************************************************************************/
@@ -44559,8 +43525,6 @@ begin
         exec dbo.sp_MS_marksystemobject 'IHpublications'
     END
 
-
-
     IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'IHextendedArticleView' and type = 'V')
     BEGIN
         /****************************************************************************/
@@ -44595,7 +43559,6 @@ begin
         exec dbo.sp_MS_marksystemobject 'IHextendedArticleView'
     END
 
-
     IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'IHconstrainttypes' and type = 'U')
     BEGIN
         /****************************************************************************/
@@ -44612,8 +43575,6 @@ begin
         
         exec dbo.sp_MS_marksystemobject 'IHconstrainttypes'
     END
-
-
 
     IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'IHpublisherconstraints' and type = 'U')
     BEGIN
@@ -44682,7 +43643,7 @@ begin
             nosync_type			tinyint		NOT NULL DEFAULT 0
             ,srvname	sysname NOT NULL DEFAULT ''
         )
-        create unique clustered index [idx_IHsubscriptions_article_id] ON [dbo].[IHsubscriptions] 
+        create unique clustered index [idx_IHsubscriptions_article_id] ON [BP_PRD.create unique clustered index [idx_IHsubscriptions_article_id] ON [dbo].[IHsubscriptions] 
         (
 	        [article_id] ASC,
 	        [srvid] ASC,
@@ -44719,7 +43680,7 @@ begin
         raiserror('Creating table sysschemaarticles', 0,1)
         /****************************************************************************/ 
      
-            create table sysschemaarticles
+            create table BP_PRD.create table sysschemaarticles
             (
                 artid               int                 NOT NULL,
                 creation_script     nvarchar(255)       NULL,
@@ -44856,7 +43817,7 @@ begin
         /****************************************************************************/    
 
         SELECT @Cmd1 =
-        ' create view syspublications (description, name, pubid, repl_freq, status, sync_method, snapshot_jobid, '
+        ' create view BP_PRD.create view syspublications (description, name, pubid, repl_freq, status, sync_method, snapshot_jobid, '
         + ' independent_agent, immediate_sync, enabled_for_internet, allow_push, allow_pull, allow_anonymous, immediate_sync_ready, '
         + ' allow_sync_tran, autogen_sync_procs, retention, allow_queued_tran, snapshot_in_defaultfolder, alt_snapshot_folder, '
         + ' pre_snapshot_script, post_snapshot_script, compress_snapshot, ftp_address, ftp_port, ftp_subdirectory, ftp_login, '
@@ -44917,7 +43878,7 @@ begin
         /****************************************************************************/    
 
         SELECT @Cmd1 =
-        ' create view sysarticles (artid, creation_script, del_cmd, description, dest_table, filter, '
+        ' create view BP_PRD.create view sysarticles (artid, creation_script, del_cmd, description, dest_table, filter, '
         + 'filter_clause, ins_cmd, name, objid, pubid, pre_creation_cmd, status, sync_objid, type, upd_cmd, schema_option, dest_owner, '
         + 'ins_scripting_proc, del_scripting_proc, upd_scripting_proc, custom_script, fire_triggers_on_snapshot) AS '
         + ' SELECT ihart.article_id, ihart.creation_script, ihart.del_cmd, ihart.description, '
@@ -44938,7 +43899,7 @@ begin
         raiserror('Creating view sysarticlecolumns', 0,1)
         /****************************************************************************/    
 
-        SELECT @Cmd1 = 'create view sysarticlecolumns (artid, colid, is_udt, is_xml, is_max ) AS SELECT article_id, publishercolumn_id, 0, 0, 0 FROM IHcolumns'
+        SELECT @Cmd1 = 'create view BP_PRD.create view sysarticlecolumns (artid, colid, is_udt, is_xml, is_max ) AS SELECT article_id, publishercolumn_id, 0, 0, 0 FROM IHcolumns'
         EXEC (@Cmd1)
         
         exec dbo.sp_MS_marksystemobject 'sysarticlecolumns'
@@ -44954,7 +43915,7 @@ begin
         /****************************************************************************/    
 
         SELECT @Cmd1 =
-        ' create view IHsyscolumns (name, id, xtype, typestat, xusertype, length, '
+        ' create view IHBP_PRD.create view IHsyscolumns (name, id, xtype, typestat, xusertype, length, '
         + ' xprec, xscale, colid, xoffset, bitpos, reserved, colstat, cdefault, domain, number, colorder, autoval, '
 		+ ' offset, collationid, language, status, type, usertype, printfmt, prec, scale, iscomputed, isoutparam, isnullable, '
 		+ ' collation, tdscollation ) AS '
@@ -44999,7 +43960,7 @@ begin
 
     IF not exists (select * from sys.objects where name = 'sysextendedarticlesview')
     BEGIN
-        exec ('create view dbo.sysextendedarticlesview
+        exec ('create view BP_PRD.create view dbo.sysextendedarticlesview
                as
                select * from sysarticles
                union all
@@ -45062,7 +44023,7 @@ begin
 
 	   IF NOT EXISTS (SELECT * from sys.objects WHERE name = 'MSmerge_articleresolver' and type = 'U')
    BEGIN
-       create table dbo.MSmerge_articleresolver
+       create table BP_PRD.create table dbo.MSmerge_articleresolver
        (
             article_resolver        nvarchar(255)   primary key not null ,
             resolver_clsid          nvarchar(50)    not null, 
@@ -45079,7 +44040,7 @@ begin
 
     if object_id('dbo.MSreplication_monitordata') is null
     begin
-        create table dbo.MSreplication_monitordata
+        create table BP_PRD.create table dbo.MSreplication_monitordata
         (
             -- internal use
             lastrefresh datetime null
@@ -45168,7 +44129,7 @@ begin
         /****************************************************************************/
         -- The parameterName corresponds to each parameter name
         -- of stored proc sp_MSsetupnosyncsubwithlsnatdist.
-        create table dbo.MSnosyncsubsetup
+        create table BP_PRD.create table dbo.MSnosyncsubsetup
         (
              publisher_database_id int,
              publication_id int,
@@ -45190,8 +44151,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MScreate_logical_record_views(@pubid uniqueidentifier) 
+create procedure BP_PRD.sys.sp_MScreate_logical_record_views(@pubid uniqueidentifier) 
 AS
     declare @publication sysname,
             @artid           uniqueidentifier,
@@ -45240,11 +44200,11 @@ AS
     
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'nc6MSmerge_contents' 
             AND object_id = OBJECT_ID('MSmerge_contents'))    
-        create index nc6MSmerge_contents on dbo.MSmerge_contents(logical_record_parent_rowguid)
+        create index nc6MSmerge_contents on BP_PRD.create index nc6MSmerge_contents on dbo.MSmerge_contents(logical_record_parent_rowguid)
         
     IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'nc3MSmerge_tombstone' 
             AND object_id = OBJECT_ID('MSmerge_tombstone'))    
-        create index nc3MSmerge_tombstone on dbo.MSmerge_tombstone(logical_record_parent_rowguid)
+        create index nc3MSmerge_tombstone on BP_PRD.create index nc3MSmerge_tombstone on dbo.MSmerge_tombstone(logical_record_parent_rowguid)
     
     exec @retcode = sys.sp_MSdetermine_logical_record_parents @pubid
     if @@ERROR <>0 OR @retcode <>0 return (1)
@@ -45291,9 +44251,7 @@ AS
 
     return (0)
 
-go
-
-create procedure sys.sp_MScreate_sub_tables 
+create procedure BP_PRD.sys.sp_MScreate_sub_tables 
 (
     @tran_sub_table                 bit = 0,
     @property_table                 bit = 1,
@@ -45324,7 +44282,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MScreate_tempgenhistorytable
+create procedure BP_PRD.sys.sp_MScreate_tempgenhistorytable
     @pubid uniqueidentifier
 as
 
@@ -45371,7 +44329,7 @@ Failure:
     return(1)
 go
 
-create procedure sys.sp_MScreatedisabledmltrigger
+create procedure BP_PRD.sys.sp_MScreatedisabledmltrigger
     @source_object sysname,
     @source_owner sysname
 as
@@ -45446,8 +44404,7 @@ as
     return 0
 go
 
-
-create procedure sys.sp_MScreatedummygeneration @pubid uniqueidentifier, @maxgen_whenadded bigint
+create procedure BP_PRD.sys.sp_MScreatedummygeneration @pubid uniqueidentifier, @maxgen_whenadded bigint
 as
     declare @retcode    int
     declare @gen        bigint
@@ -45509,8 +44466,7 @@ as
                         
 go
 
-
-create procedure sys.sp_MScreateglobalreplica(
+create procedure BP_PRD.sys.sp_MScreateglobalreplica(
     @pubid                  uniqueidentifier = NULL,            /* Publication ID */
     @subid                  uniqueidentifier,       /* Replica ID */
     @replicastate           uniqueidentifier,      
@@ -45776,7 +44732,7 @@ FAILURE:
     RETURN 1
 go
 
-create procedure sys.sp_MScreatelightweightinsertproc 
+create procedure BP_PRD.sys.sp_MScreatelightweightinsertproc 
 	@pubid		uniqueidentifier,
 	@artid		uniqueidentifier
 as
@@ -45841,14 +44797,14 @@ as
 	if 1 = @maintainsmetadata
 	begin
 		set @cmdpiece=
-		'create procedure dbo.' + quotename('MSmerge_lws_sp_ins_'	+ @postfix) + '
+		'create procedure BP_PRD.create procedure dbo.' + quotename('MSmerge_lws_sp_ins_'	+ @postfix) + '
 			@rowguid uniqueidentifier,
 			@rowvector varbinary(11)'
 	end
 	else
 	begin
 		set @cmdpiece=
-		'create procedure dbo.' + quotename('MSmerge_lws_sp_ins_'	+ @postfix) + '
+		'create procedure BP_PRD.create procedure dbo.' + quotename('MSmerge_lws_sp_ins_'	+ @postfix) + '
 			@rowguid uniqueidentifier'
 	end
 
@@ -45862,7 +44818,6 @@ as
 	declare @errcode	int
 	set nocount on'
 	insert into @cmdtable (phase, cmdtext) values (2, @cmdpiece)
-
 
     -- phase 3,4 and 5 are optional. Used only for downloadonly
     -- articles to call update proc before attempting insert.
@@ -45885,8 +44840,6 @@ as
 		return(1)'
         insert into @cmdtable (phase, cmdtext) values (5, @cmdpiece)
     end
-
-
 
 	
 	-- phase 6
@@ -45990,7 +44943,7 @@ as
 
 	-- Phase 9: Column name list in insert statement. Will be done later.
 
-	-- Phase 10: "values" keyword in insert statement
+	-- Phase 10: 'values' keyword in insert statement
 	set @cmdpiece= ')
 		values
 		('
@@ -46132,7 +45085,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MScreatelightweightmultipurposeproc 
+create procedure BP_PRD.sys.sp_MScreatelightweightmultipurposeproc 
 	@pubid		uniqueidentifier,
 	@artid		uniqueidentifier
 as
@@ -46251,7 +45204,7 @@ as
 
 	-- Procedure head.
 	set @cmdpiece= '
-create procedure dbo.' + quotename('MSmerge_lws_sp_multi_' + @postfix) + '
+create procedure BP_PRD.dbo.' + quotename('MSmerge_lws_sp_multi_' + @postfix) + '
 	@action			tinyint,
 	@pubnick		int= null,
 	@rowguid		uniqueidentifier= null,
@@ -46447,7 +45400,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MScreatelightweightprocstriggersconstraints
+create procedure BP_PRD.sys.sp_MScreatelightweightprocstriggersconstraints
 	@pubid			uniqueidentifier,
 	@artid			uniqueidentifier,
 	@next_seed		bigint= NULL,	-- for id range mgt
@@ -46514,7 +45467,7 @@ Failure:
 	return 1
 go
 
-create procedure sys.sp_MScreatelightweightupdateproc 
+create procedure BP_PRD.sys.sp_MScreatelightweightupdateproc 
 	@pubid		uniqueidentifier,
 	@artid		uniqueidentifier
 as
@@ -46575,7 +45528,7 @@ as
 		select @qualified_name = quotename(@destination_owner) + '.' + quotename(@destination_object)
 
 	-- Phase 0: Create procedure and fixed part of argument list.
-	set @cmdpiece= 'create procedure dbo.' + quotename('MSmerge_lws_sp_upd_'  + @postfix) + '
+	set @cmdpiece= 'create procedure BP_PRD.create procedure dbo.' + quotename('MSmerge_lws_sp_upd_'  + @postfix) + '
 	@rowguid	uniqueidentifier,
 	@setnullbm	varbinary(128)'
 
@@ -46809,41 +45762,7 @@ as
 	return 0
 go
 
---
--- Name: sp_MScreatemergedynamicsnapshot
---
--- Description: 
---      This procedure checks if a dynamic snapshot job is available
---      with the given filter criterion. If not it creates such a job
---      by calling sp_MSaddmergedynamicsnapshotjob. If one already
---      exists, it starts this job and subsequently waits for it complete.
---      The procedure returns success or failure depending on whether the
---      job succeded or failed.
---
--- Notes: 1) The dynamic snapshot location is computed from the working directory
---           on the distributor (got from sp_helpdistributor)
---           or the alternate snapshot folder for the publication if one is specified.
---           this is done by calling proc sp_MSgetpartitionsnapshotfolder
---		  2) This procedure will not check whether the given path is already in
---			 use by another dynamic snapshot generation job. Sharing the same
---			 dynamic snapshot location among different dynamic snapshot 
---			 generation jobs can lead to file corruption and/or snapshot files 
---			 being overwritten.	 
---		  3) calls sp_MSaddmergedynamicsnapshotjob to add the job if it does not exist
---        4) starts the dynamic snapshot job and waits for it to finish. Checks if the
---           job finished by attempting to acquire the applock that the dynamic snapshot
---           will release when it is done.
--- 
--- Parameters: @publication sysname (mandatory)
---
--- Returns: 0 - succeeded
---			1 - failed
---
--- Security: Only users in the PAL role for the publication @publication or 
---           db_owners or sysadmins can run this proc.
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MScreatemergedynamicsnapshot (
+create procedure BP_PRD.sys.sp_MScreatemergedynamicsnapshot (
     @publication sysname
 )
 AS
@@ -47015,8 +45934,7 @@ FAILURE:
     return 1 
 go
 
-
-create procedure sys.sp_MScreateretry 
+create procedure BP_PRD.sys.sp_MScreateretry 
 as
     declare @tname sysname
     declare @pname sysname
@@ -47056,8 +45974,7 @@ as
     return (0)  
 go
 
-
-create proc sys.sp_MSdbuseraccess
+create proc BP_PRD.sys.sp_MSdbuseraccess
 	@mode nvarchar(10) = N'perm', @qual nvarchar(128) = N'%'
 as
    set deadlock_priority low
@@ -47240,20 +46157,11 @@ as
    end
 go
 
-
-create proc sys.sp_MSdbuserpriv
+create proc BP_PRD.sys.sp_MSdbuserpriv
 	@mode nvarchar(10) = N'perm'
 as
 
 /* Order of privilege evaluation is:  user granted/revoked, then group granted/revoked, then public granted/revoked */
-
-
-
-
-
-
-
-
 
    set nocount on
    declare @bits int, @status int, @prot int, @perms int
@@ -47360,7 +46268,7 @@ as
       end
 go
 
-create procedure sys.sp_MSdefer_check @objname sysname, @objowner sysname = NULL
+create procedure BP_PRD.sys.sp_MSdefer_check @objname sysname, @objowner sysname = NULL
 as
     set nocount on
     declare @cnstname sysname
@@ -47465,38 +46373,7 @@ as
     return 0
 go
 
---
--- Name: 
---		sp_MSdelete_tracer_history
--- 
--- Description: 
---		This procedure will delete the parent and child rows for a tracer history record
---		with the specified id or records that are before the specified date. You can also
---		specify a publisher, publisher db and publication to ensure that only tracer lsns
--- 		from the specified publication are deleted.
---  
--- Parameters: 
---		@tracer_id				int				Id of the tracer to be updated
---		@cutoff_date			datetime		Cutoff time for rows to be kept (ignored if @tracer_id specified)
---		@num_records_removed	int				Number of tracer records removed. This is based on the number of
---												of rows removed from MStracer_tokens.
--- These are only used when called by publisher
---		@publication			sysname			
---		@publisher				sysname			
--- 		@publisher_db			sysname 
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Sysadmin/dbo
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSdelete_tracer_history
+create procedure BP_PRD.sys.sp_MSdelete_tracer_history
 (
 	@tracer_id				int			= NULL,
 	@cutoff_date			datetime 	= NULL,
@@ -47647,27 +46524,7 @@ Err_Handler:
 end
 go
 
---
--- Name: sp_MSdeletefoldercontents
---
--- Description: This is a lighweight wrapper for deleting all files in the
---              specified directory. This procedure is meant to be called by 
---              a remote publisher for deleting files in the distributor's 
---              context.
---
--- Parameter: @folder nvarchar(255) (mandatory)
---
--- Returns 0 - succeeded
---         1 - failed
---
--- Security: Only members of the sysadmin server role and members of the 
--- db_owner role of the distribution database can execute this function. This
--- procedure is intended to be called through the distribution_admin remote 
--- login from remote publishers
---
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSdeletefoldercontents 
+create procedure BP_PRD.sys.sp_MSdeletefoldercontents 
 (
     @folder nvarchar(255)
 )
@@ -47700,78 +46557,77 @@ begin
         select @folder = @folder + N'\'
     end 
 
-
     if (platform() & 0x1) = 0x1 
     begin
-        select @command_prefix = 'del /q /f "' + sys.fn_escapecmdshellsymbolsremovequotes(@folder) collate database_default
+        select @command_prefix = 'del /q /f '' + sys.fn_escapecmdshellsymbolsremovequotes(@folder) collate database_default
     end
     else
     begin
         -- Win9x 'del' command does not support the /q and /f switches
-        select @command_prefix = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@folder) collate database_default
+        select @command_prefix = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@folder) collate database_default
     end
 
     -- Hardwired merge system table files without embedded _
-    set @command = @command_prefix + N'sysmergesubsetfilters*.sch"'
+    set @command = @command_prefix + N'sysmergesubsetfilters*.sch''
     exec @retcode = master..xp_cmdshell @command, no_output
 
-    set @command = @command_prefix + N'sysmergesubsetfilters*.bcp"'
+    set @command = @command_prefix + N'sysmergesubsetfilters*.bcp''
     exec @retcode = master..xp_cmdshell @command, no_output
     
     -- .sch extensio
-    set @command = @command_prefix + N'*_*.sch"'
+    set @command = @command_prefix + N'*_*.sch''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .bcp extension
-    set @command = @command_prefix + N'*_*.bcp"'
+    set @command = @command_prefix + N'*_*.bcp''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .idx extension
-    set @command = @command_prefix + N'*_*.idx"'
+    set @command = @command_prefix + N'*_*.idx''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .sql extension
-    set @command = @command_prefix + N'*_*.sql"'
+    set @command = @command_prefix + N'*_*.sql''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .ftx extension
-    set @command = @command_prefix + N'*_*.ftx"'
+    set @command = @command_prefix + N'*_*.ftx''
     exec @retcode = master..xp_cmdshell @command, no_output
     
     -- .pre extension
-    set @command = @command_prefix + N'*_*.pre"'
+    set @command = @command_prefix + N'*_*.pre''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- snapshot.cab
-    set @command = @command_prefix + N'snapshot.cab"'
+    set @command = @command_prefix + N'snapshot.cab''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- dynsnapvalidation.tok
-    set @command = @command_prefix + N'dynsnapvalidation.tok"'
+    set @command = @command_prefix + N'dynsnapvalidation.tok''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .pre extension
-    set @command = @command_prefix + N'snapshot.pre"'
+    set @command = @command_prefix + N'snapshot.pre''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .trg extension
-    set @command = @command_prefix + N'*_*.trg"'
+    set @command = @command_prefix + N'*_*.trg''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .xpp extension
-    set @command = @command_prefix + N'*_*.xpp"'
+    set @command = @command_prefix + N'*_*.xpp''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .cft extension
-    set @command = @command_prefix + N'*_*.cft"'
+    set @command = @command_prefix + N'*_*.cft''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .dri extension
-    set @command = @command_prefix + N'*_*.dri"'
+    set @command = @command_prefix + N'*_*.dri''
     exec @retcode = master..xp_cmdshell @command, no_output
 
     -- .prc extension
-    set @command = @command_prefix + N'*_*.prc"'
+    set @command = @command_prefix + N'*_*.prc''
     exec @retcode = master..xp_cmdshell @command, no_output
 
 Failure:
@@ -47781,9 +46637,7 @@ Failure:
 end
 go
 
-
-
-create procedure sys.sp_MSdeletemetadataactionrequest
+create procedure BP_PRD.sys.sp_MSdeletemetadataactionrequest
 (
     @pubid uniqueidentifier,
     @tablenick int,
@@ -48006,8 +46860,7 @@ as
         return 1
 go
 
-
-create procedure sys.sp_MSdeletepeerconflictrow
+create procedure BP_PRD.sys.sp_MSdeletepeerconflictrow
 (
 	@originator_id nvarchar(32) = '%' ,--int
 	@origin_datasource nvarchar(255) = '%', --int
@@ -48024,7 +46877,6 @@ begin
                 ,@table	sysname
                 ,@schema sysname
 				,@whcmd nvarchar(4000) = N'(__$row_id is not null) '
-
 
     /*
     **  Security check.  restrict to 'sysadmin' and member of db_owner role
@@ -48100,8 +46952,7 @@ UNDO:
 end
 go
 
-
-create procedure sys.sp_MSdeleteretry 
+create procedure BP_PRD.sys.sp_MSdeleteretry 
     (@temptable nvarchar(386),
      @tablenick int,
      @rowguid uniqueidentifier)
@@ -48133,8 +46984,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MSdeletetranconflictrow ( 
+create procedure BP_PRD.sys.sp_MSdeletetranconflictrow ( 
     @tran_id sysname,
     @row_id sysname = '%',                      -- % = ALL
     @conflict_table sysname)
@@ -48179,13 +47029,12 @@ begin
 end
 go
 
-create procedure sys.sp_MSdelgenzero
+create procedure BP_PRD.sys.sp_MSdelgenzero
 as
     return 0	-- this proc is a no-op in Yukon. Leaving the proc around since down-level agents call it.
 go
 
-
-create procedure sys.sp_MSdelrow 
+create procedure BP_PRD.sys.sp_MSdelrow 
     (@rowguid       uniqueidentifier,
     @tablenick  int,
     @metadata_type tinyint, /* 0 - Missing, 1 - Tombstone, 2 - Contents, 3 - ContentsDeferred, 6 - system delete */
@@ -48314,7 +47163,6 @@ as
     end
     */
 
-
     if 1 = @articleisupdateable
     begin
         select @match = NULL
@@ -48430,20 +47278,15 @@ as
     end
 
     commit tran
--- DEBUG    insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG        values (0, @tablenick, @rowguid, @lineage_old, @lineage_new, @generation, @metadata_type, 1, getdate(), 'sp_MSdelrow: new type ' + cast(@new_metatype as nvarchar(2)))
     return(1)-- in sp_MSdelrow, 1=okay
 
 Failure:
     rollback tran sp_MSdelrow
     commit tran
--- DEBUG    insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG        values (1, @tablenick, @rowguid, @lineage_old, @lineage_new, @generation, @metadata_type, @errcode, getdate(), 'sp_MSdelrow: new type ' + cast(@new_metatype as nvarchar(2)))
     return(@errcode)
 go
 
-
-create procedure sys.sp_MSdelrowsbatch (
+create procedure BP_PRD.sys.sp_MSdelrowsbatch (
     @pubid uniqueidentifier,
     @tablenick  int,
     @check_permission int = 0,
@@ -49492,8 +48335,7 @@ as
     return @retcode
 go
 
-
-create procedure sys.sp_MSdelrowsbatch_downloadonly (
+create procedure BP_PRD.sys.sp_MSdelrowsbatch_downloadonly (
     @pubid uniqueidentifier,
     @tablenick  int,
     @check_permission int = 0,
@@ -49738,8 +48580,7 @@ as
     return @retcode
 go
 
-
-create procedure sys.sp_MSdelsubrows 
+create procedure BP_PRD.sys.sp_MSdelsubrows 
         (@rowguid       uniqueidentifier,
         @tablenick  int,
         @metadata_type tinyint, -- 0 - Missing, 1 - Tombstone, 2 - Contents, 3 - ContentsDeferred, 6 - system delete
@@ -50035,20 +48876,14 @@ as
     end
 
     commit tran
--- DEBUG    insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG        values (0, @tablenick, @rowguid, @lineage_old, @lineage_new, @generation, @metadata_type, 1, getdate(), 'sp_MSdelsubrows: new type ' + cast(@new_metatype as nvarchar(2)))
     return 1 -- in sp_MSdelsubrows, 1=okay
 
 Failure:
     rollback tran sp_MSdelsubrows
     commit tran
--- DEBUG    insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG        values (1, @tablenick, @rowguid, @lineage_old, @lineage_new, @generation, @metadata_type, @errcode, getdate(), 'sp_MSdelsubrows: new type ' + cast(@new_metatype as nvarchar(2)))
     return(@errcode) -- in sp_MSdelsubrows, 0=error
 
-go
-
-create procedure sys.sp_MSdelsubrowsbatch 
+create procedure BP_PRD.sys.sp_MSdelsubrowsbatch 
     (@tablenick int,
      @rowguid_array varbinary(8000),
      @metadatatype_array varbinary(500),        -- 0 - Missing, 1 - Tombstone, 2 - Contents, 3 - ContentsDeferred, 6 - system delete
@@ -50399,9 +49234,6 @@ as
 
     end
 
--- DEBUG    insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG        select 0, tablenick, rowguid, lineage_old, lineage_new, generation, metadatatype_old, 1, getdate(), 'sp_MSdelsubrowsbatch: new type ' + cast(@new_metatype as nvarchar(2)) from #notbelong where original_row = 1
-
     drop table #notbelong
     
     return 1 -- in sp_MSdelsubrows, 1=okay
@@ -50415,9 +49247,6 @@ Failure:
         commit tran
     end
 
--- DEBUG    insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG        select 1, tablenick, rowguid, lineage_old, lineage_new, generation, metadatatype_old, @errcode, getdate(), 'sp_MSdelsubrowsbatch: new type ' + cast(@new_metatype as nvarchar(2)) from #notbelong where original_row = 1
-
     drop table #notbelong
 
     if @errcode = 1
@@ -50425,10 +49254,7 @@ Failure:
 
     return(@errcode) -- in sp_MSdelsubrows, 0=error
 
-go
-
-
-create procedure sys.sp_MSdependencies
+create procedure BP_PRD.sys.sp_MSdependencies
 @objname nvarchar(517) = null, @objtype int = null, @flags int = 0x01fd, @objlist nvarchar(128) = null, @intrans int = null
 as
     set deadlock_priority low
@@ -50458,7 +49284,6 @@ as
         pcat            smallint        NULL,
         depid           int             NULL
     )
-
 
 	create table #tempudt (
 		dtype			int				NOT NULL
@@ -50846,7 +49671,7 @@ as
 	 * and just set bDone for everything remaining to @curid.
 	 */
 	if exists (select * from #t1 where bDone = 0) begin
-		--select "Circular Dependencies", object_name(tid) from #t1 where bDone = 0
+		--select 'Circular Dependencies', object_name(tid) from #t1 where bDone = 0
 		--RAISERROR (14300, -1, -1)
 		--return 1
 		update #t1 set bDone = @curid where bDone = 0
@@ -50904,9 +49729,7 @@ as
 			where o.id = t.tid and o.id = syso.object_id
 			order by t.bDone, power(2, o.sysstat & 0x0f), o.name
 
-go
-
-create procedure sys.sp_MSdetect_nonlogged_shutdown
+create procedure BP_PRD.sys.sp_MSdetect_nonlogged_shutdown
 (
     @subsystem nvarchar(60),
     @agent_id int
@@ -50940,7 +49763,6 @@ begin
         if exists (select runstatus from MSsnapshot_history where 
             agent_id = @agent_id and
             runstatus <> 2 and 
---CAC       runstatus <> 5 and 
             runstatus <> 6 and
             timestamp = (select max(timestamp) from MSsnapshot_history where agent_id = @agent_id))
             begin
@@ -50952,7 +49774,6 @@ begin
         if exists (select runstatus from MSlogreader_history where 
             agent_id = @agent_id and
             runstatus <> 2 and 
---CAC           runstatus <> 5 and 
             runstatus <> 6 and
             timestamp = (select max(timestamp) from MSlogreader_history where agent_id = @agent_id))
             begin
@@ -50964,7 +49785,6 @@ begin
         if exists (select runstatus from MSdistribution_history where 
             agent_id = @agent_id and
             runstatus <> 2 and 
---CAC           runstatus <> 5 and 
             runstatus <> 6 and
             timestamp = (select max(timestamp) from MSdistribution_history where agent_id = @agent_id))
             begin
@@ -50976,7 +49796,6 @@ begin
         if exists (select runstatus from dbo.MSmerge_sessions where 
             agent_id = @agent_id and
             runstatus <> 2 and 
---CAC           runstatus <> 5 and 
             runstatus <> 6 and
             session_id = (select top 1 session_id from dbo.MSmerge_sessions where agent_id = @agent_id order by session_id desc))
             begin
@@ -50992,7 +49811,6 @@ begin
         if exists (select runstatus from MSqreader_history where 
             agent_id = @agent_id and
             runstatus <> 2 and 
---CAC       runstatus <> 5 and 
             runstatus <> 6 and
             timestamp = (select max(timestamp) from MSqreader_history where agent_id = @agent_id))
             begin
@@ -51031,7 +49849,6 @@ begin
     insert TOP(2) into #JobHistory exec sys.sp_MSreplhelp_jobhistory @job_id = @job_id, @step_id = 2, 
         @mode = 'FULL'          
 
-
 	declare cursorHistory cursor local fast_forward for
     	select message, 
     			run_status,
@@ -51069,12 +49886,12 @@ begin
 		    end
 
 		    -- If no message, provide a default message
-			-- Also overwrite all inprogress messages to be "See SQL Agent history log".
-			-- This is to prevent "Agent running. See monitor" to be logged into repl monitor.
+			-- Also overwrite all inprogress messages to be 'See SQL Agent history log'.
+			-- This is to prevent 'Agent running. See monitor' to be logged into repl monitor.
 			-- In this case (the last job history message is InProgress), we know that
 			-- there have been failures of SQL Server Agent history logging.
-			-- In fact, the only possible "in progress" msg in SQL Agent job step
-			-- history for push jobs is "Agent running. See monitor". It is confusing that those
+			-- In fact, the only possible 'in progress' msg in SQL Agent job step
+			-- history for push jobs is 'Agent running. See monitor'. It is confusing that those
 			-- messages showed up in repl monitor.
 		    if @message is null or @runstatus = 3
 		    begin
@@ -51112,7 +49929,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSdetectinvalidpeerconfiguration
+create procedure BP_PRD.sys.sp_MSdetectinvalidpeerconfiguration
 (
     @publisher 		sysname,
     @publisher_db 	sysname,
@@ -51230,28 +50047,7 @@ begin
 end
 go
 
---
--- Name: 
---		sp_MSdetectinvalidpeersubscription
--- 
--- Description: 
---
---
--- Parameters: 
---	 	See the procedure definition.
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Called by distribution agent at the subscriber (must be made public).
---		SYSADMIN or DBO of subscriber db
---
-create procedure sys.sp_MSdetectinvalidpeersubscription
+create procedure BP_PRD.sys.sp_MSdetectinvalidpeersubscription
 (
 	@publisher		sysname,
 	@publisher_db	sysname,
@@ -51562,7 +50358,6 @@ begin
     --  2 subscriber table
     -- The order is to avoid breaking monitoring
 
-
     delete MSpublisher_databases where publisher_id = @publisher_id
     if @@error <> 0 
         return (1) 
@@ -51695,7 +50490,6 @@ begin
 
         -- Get latest seqno, rate and latency
         select TOP(1) @xact_seqno = xact_seqno,
---              @delivered_commands = delivered_commands,
                 @delivery_rate = current_delivery_rate,
                 @delivery_latency = current_delivery_latency
             -- from MSdistribution_history with (READPAST)
@@ -51705,13 +50499,10 @@ begin
             xact_seqno <> 0x0
             order by timestamp DESC
 
-
         if @xact_seqno IS NULL
             select  @xact_seqno = 0x00,
                     @delivery_rate = 0,
                     @delivery_latency = 0
-
-
 
         select TOP(1) @subscriber_id = subscriber_id FROM dbo.MSsubscriptions
             where agent_id = @agent_id
@@ -51729,8 +50520,6 @@ begin
             s.agent_id = @agent_id and
             s.status = @active_status and
             rc.publisher_database_id = s.publisher_database_id and
---          rc.publisher_id = s.publisher_id and
---          rc.publisher_db = s.publisher_db and
             rc.xact_seqno <= @xact_seqno and
             rc.article_id = s.article_id and
             rc.partial_command = 0
@@ -51781,30 +50570,7 @@ begin
 end        
 go
 
-
---
--- Name:
---		sp_MSdistributoravailable
---
--- Description:
---		Procedure used to determine whether the distributor is available
---
--- Returns:
---		0 == SUCCESS
---		1 == FAILURE
---              result set with distribution database as the only column
---
--- Security:
---		public
---
--- Notes:
---		This internal stored procedure is used to determine whether the 
---              distributor associated with the local server is available.  
---		If available, the name of the distribution db will be returned
---		as the only column in the result set, and the return code will
---		be set to zero.    
-
-create procedure sys.sp_MSdistributoravailable
+create procedure BP_PRD.sys.sp_MSdistributoravailable
 AS
 BEGIN
 	DECLARE @distribdb sysname,
@@ -51819,28 +50585,7 @@ BEGIN
 END
 go
 
---
--- Name: sp_MSdodatabasesnapshotinitiation
---
--- Description: This procedure is called by the snapshot agent to perform the
---              the necessary (article & subscription) initiation procedures
---              when generating a snapshot from a database snapshot.
--- Parameter: @publication sysname (mandatory)
---
--- Notes: This procedure is assumed to be run within a transaction from the
---        snapshot agent. As such, no explicit error handling is performed
---        in it. This procedure will also return 1 immediately if one of the 
---        following is not true:
---        1) Caller is not member of db_owner role
---        2) Caller is not a replication agent connection
---        3) @@trancount < 1
---
--- Returns: 0 - succeeded
---          1 - failed
---  
--- Security: Public interface, non-db_owner caller will result in no-op
---
-create procedure sys.sp_MSdodatabasesnapshotinitiation (
+create procedure BP_PRD.sys.sp_MSdodatabasesnapshotinitiation (
     @publication sysname
     )
 as
@@ -51909,31 +50654,7 @@ begin
 end
 go
 
---
--- Name: sp_MSdopartialdatabasesnapshotinitiation
---
--- Description: This procedure is called by the snapshot agent to perform the
---              the necessary (article & subscription) initiation procedures
---              when generating a partial snapshot from a database snapshot.
--- Parameter: @publication sysname (mandatory)
---
--- Notes: This procedure is assumed to be run within a transaction from the
---        snapshot agent. As such, no explicit error handling is performed
---        in it. This procedure will also return 1 immediately if one of the 
---        following is not true:
---        1) Caller is not member of db_owner role
---        2) Caller is not a replication agent connection
---        3) @@trancount < 1
---
---        *This procedure assumes that the #partial_snapshot_artids temporary
---        table has already been created prior to its invocation.
---
--- Returns: 0 - succeeded
---          1 - failed
---  
--- Security: Public interface, non-db_owner caller will result in no-op
---
-create procedure sys.sp_MSdopartialdatabasesnapshotinitiation (
+create procedure BP_PRD.sys.sp_MSdopartialdatabasesnapshotinitiation (
     @publication sysname
     )
 as
@@ -52008,7 +50729,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSdrop_6x_publication
+create procedure BP_PRD.sys.sp_MSdrop_6x_publication
 (
     @job_id UNIQUEIDENTIFIER
 )
@@ -52053,7 +50774,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSdrop_6x_replication_agent
+create procedure BP_PRD.sys.sp_MSdrop_6x_replication_agent
 @job_id UNIQUEIDENTIFIER,
 @category_id int
 as
@@ -52437,7 +51158,7 @@ BEGIN
         subscription_type = @subscription_type
     
     -- Delete Perfmon instance
-    dbcc deleteinstance ("SQL Replication Distribution", @name)
+    dbcc deleteinstance ('SQL Replication Distribution', @name)
 
     select @publisher = srvname from master.dbo.sysservers where srvid = @publisher_id
 
@@ -52595,7 +51316,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSdrop_dynamic_snapshot_agent 
+create procedure BP_PRD.sys.sp_MSdrop_dynamic_snapshot_agent 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -52650,7 +51371,7 @@ begin
         id = @agent_id
 
     -- Delete Perfmon instance
-    dbcc deleteinstance ("SQL Replication Snapshot", @name)
+    dbcc deleteinstance ('SQL Replication Snapshot', @name)
 
     -- Return if not exists
     IF @local_job IS NULL
@@ -52690,7 +51411,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_MSdrop_logreader_agent 
+create procedure BP_PRD.sys.sp_MSdrop_logreader_agent 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -52735,14 +51456,13 @@ begin
     select @publisher_id = srvid from master.dbo.sysservers where
         UPPER(srvname) = UPPER(@publisher)
 
-
     SELECT @job_id = job_id, @job_step_uid = job_step_uid, @local_job = local_job, @name = name, @agent_id = id FROM MSlogreader_agents WHERE
         publisher_id = @publisher_id AND
         publisher_db = @publisher_db AND
         publication = @publication
 
     -- Delete Perfmon instance
-    dbcc deleteinstance ("SQL Replication Logreader", @name)
+    dbcc deleteinstance ('SQL Replication Logreader', @name)
 
     -- Return if not exists
     IF @local_job IS NULL
@@ -52840,7 +51560,7 @@ begin
 
     IF (sys.fn_MSrepl_isdistdb (DB_NAME()) != 1)
     BEGIN
-        -- "sp_MSdrop_merge_agent can only be executed in the distribution database."
+        -- 'sp_MSdrop_merge_agent can only be executed in the distribution database.'
         RAISERROR(21482, 16, -1, 'sp_MSdrop_merge_agent', 'distribution')
         RETURN 1
     END
@@ -52849,7 +51569,6 @@ begin
     */
     -- Get subscriber info
     select @publisher_id = srvid from master.dbo.sysservers where UPPER(srvname) = UPPER(@publisher)
-
 
     SELECT @job_id = job_id, @job_step_uid = job_step_uid, @local_job = local_job, @name = name, @agent_id = id FROM dbo.MSmerge_agents with (updlock holdlock) 
     WHERE
@@ -52860,14 +51579,13 @@ begin
         subscriber_db = @subscriber_db 
 
     -- Delete Perfmon instance
-    dbcc deleteinstance ("SQL Replication Merge", @name)
+    dbcc deleteinstance ('SQL Replication Merge', @name)
 
     BEGIN TRAN
 
     -- If the job does not exist, still go ahead and cleanup the MSmerge_agent entry and associated errors, session info, article stats
     IF @local_job IS NULL
         goto NONJOBCLEANUP
-
 
     IF @keep_for_last_run = 0
     BEGIN
@@ -53417,7 +52135,6 @@ where       publisher_id = @publisher_id and
             publisher_db = @publisher_db and
             publication_id = @publication_id
 
-
 	delete dbo.MSmerge_articlehistory
 		from dbo.MSmerge_articlehistory arthist join dbo.MSmerge_sessions sess
 		on arthist.session_id=sess.session_id
@@ -53553,7 +52270,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSdrop_snapshot_agent 
+create procedure BP_PRD.sys.sp_MSdrop_snapshot_agent 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -53617,7 +52334,7 @@ begin
             publication = @publication
 
         -- Delete Perfmon instance
-        dbcc deleteinstance ("SQL Replication Snapshot", @name)
+        dbcc deleteinstance ('SQL Replication Snapshot', @name)
 
         -- Return if not exists
         IF @local_job IS NULL
@@ -53681,7 +52398,7 @@ begin
         while (@@fetch_status <> -1)
         begin
              -- Delete Perfmon instance
-            dbcc deleteinstance ("SQL Replication Snapshot", @name)
+            dbcc deleteinstance ('SQL Replication Snapshot', @name)
 
             -- Return if not exists
             IF @local_job = 1
@@ -53798,7 +52515,7 @@ begin
     -- Security Check
     IF IS_SRVROLEMEMBER ('sysadmin') != 1
     BEGIN
-    	-- "You do not have sufficient permission to run this command."
+    	-- 'You do not have sufficient permission to run this command.'
         RAISERROR(14260, 16, -1)
         RETURN 1
     END
@@ -54057,7 +52774,6 @@ begin
     else 
         select @keep_for_last_run = 0
 
-
     /*
     ** Delete distribution task.
     */
@@ -54109,7 +52825,6 @@ begin
             not exists (select * from dbo.MSsubscriptions s where
                 s.agent_id = anonymous_agent_id)
 
-
         if @@error <> 0
         begin
             if @@trancount > 0
@@ -54121,7 +52836,6 @@ begin
             return 1
         end
     end
-
 
 	-- delete any rows in syncstate tracking table
 
@@ -54140,7 +52854,6 @@ begin
         end
         return 1
     end
-
 
     commit transaction
 end
@@ -54162,7 +52875,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSdrop_tempgenhistorytable
+create procedure BP_PRD.sys.sp_MSdrop_tempgenhistorytable
     @pubid uniqueidentifier
 as
 
@@ -54187,7 +52900,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSdroparticleconstraints (
+create procedure BP_PRD.sys.sp_MSdroparticleconstraints (
     @destination_object sysname,
     @destination_owner sysname
     )
@@ -54285,8 +52998,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSdroparticletombstones
+create procedure BP_PRD.sys.sp_MSdroparticletombstones
     @artid      uniqueidentifier,
     @pubid      uniqueidentifier = null
 as
@@ -54353,8 +53065,7 @@ as
     return (0)
 go
 
--- This will be called merge at the subscriber side, check for dbo permission
-create procedure sys.sp_MSdropconstraints
+create procedure BP_PRD.sys.sp_MSdropconstraints
     @table sysname,
     @owner sysname = null
 as
@@ -54415,7 +53126,7 @@ as
     return (0)      
 go
 
-create procedure sys.sp_MSdropdynsnapshotvws (
+create procedure BP_PRD.sys.sp_MSdropdynsnapshotvws (
     @dynamic_snapshot_views_table sysname
     )
 as
@@ -54518,7 +53229,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSdropfkreferencingarticle (
+create procedure BP_PRD.sys.sp_MSdropfkreferencingarticle (
     @destination_object_name sysname,
     @destination_owner_name sysname = null
     )
@@ -54568,7 +53279,7 @@ begin
 
     if object_id('dbo.MSsavedforeignkeys', 'U') is null
     begin
-        create table dbo.MSsavedforeignkeys
+        create table BP_PRD.create table dbo.MSsavedforeignkeys
         (
             
             program_name                sysname not null,
@@ -54598,10 +53309,9 @@ begin
         if @@error <> 0 or @retcode <> 0 begin select @retcode = 1 goto Failure end
     end
 
-
     if object_id('dbo.MSsavedforeignkeycolumns', 'U') is null
     begin
-        create table dbo.MSsavedforeignkeycolumns
+        create table BP_PRD.create table dbo.MSsavedforeignkeycolumns
         (
             program_name                sysname not null,
             constraint_name             sysname not null,
@@ -54626,7 +53336,7 @@ begin
     
     if object_id('dbo.MSsavedforeignkeyextendedproperties', 'U') is null
     begin
-        create table dbo.MSsavedforeignkeyextendedproperties
+        create table BP_PRD.create table dbo.MSsavedforeignkeyextendedproperties
         (
             program_name                sysname not null,
             constraint_name             sysname not null,
@@ -54798,7 +53508,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSdropmergearticle(@pubid uniqueidentifier, @artid uniqueidentifier, @ignore_merge_metadata bit = 0)
+create procedure BP_PRD.sys.sp_MSdropmergearticle(@pubid uniqueidentifier, @artid uniqueidentifier, @ignore_merge_metadata bit = 0)
 as
     declare @snapshot_ready            int
     declare @objid                    int
@@ -55096,7 +53806,6 @@ as
             return 1
         END
 
-
         /* delete all the filter components that are defined upon the designated article */
         select @filterid = min(join_filterid) from dbo.sysmergesubsetfilters where
             artid = @artid AND pubid = @pubid
@@ -55123,35 +53832,7 @@ as
     end        
 go
 
---
--- Name: sp_MSdropmergedynamicsnapshotjob
---
--- Description: This procedure drops a scheduled dynamic snapshot job for
---				a publication and the associated meta-data in 
---				MSdynamicsnapshotjobs. This procedure will also remove all 
---				files in the associated dynamic snapshot location.
---
--- Parameters: @publication sysname (mandatory)
---			   @dynamic_snapshot_jobname (optional, default '%')
---			   @dynamic_snapshot_jobid uniqueidentifier (optional, default 
---			   null) When @dynamic_snapshot_jobid is null and 
---			   @dynamic_snapshot_jobname is '%', all dynamic snapshot
---			   jobs for the specified publication will be dropped.
---			   @ignore_distributor bit (optional, default 0) 
---
--- Notes: 1) At most one of @dynamic_snapshot_jobid and 
---			 @dynamic_snapshot_jobname can be specified with a non-default 
---			 value.
---			 
--- Returns: 0 - succeeded
---			1 - failed
---
--- Security: Only members of the 'sysadmin' server role and the 'db_owner'	
--- database role can execute this procedure successfully even though execute
--- permission of this procedure is granted to public.
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSdropmergedynamicsnapshotjob (
+create procedure BP_PRD.sys.sp_MSdropmergedynamicsnapshotjob (
     @publication sysname,
     @dynamic_snapshot_jobname sysname = '%',
     @dynamic_snapshot_jobid uniqueidentifier = null,
@@ -55185,7 +53866,6 @@ begin
     select @dynamic_snapshot_location = null
     select @publisher = publishingservername()
     select @publisher_db = db_name()
-
 
     if object_id('sysmergepublications') is NULL
     begin
@@ -55234,7 +53914,6 @@ begin
         if @@error <> 0
             return 1
 
-
         fetch hJobsCursor into @dynamic_snapshot_jobid_from_cursor 
           
         begin transaction
@@ -55259,7 +53938,6 @@ begin
         deallocate hJobsCursor		  
         return 0
     CursorFailure:
-
 
         rollback transaction sp_MSdropdynamicsnapshotjobC
         commit transaction
@@ -55321,7 +53999,6 @@ begin
 
         select @rpcsrvname = rtrim(@rpcsrvname)
 
-
         select @distproc = QUOTENAME(RTRIM(@rpcsrvname)) + N'.' + QUOTENAME(@distribdb) + N'.dbo.sp_MScleanupdynamicsnapshotfolder'
         exec @retcode = @distproc
                @publisher = @publisher,
@@ -55373,7 +54050,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSdropobsoletearticle
+create procedure BP_PRD.sys.sp_MSdropobsoletearticle
 (
 	@artid int = null,
 	@ignore_distributor bit = 0,
@@ -55405,8 +54082,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSdropretry (@tname sysname, @pname sysname)
+create procedure BP_PRD.sys.sp_MSdropretry (@tname sysname, @pname sysname)
 as
     declare @retcode int
     declare @quotedtname nvarchar(258) -- max characters that quotename can return
@@ -55429,7 +54105,7 @@ as
     return (0)  
 go
 
-create procedure sys.sp_MSdroptemptable (@tname sysname)
+create procedure BP_PRD.sys.sp_MSdroptemptable (@tname sysname)
 as
 begin
     declare @quotedtname nvarchar(260)
@@ -55444,9 +54120,7 @@ begin
 end
 go
 
-
-
-create procedure sys.sp_MSdummyupdate
+create procedure BP_PRD.sys.sp_MSdummyupdate
     (@rowguid uniqueidentifier, 
      @tablenick int, 
      @metatype tinyint, 
@@ -55507,7 +54181,7 @@ as
     if @incolv is not null
         set @incolv= {fn COLV_80_TO_90(@incolv)}
     
-    -- Look for the "other" lineage in a conflict table
+    -- Look for the 'other' lineage in a conflict table
     select @conflict_lineage = max(lineage) from MSmerge_errorlineage where
         rowguid = @rowguid and tablenick = @tablenick
 
@@ -55518,13 +54192,11 @@ as
         */
         if @conflict_lineage is not null
         begin
--- DEBUG            set @lineage_old= @conflict_lineage
             set @lineage = { fn UPDATELINEAGE(@conflict_lineage, @replnick, 1) }
         end
         else
         begin
             set @lineage = { fn UPDATELINEAGE(0x0, @replnick, 1) }
--- DEBUG            set @lineage_old= 0x00
         end
            
                 begin tran
@@ -55549,8 +54221,6 @@ as
                         insert into dbo.MSmerge_past_partition_mappings (publication_number, tablenick, rowguid,
                                 partition_id, generation, reason)
                                 values (0, @tablenick, @rowguid, -1, 0, 1)
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate')
                 end
                 commit tran
         
@@ -55559,8 +54229,6 @@ as
     begin
         if @inlineage is not null
         begin
--- DEBUG            select @lineage_old = lineage from dbo.MSmerge_tombstone with (UPDLOCK ROWLOCK index = 1) 
--- DEBUG                where tablenick = @tablenick and rowguid = @rowguid
             set @lineage = @inlineage
             set @lineage = { fn UPDATELINEAGE(@lineage, @replnick, 1) }
         end
@@ -55568,7 +54236,6 @@ as
         begin
             select @lineage = lineage from dbo.MSmerge_tombstone with (UPDLOCK ROWLOCK index = 1) where tablenick = @tablenick and
                 rowguid = @rowguid
--- DEBUG            set @lineage_old= @lineage
             if (@uplineage = 1)
             begin
                 if @conflict_lineage is not null
@@ -55582,15 +54249,11 @@ as
             
         update dbo.MSmerge_tombstone set generation = 0, lineage = @lineage where
             tablenick = @tablenick and rowguid = @rowguid
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate')
     end
     else if (@metatype = 2)
     begin
         if @inlineage is not null
         begin
--- DEBUG            select @lineage_old = lineage from dbo.MSmerge_contents with (UPDLOCK ROWLOCK index = 1) 
--- DEBUG                where tablenick = @tablenick and rowguid = @rowguid
             set @lineage = @inlineage
             set @lineage = { fn UPDATELINEAGE(@lineage, @replnick, 1) }
 
@@ -55617,7 +54280,6 @@ as
         begin
             select @lineage = lineage, @colv = colv1 from dbo.MSmerge_contents with (UPDLOCK ROWLOCK index = 1) where tablenick = @tablenick and
                 rowguid = @rowguid
--- DEBUG            set @lineage_old= @lineage
             if (@uplineage = 1)
             begin
                 if @conflict_lineage is not null
@@ -55643,26 +54305,20 @@ as
         update dbo.MSmerge_past_partition_mappings set generation = 0 where
             tablenick = @tablenick and rowguid = @rowguid
 
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate')
     end
     else if (@metatype = 3)
     begin
         if @inlineage is not null
         begin
--- DEBUG            if @conflict_lineage is not null set @lineage_old= @conflict_lineage
--- DEBUG            else set @lineage_old= 0x00 
             set @lineage = @inlineage
             set @lineage = { fn UPDATELINEAGE(@lineage, @replnick, 1) }
         end
         else if @conflict_lineage is not null
         begin
--- DEBUG            set @lineage_old= @conflict_lineage
             set @lineage = { fn UPDATELINEAGE(@conflict_lineage, @replnick, 1) }
         end
         else
         begin
--- DEBUG            set @lineage_old= 0x00
             set @lineage = { fn UPDATELINEAGE(0x0, @replnick, 2) }
         end
 
@@ -55704,8 +54360,6 @@ as
                 
         insert into dbo.MSmerge_contents (tablenick, rowguid, lineage, generation, colv1)
             values (@tablenick, @rowguid, @lineage, 0, @colv)
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate')
 
                 exec @retcode = sys.sp_MSevaluate_logicalrecordparent @nickname = @tablenick, @rowguid = @rowguid
         if @retcode <> 0 or @@error <> 0
@@ -55721,12 +54375,10 @@ as
     begin
         if @conflict_lineage is not null
         begin
--- DEBUG        set @lineage_old= @conflict_lineage
             set @lineage = { fn UPDATELINEAGE(@conflict_lineage, @replnick, 1) }
         end
         else
         begin
--- DEBUG            set @lineage_old= 0x00
             set @lineage = { fn UPDATELINEAGE(0x0, @replnick, 1) }
         end
            
@@ -55757,13 +54409,11 @@ as
                         end
         end
         commit
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate')
     end
     return (0)
 go
 
-create procedure sys.sp_MSdummyupdate90
+create procedure BP_PRD.sys.sp_MSdummyupdate90
     (@rowguid uniqueidentifier, 
      @tablenick int, 
      @metatype tinyint, -- comes from METADATA_TYPE
@@ -55787,7 +54437,6 @@ as
     declare @METADATA_TYPE_Contents tinyint
     declare @METADATA_TYPE_ContentsDeferred tinyint
     declare @METADATA_TYPE_SystemDelete tinyint
--- DEBUG    declare @lineage_old varbinary(311)
 
     set @METADATA_TYPE_Missing= 0
     set @METADATA_TYPE_Tombstone= 1
@@ -55849,7 +54498,7 @@ as
         where artid = @artid
     end
         
-    -- Look for the "other" lineage in a conflict table
+    -- Look for the 'other' lineage in a conflict table
     select @conflict_lineage = max(lineage) from MSmerge_errorlineage where
         rowguid = @rowguid and tablenick = @tablenick
 
@@ -55865,13 +54514,11 @@ as
         begin
             if @conflict_lineage is not null
             begin
--- DEBUG                set @lineage_old= @conflict_lineage
                 set @lineage = { fn UPDATELINEAGE(@conflict_lineage, @replnick, @oldmaxversion+1) }
             end
             else
             begin
                 set @lineage = { fn UPDATELINEAGE(0x0, @replnick, @oldmaxversion+1) }
--- DEBUG                set @lineage_old= 0x00
             end
         end
         else
@@ -55903,8 +54550,6 @@ as
             partition_id, generation,reason)
                     values (0, @tablenick, @rowguid, -1, 0, 1)
         end
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate90')
 
         if @logical_record_parent_rowguid is not null
         begin
@@ -55923,7 +54568,6 @@ as
         begin
             select @lineage = lineage from dbo.MSmerge_tombstone with (UPDLOCK ROWLOCK index = 1) 
                                     where tablenick = @tablenick and rowguid = @rowguid
--- DEBUG            set @lineage_old= @lineage
             if @conflict_lineage is not null
             begin
                 exec @retcode= sys.xp_mergelineages @lineage, @conflict_lineage, @lineage output
@@ -55933,8 +54577,6 @@ as
         end
         else
         begin
--- DEBUG            select @lineage_old = lineage from dbo.MSmerge_tombstone with (UPDLOCK ROWLOCK index = 1) 
--- DEBUG                where tablenick = @tablenick and rowguid = @rowguid
             set @lineage = @inlineage
         end
             
@@ -55949,15 +54591,11 @@ as
                                     @replnick, 0
         end
                 
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate90')
     end
     else if (@metatype = @METADATA_TYPE_Contents)
     begin
         if @inlineage is not null
         begin
--- DEBUG            select @lineage_old = lineage from dbo.MSmerge_contents with (UPDLOCK ROWLOCK index = 1) 
--- DEBUG                where tablenick = @tablenick and rowguid = @rowguid
             set @lineage = @inlineage
 
             if @incolv is not null
@@ -55983,7 +54621,6 @@ as
             -- @inlineage is null; thus, @incolv is also null
             select @lineage = lineage, @colv = colv1 from dbo.MSmerge_contents with (UPDLOCK ROWLOCK index = 1) where tablenick = @tablenick and
                 rowguid = @rowguid
--- DEBUG            set @lineage_old= @lineage
 
             if @conflict_lineage is not null
             begin
@@ -56015,25 +54652,19 @@ as
                     @replnick, 0
         end
 
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate90')
     end
     else if (@metatype = @METADATA_TYPE_ContentsDeferred)
     begin
         if @inlineage is not null
         begin
--- DEBUG            if @conflict_lineage is not null set @lineage_old= @conflict_lineage
--- DEBUG            else set @lineage_old= 0x00 
             set @lineage = @inlineage
         end
         else if @conflict_lineage is not null
         begin
--- DEBUG            set @lineage_old= @conflict_lineage
             set @lineage = { fn UPDATELINEAGE(@conflict_lineage, @replnick, @oldmaxversion+1) }
         end
         else
         begin
--- DEBUG            set @lineage_old= 0x00
             set @lineage = { fn UPDATELINEAGE(0x0, @replnick, @oldmaxversion+1) }
         end
 
@@ -56091,26 +54722,20 @@ as
             return 1
          end
                         
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate90')
         commit tran
     end
     else if (@metatype = @METADATA_TYPE_SystemDelete) -- e.g., used to cope with dup key / dup index
     begin
         if @inlineage is not null
         begin
--- DEBUG            if @conflict_lineage is not null set @lineage_old= @conflict_lineage
--- DEBUG            else set @lineage_old= 0x00 
             set @lineage = @inlineage
         end
         else if @conflict_lineage is not null
         begin
--- DEBUG        set @lineage_old= @conflict_lineage
             set @lineage = { fn UPDATELINEAGE(@conflict_lineage, @replnick, @oldmaxversion+1) }
         end
         else
         begin
--- DEBUG            set @lineage_old= 0x00
             set @lineage = { fn UPDATELINEAGE(0x0, @replnick, @oldmaxversion+1) }
         end
 
@@ -56154,14 +54779,11 @@ as
                     @replnick, 0
         end
         commit
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, lineage_old, lineage_new, generation_new, type, successcode, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @lineage_old, @lineage, 0, @metatype, 0, getdate(), 'sp_MSdummyupdate90')
     end
     return (0)
 go
 
-
-create procedure sys.sp_MSdummyupdate_logicalrecord @parent_rowguid uniqueidentifier, @parent_nickname int, @dest_common_gen bigint
+create procedure BP_PRD.sys.sp_MSdummyupdate_logicalrecord @parent_rowguid uniqueidentifier, @parent_nickname int, @dest_common_gen bigint
 as
     declare @retcode int
     
@@ -56205,7 +54827,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSdummyupdatelightweight
+create procedure BP_PRD.sys.sp_MSdummyupdatelightweight
     (@tablenick	int, 
      @rowguid	uniqueidentifier,
      @action	int,
@@ -56364,22 +54986,7 @@ as
 	return (0)
 go
 
---
--- Name: sp_MSdynamicsnapshotjobexistsatdistributor
---
--- Description: Returns the dynamic snapshot job_id if it exists for the given 
---				publisher and host. 
---
--- Returns: 	0 - succeeded
---			1 - failed
---
--- Security: Only members of the 'sysadmin' server role and members of the 
---           'db_owner' database role at the distributor can call this 
---           procedure. This procedure is intended to be called through 
---           the distributor_admin remote login in the case where
---           the distributor is a different machine from the publisher. 
---
-create procedure sys.sp_MSdynamicsnapshotjobexistsatdistributor 
+create procedure BP_PRD.sys.sp_MSdynamicsnapshotjobexistsatdistributor 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -56543,7 +55150,7 @@ BEGIN
     begin
         IF IS_MEMBER('db_owner') != 1
         BEGIN
-            -- "Only members of the sysadmin or db_owner roles can perform this operation."
+            -- 'Only members of the sysadmin or db_owner roles can perform this operation.'
             RAISERROR(21050, 14, -1)
             RETURN 1
         END
@@ -56574,7 +55181,7 @@ BEGIN
     END
     ELSE
     BEGIN
-        -- "Invalid value given for parameter @type."
+        -- 'Invalid value given for parameter @type.'
         RAISERROR(15021, 16, -1, '@type')
         RETURN 1
     END
@@ -56589,7 +55196,7 @@ BEGIN
                                       @DbPrincipal = @dbprincipal
     IF @@ERROR <> 0 OR @retcode NOT IN (0, 1)
     BEGIN
-        -- "Another '@type' agent for the subscription(s) is running or the server is working on a previous request by the same agent."
+        -- 'Another '@type' agent for the subscription(s) is running or the server is working on a previous request by the same agent.'
         RAISERROR(21036, 16, -1, @type)
         RETURN 1
     END
@@ -56604,7 +55211,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSenum_distribution
+create procedure BP_PRD.sys.sp_MSenum_distribution
 (
     @name nvarchar(100) = '%',
     @show_distdb bit = 0,
@@ -56679,7 +55286,6 @@ begin
             name LIKE @name and (subscriber_id is NULL or subscriber_id>=0) and
 			(@exclude_anonymous = 0 or anonymous_agent_id is null)
         for read only
-
 
     OPEN hC
     FETCH hC INTO @agent_id, @distribution_agent, @publisher_id, @publisher_db, @publication,
@@ -56756,7 +55362,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_distribution_s
+create procedure BP_PRD.sys.sp_MSenum_distribution_s
 (
     @name nvarchar(100), 
     @hours int = 0, /* @hours < 0 will return TOP 100 */
@@ -56844,7 +55450,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_distribution_sd
+create procedure BP_PRD.sys.sp_MSenum_distribution_sd
 (
     @name nvarchar(100),
     @time datetime = NULL
@@ -56912,7 +55518,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_logicalrecord_changes
+create procedure BP_PRD.sys.sp_MSenum_logicalrecord_changes
     (@partition_id int,
      @genlist varchar(8000), 
      @parent_nickname int = 0, 
@@ -57305,7 +55911,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSenum_logreader
+create procedure BP_PRD.sys.sp_MSenum_logreader
 (
     @name nvarchar(100) = '%',
     @show_distdb bit = 0
@@ -57421,7 +56027,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_logreader_s
+create procedure BP_PRD.sys.sp_MSenum_logreader_s
 (
     @name nvarchar(100),
     @hours int = 0, /* @hours < 0 will return TOP 100 */
@@ -57500,7 +56106,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_logreader_sd
+create procedure BP_PRD.sys.sp_MSenum_logreader_sd
 (
     @name nvarchar(100),
     @time datetime = NULL
@@ -57559,7 +56165,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_merge
+create procedure BP_PRD.sys.sp_MSenum_merge
 (
     @name nvarchar(100) = '%',
     @show_distdb bit = 0,
@@ -57639,7 +56245,6 @@ begin
 			(@exclude_anonymous = 0 or a.anonymous_subid is null)
 
         for read only
-
 
     OPEN hC
     FETCH hC INTO @publisher_id, @subscriber_id, @publisher_db, @subscriber_db,
@@ -57841,7 +56446,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_merge_s
+create procedure BP_PRD.sys.sp_MSenum_merge_s
 (
 @name nvarchar(100), 
 @hours int = 0, /* @hours < 0 will return TOP 100 */
@@ -57944,7 +56549,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_merge_sd
+create procedure BP_PRD.sys.sp_MSenum_merge_sd
 (
 @name nvarchar(100),
 @time datetime = NULL
@@ -58012,7 +56617,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_merge_subscriptions
+create procedure BP_PRD.sys.sp_MSenum_merge_subscriptions
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -58075,7 +56680,7 @@ begin
             publication = @publication and
             publication_type = 2 -- Merge 
 
-    create table #merge_subscriptions (subscriber sysname NOT NULL,  status int NOT NULL, 
+    create table #merge_subscriptions (subscriber BP_PRD.create table #merge_subscriptions (subscriber sysname NOT NULL,  status int NOT NULL, 
         subscriber_db sysname NOT NULL, type int NOT NULL, agent_name nvarchar(100) NOT NULL, last_action nvarchar(255) NULL, 
         action_time nvarchar(24) NULL, start_time nvarchar(24) NULL, duration int NULL, 
         delivery_rate float NULL,
@@ -58196,7 +56801,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_merge_subscriptions_90_publication
+create procedure BP_PRD.sys.sp_MSenum_merge_subscriptions_90_publication
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -58272,7 +56877,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_merge_subscriptions_90_publisher
+create procedure BP_PRD.sys.sp_MSenum_merge_subscriptions_90_publisher
 (
     @publisher sysname,
     @topNum int = NULL, 
@@ -58344,7 +56949,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_metadataaction_requests
+create procedure BP_PRD.sys.sp_MSenum_metadataaction_requests
                             @tablenick_last int,
                             @rowguid_last uniqueidentifier,
                             @pubid uniqueidentifier,
@@ -58370,7 +56975,7 @@ as
         return 0
 go
 
-create procedure sys.sp_MSenum_qreader 
+create procedure BP_PRD.sys.sp_MSenum_qreader 
 (
     @name nvarchar(100) = '%',
     @show_distdb bit = 0
@@ -58515,7 +57120,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_qreader_s 
+create procedure BP_PRD.sys.sp_MSenum_qreader_s 
 (
     @publication_id int = 0, 
     @hours int = 0, /* @hours < 0 will return TOP 100 */
@@ -58755,7 +57360,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_qreader_sd 
+create procedure BP_PRD.sys.sp_MSenum_qreader_sd 
 (
     @publication_id int = 0, 
     @time datetime = NULL
@@ -58853,7 +57458,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_replication_agents
+create procedure BP_PRD.sys.sp_MSenum_replication_agents
 (
     @type int,                                      -- agent type 
     @exclude_anonymous bit = 0,
@@ -58969,7 +57574,7 @@ begin
                         --
                         if @type = @snapshot
                         begin
-                            create table #snapshot (dbname sysname collate database_default not null, name nvarchar(100) collate database_default not null, 
+                            create table #snapshot (dbname BP_PRD.create table #snapshot (dbname sysname collate database_default not null, name nvarchar(100) collate database_default not null, 
                                 status int NOT NULL,
                                 publisher sysname collate database_default not null, publisher_db sysname collate database_default not null, 
                                 publication sysname collate database_default not null,
@@ -58984,7 +57589,7 @@ begin
                         end
                         else if @type = @logreader
                         begin
-                            create table #logreader (dbname sysname collate database_default not null, name nvarchar(100) collate database_default not null,  
+                            create table #logreader (dbname BP_PRD.create table #logreader (dbname sysname collate database_default not null, name nvarchar(100) collate database_default not null,  
                                 status int NOT NULL,
                                 publisher sysname collate database_default not null, publisher_db sysname collate database_default not null,
                                 start_time nvarchar(24) collate database_default null, time nvarchar(24) collate database_default null, duration int NULL,
@@ -58998,7 +57603,7 @@ begin
                         end
                         else if @type = @distribution
                         begin
-                            create table #distribution (dbname sysname collate database_default not null, 
+                            create table #distribution (dbname BP_PRD.create table #distribution (dbname sysname collate database_default not null, 
                                 name nvarchar(100) collate database_default not null,  
                                 status int NOT NULL,
                                 publisher sysname collate database_default not null, publisher_db sysname collate database_default not null, 
@@ -59018,7 +57623,7 @@ begin
                         end
                         else if @type = @merge
                         begin
-                            create table #merge (dbname sysname collate database_default not null, name nvarchar(100) collate database_default not null, 
+                            create table #merge (dbname BP_PRD.create table #merge (dbname sysname collate database_default not null, name nvarchar(100) collate database_default not null, 
                                 status int NOT NULL,
                                 publisher sysname collate database_default not null, publisher_db sysname collate database_default not null, publication sysname collate database_default null,
                                 subscriber sysname collate database_default null, subscriber_db sysname collate database_default null, subscription_type int NULL,
@@ -59036,7 +57641,7 @@ begin
                         end
                         else if @type = @qreader
                         begin
-                            create table #qreader (dbname sysname collate database_default not null, 
+                            create table #qreader (dbname BP_PRD.create table #qreader (dbname sysname collate database_default not null, 
                                 name nvarchar(100) collate database_default not null, status int NOT NULL,
                                 start_time nvarchar(24) collate database_default null, time nvarchar(24) collate database_default null, duration int NULL,
                                 comments nvarchar(255) collate database_default null, 
@@ -59113,8 +57718,7 @@ begin
 end
 go
 
-
-create  procedure sys.sp_MSenum_replication_job
+create  procedure BP_PRD.sys.sp_MSenum_replication_job
 (
     @job_id uniqueidentifier,
 	@step_uid uniqueidentifier = null
@@ -59211,7 +57815,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_replqueues
+create procedure BP_PRD.sys.sp_MSenum_replqueues
 (
     @curdistdb    sysname = NULL
 )
@@ -59312,7 +57916,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_replsqlqueues
+create procedure BP_PRD.sys.sp_MSenum_replsqlqueues
 (
     @curdistdb    sysname = NULL
 )
@@ -59414,7 +58018,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_snapshot
+create procedure BP_PRD.sys.sp_MSenum_snapshot
 (
     @name nvarchar(100) = '%',
     @show_distdb bit = 0
@@ -59535,7 +58139,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_snapshot_s
+create procedure BP_PRD.sys.sp_MSenum_snapshot_s
 (
     @name nvarchar(100),
     @hours int = 0, /* @hours < 0 will return TOP 100 */
@@ -59575,7 +58179,6 @@ begin
     select @failure = 6
     select @initializing = 1
     select @start_agent_comment = formatmessage(20529)
-
 
     SELECT @publisher_id = publisher_id, @publisher_db = publisher_db, 
         @publication = publication, @agent_id = id
@@ -59641,7 +58244,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_snapshot_sd
+create procedure BP_PRD.sys.sp_MSenum_snapshot_sd
 (
     @name nvarchar(100),
     @time datetime = NULL
@@ -59727,7 +58330,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenum_subscriptions
+create procedure BP_PRD.sys.sp_MSenum_subscriptions
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -59787,7 +58390,7 @@ begin
             publication = @publication and
             (publication_type = 0 or publication_type = 1)
 
-    create table #subscriptions (subscriber sysname NOT NULL,  status int NOT NULL, 
+    create table #subscriptions (subscriber BP_PRD.create table #subscriptions (subscriber sysname NOT NULL,  status int NOT NULL, 
         subscriber_db sysname NOT NULL,
         type tinyint NOT NULL, distribution_agent nvarchar(100) NOT NULL, last_action nvarchar(4000) NULL, 
         action_time nvarchar(24) NULL, start_time nvarchar(24) NULL, duration int NULL, 
@@ -59904,8 +58507,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSenumallpublications
+create procedure BP_PRD.sys.sp_MSenumallpublications
 (
     @publisherdb sysname = N'%', 
     @replication_type tinyint = null, -- by default return all types of publication
@@ -60327,8 +58929,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_MSenumallsubscriptions
+create procedure BP_PRD.sys.sp_MSenumallsubscriptions
 (
 @subscription_type    nvarchar(5) = N'push', 
 @subscriber_db        sysname=N'%'
@@ -60398,7 +58999,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSenumarticleslightweight
+create procedure BP_PRD.sys.sp_MSenumarticleslightweight
 	@pubid	uniqueidentifier
 as
     declare @retcode int
@@ -60416,7 +59017,7 @@ as
 			  a.lightweight=1
 go
 
-create procedure sys.sp_MSenumchanges
+create procedure BP_PRD.sys.sp_MSenumchanges
     (@maxrows int, 
      @genlist varchar(8000), 
      @tablenick int = 0, 
@@ -60467,15 +59068,11 @@ as
     if (@tablenick is null)
     begin
         RAISERROR(14043, 16, -1, '@tablenick', 'sp_MSenumchanges')
--- DEBUG    insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG    values (1, getdate(), 'sp_MSenumchanges: tablenick null')
         return (1)
     end
     if (@genlist is null)
     begin
         RAISERROR(14043, 16, -1, '@genlist', 'sp_MSenumchanges')
--- DEBUG    insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG    values (2, getdate(), 'sp_MSenumchanges: genlist null')
         return (1)
     end
     
@@ -60608,28 +59205,14 @@ as
     IF @@ERROR<>0 or @retcode<>0
     
     begin
--- DEBUG    insert into MSmerge_debug 
--- DEBUG        (okay, twhen, comment)
--- DEBUG        values (4, getdate(), 'sp_MSenumchanges: select_proc failed')
         RETURN (1)
     end
-
--- DEBUG    insert into MSmerge_debug (okay, artnick, twhen, comment)   
--- DEBUG        values (0, @tablenick, getdate(), 'sp_MSenumchanges; maxrows=' + convert(nvarchar, @maxrows) 
--- DEBUG        + ', startguid=' + convert(nchar(36), @rowguid) 
--- DEBUG        + ', genlist=' + rtrim(ltrim(@genlist)) + ', pubid=' + convert(nchar(36), @pubid))
-
--- DEBUG execute ('
--- DEBUG    insert into MSmerge_debug
--- DEBUG        (okay, artnick, rowguid, generation_new, lineage_new, twhen, comment) ' +
--- DEBUG        @selecttop + ' 0, tablenick, rowguid, generation, lineage, getdate(), ''sp_MSenumchanges''
--- DEBUG        from #cont order by rowguid')
 
     drop table #cont
     return (0)
 go
 
-create procedure sys.sp_MSenumchanges_belongtopartition
+create procedure BP_PRD.sys.sp_MSenumchanges_belongtopartition
 (
     @partition_id int = 0,
     @maxrows int = 0, 
@@ -60809,7 +59392,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSenumchanges_notbelongtopartition
+create procedure BP_PRD.sys.sp_MSenumchanges_notbelongtopartition
 (
     @partition_id int = 0,
     @maxrows int = 0, 
@@ -60839,7 +59422,6 @@ as
     declare @pcpm_rowguid_clause nvarchar(100)
     declare @mc_rowguid_clause nvarchar(100)
     declare @orderby_clause nvarchar(200)
-
 
     -- Security Checking 
     -- PAL user has access
@@ -61007,15 +59589,11 @@ as
        
     end
     
--- DEBUG    insert into MSmerge_debug (okay, artnick, twhen, comment)   
--- DEBUG        values (0, @tablenick, getdate(), 'sp_MSenumchanges_notbelongtopartition; maxrows=' + convert(nvarchar, @maxrows) 
--- DEBUG        + ', startguid=' + convert(nchar(36), @rowguid) 
--- DEBUG        + ', genlist=' + rtrim(ltrim(@genlist)) + ', pubid=' + convert(nchar(36), @pubid))
 
     return (0)
 go
 
-create procedure sys.sp_MSenumchangesdirect
+create procedure BP_PRD.sys.sp_MSenumchangesdirect
     (@maxrows int, 
      @genlist varchar(2000), 
      @tablenick int = 0, 
@@ -61171,7 +59749,6 @@ as
                         order by mc.tablenick, mc.rowguid'         
         end
 
-
         select @currentmaxschemaguidforarticle = sys.fn_GetArticleSchemaVersionGuid(@artid, @pubid)
 
         /* At the publisher, if the max schema guid for article has changed and is different from the agent's schema version for article raise error */
@@ -61191,7 +59768,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSenumchangeslightweight
+create procedure BP_PRD.sys.sp_MSenumchangeslightweight
 	@pubid			uniqueidentifier,
 	@tablenick		int,
 	@lastrowguid	uniqueidentifier,
@@ -61206,7 +59783,6 @@ as
 	declare @METADATA_TYPE_InsertLightweight tinyint
 	declare @METADATA_TYPE_UpdateLightweight tinyint
 	declare @maxint  int
-
 
 	-- do permission checking
 	exec @retcode = sys.sp_MSreplcheck_subscribe
@@ -61254,7 +59830,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MSenumcolumns
+create procedure BP_PRD.sys.sp_MSenumcolumns
     @pubid uniqueidentifier,
     @artid uniqueidentifier,
     @maxschemaguidforarticle uniqueidentifier = NULL,
@@ -61315,9 +59891,7 @@ AS
     
     return 0
 
-go
-
-create procedure sys.sp_MSenumcolumnslightweight
+create procedure BP_PRD.sys.sp_MSenumcolumnslightweight
 	@pubid uniqueidentifier,
 	@artid uniqueidentifier
 AS
@@ -61327,7 +59901,6 @@ AS
 
 	exec @retcode= sys.sp_MSreplcheck_publish
 	if @@error <> 0 or @retcode <> 0 return (1)
-
 
 	select @postfix= procname_postfix
 		from dbo.sysmergearticles 
@@ -61341,7 +59914,7 @@ AS
 	return 0
 go
 
-create procedure sys.sp_MSenumdeletes_forpartition
+create procedure BP_PRD.sys.sp_MSenumdeletes_forpartition
 (
     @partition_id int = 0,
     @maxrows int = 0, 
@@ -61528,15 +60101,11 @@ as
             return 1
     end
     
--- DEBUG    insert into MSmerge_debug (okay, artnick, twhen, comment)   
--- DEBUG        values (0, @tablenick, getdate(), 'sp_MSenumdeletes_forpartition; maxrows=' + convert(nvarchar, @maxrows) 
--- DEBUG        + ', startguid=' + convert(nchar(36), @rowguid) 
--- DEBUG        + ', genlist=' + rtrim(ltrim(@genlist)) + ', pubid=' + convert(nchar(36), @pubid))
 
     return (0)
 go
 
-create procedure sys.sp_MSenumdeleteslightweight
+create procedure BP_PRD.sys.sp_MSenumdeleteslightweight
 	@pubid			uniqueidentifier,
 	@tablenick		int,
 	@lastrowguid	uniqueidentifier,
@@ -61626,8 +60195,7 @@ as
 	return 0
 go
 
-
-create procedure sys.sp_MSenumdeletesmetadata(
+create procedure BP_PRD.sys.sp_MSenumdeletesmetadata(
     @pubid uniqueidentifier, 
     @maxrows int, 
     @genlist varchar(8000), 
@@ -61682,13 +60250,6 @@ as
     select @generation_clause3 = ' '
     
             
--- DEBUG    insert into MSmerge_debug
--- DEBUG        (okay, artnick, twhen, comment)
--- DEBUG        values (0, @tablenick, getdate(), 'sp_MSenumdeletesmetadata; maxrows=' + convert(nvarchar, @maxrows) 
--- DEBUG        + ', startguid=' + convert(nchar(36), @rowguid) 
--- DEBUG        + ', genlist=' + rtrim(ltrim(@genlist)) + ', pubid=' + convert(nchar(36), @pubid)
--- DEBUG        + ', filter_partialdeletes=' + convert(nchar(1), @filter_partialdeletes) 
--- DEBUG        + ', specified_article_only=' + convert(nchar(1), @specified_article_only))
 
     set @pubidstr = '''' + convert(nchar(36), @pubid) + ''''
 
@@ -62048,7 +60609,6 @@ begin
 end
 go
 
-
 CREATE PROCEDURE sys.sp_MSenumgenerations
     (@genstart bigint, 
      @pubid uniqueidentifier, 
@@ -62383,10 +60943,7 @@ as
     return (0)
 go
 
--- This is similiar to sp_MSEnumChanges, except @temp_cont (generated by sp_MSsetupbelongs) 
--- is used instead of MSMerge_Contents plus genlist,maxgen,mingen
--- And @rowguid as input is used as marker
-create procedure sys.sp_MSenumpartialchanges
+create procedure BP_PRD.sys.sp_MSenumpartialchanges
     (@maxrows int, 
      @temp_cont sysname, 
      @tablenick int, 
@@ -62421,9 +60978,6 @@ as
     if (@tablenick is null)
     begin
     RAISERROR(14043, 16, -1, '@tablenick', 'sp_MSenumpartialchanges')
--- DEBUG    insert into MSmerge_debug 
--- DEBUG        (okay, twhen, comment)
--- DEBUG        values (1, getdate(), 'sp_MSenumpartialchanges: tablenick null')
     return (1)
     end
 
@@ -62499,28 +61053,14 @@ as
                                         
     IF @@ERROR<>0 or @retcode<>0 
     begin
--- DEBUG    insert into MSmerge_debug 
--- DEBUG        (okay, twhen, comment)
--- DEBUG        values (3, getdate(), 'sp_MSenumpartialchanges: select_proc failed')
         RETURN (1)
     end
-
--- DEBUG    insert into MSmerge_debug
--- DEBUG        (okay, artnick, twhen, comment)
--- DEBUG        values (0, @tablenick, getdate(), 'sp_MSenumpartialchanges; maxrows=' + convert(nvarchar, @maxrows) 
--- DEBUG        + ', startguid=' + convert(nchar(36), @rowguid) + ', pubid=' + convert(nchar(36), @pubid))  
-
--- DEBUG execute ('
--- DEBUG    insert into MSmerge_debug
--- DEBUG        (okay, artnick, rowguid, generation_new, lineage_new, twhen, comment) ' +
--- DEBUG        @selecttop + ' 0, tablenick, rowguid, generation, lineage, getdate(), ''sp_MSenumpartialchanges''
--- DEBUG        from #cont order by rowguid')
 
     drop table #cont
     return (0)
 go
 
-create procedure sys.sp_MSenumpartialchangesdirect
+create procedure BP_PRD.sys.sp_MSenumpartialchangesdirect
     (@maxrows int, 
      @temp_cont sysname, 
      @tablenick int, 
@@ -62630,8 +61170,7 @@ as
     return (0)
 go
 
--- If the default parameters change, make sure to adjust the corresponding values in OSQL_Q_ENUMPARTIALDELETES_90.
-create procedure sys.sp_MSenumpartialdeletes
+create procedure BP_PRD.sys.sp_MSenumpartialdeletes
     (@maxrows int,
      @tablenick int,
      @rowguid uniqueidentifier,
@@ -62700,12 +61239,6 @@ as
         end
     end
 
--- DEBUG    insert into MSmerge_debug
--- DEBUG        (okay, artnick, twhen, comment)
--- DEBUG        values (0, @tablenick, getdate(), 'sp_MSenumpartialdeletes; maxrows=' + convert(nvarchar, @maxrows) 
--- DEBUG        + ', startguid=' + convert(nchar(36), @rowguid) + ', bookmark=' + convert(nvarchar, @bookmark)
--- DEBUG        + ', specified_article_only=' + convert(nchar(1), @specified_article_only))
-
     if (@tablenick < 1)
     begin
         if @pubid is null
@@ -62719,14 +61252,9 @@ as
                     order by sma.processing_order desc, t.tablenick desc, t.rowguid asc' )
         IF @@ERROR <>0 
         begin
--- DEBUG    insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG        values (1, getdate(), 'sp_MSenumpartialdeletes: select from notbelong failed')
             return (1)  
         end
 
--- DEBUG    execute ('insert into MSmerge_debug (okay, artnick, rowguid, generation_new, lineage_new, twhen, comment) ' +
--- DEBUG                @selecttop + ' 0, tablenick, rowguid, COALESCE (generation, 0), lineage, getdate(), ''sp_MSenumpartialdeletes'' 
--- DEBUG                from ' + @tablenotbelongs + ' order by tablenick desc, rowguid asc' )
     end
     else 
     begin
@@ -62755,17 +61283,8 @@ as
 
                 if @@ERROR<>0
                 begin
--- DEBUG            insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG            values (2, getdate(), 'sp_MSenumpartialdeletes: select from notbelong failed')
                     return (1)
                 end                     
-
--- DEBUG        execute ('insert into MSmerge_debug (okay, artnick, rowguid, generation_new, lineage_new, type, twhen, comment) ' + 
--- DEBUG                    @selecttop + ' 0, tablenick, rowguid, COALESCE (generation, 0), lineage, type, getdate(), ''sp_MSenumpartialdeletes: @specified_article_only = 1''
--- DEBUG                    from ' + @tablenotbelongs + '
--- DEBUG                    where  tablenick = ' + @tnstring + ' and 
--- DEBUG                    bookmark > ' + @lowrangestr + ' 
--- DEBUG                    order by rowguid' )
 
             end
             else
@@ -62791,18 +61310,9 @@ as
 
                 if @@ERROR<>0
                 begin
--- DEBUG            insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG                values (3, getdate(), 'sp_MSenumpartialdeletes: select from notbelong failed')
                     return (1)
                 end                     
 
--- DEBUG        execute ('insert into MSmerge_debug (okay, artnick, rowguid, generation_new, lineage_new, type, twhen, comment)
--- DEBUG                    select 0, tablenick, rowguid, COALESCE (generation, 0), lineage, type, getdate(), ''sp_MSenumpartialdeletes: @specified_article_only <> 1'' 
--- DEBUG                    from ' + @tablenotbelongs + '
--- DEBUG                    where  ((tablenick = ' + @tnstring + ' and 
--- DEBUG                    bookmark > ' + @lowrangestr + ' and bookmark <= ' + @highrangestr + ') or
--- DEBUG                    tablenick < ' + @tnstring + ') 
--- DEBUG                    order by tablenick desc, rowguid asc' )
             end
         end
 
@@ -62819,17 +61329,9 @@ as
                             order by tablenick, rowguid' )
                 IF @@ERROR <>0 
                 begin
--- DEBUG                insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG                values (4, getdate(), 'sp_MSenumpartialdeletes: select from notbelong failed')
                     return (1)  
                 end
 
--- DEBUG                execute ('insert into MSmerge_debug (okay, artnick, rowguid, generation_new, lineage_new, type, twhen, comment) ' + 
--- DEBUG                    @selecttop + ' 0, tablenick, rowguid, COALESCE (generation, 0), lineage, type, getdate(), ''sp_MSenumpartialdeletes: @specified_article_only = 0''
--- DEBUG                    from ' + @tablenotbelongs + '
--- DEBUG                    where  tablenick = ' + @tnstring + ' and 
--- DEBUG                    rowguid > ' + @rgstring + ' 
--- DEBUG                    order by rowguid' )
             end
             else
             begin
@@ -62853,24 +61355,16 @@ as
 
                 IF @@ERROR <>0 
                 begin
--- DEBUG                insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG                values (5, getdate(), 'sp_MSenumpartialdeletes: select from notbelong failed')
                     return (1)  
                 end
 
--- DEBUG                execute ('insert into MSmerge_debug (okay, artnick, rowguid, generation_new, lineage_new, type, twhen, comment) ' + 
--- DEBUG                    @selecttop + ' 0, tablenick, rowguid, COALESCE (generation, 0), lineage, type, getdate(), ''sp_MSenumpartialdeletes: @specified_article_only = 0''
--- DEBUG                    from ' + @tablenotbelongs + '
--- DEBUG                    where  ((tablenick = ' + @tnstring + ' and 
--- DEBUG                    rowguid > ' + @rgstring + ') or tablenick < ' + @tnstring + ')
--- DEBUG                    order by tablenick desc, rowguid asc' )
             end
         end
     end
     return (0)
 go
 
-create procedure sys.sp_MSenumpubreferences (@publication sysname)
+create procedure BP_PRD.sys.sp_MSenumpubreferences (@publication sysname)
 as
     declare @pubid uniqueidentifier
     declare @retcode int
@@ -62936,8 +61430,7 @@ as
 	return (0)
 go
 
-
-create procedure sys.sp_MSenumreplicas (
+create procedure BP_PRD.sys.sp_MSenumreplicas (
     @pubid uniqueidentifier)
 as
     declare @inactive tinyint
@@ -62974,8 +61467,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MSenumreplicas90
+create procedure BP_PRD.sys.sp_MSenumreplicas90
 as
     declare @inactive tinyint
 
@@ -63007,7 +61499,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSenumretries
+create procedure BP_PRD.sys.sp_MSenumretries
     (@tname nvarchar(126),
      @maxrows int,
      @tablenick int,
@@ -63097,8 +61589,7 @@ as
         return (0)  
 go
 
-
-create procedure sys.sp_MSenumschemachange(
+create procedure BP_PRD.sys.sp_MSenumschemachange(
     @pubid              uniqueidentifier,
     @schemaversion      int,
     @compatlevel        int = 7000000, -- default=SPHINX
@@ -63165,8 +61656,7 @@ begin
 end
 go
 
-
-create  procedure sys.sp_MSenumsubscriptions
+create  procedure BP_PRD.sys.sp_MSenumsubscriptions
 (
     @subscription_type    nvarchar(5) = N'push',
     @publisher        sysname = N'%',
@@ -63431,8 +61921,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSenumthirdpartypublicationvendornames(
+create procedure BP_PRD.sys.sp_MSenumthirdpartypublicationvendornames(
 @within_db bit = 0
 )
 
@@ -63449,7 +61938,7 @@ as
         SELECT @distbit = 16
 
         -- Get publication list
-        create table #pubdbs (publisher_db sysname collate database_default not null)
+        create table #pubdbs (publisher_db BP_PRD.create table #pubdbs (publisher_db sysname collate database_default not null)
 
         insert into #pubdbs select name from master.dbo.sysdatabases where 
             category & @distbit <> 0 and 
@@ -63484,7 +61973,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSestimatemergesnapshotworkload (
+create procedure BP_PRD.sys.sp_MSestimatemergesnapshotworkload (
     @publication sysname
     )
 as
@@ -63553,7 +62042,6 @@ begin
     declare @rowcount                       int
     declare @name                           sysname
     declare @status                         int
-
 
     -- Security check
     select @table_created = 0
@@ -64188,7 +62676,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSestimatesnapshotworkload (
+create procedure BP_PRD.sys.sp_MSestimatesnapshotworkload (
     @publication sysname
     )
 as
@@ -64246,7 +62734,6 @@ begin
     declare @name                           sysname
     declare @pre_creation_command           int
     				,@result int
-
 
     select @table_created = 0
 
@@ -64757,7 +63244,6 @@ begin
 
     -- Subscription activation cost?
 
-
     -- Cost for flushing the cabinet
     if @compress_snapshot = 1
     begin
@@ -64791,7 +63277,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSevalsubscriberinfo 
+create procedure BP_PRD.sys.sp_MSevalsubscriberinfo 
     (@pubid uniqueidentifier)
 as
     -- Security Checking 
@@ -64819,8 +63305,7 @@ as
     return(0)
 go
 
-
-create procedure sys.sp_MSevaluate_change_membership_for_all_articles_in_pubid (@pubid uniqueidentifier) as
+create procedure BP_PRD.sys.sp_MSevaluate_change_membership_for_all_articles_in_pubid (@pubid uniqueidentifier) as
 begin
     declare @membership_eval_proc_name nvarchar(130), @retcode int
 
@@ -64859,8 +63344,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSevaluate_change_membership_for_pubid (@pubid uniqueidentifier, @partition_id int = NULL) as
+create procedure BP_PRD.sys.sp_MSevaluate_change_membership_for_pubid (@pubid uniqueidentifier, @partition_id int = NULL) as
 begin
     declare @membership_eval_proc_name nvarchar(130), @retcode int
     
@@ -64895,7 +63379,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSevaluate_change_membership_for_row (@tablenick int, @rowguid uniqueidentifier = NULL, @marker uniqueidentifier = NULL) as
+create procedure BP_PRD.sys.sp_MSevaluate_change_membership_for_row (@tablenick int, @rowguid uniqueidentifier = NULL, @marker uniqueidentifier = NULL) as
 begin
     declare @membership_eval_proc_name nvarchar(130), @retcode int
     
@@ -64952,7 +63436,7 @@ Error:
 end
 go
 
-create procedure sys.sp_MSexecwithlsnoutput
+create procedure BP_PRD.sys.sp_MSexecwithlsnoutput
 (
 	@command	nvarchar(max),
 	@xact_seqno	varbinary(16) output
@@ -65153,7 +63637,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_MSfetchidentityrange 
+create procedure BP_PRD.sys.sp_MSfetchidentityrange 
     @tablename          nvarchar(270),
     @adjust_only        bit,
     @table_owner                sysname = NULL
@@ -65201,7 +63685,6 @@ end
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck @tablenick=@tablenick
 if @retcode<>0 or @@ERROR<>0 return (1)
 
--- check if this is a republisher.
 if exists (select pubid from dbo.sysmergearticles where artid=@artid and sys.fn_MSmerge_islocalpubid(pubid)=0)
     select @is_republisher=1
 else
@@ -65214,13 +63697,6 @@ begin
     return (1)
 end
 
-
--- get new identity. Now we do not know who the subscriber is. So it we cannot keep track
--- of this subscriber. However we will allocate a new range and update the publisher's entry
--- which indicates how much has been allocated.
--- we will allocate a new identity irrespective of what @adjust_only has been set to. This is
--- because the merge agent always calls mostly with @adjust_only being set to true and in the
--- one case that it is set to false it should really be true.
 begin tran
 save tran fetchidentityrange
 
@@ -65239,12 +63715,8 @@ begin
     goto FAILURE
 end
 
--- add one or subscract one from max_used for backward compatibility. This means between ranges we will always skip 
--- one number. That is fine if not Daytona will have overlapping ranges. Though SQL downlevel subscribers will be fine
--- Daytona will have overlapping ranges and hence this increment.
 select @next_seed = @next_seed + @ident_increment
 
--- the following is fine even in case of negative increments since the @range value is negative
 if @is_republisher=0
 begin
     update dbo.MSmerge_identity_range set max_used = @next_seed+@range where artid=@artid and subid=@pubid and is_pub_range=1
@@ -65395,8 +63867,6 @@ begin
                     N''
 end
 
-
---initialize article collection for agents.
 select @identity_support, @next_seed, @range, @threshold
 
 return 0
@@ -65409,8 +63879,7 @@ FAILURE:
     return 1
 go
 
-
-create procedure sys.sp_MSfillupmissingcols(@publication sysname, @source_table sysname)
+create procedure BP_PRD.sys.sp_MSfillupmissingcols(@publication sysname, @source_table sysname)
 AS
 declare @sync_objid         int
 declare @missingcolid        int
@@ -65427,7 +63896,6 @@ declare @missingindex        int
 declare @retcode            int
 declare @missing_index_absolute int
 
--- Security check
 exec @retcode= dbo.sp_MSreplcheck_publish
 if @@error <> 0 or @retcode <> 0 return (1)
 
@@ -65439,7 +63907,6 @@ select @excludedbm = 0x00
 select @missingcolid = 1 --instead of using the minimal column_id in sys.columns with the same id, as we used to do 
 select TOP 1 @maxcolid = column_id from sys.columns where object_id=@id order by column_id DESC
  
--- check if this is a republisher. If it is then pick the missing_cols value from the row for the subscriber.
 select @missing_cols = missing_cols, 
        @missing_col_count = missing_col_count
     from dbo.sysmergearticles where objid=@id and pubid<>@pubid and sys.fn_MSmerge_islocalpubid(pubid)=0
@@ -65476,8 +63943,7 @@ UPDATE dbo.sysmergearticles set excluded_col_count = @excludedcolcnt,
         where objid = @id and pubid=@pubid
 go
 
-
-create procedure sys.sp_MSfilterclause
+create procedure BP_PRD.sys.sp_MSfilterclause
 	@publication nvarchar(258), @article nvarchar(258)
 as
 	/* Return a text column as multiple readtexts of maxcol length */
@@ -65510,7 +63976,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MSfix_6x_tasks 
+create procedure BP_PRD.sys.sp_MSfix_6x_tasks 
 (
     @publisher sysname = NULL
     ,@publisher_engine_edition int = NULL
@@ -65604,7 +64070,6 @@ BEGIN
                 return(1)
             FETCH hCtasks INTO @name
         END
---looks like this code is missing close and deallocate of the cursor hCtasks anyway:)
 
 */
 
@@ -65716,8 +64181,7 @@ UNDO:
 END
 go
 
-
-create procedure sys.sp_MSfixlineageversions
+create procedure BP_PRD.sys.sp_MSfixlineageversions
 as
 	declare @lNick int -- length of nickname in bytes
 	declare @lVer int -- length of version in bytes
@@ -65833,7 +64297,7 @@ as
 	return (0)
 go
 
-create procedure sys.sp_MSfixupbeforeimagetables(@pubid uniqueidentifier)
+create procedure BP_PRD.sys.sp_MSfixupbeforeimagetables(@pubid uniqueidentifier)
 AS
 begin
     -- This procedure updates the generations in the existing rows in the before-image
@@ -65892,9 +64356,7 @@ begin
     return 0
 end
 
-go
-
-create procedure sys.sp_MSflush_access_cache
+create procedure BP_PRD.sys.sp_MSflush_access_cache
 AS
     -- Delete all the 'dead' connections in MSpublisher_access.
     
@@ -65985,7 +64447,6 @@ BEGIN
 	--		drop case since we have no way of knowing 
 	--		when we can drop the qreader agent (i.e. 
 	--		when the publisher is using it still...)
-
 
 	-------------------------
 	-- DROP SNAPSHOT AGENTS
@@ -66122,7 +64583,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_MSforcereenumeration
+create procedure BP_PRD.sys.sp_MSforcereenumeration
 	@tablenick	int,
 	@rowguid	uniqueidentifier
 as
@@ -66162,15 +64623,14 @@ as
 	return 0
 go
 
-
 /*
- * This is the worker proc for all of the "for each" type procs.  Its function is to read the
+ * This is the worker proc for all of the 'for each' type procs.  Its function is to read the
  * next replacement name from the cursor (which returns only a single name), plug it into the
- * replacement locations for the commands, and execute them.  It assumes the cursor "hCForEach***"
+ * replacement locations for the commands, and execute them.  It assumes the cursor 'hCForEach***'
  * has already been opened by its caller.
  * worker_type is a parameter that indicates whether we call this for a database (1) or for a table (0)
  */
-create proc sys.sp_MSforeach_worker
+create proc BP_PRD.sys.sp_MSforeach_worker
 	@command1 nvarchar(2000), @replacechar nchar(1) = N'?', @command2 nvarchar(2000) = null, @command3 nvarchar(2000) = null, @worker_type int =1
 as
 
@@ -66323,13 +64783,12 @@ as
 	return 0
 go
 
-
 /*
  * The following table definition will be created by SQLDMO at start of each connection.
  * We don't create it here temporarily because we need it in Exec() or upgrade won't work.
  */
 
-create proc sys.sp_MSforeachdb
+create proc BP_PRD.sys.sp_MSforeachdb
 	@command1 nvarchar(2000), @replacechar nchar(1) = N'?', @command2 nvarchar(2000) = null, @command3 nvarchar(2000) = null,
 	@precommand nvarchar(2000) = null, @postcommand nvarchar(2000) = null
 as
@@ -66371,8 +64830,7 @@ as
 	return @retval
 go
 
-
-create proc sys.sp_MSforeachtable
+create proc BP_PRD.sys.sp_MSforeachtable
 	@command1 nvarchar(2000), @replacechar nchar(1) = N'?', @command2 nvarchar(2000) = null,
    @command3 nvarchar(2000) = null, @whereand nvarchar(2000) = null,
 	@precommand nvarchar(2000) = null, @postcommand nvarchar(2000) = null
@@ -66402,7 +64860,7 @@ as
 	return @retval
 go
 
-create procedure sys.sp_MSgenerateexpandproc(
+create procedure BP_PRD.sys.sp_MSgenerateexpandproc(
 @tablenick int, @procname sysname
 )
 AS
@@ -66421,7 +64879,6 @@ begin
             @join_filter_id int
     declare @gen_change_threshold int
     declare @replnick binary(6)
-
 
     -- Security Check
     exec @retcode= sys.sp_MSreplcheck_publish
@@ -66445,7 +64902,7 @@ begin
     select @gen_change_threshold = min(isnull(generation_leveling_threshold,0)) from dbo.sysmergepublications
         where pubid in (select pubid from dbo.sysmergearticles where nickname = @tablenick)
     select @command1 = '
-create procedure dbo.' + quotename(@procname) + ' (@marker uniqueidentifier, @inherit_pastchanges_generation bigint, @parent_being_updated bit = 0, @trigger_type int = 1) as '
+create procedure BP_PRD.dbo.' + quotename(@procname) + ' (@marker uniqueidentifier, @inherit_pastchanges_generation bigint, @parent_being_updated bit = 0, @trigger_type int = 1) as '
 
     insert into #tmpproccmd (phase, cmdtext) values (1, @command1)
 
@@ -66826,7 +65283,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSget_DDL_after_regular_snapshot (
+create procedure BP_PRD.sys.sp_MSget_DDL_after_regular_snapshot (
     @publication sysname, 
     @ddl_present bit output
 )
@@ -66862,9 +65319,7 @@ as
     else
         select @ddl_present = 0
 
-go
-
-create procedure sys.sp_MSget_MSmerge_rowtrack_colinfo as
+create procedure BP_PRD.sys.sp_MSget_MSmerge_rowtrack_colinfo as
 set nocount on
 
 create table #temp_MSmerge_rowtrack
@@ -66884,7 +65339,7 @@ select * from #temp_MSmerge_rowtrack where 1 = 2
 drop table #temp_MSmerge_rowtrack
 go
 
-create procedure sys.sp_MSget_agent_names
+create procedure BP_PRD.sys.sp_MSget_agent_names
 (
     @publication sysname, 
     @subscriber sysname = NULL, 
@@ -67020,9 +65475,7 @@ begin
 end
 go
 
-
--- This proc is called by distribution agent.
-create procedure sys.sp_MSget_attach_state
+create procedure BP_PRD.sys.sp_MSget_attach_state
     @publisher      sysname,                    -- publishing server name
     @publisher_db   sysname,                    -- publishing database name. If NULL then same as current db
     @publication    sysname,                    -- publication name,
@@ -67050,7 +65503,7 @@ AS
             and subscription_type = @subscription_type
 go
 
-create procedure sys.sp_MSget_dynamic_snapshot_location (
+create procedure BP_PRD.sys.sp_MSget_dynamic_snapshot_location (
             @pubid uniqueidentifier,
             @partition_id int, 
             @dynsnap_location nvarchar(255) OUTPUT) 
@@ -67110,9 +65563,7 @@ begin
 end
 go
 
--- this stored procedure should be called on the subscriber to check if the
--- subscriber needs a new identity range
-create procedure sys.sp_MSget_identity_range_info
+create procedure BP_PRD.sys.sp_MSget_identity_range_info
     @subid uniqueidentifier,
     @artid uniqueidentifier,
     @range_type tinyint, -- 1=publisher range, 2=subscriber range
@@ -67279,25 +65730,7 @@ as
 
     return 0
 
-go
-
-
--- Procedure sp_MSget_jobstate
---
--- Descriptions: 
---    The proc takes a specific Job ID and returns the Job State of the job
---        Returns a row with one column job_state
---        Returns a row with NULL if job does not exist
--- 
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSget_jobstate
+create procedure BP_PRD.sys.sp_MSget_jobstate
     @job_id             UNIQUEIDENTIFIER
 AS
 BEGIN
@@ -67399,8 +65832,6 @@ begin
 	else
 		select @sync_with_backup = 1
 
-
-
 	if @for_truncate = 0
 	begin
 		select top 1 @max_xact_id = rt.xact_id, @max_xact_seqno = rt.xact_seqno
@@ -67434,7 +65865,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_latest_peerlsn 
+create procedure BP_PRD.sys.sp_MSget_latest_peerlsn 
 (
     @originator_publication sysname,
     @originator sysname,
@@ -67464,7 +65895,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_load_hint
+create procedure BP_PRD.sys.sp_MSget_load_hint
 (
 @qualified_source_object_name nvarchar(4000),
 @qualified_sync_object_name nvarchar(4000),
@@ -67576,7 +66007,7 @@ return (0)
 end
 go
 
-create procedure sys.sp_MSget_log_shipping_new_sessionid 
+create procedure BP_PRD.sys.sp_MSget_log_shipping_new_sessionid 
 (
     @agent_id uniqueidentifier      -- primary/secondary ID
     ,@agent_type tinyint                    -- 0 = Backup, 1 = Copy, 2 = Restore
@@ -67624,7 +66055,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_logicalrecord_lineage(@pubid uniqueidentifier, @parent_nickname int, @parent_rowguid uniqueidentifier, @dest_common_gen bigint)
+create procedure BP_PRD.sys.sp_MSget_logicalrecord_lineage(@pubid uniqueidentifier, @parent_nickname int, @parent_rowguid uniqueidentifier, @dest_common_gen bigint)
 AS
 begin
         
@@ -67691,7 +66122,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_max_used_identity
+create procedure BP_PRD.sys.sp_MSget_max_used_identity
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -67815,23 +66246,6 @@ BEGIN
     return(0)
 END
 
---
--- Name: sp_MSget_repl_commands
---
--- Descriptions: Note: sp_MSget_repl_commands and sp_MSget_repl_count have very similar
---  queries. Any changes to one of them should be applied to all others.
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- BUGBUG: If resource db support does not improve - this SP should be moved back
--- to instdist.sql for supportability. It accesses system catalogs
--- 
--- Security: Public procedure invoked via RPC. PAL check
--- Requires Certificate signature for catalog access
---
 raiserror(15339,-1,-1,'sp_MSget_repl_commands')
 go
 
@@ -67931,7 +66345,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_oledbinfo
+create procedure BP_PRD.sys.sp_MSget_oledbinfo
     @server nvarchar(128),  -- the name by which the oledb datasource is referred to.
     @infotype nvarchar(128) = NULL,
     @login nvarchar(128) = NULL,
@@ -67972,7 +66386,7 @@ create procedure sys.sp_MSget_oledbinfo
     END
 go
 
-create procedure sys.sp_MSget_partitionid_eval_proc (
+create procedure BP_PRD.sys.sp_MSget_partitionid_eval_proc (
         @partition_id_eval_proc sysname,
         @pubid uniqueidentifier,
         @publication_number smallint,
@@ -67991,7 +66405,7 @@ begin
 
     create table #tmpevalproccmd (phase int NOT NULL, cmdtext nvarchar(max) collate database_default null)
 
-    select @cmdtemp = N'create procedure dbo.' + sys.fn_replreplacesinglequote(quotename(@partition_id_eval_proc)) collate database_default + N' @partition_id int OUTPUT, @maxgen_whenadded bigint OUTPUT, @host_name_override sysname = NULL, @suser_sname_override sysname = NULL as
+    select @cmdtemp = N'create procedure BP_PRD.create procedure dbo.' + sys.fn_replreplacesinglequote(quotename(@partition_id_eval_proc)) collate database_default + N' @partition_id int OUTPUT, @maxgen_whenadded bigint OUTPUT, @host_name_override sysname = NULL, @suser_sname_override sysname = NULL as
     begin
         declare @retcode int
         declare @function_values_overridden bit
@@ -68221,7 +66635,7 @@ error:
 end
 go
 
-create procedure sys.sp_MSget_publication_from_taskname
+create procedure BP_PRD.sys.sp_MSget_publication_from_taskname
     @taskname     sysname,
     @publisher    sysname, 
     @publisherdb  sysname,
@@ -68240,7 +66654,7 @@ as
         return 1
     end
 
-    -- Parse out publication name from the task name "publisher_publisherdb_publication_number"
+    -- Parse out publication name from the task name 'publisher_publisherdb_publication_number'
     -- Expect publisher name
     if charindex(@publisher, @taskname) <> 1
     begin
@@ -68274,7 +66688,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSget_publisher_rpc 
+create procedure BP_PRD.sys.sp_MSget_publisher_rpc 
 (
     @trigger_id int
     ,@connect_string nvarchar(2000) output
@@ -68568,7 +66982,7 @@ begin
     where id = @agent_id
 
     -- Find out if there are any PeerToPeer publications for this agent
-    -- If so, we will generate extra "originator" columns in the resultset
+    -- If so, we will generate extra 'originator' columns in the resultset
     exec sys.sp_MSispeertopeeragent @agent_id = @agent_id, @is_p2p = @IsP2PAgent output
 
     -- Get the last xact_seqno on the pub db FIRST. It will
@@ -68621,7 +67035,6 @@ begin
 			 if(@max_xact_seqno is null)
 				select @max_xact_seqno = @last_xact_seqno
 	end
-
 
     -- If there's nothing to do, return here to avoid more queries.
     if @max_xact_seqno = @last_xact_seqno
@@ -69241,7 +67654,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_repl_error 
+create procedure BP_PRD.sys.sp_MSget_repl_error 
 (
     @id int
 )
@@ -69272,7 +67685,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_session_statistics 
+create procedure BP_PRD.sys.sp_MSget_session_statistics 
 (
 @session_id int
 ) 
@@ -69317,7 +67730,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_shared_agent 
+create procedure BP_PRD.sys.sp_MSget_shared_agent 
 (
     @server_name    sysname,
     @database_name    sysname,
@@ -69407,7 +67820,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSget_snapshot_history
+create procedure BP_PRD.sys.sp_MSget_snapshot_history
 (
 	@agent_id 	int,
 	@timestamp	timestamp,
@@ -69436,8 +67849,7 @@ as
     select runstatus, comments, timestamp from MSsnapshot_history where agent_id = @agent_id and timestamp > @timestamp    
 go
 
-
-create procedure sys.sp_MSget_subscriber_partition_id (@publication sysname, @partition_id int OUTPUT, @maxgen_whenadded bigint OUTPUT, @host_name_override sysname = NULL, @suser_sname_override sysname = NULL) 
+create procedure BP_PRD.sys.sp_MSget_subscriber_partition_id (@publication sysname, @partition_id int OUTPUT, @maxgen_whenadded bigint OUTPUT, @host_name_override sysname = NULL, @suser_sname_override sysname = NULL) 
 as
 begin
     set nocount on
@@ -69516,7 +67928,7 @@ begin
 end            
 go
 
-create procedure sys.sp_MSget_synctran_commands
+create procedure BP_PRD.sys.sp_MSget_synctran_commands
 (
 	@publication  sysname,
 	@article      sysname = 'all',
@@ -69642,7 +68054,6 @@ BEGIN
         */
         select @has_ts = 0, @has_ident = 0
 
-
         -- get publication metadata
         SELECT	@is_synctran		= allow_sync_tran,
                 @is_queued			= allow_queued_tran
@@ -69741,7 +68152,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSget_type_wrapper
+create procedure BP_PRD.sys.sp_MSget_type_wrapper
 (
     @tabid int, 
     @colid int, 
@@ -69842,7 +68253,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgetalertinfo
+create procedure BP_PRD.sys.sp_MSgetalertinfo
 	@includeaddresses bit = 0
 as
 	/* Return all alert info at one go, for performance reasons. */
@@ -69893,8 +68304,7 @@ as
 			AlertFailSafeNetSendAddress = @FailSafeNetSendAddress
 go
 
--- retrieve recgen information about all alternate publications known at this replica
-create procedure sys.sp_MSgetalternaterecgens
+create procedure BP_PRD.sys.sp_MSgetalternaterecgens
         @repid uniqueidentifier
 as
 
@@ -69925,7 +68335,7 @@ as
         return @retcode 
 go
 
-create procedure sys.sp_MSgetarticlereinitvalue 
+create procedure BP_PRD.sys.sp_MSgetarticlereinitvalue 
 (
     @subscriber sysname,
     @subscriberdb sysname,
@@ -69970,8 +68380,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSgetchangecount(
+create procedure BP_PRD.sys.sp_MSgetchangecount(
     @startgen   bigint,
     @changes    int output,
     @updates    int output,
@@ -69989,9 +68398,8 @@ as
     return (0)      
 go
 
-
 /* Add the conflict table pointer to dbo.sysmergearticles - Used by reconciler */
-create procedure sys.sp_MSgetconflictinsertproc (
+create procedure BP_PRD.sys.sp_MSgetconflictinsertproc (
     @artid              uniqueidentifier,
     @pubid              uniqueidentifier = NULl,
     @output int = 1,
@@ -70142,8 +68550,7 @@ create procedure sys.sp_MSgetconflictinsertproc (
     
 go
 
-
-create procedure sys.sp_MSgetconflicttablename
+create procedure BP_PRD.sys.sp_MSgetconflicttablename
 @publication sysname,
 @source_object nvarchar(520),
 @conflict_table sysname = NULL OUTPUT
@@ -70161,7 +68568,6 @@ declare @ownername          sysname
 declare @artid              uniqueidentifier
 declare @create_conflict_table_on_pub bit
 
--- Security check
 exec @retcode= dbo.sp_MSreplcheck_publish
 if @@error <> 0 or @retcode <> 0 return (1)
 
@@ -70172,7 +68578,6 @@ select @pubid=pubid from dbo.sysmergepublications where name=@publication and pu
 
 select @objid = object_id(@source_object)
 
--- Raise error if objid is still null at this point
 if @objid is null
 begin
     declare @db_name nvarchar(130)
@@ -70201,7 +68606,6 @@ if len(@publication) + len(@article) > 110         -- SYSNAME minus 'MSmerge_con
 else
     select @object_name = 'MSmerge_conflict_' + @publication + '_' + @article
 
--- return one more column here indicating that the conflict table should be created
 select @create_conflict_table_on_pub = 1
 if @conflict_table is NULL
     select @object_name, @create_conflict_table_on_pub
@@ -70211,7 +68615,7 @@ else
 return @retcode
 go
 
-create procedure sys.sp_MSgetdatametadatabatch
+create procedure BP_PRD.sys.sp_MSgetdatametadatabatch
     (@pubid uniqueidentifier,
      @tablenickarray varbinary(2000),
      @rowguidarray varbinary(8000),
@@ -70306,29 +68710,7 @@ as
     return (0)
 go
 
---
--- Name: 
---		sp_MSgetdbversion
--- 
--- Description: 
---		Retrieves the guid restore version value and converts it to a nearly unique int.
--- 	
--- Parameters: 
---	 	See the procedure definition.
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
--- 
--- Security: 
---		Called by dist agents  (must be made public).
---		SYSADMIN or DBO of db
---  Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSgetdbversion
+create procedure BP_PRD.sys.sp_MSgetdbversion
 (
 	@current_version int output
 )
@@ -70357,7 +68739,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgetdynamicsnapshotapplock(
+create procedure BP_PRD.sys.sp_MSgetdynamicsnapshotapplock(
     @publication sysname,
     @partition_id int,
     @lock_acquired int OUTPUT,
@@ -70431,46 +68813,7 @@ as
     return @retcode
 go
 
---
--- Name: sp_MSgetdynsnapvalidationtoken
---
--- Description: This procedure is used by the snapshot agent to generate a
---              validation token that is specific to the partition of the
---              dynamic snapshot being generated. The validation token
---              consists of a header with the following format:
---
---              <regular snapshot timestamp directory>,<dynamic snapshot seqno>,
---
---              concatenated with a string component that is based on 
---              evaluating the validate_subscriber_info property
---              of the specified publication using the same algorithm that
---              dynamic snapshot uses for evaluating dynamic filters (i.e. 
---              simple replacement of suser_sname(), system_user with 
---              @dynamic_filter_login; hostname() evalutes to the 
---              -DynamicFilterHostname property of the snapshot agent if 
---              specified or the current COMPUTERNAME if not) If the 
---              validate_subscriber_info property of the specified publication
---              is null or it cannot be retrieved due to errors such as the
---              specified publication does not exists, database is not enabled
---              for merge replication etc., a validation token of
---              '<<Undefined dynamic snapshot validation token>>' is returned.
---              <dynamic snapshot seqno> is simply a randomly assigned guid
---              that uniquely identifies the dynamic snapshot.
---
---              The validation token is persisted with the generated dynamic 
---              snapshot and can be used by the merge agent to check whether
---              the correct dynamic snapshot is applied to the subscriber.
---
--- Parameters: @publication sysname (mandatory)
---             @dynamic_filter_login (mandatory) 
---
--- Result: 'dynsnapvalidationtoken' nvarchar(4000)
---
--- Security: sp_MSgetdynsnapvalidationtoken is marked as a public interface
---           object. PAL check is performed inside the procedure.
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSgetdynsnapvalidationtoken (
+create procedure BP_PRD.sys.sp_MSgetdynsnapvalidationtoken (
     @publication             sysname,
     @dynamic_filter_login    sysname
     )
@@ -70553,8 +68896,7 @@ begin
 end     
 go
 
--- retrieve generations with genstatus 4
-create procedure sys.sp_MSgetgenstatus4rows
+create procedure BP_PRD.sys.sp_MSgetgenstatus4rows
     (@repid uniqueidentifier)
 as
     declare @retcode    int
@@ -70608,7 +68950,7 @@ BEGIN
 	    										@publisher = @publisher
 		IF @@ERROR <> 0 OR @retcode <> 0 OR @distributor_rpc IS NULL OR @distribution_db IS NULL
 		BEGIN
-			-- "The Distributor has not been installed correctly."
+			-- 'The Distributor has not been installed correctly.'
 			RAISERROR (20036, 16, -1)
 			RETURN 1
 		END
@@ -70645,8 +68987,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_MSgetlastrecgen
+create procedure BP_PRD.sys.sp_MSgetlastrecgen
     (@repid uniqueidentifier)
 as
     declare @retcode    int
@@ -70674,8 +69015,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MSgetlastsentgen
+create procedure BP_PRD.sys.sp_MSgetlastsentgen
     (@repid uniqueidentifier)
 as
     declare @retcode    int
@@ -70702,8 +69042,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MSgetlastsentrecgens
+create procedure BP_PRD.sys.sp_MSgetlastsentrecgens
     (@repid uniqueidentifier)
 as
     declare @retcode    int
@@ -70724,7 +69063,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSgetlastupdatedtime(
+create procedure BP_PRD.sys.sp_MSgetlastupdatedtime(
     @publisher sysname,
     @publisher_db sysname,
     @publication sysname,
@@ -70760,7 +69099,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgetlightweightmetadatabatch
+create procedure BP_PRD.sys.sp_MSgetlightweightmetadatabatch
 	@pubid			uniqueidentifier,
 	@artnickarray	varbinary(2000),
 	@rowguidarray	varbinary(8000)
@@ -70856,10 +69195,7 @@ as
 Failure:
 	return 1
 
-go
-
-
-create procedure sys.sp_MSgetmakegenerationapplock
+create procedure BP_PRD.sys.sp_MSgetmakegenerationapplock
     @head_of_queue int OUTPUT
     as
     set nocount on
@@ -70930,10 +69266,7 @@ create procedure sys.sp_MSgetmakegenerationapplock
 EXIT_PROC:
     return @retcode
 
-go
-
-
-create procedure sys.sp_MSgetmakegenerationapplock_90
+create procedure BP_PRD.sys.sp_MSgetmakegenerationapplock_90
     @wait_time int,
     @lock_acquired int OUTPUT
     as
@@ -70982,13 +69315,7 @@ create procedure sys.sp_MSgetmakegenerationapplock_90
 
     return @retcode
 
-go
-
--- this proc returns the max generation to bcp out. This essentially same
--- as finding a possible watermark generation. The generation is the max
--- closed generation lower than the min open generation.
--- this proc is called by snapshot to determine till how much it should bcp
-create procedure sys.sp_MSgetmaxbcpgen
+create procedure BP_PRD.sys.sp_MSgetmaxbcpgen
     @max_closed_gen bigint output
 as
     declare @retcode int
@@ -71009,7 +69336,7 @@ as
         select @max_closed_gen = 0
 go
 
-create procedure sys.sp_MSgetmaxsnapshottimestamp
+create procedure BP_PRD.sys.sp_MSgetmaxsnapshottimestamp
 (
 	@agent_id 	int = NULL,
 	@timestamp	timestamp output
@@ -71047,7 +69374,7 @@ as
     
 go
 
-create procedure sys.sp_MSgetmergeadminapplock
+create procedure BP_PRD.sys.sp_MSgetmergeadminapplock
     @timeout int = -1,
     @lockmode nvarchar(32) = N'Exclusive',
     @lock_acquired int = NULL OUTPUT,
@@ -71092,7 +69419,7 @@ as
     return @retcode
 go
 
-create procedure sys.sp_MSgetmetadata_changedlogicalrecordmembers 
+create procedure BP_PRD.sys.sp_MSgetmetadata_changedlogicalrecordmembers 
         (@parent_rowguid uniqueidentifier, 
         @commongen bigint,
         @parent_nickname int)
@@ -71124,7 +69451,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSgetmetadatabatch
+create procedure BP_PRD.sys.sp_MSgetmetadatabatch
     (@pubid uniqueidentifier,
      @tablenickarray varbinary(2000),
      @rowguidarray varbinary(8000),
@@ -71161,9 +69488,6 @@ as
     set @tnoffset = 1
     set @guidoffset = 1
     set @tnlength = datalength(@tablenickarray)
-
--- DEBUG    declare @debugtime datetime
--- DEBUG    set @debugtime= getdate()
 
     -- walk through arrays and populate temp table
     while (@tnoffset < @tnlength)
@@ -71258,8 +69582,6 @@ as
             
         end
  
--- DEBUG        insert into MSmerge_debug (okay, artnick, rowguid, type, generation_new, lineage_new, twhen, comment)
--- DEBUG            values (0, @tablenick, @rowguid, @type, @generation, @lineage, @debugtime, 'sp_MSgetmetadatabatch')
 
         -- insert values into temp table
         if @lightweight <> 0
@@ -71294,7 +69616,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSgetmetadatabatch90
+create procedure BP_PRD.sys.sp_MSgetmetadatabatch90
 (
     @pubid uniqueidentifier,
     @tablenickarray varbinary(2000),
@@ -71354,7 +69676,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSgetmetadatabatch90new
+create procedure BP_PRD.sys.sp_MSgetmetadatabatch90new
     (@pubid uniqueidentifier,
      @tablenick int,
      @rowguid1 uniqueidentifier,
@@ -71580,10 +69902,7 @@ as
 
     return 0
 
-go
-
-
-create procedure sys.sp_MSgetonerow
+create procedure BP_PRD.sys.sp_MSgetonerow
     (@tablenick int,
      @rowguid uniqueidentifier,
      @pubid uniqueidentifier = NULL)
@@ -71605,7 +69924,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSgetonerowlightweight
+create procedure BP_PRD.sys.sp_MSgetonerowlightweight
 	@tablenick	int,
 	@rowguid	uniqueidentifier,
 	@pubid		uniqueidentifier
@@ -71629,7 +69948,7 @@ as
 	return (0)
 go
 
-create procedure sys.sp_MSgetpeerconflictrow 
+create procedure BP_PRD.sys.sp_MSgetpeerconflictrow 
 (
 	@originator_id nvarchar(32) = '%' -- int
 	,@origin_datasource nvarchar(32) = '%' --int
@@ -71690,7 +70009,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgetpeerlsns
+create procedure BP_PRD.sys.sp_MSgetpeerlsns
 (
 	@publication	sysname,
  	@xlockrows 		bit
@@ -71759,7 +70078,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgetpeertopeercommands
+create procedure BP_PRD.sys.sp_MSgetpeertopeercommands
 (
     @publication	sysname,
     @article        sysname = N'all',
@@ -72067,7 +70386,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgetpeerwinnerrow
+create procedure BP_PRD.sys.sp_MSgetpeerwinnerrow
 (
 	@originator_id nvarchar(32) = '%', --int
 	@row_id nvarchar(19) = '%',   -- timestamp
@@ -72115,8 +70434,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSgetpubinfo (
+create procedure BP_PRD.sys.sp_MSgetpubinfo (
 	@publication	sysname,	/* The publication name */
 	@publisher		sysname,
 	@pubdb			sysname
@@ -72135,7 +70453,7 @@ create procedure sys.sp_MSgetpubinfo (
 			
 go
 
-create procedure sys.sp_MSgetreplicainfo
+create procedure BP_PRD.sys.sp_MSgetreplicainfo
     (@publisher            sysname,
      @publisher_db        sysname,
      @publication         sysname,
@@ -72286,8 +70604,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MSgetreplicastate
+create procedure BP_PRD.sys.sp_MSgetreplicastate
         @pubid uniqueidentifier,
         @subid uniqueidentifier,
         @replicastate uniqueidentifier output
@@ -72304,8 +70621,7 @@ as
         return (0)
 go
 
-
-create procedure sys.sp_MSgetrowmetadata
+create procedure BP_PRD.sys.sp_MSgetrowmetadata
     (@tablenick int,
      @rowguid uniqueidentifier,
      @generation bigint output,
@@ -72394,7 +70710,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSgetrowmetadatalightweight
+create procedure BP_PRD.sys.sp_MSgetrowmetadatalightweight
 	(@tablenick			int,
 	 @rowguid			uniqueidentifier,
 	 @type  			tinyint output,
@@ -72445,8 +70761,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MSgetsetupbelong_cost
+create procedure BP_PRD.sys.sp_MSgetsetupbelong_cost
 AS
         declare @article_statistics_table nvarchar(400)
         declare @quoted_article_statistics_table nvarchar(400)
@@ -72465,7 +70780,7 @@ AS
     end
 go
 
-create procedure sys.sp_MSgetsubscriberinfo 
+create procedure BP_PRD.sys.sp_MSgetsubscriberinfo 
     (@pubid uniqueidentifier)
 as
     -- Security Checking 
@@ -72490,8 +70805,7 @@ as
     select @expr
 go
 
-
-create procedure sys.sp_MSgetsupportabilitysettings
+create procedure BP_PRD.sys.sp_MSgetsupportabilitysettings
     (@publisher            sysname,
      @publisher_db         sysname,
      @publication          sysname,
@@ -72563,7 +70877,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSgettrancftsrcrow 
+create procedure BP_PRD.sys.sp_MSgettrancftsrcrow 
 ( 
     @tran_id sysname,
     @row_id sysname,                    -- cannot be NULL
@@ -72759,7 +71073,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSgettranconflictrow 
+create procedure BP_PRD.sys.sp_MSgettranconflictrow 
 ( 
     @tran_id sysname = '%',                     -- % = ALL transactions for the article
     @row_id sysname = '%',                     -- % = ALL rows for a given transaction
@@ -72843,20 +71157,6 @@ begin
 end
 go
 
---
--- Name:
--- 		sp_MSgetversion
---
--- Description:
---     Get the server product version, license type and package type.
---     This procedure is for downlevel compatibility since pre-SQL11 subscribers depend on it.  
---	
--- Returns:
---  	0-Success 
---
--- Security: 
---      Internal
-
 CREATE PROCEDURE sys.sp_MSgetversion
 AS
 BEGIN
@@ -72895,27 +71195,7 @@ BEGIN
 END
 go
 
---
--- Name: 
---        sp_MSgrantconnectreplication
--- 
--- Description: 
---        This procedure will grant "connect replication" to the passed in user.
---        This permission is required for NFR to be honored.
---  
--- Parameters:
---
--- Returns: 
---        0 - succeeded
---        1 - failed
---
--- Result: 
---        None
---
--- Security: 
---        
---
-create procedure sys.sp_MSgrantconnectreplication
+create procedure BP_PRD.sys.sp_MSgrantconnectreplication
 (
     @user_name sysname
 )
@@ -72928,7 +71208,7 @@ begin
 end
 go
 
-create procedure sys.sp_MShaschangeslightweight
+create procedure BP_PRD.sys.sp_MShaschangeslightweight
 	@pubid		uniqueidentifier,
 	@haschanges int output
 as
@@ -72951,17 +71231,7 @@ as
 	return 0
 go
 
--- =============================================
--- sp_MShasdbaccess
--- =============================================
--- List all databases a user has access to
--- along with their db properties
---
--- PARAMETERS: N/A
---
--- REMARKS: for SQL Server 7.0 and 8.0
--- =============================================
-create proc sys.sp_MShasdbaccess
+create proc BP_PRD.sys.sp_MShasdbaccess
 as
 
 set nocount on
@@ -72985,9 +71255,6 @@ NULL as 'NotRecovered' -- DATABASEPROPERTY(name, N'IsNotRecovered') always retur
 from sys.sysdatabases
 where has_dbaccess(name) = 1
 order by name
--- =============================================
--- end sp_MShasdbaccess
--- =============================================
 go
 
 CREATE PROCEDURE sys.sp_MShelp_article 
@@ -73021,12 +71288,11 @@ begin
 end
 go
 
-create procedure sys.sp_MShelp_distdb (     
+create procedure BP_PRD.sys.sp_MShelp_distdb (     
     @publisher_name     sysname
 )
 as
 
--- Current user must have PAL access to at least one distribution database
 declare @retcode int
 exec @retcode = sys.sp_MSrepl_DistributorPALAccess
 if @retcode <> 0 or @@error <> 0
@@ -73363,7 +71629,7 @@ EndRaiseError:
 end
 go
 
-create procedure sys.sp_MShelp_identity_property
+create procedure BP_PRD.sys.sp_MShelp_identity_property
 (
     @tablename  sysname,
     @ownername  sysname = NULL
@@ -73403,7 +71669,6 @@ select @replicated_already = 0
         ,@next_seed    = NULL
         ,@current_max    = NULL
 
--- Security check
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck
 if (@retcode <> 0) or (@@error <> 0)
 begin
@@ -73519,11 +71784,6 @@ begin
         end
     end
 end
---
--- process identityrangemanagementoption
--- NFR enabled
--- check if auto_identity_support is set - AUTO else MANUAL
---
 if (@auto_identity_support != 1) and 
     exists (select name from sys.columns
                 where object_id = @objid and
@@ -73750,7 +72010,6 @@ begin
 end
 go
 
-
 CREATE PROCEDURE sys.sp_MShelp_profile (        
     @agent_id   int,
     @agent_type int,
@@ -73851,7 +72110,6 @@ as
         from msdb..MSagent_parameters
         where profile_id = @profile_id
 go
-
 
 CREATE PROCEDURE sys.sp_MShelp_profilecache (        
     @profile_name sysname = NULL
@@ -73984,7 +72242,6 @@ BEGIN
 
 	
 
-
        select p.publisher_db as publisher_db, p.publication as publication, p.publication_id as publication_id, 
        p.publication_type as publication_type, 
         --thirdparty_flag, 
@@ -74042,7 +72299,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MShelp_repl_agent
+create procedure BP_PRD.sys.sp_MShelp_repl_agent
 (
 	@publisher		sysname,
 	@publisher_db	sysname,
@@ -74068,7 +72325,7 @@ begin
 	-- make sure this is a replication agent.
 	if sessionproperty('replication_agent') != 1
 	begin
-		-- "You do not have sufficient permission to run this command."
+		-- 'You do not have sufficient permission to run this command.'
 		raiserror(14260, 16, -1)
 		return 1 
 	end
@@ -74077,7 +72334,7 @@ begin
 	if is_srvrolemember('sysadmin') != 1 
 		and is_member('db_owner') != 1
 	begin
-		-- "You do not have sufficient permission to run this command."
+		-- 'You do not have sufficient permission to run this command.'
 		raiserror(14260, 16, -1)
 		return 1
 	end
@@ -74085,7 +72342,7 @@ begin
 	-- Has to be executed from distribution database
 	if sys.fn_MSrepl_isdistdb (db_name()) != 1
 	begin
-		-- "sp_MShelp_repl_agent can only be executed in the distribution database."
+		-- 'sp_MShelp_repl_agent can only be executed in the distribution database.'
 		raiserror (21482, 16, -1, 'sp_MShelp_repl_agent', 'distribution')
 		return 1
 	end
@@ -74159,7 +72416,7 @@ begin
 end
 go
 
-create procedure sys.sp_MShelp_replication_status
+create procedure BP_PRD.sys.sp_MShelp_replication_status
 (
     @publisher 				sysname = '%',
     @publisher_db 			sysname = '%',
@@ -74365,18 +72622,7 @@ Err_Handler:
 end
 go
 
---
--- Name: sp_MShelp_replication_table
---
--- Description: This procedure is used by DMO to get tables can be published and
---              their properties
---
--- Returns: error code
---
--- Security: 'db_owner' publishing database
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MShelp_replication_table (
+create procedure BP_PRD.sys.sp_MShelp_replication_table (
     @table_name sysname = NULL,
     @table_owner sysname = NULL
     ) 
@@ -74390,9 +72636,6 @@ declare @OPT_ENABLED_FOR_P2P int
 
 select @OPT_ENABLED_FOR_P2P = 0x1
 
---
--- Security Check
---
 exec @retcode = sys.sp_MSreplcheck_publish
 if @@ERROR <> 0 or @retcode <> 0
     return(1)
@@ -74535,37 +72778,7 @@ drop table #merge_objects
 drop table #tran_objects
 go
 
-
-
---
--- Name: 
---		sp_MShelp_snapshot_agent
--- 
--- Description: 
---		Retrieves snapshot agent information.
---
--- Parameters: 
---		See the procedure definition.
---
--- Returns: 
---		0 - succeeded
---		1 - failed
---
--- Result: 
---		None
---
--- Security: 
---
---	This procedure can only be called by replication_agent. It must
---	be executed in the distribution db and the caller must have the
---	following:
---
---		Min Requirement
---		---------------------
---		DBO Distribution DBO
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MShelp_snapshot_agent
+create procedure BP_PRD.sys.sp_MShelp_snapshot_agent
 (
 	@agent_id int
 )
@@ -74581,7 +72794,7 @@ begin
 	-- make sure this is a replication agent.
 	-- if sessionproperty('replication_agent') != 1
 	-- begin
-	-- 	-- "You do not have sufficient permission to run this command."
+	-- 	-- 'You do not have sufficient permission to run this command.'
 	-- 	raiserror(14260, 16, -1)
 	-- 	return 1 
 	-- end
@@ -74591,7 +72804,7 @@ begin
 	if is_srvrolemember('sysadmin') != 1 
 		and is_member('db_owner') != 1
 	begin
-		-- "You do not have sufficient permission to run this command."
+		-- 'You do not have sufficient permission to run this command.'
 		raiserror(14260, 16, -1)
     	return 1
     end
@@ -74905,29 +73118,6 @@ begin
 end
 go
 
-
---
--- Name:    
---          sp_MShelp_subscription_status
---          
--- Description: 
---          Determine whether a subscription is out-of-date
---  
--- Security: 
---          Must be 'sysadmin' or 'db_owner' in distribution database.
--- Requires Certificate signature for catalog access
---
--- Returns:
---          Success/failure
---      
--- Notes:
---          This stored procedure is called by sp_MSdrop_subscription_status to determine whether
---          a subscription is currently out-of-date. If out-of-date, the output
---          parameter @out_of_date is set to 0.  If not out-of-date, @out_of_date is set to 1.
---          This stored procedure runs at the distributor in the distribution database.
--- Owner:   
---          <current owner> 
-
 CREATE PROCEDURE sys.sp_MShelp_subscription_status(
 @publisher          sysname,
 @publisher_db       sysname,
@@ -75011,12 +73201,12 @@ FAILURE:
     return (1)
 go
 
-create procedure sys.sp_MShelpcolumns
+create procedure BP_PRD.sys.sp_MShelpcolumns
 @tablename nvarchar(517), @flags int = 0, @orderby nvarchar(10) = null, @flags2 int = 0
 as
 
    /* For non-string columns, sp_MShelpcolumns returns the length in syscolumns.length, */
-   /* which is defined in BOL as "maximum physical storage length from systypes".       */
+   /* which is defined in BOL as 'maximum physical storage length from systypes'.       */
    /* For string columns (including types based on string types), sp_MShelpcolumns      */
    /* returns this maximum length in characters (i.e. it returns syscolumns.length      */
    /* adjusted to whether the column is based on char or nchar).                        */
@@ -75066,7 +73256,6 @@ as
 
 /** For DaVinci **/
 /** Use sp_help filtering of precision/scale (only fordecimal/numeric types; else use NULL). **/
-
 
 	if @flags is null
 		select @flags = 0
@@ -75251,9 +73440,7 @@ as
 		order by c.col_name
 	end
 
-go
-
-create procedure sys.sp_MShelpconflictpublications ( @publication_type varchar(9) ='%' )
+create procedure BP_PRD.sys.sp_MShelpconflictpublications ( @publication_type varchar(9) ='%' )
 AS 
 BEGIN
     SET nocount ON
@@ -75381,7 +73568,7 @@ FAILURE:
 END
 go
 
-create procedure sys.sp_MShelpcreatebeforetable
+create procedure BP_PRD.sys.sp_MShelpcreatebeforetable
     @objid int,
     @newname sysname
 AS
@@ -75424,7 +73611,7 @@ AS
     -- create temp table to select the command text out of
     declare @tempcmd table (phase int NOT NULL, step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 
-    set @command = 'create table dbo.' + quotename(@newname) + '('
+    set @command = 'create table BP_PRD.create table dbo.' + quotename(@newname) + '('
     insert into @tempcmd (phase, cmdtext) values (1, @command)
     
     -- Loop over the columns and see which ones we include
@@ -75516,12 +73703,11 @@ Failure:
     return(1)
 go
 
-create procedure sys.sp_MShelpdestowner(
+create procedure BP_PRD.sys.sp_MShelpdestowner(
 @spname sysname
 )
 AS
 
--- Security check
 if (1 <> is_member('db_owner') and
     not exists (select * from dbo.sysmergepublications 
                     where 1 = {fn ISPALUSER(pubid)}))
@@ -75536,21 +73722,7 @@ else
     select 0
 go
 
---
--- Name: sp_MShelpdynamicsnapshotjobatdistributor
---
--- Description: This gives scheduling information about a dynamic snapshot job 
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Only members of the 'sysadmin' server role and members of the 
---           'db_owner' database role at the distributor can call this 
---           procedure. This procedure is intended to be called through 
---           the distributor_admin remote login in the case where
---           the distributor is a different machine from the publisher. 
---
-create procedure sys.sp_MShelpdynamicsnapshotjobatdistributor 
+create procedure BP_PRD.sys.sp_MShelpdynamicsnapshotjobatdistributor 
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -75655,8 +73827,7 @@ UNDO:
 end
 go
 
-
-create proc sys.sp_MShelpfulltextindex
+create proc BP_PRD.sys.sp_MShelpfulltextindex
    @tablename nvarchar(517)
 as
 
@@ -75720,10 +73891,7 @@ as
    select ind_name from #sphelpft
    DROP TABLE #sphelpft
 
-go
-
-
-create proc sys.sp_MShelpfulltextscript
+create proc BP_PRD.sys.sp_MShelpfulltextscript
    @tablename nvarchar(517)
 as
    set nocount on
@@ -75756,16 +73924,11 @@ as
          end
       end
 
-go
-
-create procedure sys.sp_MShelpindex
+create procedure BP_PRD.sys.sp_MShelpindex
 @tablename nvarchar(517), @indexname nvarchar(258) = null, @flags int = null
 as
    /*** @flags added for DaVinci uses.  If the bit isn't set, use 6.5 ***/
    /*** sp_MShelpindex '%s', null, 1                                  ***/
-
-
-
 
 	create table #tempID
 	   (
@@ -75932,32 +74095,6 @@ as
       /* order by i.name */
    end
 
-go
-
---
--- Name:	
---		sp_MShelplogreader_agent
---			
--- Description: 
---		Displays the following information on logreader agent:
---			LA id
--- 			name
---			publisher_security_mode
---			publisher_login
---			publisher_password
--- 			job_id
--- 			job_login
--- 			job_password
---	
--- Security: 
---		SA
--- Requires Certificate signature for catalog access
---
--- Returns: 	
---		0 : success
---		1 : failure 		 
---
-
 CREATE PROCEDURE sys.sp_MShelplogreader_agent
 (
 	@publisher		sysname,
@@ -76009,7 +74146,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MShelpmergearticles
+create procedure BP_PRD.sys.sp_MShelpmergearticles
     @publication sysname,
     @compatibility_level int = 7000000,  -- backward compatibility level, default=Sphinx
     @pubidin uniqueidentifier = NULL
@@ -76089,8 +74226,7 @@ as
     return (0)  
 go
 
-
-create procedure sys.sp_MShelpmergeconflictcounts ( 
+create procedure BP_PRD.sys.sp_MShelpmergeconflictcounts ( 
 	@publication_name sysname = '%' ,
 	@publisher		sysname = NULL,
 	@publisher_db	sysname = NULL,
@@ -76148,9 +74284,9 @@ begin
 	end
 
 	-- allow null conflict table name to handle case where there are delete conflicts but no update conflicts
-	create table #result_list ( article sysname collate database_default, source_object sysname collate database_default, conflict_table sysname collate database_default null, guidcolname sysname collate database_default, centralized_conflicts integer, conflicts_ucount integer, conflicts_dcount integer )
-	create table #conflict_list ( article_name sysname collate database_default, conflicts_ucount integer, conflicts_dcount integer )
-	create table #update_list ( article_name sysname collate database_default, conflicts_ucount integer )
+	create table #result_list ( article BP_PRD.create table #result_list ( article sysname collate database_default, source_object sysname collate database_default, conflict_table sysname collate database_default null, guidcolname sysname collate database_default, centralized_conflicts integer, conflicts_ucount integer, conflicts_dcount integer )
+	create table #conflict_list ( article_name BP_PRD.create table #conflict_list ( article_name sysname collate database_default, conflicts_ucount integer, conflicts_dcount integer )
+	create table #update_list ( article_name BP_PRD.create table #update_list ( article_name sysname collate database_default, conflicts_ucount integer )
 
 	-- get delete counts
 	if ( @publication_name = '%' )
@@ -76287,40 +74423,7 @@ return (0)
 end
 go
 
---
--- Name: sp_MShelpmergedynamicsnapshotjob
---
--- Description: This procedure returns a listing of dynamic snapshot jobs.
---                
--- Parameters: @publication sysname (optional, default '%'): When @publication
---               is '%', all dynamic snapshot jobs with the matching 
---               @dynamic_snapshot_jobid and @dynamic_snapshot_jobname will be 
---               returned.
---               @dynamic_snapshot_jobname sysname (optional, default '%'): When 
---               @dynamic_snapshot_jobname is '%', all dynamic snapshot jobs that
---               belong to @publication with the matching @dynamic_snapshot_jobid
---               will be returned.  
---               @dynamic_snapshot_jobid (optional, default null): When 
---               @dynamic_snapshot_jobid is null, all dynamic snapshot jobs 
---               that belong to @publication with the matching 
---               @dynamic_snapshot_jobname will be returned.
---
--- Notes: If all parameters are left unspecified when this procedure is called,
---          all dynamic snapshot jobs for the current database will be returned.
---
--- Result: id int
---           job_name sysname 
---           job_id uniqueidentifier -- job id of the dynamic snapshot job
---           dynamic_filter_login sysname 
---           dynamic_filter_hostname sysname
---           dynamic_snapshot_location nvarchar(255) 
--- Returns: 0 - succeeded
---            1 - failed
---
--- Security: Execute permission of this stored procedure is granted to public
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MShelpmergedynamicsnapshotjob (
+create procedure BP_PRD.sys.sp_MShelpmergedynamicsnapshotjob (
     @publication sysname = N'%',
     @dynamic_snapshot_jobname sysname = N'%',
     @dynamic_snapshot_jobid uniqueidentifier = null
@@ -76360,7 +74463,7 @@ begin
 end
 go
 
-create procedure sys.sp_MShelpmergeidentity 
+create procedure BP_PRD.sys.sp_MShelpmergeidentity 
     @publication sysname
 as
     declare @pubid                  uniqueidentifier
@@ -76425,8 +74528,7 @@ as
     return (0)  
 go
 
-
-create procedure sys.sp_MShelpmergeschemaarticles
+create procedure BP_PRD.sys.sp_MShelpmergeschemaarticles
     @publication sysname
 as
 begin
@@ -76464,7 +74566,7 @@ begin
 end
 go
 
-create procedure sys.sp_MShelpobjectpublications (@object_name sysname)
+create procedure BP_PRD.sys.sp_MShelpobjectpublications (@object_name sysname)
 AS
     /*
     ** Declarations.
@@ -76552,7 +74654,7 @@ DONE:
     return (@retcode)
 go
 
-create procedure sys.sp_MShelpreplicationtriggers (
+create procedure BP_PRD.sys.sp_MShelpreplicationtriggers (
     @object_name    sysname,
     @object_schema  sysname
     )
@@ -76626,42 +74728,6 @@ begin
 end
 go
 
-
---
--- Name:	
---		sp_MShelpsnapshot_agent
---			
--- Description: 
---		Displays the following information on snapshot agent:
---			id
---			name
---			publisher_security_mode
---			publisher_login
---			publisher_password
---			job_id
---			job_login
---			job_password
---			schedule_name
---			frequency_type
---			frequency_interval
---			frequency_subday_type
---			frequency_subday_interval
---			frequency_relative_interval
---			frequency_recurrence_factor
---			active_start_date
---			active_end_date
---			active_start_time
---			active_end_time
---
--- Security: 
---		SA
--- Requires Certificate signature for catalog access
---
--- Returns: 	
---		0 : success
---		1 : failure 		 
---
-
 CREATE PROCEDURE sys.sp_MShelpsnapshot_agent
 (
 	@publisher		sysname,
@@ -76730,23 +74796,6 @@ BEGIN
 END
 go
 
-
---
--- Name:	
---		sp_MShelpsummarypublication
---			
--- Description: 
---		Called by Object Explorer to populate the Summary Page
---		for a publication
---
--- Security: 
---		Public, PAL access
---
--- Returns: 	
---		0 : success
---		1 : failure 		 
---
-
 CREATE PROCEDURE sys.sp_MShelpsummarypublication
 (
 	@oename nvarchar(260),
@@ -76810,37 +74859,7 @@ BEGIN
 END
 go
 
-
---
--- Name: 
---		sp_MShelptracertokenhistory
--- 
--- Description: 
---		This procedure is used by the UI to retrieve the tracer token history.
---		Calculates and returns a list of the subscribers, the distribution_latency,
---		subscriber_latency and the overall_latency. NULL is used for any latency
---		statistic that can not be calculated due to insufficient data (such as 
---		a tracer record not having arrived at the subscriber). Values are in seconds.
---  
--- Parameters: 
---		@publisher		sysname
---		@publisher_db	sysname
---		@publication	sysname
---		@tracer_id		varchar(22) 	lsn of the tracer record to return history for
---											
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		(see description)
---
--- Security: 
---		DBO of distribution db (used by the UI)
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MShelptracertokenhistory
+create procedure BP_PRD.sys.sp_MShelptracertokenhistory
 (
 	@publisher		sysname,
 	@publisher_db	sysname,
@@ -76977,33 +74996,7 @@ begin
 end
 go
 
-
---
--- Name: 
---		sp_MShelptracertokens
--- 
--- Description: 
---		This procedure is used to retrieve the tracer token lsns.
---		It returns a list of the time a publisher_commit a tracer token along with the 
---		tracer token lsn which can be used when calling sp_MShelptracertokenhistory.
---  
--- Parameters: 
---		@publisher		sysname
---		@publisher_db	sysname
---		@publication	sysname								
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		(see description)
---
--- Security: 
---		DBO or replmonitor of distribution db (used by the UI)
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MShelptracertokens
+create procedure BP_PRD.sys.sp_MShelptracertokens
 (
 	@publisher		sysname,
 	@publisher_db	sysname,
@@ -77065,7 +75058,7 @@ begin
 end
 go
 
-create procedure sys.sp_MShelptranconflictcounts 
+create procedure BP_PRD.sys.sp_MShelptranconflictcounts 
 ( 
     @publication_name sysname = NULL
     ,@publisher sysname = NULL
@@ -77097,7 +75090,7 @@ begin
 
     declare @result_list table ( article nvarchar(256) collate database_default, conflict_table sysname collate database_default null,  
         centralized_conflicts bit, conflict_count integer)
-    create table #conflict_list ( artid sysname collate database_default, conflict_count int, sub_agent_id int )
+    create table #conflict_list ( artid BP_PRD.create table #conflict_list ( artid sysname collate database_default, conflict_count int, sub_agent_id int )
     --
     -- Decide if we need PAL security check - If sysadmin or dbo - skip PAL check
     --
@@ -77349,7 +75342,7 @@ begin
 end
 go
 
-create procedure sys.sp_MShelptype
+create procedure BP_PRD.sys.sp_MShelptype
 @typename nvarchar(517) = null, @flags nvarchar(10) = null
 as
 
@@ -77485,8 +75478,7 @@ as
 	end
 go
 
-
-create procedure sys.sp_MShelpvalidationdate(
+create procedure BP_PRD.sys.sp_MShelpvalidationdate(
 @publication        sysname,
 @subscriber            sysname,
 @subscriber_db        sysname
@@ -77494,7 +75486,6 @@ create procedure sys.sp_MShelpvalidationdate(
 declare @pubid                    uniqueidentifier
 declare @retcode                int
 
--- Security check
 if 1 <> is_member('db_owner')
 begin    
     RAISERROR (15247, 11, -1)
@@ -77512,7 +75503,6 @@ select last_validated, attempted_validate from dbo.sysmergesubscriptions
 
 return (0)
 go
-
 
 CREATE PROCEDURE sys.sp_MSindexspace
 	@tablename nvarchar(517), @index_name nvarchar(258) = NULL
@@ -77723,7 +75713,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSinit_subscription_agent
+create procedure BP_PRD.sys.sp_MSinit_subscription_agent
     @publisher      sysname,                    -- publishing server name
     @publisher_db   sysname,                    -- publishing database name. If NULL then same as current db
     @publication    sysname,                    -- publication name,
@@ -77771,8 +75761,7 @@ AS
     end
 go
 
-
-create procedure sys.sp_MSinitdynamicsubscriber
+create procedure BP_PRD.sys.sp_MSinitdynamicsubscriber
     (@maxrows int, 
      @tablenick int, 
      @rowguid uniqueidentifier, 
@@ -77875,7 +75864,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSinsertdeleteconflict(  
+create procedure BP_PRD.sys.sp_MSinsertdeleteconflict(  
     @tablenick          int,
     @rowguid            uniqueidentifier,
     @conflict_type      int,
@@ -77966,8 +75955,7 @@ as
         return (0)
 go
 
-
-create procedure sys.sp_MSinserterrorlineage 
+create procedure BP_PRD.sys.sp_MSinserterrorlineage 
     (@tablenick int, 
      @rowguid uniqueidentifier,
      @lineage varbinary(311),
@@ -77995,7 +75983,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSinsertgenerationschemachanges
+create procedure BP_PRD.sys.sp_MSinsertgenerationschemachanges
     @publication sysname
 AS
     declare @mingen         bigint
@@ -78137,8 +76125,7 @@ FAILURE:
     RETURN 1
 go
 
-
-create procedure sys.sp_MSinsertgenhistory
+create procedure BP_PRD.sys.sp_MSinsertgenhistory
     (@guidsrc uniqueidentifier,
      @gen bigint output,
      @pubid uniqueidentifier,
@@ -78255,7 +76242,7 @@ Failure:
     return (1)
 go
 
-create procedure sys.sp_MSinsertlightweightschemachange
+create procedure BP_PRD.sys.sp_MSinsertlightweightschemachange
 	@pubid			uniqueidentifier,
 	@schemaversion	int,
 	@schemaguid 	uniqueidentifier
@@ -78278,8 +76265,7 @@ as
 	return 0
 go
 
-
-create procedure sys.sp_MSinsertschemachange(
+create procedure BP_PRD.sys.sp_MSinsertschemachange(
     @pubid          uniqueidentifier,
     @artid          uniqueidentifier = NULL, /* Can be NULL for directory commands */
     @schemaversion  int,
@@ -78430,7 +76416,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSisnonpkukupdateinconflict (
+create procedure BP_PRD.sys.sp_MSisnonpkukupdateinconflict (
 	@pubid int
 	,@artid int
 	,@bitmap varbinary(4000)
@@ -78573,7 +76559,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSispeertopeeragent
+create procedure BP_PRD.sys.sp_MSispeertopeeragent
 (
 	@agent_id 	int,
 	@is_p2p		int output
@@ -78647,7 +76633,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSispkupdateinconflict (
+create procedure BP_PRD.sys.sp_MSispkupdateinconflict (
     @pubid int
     ,@artid int
     ,@bitmap varbinary(4000)
@@ -78705,7 +76691,7 @@ begin
     --
     -- create an enumeration of all the columns that are part of PK
     --
-    create table #pkcoltab(pkindex int identity, keyname sysname collate database_default not null)
+    create table #pkcoltab(pkindex int identity, keyname BP_PRD.create table #pkcoltab(pkindex int identity, keyname sysname collate database_default not null)
     while (@indkey <= 16)
     begin
         select @key = index_col( @tabname, @indid, @indkey )
@@ -78770,7 +76756,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSispublicationqueued 
+create procedure BP_PRD.sys.sp_MSispublicationqueued 
 (
     @publisher sysname
     ,@publisher_db sysname
@@ -78810,9 +76796,7 @@ begin
 end
 go
 
-
-
-create procedure sys.sp_MSisreplmergeagent @is_merge bit output, @at_publisher bit=0 output
+create procedure BP_PRD.sys.sp_MSisreplmergeagent @is_merge bit output, @at_publisher bit=0 output
 as
 begin
     declare @cur_context varbinary(128)
@@ -78833,7 +76817,7 @@ begin
     -- set the output param value appropriately.
     select @is_merge = case when @mergeagent_bitmask = 0 then 0 else 1 end
     
-    -- check whether it has the "at publisher" bit set.
+    -- check whether it has the 'at publisher' bit set.
     select @atpublisher_bitmask = (convert(tinyint,@cur_context_first_byte) & @atpublisher_bitmask)
     -- set the output param value appropriately.
     select @at_publisher = case when @atpublisher_bitmask = 0 then 0 else 1 end
@@ -78842,44 +76826,7 @@ begin
 end
 go
 
---
--- Name: sp_MSissnapshotitemapplied
---
--- Description: This procedure is used by the distribution and the merge 
---              agent to determine if a particular snapshot work item
---              has been applied to the subscriber.
---
--- Notes: This procedure should only be called by the merge agent or the
---        distribution agent at the subscriber database.
---
--- Parameters: @snapshot_session_token nvarchar(260)
---                - A UniCode string that uniquely identifies a snapshot
---                  delivery session. For now, this will be the snapshot
---                  generation folder of the snapshot being applied.
---             @snapshot_progress_token nvarchar(500)  
---                - A UniCode string that uniquely identifies a snapshot
---                  work item.
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Result: This procedure will always return a result set that includes
---         the following column:
---
---         snapshot_item_applied (int)
---              - 1 if the specified snapshot item is found in 
---                MSsnapshotdeliveryprogress
---              - 0 if the specified snapshot item is not found
---                in MSsnapshotdeliveryprogress or 
---                MSsnapshotdeliveryprogress simply does not exists. 
---         The result set will contain exactly one row.
---
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_MSissnapshotitemapplied (
+create procedure BP_PRD.sys.sp_MSissnapshotitemapplied (
     @snapshot_session_token nvarchar(260),
     @snapshot_progress_token nvarchar(500)
     )
@@ -78937,8 +76884,7 @@ FAILURE:
 end
 go
 
-
-create proc sys.sp_MSkilldb
+create proc BP_PRD.sys.sp_MSkilldb
 	@dbname nvarchar(258)
 as
 	if (@@trancount > 0) begin
@@ -79001,7 +76947,6 @@ begin
         publisher_db = @publisher_db and
         publication = @publication 
 
-
     /* 
     ** Set exclusive lock on the rows that will be updated to prevent deadlock 
     **      in snapshot agent.
@@ -79056,7 +77001,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSlocktable
+create procedure BP_PRD.sys.sp_MSlocktable
 (
 @ownername        sysname,
 @tablename        sysname
@@ -79118,10 +77063,7 @@ begin
 end
 go
 
-
-
-
-create proc sys.sp_MSloginmappings
+create proc BP_PRD.sys.sp_MSloginmappings
 	@loginname nvarchar(258) = null, @flags int = 0
 as
 
@@ -79215,8 +77157,7 @@ as
 	return @@error
 go
 
-
-create procedure sys.sp_MSmakearticleprocs
+create procedure BP_PRD.sys.sp_MSmakearticleprocs
     (@pubid uniqueidentifier, @artid uniqueidentifier, @recreate_conflict_proc bit = 0)
 as
     declare @ownername      sysname
@@ -79256,7 +77197,6 @@ as
     select @article = name, @ins_procname = insert_proc, @upd_procname = update_proc, @sel_procname = select_proc,
         @sel_metadata_procname = metadata_select_proc, @del_procname = delete_proc
         from dbo.sysmergearticles where pubid = @pubid and artid = @artid
-
 
     if exists (select * from dbo.sysmergesubscriptions 
            where pubid=@pubid and subscription_type = 3 -- lightweight subscription
@@ -79420,7 +77360,7 @@ FAILURE:
     
 go
 
-create procedure sys.sp_MSmakebatchinsertproc 
+create procedure BP_PRD.sys.sp_MSmakebatchinsertproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier, @artid uniqueidentifier,
      @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -79478,7 +77418,6 @@ declare @schema_option varbinary(8)
 
 set nocount on
 
--- Check for subscribing permission
 exec @retcode=sys.sp_MSreplcheck_subscribe
 if @retcode<>0 or @@ERROR<>0 return (0)
 
@@ -79555,7 +77494,6 @@ set @idstr = rtrim(convert(nchar, @id))
 
 select @insertcolumnsstarted = 0
 
-
 if @generate_subscriber_proc = 1
 begin
     select @atpublisher = 0
@@ -79572,16 +77510,12 @@ begin
     select @maxschemaguid = sys.fn_GetArticleSchemaVersionGuid(@artid, @pubid)
 end
 
-
 select top 1 @publication_number = publication_number 
 from dbo.sysmergepublications 
 where pubid = @pubid
 
--- compute batching factor. For each row we need 
--- max params is 1024-2 for the first 2 parameters which is number of rows to be inserted, partition id
 select @maxparams=1024-2
 
--- subtract one more since we have a @maxschemaguidforarticle parameter on the publisher
 if @atpublisher = 1
     select @maxparams = @maxparams - 1
 
@@ -79593,8 +77527,6 @@ else
     where cs.object_id = @sync_objid and 
           co.is_computed=0 and co.user_type_id<>type_id('timestamp') 
 
--- for regular articles for each row we need rowguid, generation, lineage and colv in addition 
--- to the list of user table columns. For download only articles we only need rowguid
 if 1 = @maintainsmetadata
     select @colcount = @colcount + 4
 else
@@ -79604,15 +77536,11 @@ select @batchingfactor = @maxparams/@colcount
 if @batchingfactor > 100
     select @batchingfactor = 100
 
-
--- create temp table to select the command text out of
 declare @tempcmd table (phase int NOT NULL, step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
-
--- phase 0 : create procedure and fixed part of argument list
 
 if @atpublisher = 1
 begin
-    set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (
+    set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (
         @maxschemaguidforarticle uniqueidentifier,
         @rows_tobe_inserted int,
         @partition_id int = null '
@@ -79620,13 +77548,12 @@ begin
 end
 else
 begin
-    set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (
+    set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (
         @rows_tobe_inserted int,
         @partition_id int = null '
     insert into @tempcmd (phase, cmdtext) values (0, @cmdpiece)
 end
 
--- phase 10 is rest of the arguments built based on batching factor etc
 select @cmdpiece = '
 ) as
 begin
@@ -79685,8 +77612,6 @@ select @cmdpiece = '
 '
 insert into @tempcmd (phase, cmdtext) values (20, @cmdpiece)
 
--- we need to insert the row metadata first so that the insert trigger
--- does not insert the contents row.
 if 1 = @maintainsmetadata
 begin
     -- if any of the rows exist in tombstone we will abort the batched insert
@@ -79779,28 +77704,21 @@ begin
     end
 end
 
--- phase 100 is the insert statement
 select @cmdpiece = '
     insert into ' + @qualified_name + ' with (rowlock) ('
 insert into @tempcmd (phase, cmdtext) values (100, @cmdpiece)
--- phase 120 will have all the column names
--- now for completing insert and the select from the vtable
 select @cmdpiece = ')
     select '
 insert into @tempcmd (phase, cmdtext) values (150, @cmdpiece)
--- phase 170 will contain column names selected from the virtual table
--- complete the select
 select @cmdpiece = '
     from ('
 insert into @tempcmd (phase, cmdtext) values (180, @cmdpiece)
--- phase 200 will have the virtual table declaration for all the column values
 select @cmdpiece = '
     ) as rows
     where rows.rowguid is not NULL
     select @rowcount = @@rowcount, @error = @@error'
 insert into @tempcmd (phase, cmdtext) values (250, @cmdpiece)
 
--- phase 250 will also contain the optional identity insert off
     
 select @cmdpiece = '
     if (@rowcount <> @rows_tobe_inserted) or (@error <> 0)
@@ -79811,11 +77729,6 @@ select @cmdpiece = '
 '
 insert into @tempcmd (phase, cmdtext) values (300, @cmdpiece)
 
--- if @qualified_sync_view is not NULL and partition_id is not null check if 
--- the row is present in sync_view. If NOT do the following:
--- 1. insert a past partition mapping for the row
--- 2. update generation and partchangegen to 0
--- 3. if there is a before image table, insert the row into the before image table
 if @atpublisher = 1 and @qualified_sync_view is not NULL
 begin
     if @partition_options>0
@@ -79922,7 +77835,6 @@ begin
     end
 end
 
-
 if 1 = @maintainsmetadata
 begin
     select @cmdpiece = '
@@ -79953,12 +77865,6 @@ end
 '
 insert into @tempcmd (phase, cmdtext) values (15000, @cmdpiece)
 
--- this loop constructs the formal parameter declarations, the insert statement with actual column names and
--- the union clause which does a union over all rows.
--- phase 10 is the declarations, the rowsunion clause will be inserted into phases 200, 
--- the metadata union clause will be inserted into phase 400.
-
--- using these instead of directly inserting in the temp table is a performance optimization
 select @command1 = ''
 select @command2 = ''
 select @command3 = ''
@@ -80314,22 +78220,15 @@ begin
     deallocate f_c
 end
 
--- Now we select out the command text pieces in proper order so that our caller,
--- xp_execresultset will execute the command that creates the stored procedure.
 select cmdtext from @tempcmd order by phase, step
 
---drop table @tempcmd
-
 return(0)
-
 
 Failure:
     --drop table @tempcmd
     return(1)
 
-go
-
-create procedure sys.sp_MSmakebatchupdateproc 
+create procedure BP_PRD.sys.sp_MSmakebatchupdateproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier, @artid uniqueidentifier,
      @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -80386,10 +78285,8 @@ declare @max_colv_size_in_bytes int
 declare @qualified_sync_view nvarchar(517)
 declare @schema_option varbinary(8)
 
-
 set nocount on
 
--- Check for subscribing permission
 exec @retcode=sys.sp_MSreplcheck_subscribe
 if @retcode<>0 or @@ERROR<>0 return (0)
 
@@ -80461,7 +78358,6 @@ begin
     select @maxschemaguid = sys.fn_GetArticleSchemaVersionGuid(@artid, @pubid)
 end
 
-
 select @updatecolumnsstarted = 0
 
 if exists (select * from dbo.sysmergearticles where pubid = @pubid and nickname = @tablenick
@@ -80482,12 +78378,8 @@ select top 1 @publication_number = publication_number
 from dbo.sysmergepublications 
 where pubid = @pubid
 
-
--- compute batching factor. For each row we need 
--- max params is 1024-2 for the first 2 parameters which is number of rows to be inserted, partition id
 select @maxparams=1024-2
 
--- subtract one more since we have a @maxschemaguidforarticle parameter on the publisher
 if @atpublisher = 1
     select @maxparams = @maxparams - 1
 
@@ -80499,8 +78391,6 @@ else
     where cs.object_id = @sync_objid and 
             co.is_computed=0 and co.user_type_id<>type_id('timestamp') and co.is_identity=0 
 
--- for regular articles for each row we need rowguid, setbm, metadata_type, lineage_old, generation, lineage_new, colv
--- in addition to the list of user table columns. For download only articles we only need rowguid and setbm
 if 1 = @maintainsmetadata
     select @colcount = @colcount + 7
 else
@@ -80592,12 +78482,11 @@ Next_Column1:
         where object_id = @id and QUOTENAME(name) = @colname
 end
 
--- the following is true if the only columns in the table are all filtering columns
 if @unfiltered_column_found = 0
 begin
     -- there is no point trying to create a update batch proc.
     -- just create an empty proc
-    select 'create procedure dbo.'  + QUOTENAME(@procname) + '
+    select 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + '
     as
         -- do nothing
         select 1
@@ -80605,14 +78494,11 @@ begin
     return 0
 end
 
-
--- create temp table to select the command text out of
 declare @tempcmd table (phase int NOT NULL, step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 
--- phase 0 : create procedure and fixed part of argument list
 if @atpublisher = 1
 begin
-    set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (
+    set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (
         @maxschemaguidforarticle uniqueidentifier, 
         @rows_tobe_updated int,
         @partition_id int = null '
@@ -80620,14 +78506,12 @@ begin
 end
 else
 begin
-    set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (
+    set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (
         @rows_tobe_updated int,
         @partition_id int = null '
     insert into @tempcmd (phase, cmdtext) values (0, @cmdpiece)
 end
 
-
--- phase 10 is rest of the arguments built based on batching factor etc
 select @cmdpiece = '
 ) as
 begin
@@ -80661,7 +78545,6 @@ begin
 
 insert into @tempcmd (phase, cmdtext) values (20, @cmdpiece)
 
--- phase 22 - check the max schema guid for article and error out if they do not match
 if @atpublisher = 1
 begin
     set @cmdpiece= '
@@ -80702,26 +78585,18 @@ begin
     insert into @tempcmd (phase, cmdtext) values (23, @cmdpiece)
 end
 
-
     set @cmdpiece= '
     begin tran
     save tran batchupdateproc '
 insert into @tempcmd (phase, cmdtext) values (25, @cmdpiece)
 
--- phase 50 onwards will be all the checks to see if a filtering column has been
--- updated. If a filtering column has been updated we will get out of the batched
--- update proc. Merge agent should revert back to singleton updates
-
--- phase 40000 is where the update statement starts
 select @cmdpiece = '
     update ' + @qualified_name + ' with (rowlock)
     set ' 
 insert into @tempcmd (phase, cmdtext) values (40000, @cmdpiece)
--- phase 40100 will contain all the sets c1=@p1 etc.    
 select @cmdpiece = '
     from ('
 insert into @tempcmd (phase, cmdtext) values (40200, @cmdpiece)
--- phase 40300 will have the virtual table definition
 
 if 1 = @maintainsmetadata
 begin
@@ -80756,7 +78631,6 @@ select @cmdpiece = '
     end'
 insert into @tempcmd (phase, cmdtext) values (40500, @cmdpiece)
 
--- insert or update the contents entry
 if 1 = @maintainsmetadata
 begin
     select @cmdpiece = '
@@ -80842,7 +78716,6 @@ begin
     insert into @tempcmd (phase, cmdtext) values (48500, @cmdpiece)
 end
 
-
 if 1 = @maintainsmetadata
 begin
     select @cmdpiece = '
@@ -80873,9 +78746,6 @@ end
 '
 insert into @tempcmd (phase, cmdtext) values (50000, @cmdpiece)
 
--- this loop constructs the formal parameter declarations, the update statement with actual column names and
--- the union clause which does a union over all rows.
--- phase 10 is the declarations
 select @command1 = ''
 select @command2 = ''
 select @command3 = ''
@@ -80958,7 +78828,6 @@ begin
             select @rowguid' + @rownumberstr + ' as rowguid, @setbm' + @rownumberstr + ' as setbm'
         --insert into @tempcmd (phase, cmdtext) values (40300, @cmdpiece)
     end
-
 
     -- now loop over columns 
     select @colnumber = 1
@@ -81184,25 +79053,15 @@ Next_Column:
     select @rownumber = @rownumber + 1
 end
 
--- Now we select out the command text pieces in proper order so that our caller,
--- xp_execresultset will execute the command that creates the stored procedure.
 select cmdtext from @tempcmd order by phase, step
 
---drop table @tempcmd
-
 return(0)
-
 
 Failure:
     --drop table @tempcmd
     return(1)
 
-go
-
-
-
--- usage pattern from CMergeDatasource should be:
-create procedure sys.sp_MSmakeconflictinsertproc 
+create procedure BP_PRD.sys.sp_MSmakeconflictinsertproc 
     (@tablename sysname,       -- conflict table
     @ownername sysname, 
     @procname sysname, 
@@ -81274,7 +79133,6 @@ set @idstr = rtrim(convert(nchar, @id))
 select @pubidstr = case when @pubid is null then 'NULL' else 
                 '''' + convert(nvarchar(40),@pubid) + '''' end
                 
--- security check
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck @pubid=@pubid, @objid=@id
 if @@error <> 0 or @retcode <> 0
     return 1
@@ -81298,14 +79156,11 @@ execute @retcode= sys.sp_MStablenickname @basetableowner, @basetablename, @table
 if @@ERROR <>0 OR @retcode <>0 return (1)
 set @tablenickstr = rtrim(convert(nchar, @tablenick))
 
--- create temp table to select the command text out of
 create table #tempcmd (phase int NOT NULL, step int identity NOT NULL, 
 cmdtext nvarchar(max) collate database_default null)
 
--- create temp table that will be used by sp_MScreatedupkeyupdatequery
 create table #coltab (colname nvarchar(140), paramname nvarchar(10))
 
--- now create the procedure
 select @quotedprocname = QUOTENAME(@procname)
 
 if @generate_subscriber_proc = 0
@@ -81321,7 +79176,6 @@ select @sync_objid= sync_objid, @artid= artid, @schema_option = schema_option fr
 
 set @maintainsmetadata= sys.fn_MSarticle_allows_DML_at_this_replica(@artid, default)
 
---it doesn't make sense to replicate only token column - rowguidcol column
 declare @colcount int
 declare @column sysname
 
@@ -81338,9 +79192,6 @@ end
 
 set @colordinal=0
 
--- the column exists in conflict table and
--- either exists or not exists
--- in base table
 if @sys_loop =1
     select @colid = min(column_id) from sys.columns where object_id = @id and is_computed<>1 and user_type_id <> type_id('timestamp')
         and name not in (select name from sys.columns where object_id=@basetableid)
@@ -81367,9 +79218,7 @@ select top 1 @colname = C.name,
 ** Get the column list from the conflict_table schema and filter it with 
 table view for vertical partitioning
 */
--- do first for basic columns and 2nd for columns not in basic tables
 Reverse_Order:
--- loop over columns
 while (@colname is not null) 
 begin
     set @noset = 0
@@ -81518,14 +79367,10 @@ insert into #tempcmd (phase, cmdtext) values (0,  @arglist)
 
 select @header =  ') as
 declare @retcode int
--- security check
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck @objid = ' + @idstr + ', @pubid = ' + @pubidstr + '
 if @@error <> 0 or @retcode <> 0 return 1 '
 insert into #tempcmd (phase, cmdtext) values (0,  @header)
 
--- If the subscriber database was upgraded to Yukon, and we now use conflict logging on both sides
--- the subscriber database might not have the conflict logging table.
--- We then return without error.
 set @header='
 if 1 = @check_conflicttable_existence
 begin
@@ -81534,16 +79379,12 @@ end
 '
 insert into #tempcmd (phase, cmdtext) values (0,  @header)
 
---select @header = ' if @source_id is NULL select @source_id = newid() '
 select @header = '
     if @source_id is NULL 
         select @source_id = subid from dbo.sysmergesubscriptions 
             where lower(' +  @original_datasourcecol + ') = LOWER(subscriber_server) + ''.'' + LOWER(db_name) '
 
 insert into #tempcmd (phase, cmdtext) values (0,  @header)
-
--- For down level anonymous pull subscriptions, the Publisher's sysmergesubscriptions does not contain a valid entry for the Subscriber 
--- Hence the source_id might still be NULL -In that case generate a new guid 
 
 select @header = '
     if @source_id is NULL select @source_id = newid() '
@@ -81555,7 +79396,6 @@ select @header =  '
 insert into #tempcmd (phase, cmdtext) values (0,  @header)
 
 select @header = ' '
--- for ease of expansion here in case we add new merge columns in conflict tables.
 if @create_time_col is not NULL
     select @header = @header + ' 
     select ' + @create_time_col + ' = getdate() '
@@ -81568,21 +79408,16 @@ select @header = @header + ' if exists (select * from MSmerge_conflicts_info inf
         update ' + @qualname + ' with (rowlock) set ' 
 insert into #tempcmd (phase, cmdtext) values (0,  @header)
 
---see comment in sp_MSinsertdeleteconflict for this <5 or >4 checking.
-
 select @header = ' from ' + @qualname + ' ct inner join MSmerge_conflicts_info info 
         on ct.rowguidcol=info.rowguid and 
            ct.origin_datasource_id = info.origin_datasource_id' 
 insert into #tempcmd (phase, cmdtext) values (2,  @header)
 
--- concatenate for Insert case
 insert into #tempcmd (phase, cmdtext) values (4, ')')
 
--- concatenate for Update case
 select @header = @wherepc + ' and info.tablenick = @tablenick
 '
 insert into #tempcmd (phase, cmdtext) values (2,  @header)
-
 
 select @header='
     end
@@ -81627,15 +79462,13 @@ begin
             @tablename2 = @qualifiedbasetable2
 end
 
--- Now we select out the command text pieces in proper order so that our caller,
--- xp_execresultset will execute the command that creates the stored procedure.
 select cmdtext from #tempcmd order by phase, step
 
 drop table #tempcmd
 drop table #coltab
 go
 
-create procedure sys.sp_MSmakectsview
+create procedure BP_PRD.sys.sp_MSmakectsview
     @publication sysname,
     @ctsview     sysname,
     @dynamic_snapshot_views_table_name sysname = null, -- must be unquoted as this function is public
@@ -81857,7 +79690,7 @@ AS
         if @generate_per_article = 0
         begin
             -- If @generate_per_article = 0, an entire view is returned in @command_piece.
-            set @command_piece = 'create view dbo.' + QUOTENAME(@ctsview) + ' as select * from dbo.MSmerge_contents '
+            set @command_piece = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview) + ' as select * from dbo.MSmerge_contents '
                                     + ' where generation <= ' + convert(nvarchar, @max_bcp_gen)
 
             --5 and 6 are the new article statuses - they indicate new_inactive and new_active
@@ -81887,7 +79720,7 @@ AS
                 
                 set @tablenickstr = convert(nchar(12), @tablenick)
 
-                set @command_piece='create view dbo.' + QUOTENAME(@ctsview) + ' as select * from dbo.MSmerge_contents where tablenick = ' + @tablenickstr 
+                set @command_piece='create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview) + ' as select * from dbo.MSmerge_contents where tablenick = ' + @tablenickstr 
                                     + ' and generation <= ' + convert(nvarchar, @max_bcp_gen)
                 exec (@command_piece)
                 if @@ERROR <>0 return (1)
@@ -81897,7 +79730,7 @@ AS
 
                 if @ctsview_90_forall is not NULL
                 begin
-                    set @command_piece_forall = 'create view dbo.' + QUOTENAME(@ctsview_90_forall) + ' as select * from dbo.MSmerge_contents '
+                    set @command_piece_forall = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_90_forall) + ' as select * from dbo.MSmerge_contents '
                                         + ' where generation <= ' + convert(nvarchar, @max_bcp_gen)
                     set @command_piece_forall = @command_piece_forall + ' and (tablenick = ' + @tablenickstr + ')'
                     exec ( @command_piece_forall )
@@ -81910,7 +79743,7 @@ AS
 
                 if @ctsview_90_forglobal is not NULL
                 begin
-                    set @command_piece_forglobal = 'create view dbo.' + QUOTENAME(@ctsview_90_forglobal) + ' as select * from dbo.MSmerge_contents ' 
+                    set @command_piece_forglobal = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_90_forglobal) + ' as select * from dbo.MSmerge_contents ' 
                                                     + ' where generation <= ' + convert(nvarchar, @max_bcp_gen)
                     set @command_piece_forglobal = @command_piece_forglobal + ' and (tablenick = ' + @tablenickstr + ')'
                     exec ( @command_piece_forglobal )
@@ -81922,7 +79755,7 @@ AS
                 if @ctsview_rowtrack is not NULL
                 begin
                     set @command_piece_rowtrack = 
-                        'create view dbo.' + QUOTENAME(@ctsview_rowtrack) + ' 
+                        'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_rowtrack) + ' 
                          as 
                             select 
                                 tablenick, 
@@ -81953,7 +79786,7 @@ AS
                 -- if so only then create this name.
                 if @ctsview_80 is not NULL
                 begin
-                    set @command_piece= 'create view dbo.' + QUOTENAME(@ctsview_80) + ' as 
+                    set @command_piece= 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_80) + ' as 
                     select tablenick, rowguid, 
                     generation = case when abs(generation) > 2147483647 then 0 else isnull(convert(int, generation),0) end, 
                     partchangegen = case when abs(partchangegen) > 2147483647 then 0 else convert(int, case when partchangegen < 0 then NULL else partchangegen end) end, 
@@ -81988,7 +79821,7 @@ AS
         
         if @generate_per_article = 0
         begin
-            set @command_piece = 'create view dbo.' + QUOTENAME(@ctsview) + ' as select * from dbo.MSmerge_contents where ' +
+            set @command_piece = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview) + ' as select * from dbo.MSmerge_contents where ' +
                                        ' generation <= ' + convert(nvarchar, @max_bcp_gen) + 
                                        ' and ({fn ISPALUSER(' + @pubidstr + ')} = 1) and '
             insert into @tempcmd (phase, cmdtext) values (1, @command_piece)
@@ -82069,7 +79902,7 @@ AS
 
                 if @view_type <> 0
                 begin
-                    set @command_piece = 'create view dbo.' + QUOTENAME(@ctsview) + 
+                    set @command_piece = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview) + 
                     ' as select * from dbo.MSmerge_contents 
                         where generation <= ' + convert(nvarchar, @max_bcp_gen) + '
                              and (tablenick = ' + @tablenickstr + ' and 
@@ -82079,7 +79912,7 @@ AS
 
                     if @ctsview_90_forall is not NULL
                     begin
-                        set @command_piece_forall = 'create view dbo.' + QUOTENAME(@ctsview_90_forall) + 
+                        set @command_piece_forall = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_90_forall) + 
                         ' as select * from dbo.MSmerge_contents 
                             where generation <= ' + convert(nvarchar, @max_bcp_gen) + '
                                  and (tablenick = ' + @tablenickstr + ' and 
@@ -82090,7 +79923,7 @@ AS
 
                     if @ctsview_90_forglobal is not NULL
                     begin
-                        set @command_piece_forglobal = 'create view dbo.' + QUOTENAME(@ctsview_90_forglobal) + 
+                        set @command_piece_forglobal = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_90_forglobal) + 
                         ' as select * from dbo.MSmerge_contents 
                             where generation <= ' + convert(nvarchar, @max_bcp_gen) + '
                              and (tablenick = ' + @tablenickstr + ' and 
@@ -82101,7 +79934,7 @@ AS
 
                     if @ctsview_rowtrack is not NULL
                     begin
-                        set @command_piece_rowtrack = 'create view dbo.' + QUOTENAME(@ctsview_rowtrack) + 
+                        set @command_piece_rowtrack = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_rowtrack) + 
                         ' as select 
                                 tablenick, 
                                 rowguid, 
@@ -82127,7 +79960,7 @@ AS
 
                     if @ctsview_80 is not NULL
                     begin
-                        set @command_piece = 'create view dbo.' + QUOTENAME(@ctsview_80) + ' as 
+                        set @command_piece = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_80) + ' as 
     select tablenick, rowguid, 
     generation = case when abs(generation) > 2147483647 then 0 else isnull(convert(int, generation),0) end, 
     partchangegen = case when abs(partchangegen) > 2147483647 then 0 else convert(int, case when partchangegen < 0 then NULL else partchangegen end) end, 
@@ -82149,7 +79982,7 @@ AS
                 begin
                     -- we get here if we find an unfiltered article in a publication which has some
                     -- subset filters
-                    set @command_piece = 'create view dbo.' + QUOTENAME(@ctsview) + 
+                    set @command_piece = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview) + 
                     ' as select * from dbo.MSmerge_contents 
                         where generation <= ' + convert(nvarchar, @max_bcp_gen) + '
                              and (tablenick = ' + @tablenickstr + ')'
@@ -82158,7 +79991,7 @@ AS
 
                     if @ctsview_90_forall is not NULL
                     begin
-                        set @command_piece_forall = 'create view dbo.' + QUOTENAME(@ctsview_90_forall) + 
+                        set @command_piece_forall = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_90_forall) + 
                         ' as select * from dbo.MSmerge_contents 
                             where generation <= ' + convert(nvarchar, @max_bcp_gen) + '
                                  and (tablenick = ' + @tablenickstr + ') '
@@ -82168,7 +80001,7 @@ AS
                     
                     if @ctsview_90_forglobal is not NULL
                     begin
-                        set @command_piece_forglobal = 'create view dbo.' + QUOTENAME(@ctsview_90_forglobal) + 
+                        set @command_piece_forglobal = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_90_forglobal) + 
                         ' as select * from dbo.MSmerge_contents 
                             where generation <= ' + convert(nvarchar, @max_bcp_gen) + '
                              and (tablenick = ' + @tablenickstr + ') '
@@ -82178,7 +80011,7 @@ AS
 
                     if @ctsview_rowtrack is not NULL
                     begin
-                        set @command_piece_rowtrack = 'create view dbo.' + QUOTENAME(@ctsview_rowtrack) + 
+                        set @command_piece_rowtrack = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_rowtrack) + 
                         ' as select
                                 tablenick, 
                                 rowguid, 
@@ -82203,7 +80036,7 @@ AS
 
                     if @ctsview_80 is not NULL
                     begin
-                        set @command_piece = 'create view dbo.' + QUOTENAME(@ctsview_80) + ' as 
+                        set @command_piece = 'create view BP_PRD.create view dbo.' + QUOTENAME(@ctsview_80) + ' as 
     select tablenick, rowguid, 
     generation = case when abs(generation) > 2147483647 then 0 else isnull(convert(int, generation),0) end, 
     partchangegen = case when abs(partchangegen) > 2147483647 then 0 else convert(int, case when partchangegen < 0 then NULL else partchangegen end) end, 
@@ -82261,7 +80094,6 @@ AS
         end -- end while @tablenick is not null
     end  -- end Filtered case if
 
-
 Finish:
     /* final steps: select out the text and drop the temp table */
     if @generate_per_article = 0
@@ -82282,7 +80114,7 @@ Finish:
     return(0)
 go
 
-create procedure sys.sp_MSmakedeleteproc 
+create procedure BP_PRD.sys.sp_MSmakedeleteproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier, @artid uniqueidentifier,
      @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -82306,8 +80138,6 @@ declare @rownumber int
 declare @rownumberstr nvarchar(10)
 declare @qualified_sync_view nvarchar(540)
 declare @rgcolname nvarchar(270)
-
-
 
 set nocount on
 
@@ -82366,22 +80196,19 @@ where pubid = @pubid
 
 select @batching_factor = 100
 
-
 set @cmdpiece= 'SET ANSI_NULLS ON SET QUOTED_IDENTIFIER ON'
 exec (@cmdpiece)
 if @@error<>0 return(1)
 
--- create temp table to select the command text out of
 declare @tempcmd table (phase int NOT NULL, step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 
 select @cmdpiece = '
-create procedure dbo.'  + QUOTENAME(@procname) + '
+create procedure BP_PRD.dbo.'  + QUOTENAME(@procname) + '
 (
     @rowstobedeleted int, 
     @partition_id int = NULL ' 
 insert into @tempcmd (phase, cmdtext) values (1, @cmdpiece)
 
--- end create procedure
 select @cmdpiece = '
 )
 as
@@ -82415,7 +80242,6 @@ select @cmdpiece = '
     save tran batchdeleteproc
 '
 insert into @tempcmd (phase, cmdtext) values (30, @cmdpiece)
-
 
 /*
 ** Do not allow out of partition deletes at the publisher.
@@ -82461,13 +80287,11 @@ begin
     insert into @tempcmd (phase, cmdtext) values (35, @cmdpiece)
 end
 
-
 select @cmdpiece = '
     delete ' + @qualified_name + ' with (rowlock)
     from 
     ('
 insert into @tempcmd (phase, cmdtext) values (40, @cmdpiece)
--- phase 50 will be a virtual table with rowguids and metadatainfo for an updatable subscriber
 if 0 = @maintainsmetadata
 begin
     -- phase 50 will be only rowguids when there is no metadata
@@ -82710,7 +80534,6 @@ Failure:
 end'
 insert into @tempcmd (phase, cmdtext) values (1000, @cmdpiece)
 
-
 select @rownumber = 1
 select @cmdpiece = ''
 select @cmdpiece2 = ''
@@ -82771,11 +80594,9 @@ begin
 end
 
 select cmdtext from @tempcmd order by phase, step
---drop table @tempcmd
 go
 
-
-create procedure sys.sp_MSmakedynsnapshotvws(
+create procedure BP_PRD.sys.sp_MSmakedynsnapshotvws(
     @publication sysname, 
     @dynamic_filter_login sysname,
     @dynamic_snapshot_views_table_name sysname = NULL
@@ -83121,7 +80942,6 @@ begin
             goto Failure
         end
 
-
         -- Create the function with schema binding and mark it as a system object.
 		-- @get_dynamic_filter_login_fn is already quoted, so there is no need to quote it here
         select @dynamic_filter_login_fn_definition = N'
@@ -83233,8 +81053,7 @@ Failure:
 end
 go
 
-
-create procedure sys.sp_MSmakeexpandproc
+create procedure BP_PRD.sys.sp_MSmakeexpandproc
     @pubname        sysname,
     @filterid        int,
     @procname        sysname
@@ -83297,7 +81116,7 @@ create procedure sys.sp_MSmakeexpandproc
     set @join_nickstr = convert(nchar(10), @join_nick)
     set @filterid_str = convert(nchar(10), @filterid)
     
-    set @cmd_piece = 'create procedure dbo.' + @procname + ' 
+    set @cmd_piece = 'create procedure BP_PRD.create procedure dbo.' + @procname + ' 
         @belong int 
         AS 
             '
@@ -83381,14 +81200,10 @@ create procedure sys.sp_MSmakeexpandproc
     -- join filters and this is not a unique key join.  The cursored calls to sp_belongs
     -- are unacceptably slow, and there would still be cases where orphaned rows could occur.
 
-
--- Now we select out the command text pieces in proper order so that our caller,
--- xp_execresultset will execute the command that creates the stored procedure.
-
 select cmdtext from #tempcmd order by step
 go
 
-create procedure sys.sp_MSmakegeneration
+create procedure BP_PRD.sys.sp_MSmakegeneration
     @gencheck int = 0,
     @commongen bigint = NULL, 
     @commongenguid uniqueidentifier = NULL,
@@ -83447,7 +81262,6 @@ as
     exec @retcode = sys.sp_MSrepl_PAL_rolecheck 
     if (@retcode <> 0) or (@@error <> 0)
             return 1
-
 
     SET XACT_ABORT ON
     SET DEADLOCK_PRIORITY LOW
@@ -83791,7 +81605,6 @@ as
                     select @changes_in_gen=0
                 end
 
-
                 update dbo.MSmerge_genhistory with (rowlock) set changecount = @changes_in_gen where generation = @gen
                 if @@error<>0
                 begin
@@ -83876,7 +81689,6 @@ as
         where genstatus=3 and changecount=0 and art_nick=@art_nick
     end*/
 
-
     -- delete all generations that have zero changes. even though we can just rely on changecount we 
     -- will just do a query to select contents and tombsone just to be sure.
     delete from dbo.MSmerge_genhistory with (rowlock) 
@@ -83906,8 +81718,6 @@ as
             coldate = getdate()
         where genstatus = 3
 
-
-
 END_TRAN:
       
     commit transaction
@@ -83929,16 +81739,13 @@ EXIT_RELEASE_TRAN:
         return 1
     end
 
-
 EXIT_PROC:
     if (@procfailed = 1)
         return (1)    
     else
         return (0)
 
-go
-
-create procedure sys.sp_MSmakeinsertproc 
+create procedure BP_PRD.sys.sp_MSmakeinsertproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier, @artid uniqueidentifier,
      @generate_downlevel_procs bit = 0, @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -83980,7 +81787,6 @@ declare @max_colv_size_in_bytes         int
 declare @schema_option                  varbinary(8)
 set nocount on
 
--- Check for subscribing permission
 exec @retcode=sys.sp_MSreplcheck_subscribe
 if @retcode<>0 or @@ERROR<>0 return (0)
 
@@ -84039,7 +81845,6 @@ end
 
 set @idstr = rtrim(convert(nchar, @id))
 
-
 /* Get name of rowguidcol. Aliasing doesn't work through a view. */
 select @rgcolname = QUOTENAME(name) from sys.columns where object_id = @id and is_rowguidcol = 1
 if @rgcolname is null
@@ -84066,46 +81871,38 @@ select top 1 @publication_number = publication_number
 from dbo.sysmergepublications 
 where pubid = @pubid
 
-
--- create temp table to select the command text out of
 create table #tempcmd (phase int NOT NULL, step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 
 create table #coltab (colname nvarchar(140), paramname nvarchar(10))
-
--- insert text pieces that don't repeat for each column
-
--- phase 0 : create procedure and fixed part of argument list
 
 /* For Yukon version of this proc, add the @maxschemaguidforarticle as the first parameter */
 if (0 = @generate_downlevel_procs AND @atpublisher = 1)
 begin
     if 1 = @maintainsmetadata
     begin
-        set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (@maxschemaguidforarticle uniqueidentifier = NULL, @rowguid uniqueidentifier, 
+        set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (@maxschemaguidforarticle uniqueidentifier = NULL, @rowguid uniqueidentifier, 
             @generation bigint, @lineage varbinary(311),  @colv varbinary(' + convert(nvarchar(13), @max_colv_size_in_bytes) + ') '
     end
     else
     begin
-        set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (@maxschemaguidforarticle uniqueidentifier = NULL, @rowguid uniqueidentifier '
+        set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (@maxschemaguidforarticle uniqueidentifier = NULL, @rowguid uniqueidentifier '
     end
 end
 else
 begin
     if 1 = @maintainsmetadata
     begin
-        set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (@rowguid uniqueidentifier, 
+        set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (@rowguid uniqueidentifier, 
             @generation bigint, @lineage varbinary(311),  @colv varbinary(' + convert(nvarchar(13), @max_colv_size_in_bytes) + ') '
     end
     else
     begin
-        set @cmdpiece = 'create procedure dbo.'  + QUOTENAME(@procname) + ' (@rowguid uniqueidentifier '
+        set @cmdpiece = 'create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (@rowguid uniqueidentifier '
     end
 end
 
 insert into #tempcmd (phase, cmdtext) values (0, @cmdpiece)
 
--- phase 1 is rest of argument list; goes in during loop over columns
--- phase 2 : paren to close argument list, and variable declarations
 select @cmdpiece = ') as
     declare @errcode    int
     declare @retcode    int
@@ -84155,7 +81952,6 @@ end
 
 insert into #tempcmd (phase, cmdtext) values (6, @cmdpiece)
 
-
 if (0 = @generate_downlevel_procs AND @atpublisher = 1 and @maxschemaguid is not NULL)
 begin
     -- phase 5 - check the max schema guid for article and error out if they do not match
@@ -84170,10 +81966,6 @@ begin
     insert into #tempcmd (phase, cmdtext) values (5, @cmdpiece)
 end
 
-
-
--- phase 7 is optional set identity insert on, goes in during loop if needed
--- phase 8 is beginning a sub transaction, setting save point and starting insert statement
 if 1 = @maintainsmetadata
 begin
     set @cmdpiece = '
@@ -84191,9 +81983,6 @@ begin
                         lineage = @lineage_old)
         begin
             set @errcode= 2
--- DEBUG            insert into MSmerge_debug 
--- DEBUG                (okay, artnick, rowguid, type, successcode, generation_new, lineage_old, lineage_new, twhen, comment)
--- DEBUG                values (1, @tablenick, @rowguid, @metadata_type, @errcode, @generation, @lineage_old, @lineage, getdate(), ''sp_ins'')
             goto Failure
         end
     end
@@ -84243,16 +82032,9 @@ end
 
 insert into #tempcmd (phase, cmdtext) values (8, @cmdpiece)
 
--- phase 9 is column list that we are inserting; done in loop
-
--- phase 10 is just the opening and closing parens and VALUES keyword
 set @cmdpiece = ') values ('
 insert into #tempcmd (phase, cmdtext) values (10, @cmdpiece)
 
--- phase 11 is all of those arguments as the list of value expressions; done in loop
--- phase 12 finish insert, check status, etc.
--- if we have a permanent view, check for case where we inserted a row that doesn't
--- meet filters of subscriber we are getting the insert from
 set @cmdpiece = ')
         select @rowcount= @@rowcount, @error= @@error
         if (@rowcount <> 1)
@@ -84263,7 +82045,6 @@ set @cmdpiece = ')
 '
 insert into #tempcmd (phase, cmdtext) values (12, @cmdpiece)
 
--- only add the following code when creating proc at publisher
 if @atpublisher = 1
 begin
     if @partition_options > 0
@@ -84328,10 +82109,6 @@ begin
     end
 end
 
--- if we already have a tombstone for this row, (especially a remove from partial) then
--- make sure we will set the generation so that it goes on down to subscribers of republishers
--- for backward compatibility, for 7.0 subscribers we do not want @resend to be 1
-
 if 1 = @maintainsmetadata
 begin
     set @cmdpiece = '
@@ -84349,10 +82126,6 @@ begin
     insert into #tempcmd (phase, cmdtext) values (12, @cmdpiece)
 end
 
--- phase 13 is setting identity insert off if needed; done in loop
-
--- now loop over columns and insert missing command pieces
---
 if @sync_objid = @id
     select @colid = min (column_id) from sys.columns where object_id = @id and is_computed=0 and user_type_id<>type_id('timestamp') 
 else
@@ -84360,7 +82133,6 @@ else
         from sys.columns cs inner join sys.columns co on co.object_id=@id and co.name = cs.name
     where cs.object_id = @sync_objid and 
           co.is_computed=0 and co.user_type_id<>type_id('timestamp') 
-
 
 select top 1 @colname = QUOTENAME(C.name), 
     @typename = type_name(C.user_type_id), 
@@ -84483,7 +82255,6 @@ begin
     insert into #tempcmd (phase, cmdtext) values (1, @cmdpiece)
 end
            
--- phase 10 is returning our success / failure status
 if 1 = @maintainsmetadata
 begin
     set @cmdpiece = '
@@ -84534,15 +82305,13 @@ set @cmdpiece= '
     '
 insert into #tempcmd (phase, cmdtext) values (14, @cmdpiece)
 
--- Now we select out the command text pieces in proper order so that our caller,
--- xp_execresultset will execute the command that creates the stored procedure.
 select cmdtext from #tempcmd order by phase, step
 
 drop table #tempcmd
 drop table #coltab
 go
 
-create procedure sys.sp_MSmakemetadataselectproc 
+create procedure BP_PRD.sys.sp_MSmakemetadataselectproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier, @artid uniqueidentifier,
      @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -84601,7 +82370,6 @@ set @cmdpiece= 'SET ANSI_NULLS ON SET QUOTED_IDENTIFIER ON'
 exec (@cmdpiece)
 if @@error<>0 return(1)
 
--- create temp table to select the command text out of
 declare @tempcmd table (step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 
 select @rowguiddeclareclause1 = '
@@ -84816,7 +82584,7 @@ select @rowguidunionclause4 = '
         select @rowguid100 as rowguid, 100 as sortcol'
 
 select @cmdpiece = '
-create procedure dbo.'  + QUOTENAME(@procname) + '
+create procedure BP_PRD.dbo.'  + QUOTENAME(@procname) + '
 ( ' + @rowguiddeclareclause1 
 insert into @tempcmd (cmdtext) values (@cmdpiece)
 select @cmdpiece = @rowguiddeclareclause2 + '
@@ -84840,7 +82608,6 @@ begin
         where nickname = ' + cast(@tablenick as nvarchar(20)) + ' and pubid = ''' + convert(nvarchar(36),@pubid) + '''
 '
 insert into @tempcmd (cmdtext) values (@cmdpiece)
-
 
 if @maintainsmetadata = 1
 begin
@@ -84918,10 +82685,9 @@ begin
 end
 
 select cmdtext from @tempcmd order by step
---drop table @tempcmd
 go
 
-create procedure sys.sp_MSmakeselectproc 
+create procedure BP_PRD.sys.sp_MSmakeselectproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier,  @artid uniqueidentifier,
      @generate_downlevel_procs bit = 0, @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -84954,17 +82720,11 @@ declare @rgcolname nvarchar(140)
 declare @out_of_partition_check nvarchar(4000)
 declare @cmdpiece_max       nvarchar(max)
 
-
--- The order of columns in the result set is changed so that
--- all blob columns follow all non-blob columns. This is done so
--- that the row can be read sequentially (DBPROP_ACCESSORDER = DBPROPVAL_AO_SEQUENTIALSTORAGEOBJECTS)
 declare @column_list_result    table (
             line_no int identity(1,1) primary key, 
             line nvarchar(4000),
             line2 nvarchar(4000) NULL)
 
--- Need the list of columns as it appears in the
--- user table to return in response to sp_MSenumcolumns
 declare @column_list_actual    table (
             line_no int identity(1,1) primary key, 
             line nvarchar(4000),
@@ -85048,7 +82808,6 @@ begin
     end    
 end
 
-
 /*
 ** Include computed columns.
 */
@@ -85118,7 +82877,6 @@ BEGIN
             else
                 set @col_name = 't.' + QUOTENAME(@col_name)
 
-
             -- Fill the the column_list_actual in the first iteration.
             if @loop_counter=1
             begin
@@ -85170,7 +82928,6 @@ begin
     select @prefixed_column_list_blob = 't.*'
 end
 
-
 if @generate_subscriber_proc = 0
     update dbo.sysmergepartitioninfo set column_list = @prefixed_column_list, column_list_blob =  @prefixed_column_list_blob where artid = @artid and pubid=@pubid
 else
@@ -85203,14 +82960,13 @@ begin
     return(1)
 end
 
--- create temp table to select the command text out of
 declare @tempcmd table (step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 
 /* For Yukon version of this proc, add the @maxschemaguidforarticle as the first parameter */
 if (0 = @generate_downlevel_procs)
 begin
     select @cmdpiece = '
-    create procedure dbo.'  + QUOTENAME(@procname) + ' (
+    create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (
         @maxschemaguidforarticle uniqueidentifier,
         @type int output, 
         @rowguid uniqueidentifier=NULL,
@@ -85237,7 +82993,7 @@ end
 else
 begin
     select @cmdpiece = '
-    create procedure dbo.'  + QUOTENAME(@procname) + ' (
+    create procedure BP_PRD.create procedure dbo.'  + QUOTENAME(@procname) + ' (
         @type int output, 
         @rowguid uniqueidentifier=NULL,
         @enumentirerowmetadata bit= 1,
@@ -85279,7 +83035,6 @@ select @cmdpiece= '
         begin
             select ' 
 insert into @tempcmd (cmdtext) values (@cmdpiece)
-
 
 insert into @tempcmd (cmdtext) select line from @column_list_actual order by line_no asc
 select @cmdpiece='          from ' + @qualified_name + ' t where rowguidcol = @rowguid
@@ -85703,11 +83458,9 @@ end
 
 insert into @tempcmd (cmdtext) values (@cmdpiece)
 select cmdtext from @tempcmd order by step
---drop table @tempcmd
 go
 
--- Used by snapshot
-create procedure sys.sp_MSmakesystableviews (
+create procedure BP_PRD.sys.sp_MSmakesystableviews (
     @publication sysname,
     @dynamic_snapshot_views_table_name sysname = null,
     @create_dynamic_views bit = 0,
@@ -85773,7 +83526,7 @@ AS
         end
     end
 
-    create table #temp_table_for_systable_view
+    create table #temp_table_for_BP_PRD.create table #temp_table_for_systable_view
     (
         id int identity(1,1),
         contentsview sysname NULL, 
@@ -85862,7 +83615,7 @@ CreateViews:
     end
     else
     begin
-        set @command = 'create view dbo.' + quotename(@contentsview_90) + ' as select * from MSmerge_contents where 1 = 2'
+        set @command = 'create view BP_PRD.create view dbo.' + quotename(@contentsview_90) + ' as select * from MSmerge_contents where 1 = 2'
 		exec(@command)
                 if @@ERROR<>0
                         return (1)
@@ -85870,9 +83623,8 @@ CreateViews:
     exec @retcode = sys.sp_MS_marksystemobject  @contentsview_90 
     if @@ERROR<>0 or @retcode<>0  return (1)
 
-
     -- Create the view on MSmerge_contents that contains rows which are updateable at every subscriber.
-    select @view_creation_command = 'create view dbo.' + quotename(@contentsview_90_forall) + ' as 
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@contentsview_90_forall) + ' as 
     select * from ' + quotename(@contentsview_90) + '
         where tablenick in (select nickname from dbo.sysmergearticles where upload_options <> 1 and upload_options <> 2)  
             and generation <= ' + convert(nvarchar, @max_bcp_gen)
@@ -85885,7 +83637,7 @@ CreateViews:
     if 1=@need_ctsview_forglobal
     begin
         -- Create the view on MSmerge_contents that contains rows which are only updateable at global subscribers.
-        select @view_creation_command = 'create view dbo.' + quotename(@contentsview_90_forglobal) + ' as 
+        select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@contentsview_90_forglobal) + ' as 
         select * from ' + quotename(@contentsview_90) + '
             where tablenick in (select nickname from dbo.sysmergearticles where upload_options = 1 or upload_options = 2)
             and generation <= ' + convert(nvarchar, @max_bcp_gen)
@@ -85898,7 +83650,7 @@ CreateViews:
 
     /* Create the view on MSmerge_contents that has the same format as the SQL2000 MSmerge_contents */
     /*  dont convert. let mdac do all the conversion. we anyway raise an error above incase the generation greater than max_int
-    select @view_creation_command = 'create view dbo.' + @contentsview_80 + ' as 
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + @contentsview_80 + ' as 
     select tablenick, rowguid, 
     generation = case when abs(generation) > 2147483647 then 0 else convert(int, generation) end, 
     partchangegen = case when abs(partchangegen) > 2147483647 then 0 else convert(int, case when partchangegen < 0 then NULL else partchangegen end) end, 
@@ -85910,7 +83662,7 @@ CreateViews:
     from ' + @contentsview_90
     */
 
-    select @view_creation_command = 'create view dbo.' + quotename(@contentsview_80) + ' as 
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@contentsview_80) + ' as 
     select tablenick, rowguid, generation = isnull(convert(int, generation),0), 
     partchangegen = case when partchangegen < 0 then NULL else convert(int, partchangegen) end, 
     joinchangegen = case when partchangegen < 0 then convert(int, (-partchangegen)) else convert(int, partchangegen) end, 
@@ -85932,7 +83684,7 @@ CreateViews:
     ** return 0 rows.
     */
 
-    select @view_creation_command = 'create view dbo.' + quotename(@tombstoneview) + ' as select * from dbo.MSmerge_tombstone where 1= 2'
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@tombstoneview) + ' as select * from dbo.MSmerge_tombstone where 1= 2'
 
     if @dynamic_filters = 1
     begin
@@ -85948,7 +83700,7 @@ CreateViews:
     if @@ERROR<>0 or @retcode<>0  return (1)
 
     -- Yukon genhistory view
-    select @view_creation_command = 'create view dbo.' + quotename(@genhistoryview_90) + '(guidsrc, pubid, generation,
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@genhistoryview_90) + '(guidsrc, pubid, generation,
             art_nick, nicknames, coldate, genstatus, changecount, subscriber_number) as select DISTINCT guidsrc, CONVERT(uniqueidentifier, ' 
             + @guidstr + '), generation, art_nick, nicknames, coldate, genstatus, changecount, subscriber_number from dbo.MSmerge_genhistory gh
             where genstatus in (1,2) and 
@@ -85970,7 +83722,7 @@ CreateViews:
     if @@ERROR<>0 or @retcode<>0  return (1)
 
     /* Create the view on MSmerge_genhistory that has the same format as the SQL2000 MSmerge_genhistory */
-    select @view_creation_command = 'create view dbo.' + quotename(@genhistoryview_80) + ' as 
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@genhistoryview_80) + ' as 
     select guidsrc, guidlocal = newid(), pubid, generation = isnull(convert(int, generation),0), art_nick, nicknames= {fn REPLNICKARRAY_90_TO_80(nicknames)}, coldate from ' + quotename(@genhistoryview_90)
 
     exec (@view_creation_command)
@@ -85981,7 +83733,7 @@ CreateViews:
     exec @retcode = sys.sp_MS_marksystemobject  @genhistoryview_80 
     if @@ERROR<>0 or @retcode<>0  return (1)
 
-    select @view_creation_command = 'create view dbo.' + quotename(@filtersview_80) + ' as 
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@filtersview_80) + ' as 
         select filtername, join_filterid, pubid, artid, art_nickname, join_articlename, 
                 join_nickname, join_unique_key, expand_proc, join_filterclause 
         from dbo.sysmergesubsetfilters where pubid = ' + @guidstr + ' 
@@ -86000,7 +83752,7 @@ CreateViews:
     exec @retcode = sys.sp_MS_marksystemobject  @filtersview_80 
     if @@ERROR<>0 or @retcode<>0  return (1)
         
-    select @view_creation_command = 'create view dbo.' + quotename(@filtersview_90) + ' as 
+    select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@filtersview_90) + ' as 
         select filtername, join_filterid, pubid, artid, art_nickname, join_articlename, 
                 join_nickname, join_unique_key, expand_proc, join_filterclause, filter_type 
         from dbo.sysmergesubsetfilters where pubid = ' + @guidstr + ' 
@@ -86022,7 +83774,7 @@ CreateViews:
     if 1=@need_ctsview_rowtrack
     begin
         -- Create the view on MSmerge_contents for lightweight subscribers.
-        select @view_creation_command = 'create view dbo.' + quotename(@rowtrackview) + ' as 
+        select @view_creation_command = 'create view BP_PRD.create view dbo.' + quotename(@rowtrackview) + ' as 
         
         select 
             tablenick, 
@@ -86117,18 +83869,7 @@ Finish:
     return (0)
 go
 
-
--- This will be called by snapshot at publisher side and 
--- merge at the subscriber side, check for dbo permission
-
--- usage pattern from CMergeDatasource should be:
--- begin tran
--- upd_sp_guid(1, 2, stream1, NULL, bitmap=0x07, setcheck=0x01) which check metadata 
--- upd_sp_guid(NULL, NULL, stream1, NULL, bitmap=0x07, setcheck=0x00) 
--- upd_sp_guid(NULL, NULL, NULL, stream2, bitmap=0x08, setcheck=0x02) which reset metadata
--- commit
-
-create procedure sys.sp_MSmakeupdateproc 
+create procedure BP_PRD.sys.sp_MSmakeupdateproc 
     (@tablename sysname, @ownername sysname, @procname sysname, @pubid uniqueidentifier, @artid uniqueidentifier,
      @generate_downlevel_procs bit = 0, @generate_subscriber_proc bit = 0, @destination_owner sysname = NULL)
 as
@@ -86201,7 +83942,6 @@ else
 
 select @escaped_qualified_name = sys.fn_replreplacesinglequote(@qualified_name)
 
-
 select @id = object_id(@qualified_name)
 if @id is NULL return (1)
 
@@ -86223,7 +83963,6 @@ else
 select @rgcol = QUOTENAME(name) from sys.columns where object_id = @id and is_rowguidcol = 1
 if @rgcol is null
     set @rgcol = 'rowguid'
-
 
 select @sync_objid = sync_objid, @fast_multicol_updateproc_bit = fast_multicol_updateproc, @permissions=check_permissions,
     @permissions_str=convert(nvarchar(10), check_permissions), @schema_option=schema_option,
@@ -86284,13 +84023,8 @@ select top 1 @publication_number = publication_number
 from dbo.sysmergepublications 
 where pubid = @pubid
 
--- create temp table to select the command text out of
 create table #tempcmd (phase int NOT NULL, step int identity NOT NULL, cmdtext nvarchar(4000) collate database_default null)
 create table #coltab (colname nvarchar(140), paramname nvarchar(10))
-
--- insert text pieces that don''t repeat for each column
-
--- phase 0 : create procedure and fixed part of argument list
 
 /* For Yukon version of this proc, add the @maxschemaguidforarticle as the first parameter */
 if 0 = @generate_downlevel_procs AND @atpublisher = 1
@@ -86322,8 +84056,6 @@ end
 
 insert into #tempcmd (phase, cmdtext) values (0, @cmdpiece)
 
--- phase 1 is rest of argument list; goes in during loop over columns
--- phase 2 paren to close argument list and fixed variable declarations
 if 1 = @maintainsmetadata
 begin
     set @cmdpiece = ')
@@ -86380,7 +84112,6 @@ begin
     insert into #tempcmd (phase, cmdtext) values (2, @cmdpiece)
 end
 
--- phase 2 - check the max schema guid for article and error out if they do not match
 if 0 = @generate_downlevel_procs AND @atpublisher = 1
 begin
     set @cmdpiece= '
@@ -86394,9 +84125,6 @@ begin
     insert into #tempcmd (phase, cmdtext) values (2, @cmdpiece)
 end
 
-
--- phase 3 is rest of variable declarations; goes in during loop over columns
--- phase 4 begin a transaction, set savepoint in case we roll back, begin select to get current values
 set @cmdpiece = '
     if @@trancount = 0
     begin
@@ -86440,10 +84168,6 @@ set @cmdpiece = '
     select '
 insert into #tempcmd (phase, cmdtext) values (4, @cmdpiece)
 
-
--- phase 5 is middle part of select assigning column values to local variables -- goes in loop
--- we will only select columns that are part of a clustering/nonclustering index or is a partitioning column
--- phase 10 -- finish the select, check that metadata matches
 set @cmdpiece= '        from ' + @qualified_name + ' where rowguidcol = @rowguid'
 
 if 1 = @maintainsmetadata
@@ -86455,7 +84179,6 @@ end
 
 insert into #tempcmd (phase, cmdtext) values (10, @cmdpiece)
 
--- If we are generating downlevel procs then convert lineage from 80 to 90 format.
 if (1 = @generate_downlevel_procs )
 begin
     set @cmdpiece= '
@@ -86464,14 +84187,6 @@ begin
 '
     insert into #tempcmd (phase, cmdtext) values (10, @cmdpiece)
 end
-
--- now do the loop over all columns and insert the missing pieces
-
--- do not script out computed columns or timestamp columns
--- we will not select the row from the base table if this article is column tracked.
--- we will only rely on the @setbm parameter then. In the case that it is not column tracked
--- we will only select out columns which are part of a clustered or NC index.
--- ignore the computed, timestamp and identity colums since they cannot be updated.
 
 if @sync_objid = @id
     select @colid = min (column_id) from sys.columns where object_id = @id and is_computed=0 and user_type_id<>type_id('timestamp') 
@@ -86570,7 +84285,6 @@ begin
         select @is_indexing_column = 1
     else
         select @is_indexing_column = 0
-
 
     -- since blob columns cannot be used in indexing, it is ok to do just the seperate update statement in case of
     -- blob columns and not worry about anything after that. we will do the blob column updates in phase 12
@@ -87068,15 +84782,12 @@ begin
     end
 end
 
--- Add dummy column list to select statement if there is no user updateable 
--- column.
 if @has_updateable_columns_in_select_list = 0
 begin
     insert into #tempcmd (phase, cmdtext) values (3, N'declare @l int')
     insert into #tempcmd (phase, cmdtext) values (5, N'@l = 1')
 end
 
--- phase 20 finish the stored procedure
 if 1 = @maintainsmetadata
 begin
 
@@ -87122,10 +84833,6 @@ delete from dbo.MSmerge_metadataaction_request
     if @started_transaction = 1
         commit transaction
 
--- DEBUG    insert into MSmerge_debug 
--- DEBUG        (okay, artnick, rowguid, type, successcode, generation_new, lineage_old, lineage_new, twhen, comment)
--- DEBUG        values (0, @tablenick, @rowguid, @metadata_type, 1, @generation, @lineage_old, @lineage_new, getdate(), ''sp_upd'')
-
     return(1)
 
 Failure:
@@ -87133,9 +84840,6 @@ Failure:
     --commit transaction
     if @started_transaction = 1    
         rollback transaction
--- DEBUG    insert into MSmerge_debug 
--- DEBUG        (okay, artnick, rowguid, type, successcode, generation_new, lineage_old, lineage_new, twhen, comment)
--- DEBUG        values (1, @tablenick, @rowguid, @metadata_type, @errcode, @generation, @lineage_old, @lineage_new, getdate(), ''sp_upd'')
 
 '
 end
@@ -87174,15 +84878,12 @@ set @cmdpiece = '
     return @errcode'
 insert into #tempcmd (phase, cmdtext) values (200, @cmdpiece)
 
--- Now we select out the command text pieces in proper order so that our caller,
--- xp_execresultset will execute the command that creates the stored procedure.
-
 select cmdtext from #tempcmd order by phase, step
 drop table #tempcmd
 drop table #coltab
 go
 
-create procedure sys.sp_MSmap_partitionid_to_generations @partition_id int
+create procedure BP_PRD.sys.sp_MSmap_partitionid_to_generations @partition_id int
 as
 
     declare @retcode smallint
@@ -87234,8 +84935,7 @@ begin
 end    	
 go
 
-
-create proc sys.sp_MSmatchkey
+create proc BP_PRD.sys.sp_MSmatchkey
 	@tablename nvarchar(517),
 	@col1 nvarchar(258),
 	@col2 nvarchar(258) = null,
@@ -87309,7 +85009,7 @@ as
 	select name from dbo.sysindexes where id = @id and indid = (select min(i) from #i1)
 go
 
-create procedure sys.sp_MSmerge_alterschemaonly 
+create procedure BP_PRD.sys.sp_MSmerge_alterschemaonly 
 (
     @qual_object_name nvarchar(512) --qualified 3-part-name            
     ,@objid    int
@@ -87388,7 +85088,6 @@ AS
     select @pass_through_scripts = N'ALTER ' + @objecttype + N' '
                                 + @qual_dest_object + N' '
                                 + @pass_through_scripts
-
 
     -- real work
     declare @snapshot_ready int, @sync_mode int, @replicate_ddl int
@@ -87489,7 +85188,7 @@ FAILURE:
     return 1
 go
 
-create procedure sys.sp_MSmerge_altertrigger 
+create procedure BP_PRD.sys.sp_MSmerge_altertrigger 
 (
     @qual_object_name nvarchar(512) --qualified 3-part-name            
     ,@objid    int
@@ -87684,12 +85383,7 @@ FAILURE:
     return 1
 go
 
-
-
-
-
-
-create procedure sys.sp_MSmerge_alterview
+create procedure BP_PRD.sys.sp_MSmerge_alterview
 (
     @qual_object_name nvarchar(512) --qualified 3-part-name            
     ,@objid    int
@@ -87748,7 +85442,7 @@ FAILURE:
     return 1
 go
 
-create procedure sys.sp_MSmerge_ddldispatcher 
+create procedure BP_PRD.sys.sp_MSmerge_ddldispatcher 
 (
     @EventData xml
     ,@procmapid int
@@ -87776,7 +85470,6 @@ begin
     else
         set @debug_print = 0
 
-
     declare @object_name sysname
                 ,@object_owner sysname
                 ,@qual_object_name nvarchar(512) --qualified 3-part-name            
@@ -87799,7 +85492,6 @@ begin
         ,@pass_through_scripts = event_instance.value('(TSQLCommand/CommandText)[1]', 'nvarchar(max)')
         ,@targetobject = event_instance.value('TargetObjectName[1]', 'nvarchar(512)')
     FROM       @EventData.nodes('/EVENT_INSTANCE') as R(event_instance)
-
 
 	if @debug_print = 1
 		select 'stage' = 'xmlnoderefs : '
@@ -87890,7 +85582,7 @@ begin
 		return 0
 
     --if merge replication is not enabled for this db, or object is not published, don''t do anything
-    --refer to sp_MScreate_mergesystables for sys tables
+    --refer to sp_MScreate_mergeBP_PRD.create_mergesystables for sys tables
     if object_id('dbo.sysmergearticles') is not null
     begin
         declare @proc_name sysname
@@ -87943,7 +85635,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSmerge_getgencount
+create procedure BP_PRD.sys.sp_MSmerge_getgencount
 	@genlist varchar(8000),   
 	@gencount int output
 as 
@@ -87971,8 +85663,7 @@ as
     return 0
 go
 
-
-create procedure sys.sp_MSmerge_getgencur_public (
+create procedure BP_PRD.sys.sp_MSmerge_getgencur_public (
     @tablenick int, -- tablenick for gen
     @changecount int, -- number of changes to put in gen
     @gen_cur bigint output
@@ -87992,7 +85683,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSmerge_is_snapshot_required
+create procedure BP_PRD.sys.sp_MSmerge_is_snapshot_required
     @publisher             sysname,
     @publisher_db         sysname,
     @publication         sysname,
@@ -88079,7 +85770,6 @@ begin
             return 1
         end
     end
-
 
     -- Parameter Validation
     if @publisher is null
@@ -88283,14 +85973,14 @@ Results_Handler:
     -- set the is_snapshot_required val and leave the rest as null we  
     -- must have the other columns because tran and merge share the 
     -- agent code that processes the results of this stored proc.
-    select "is_snapshot_required" = @is_needed,
-            "schema_version"    = @schema_version
+    select 'is_snapshot_required' = @is_needed,
+            'schema_version'    = @schema_version
             
     return 0
 end
 go
 
-create procedure sys.sp_MSmerge_log_identity_range_allocations
+create procedure BP_PRD.sys.sp_MSmerge_log_identity_range_allocations
 (
     @publisher sysname,
     @publisher_db sysname,
@@ -88366,7 +86056,7 @@ as
     
 go
 
-create procedure sys.sp_MSmerge_parsegenlist
+create procedure BP_PRD.sys.sp_MSmerge_parsegenlist
     @genlist varchar(8000),       
     @gendeclarelist varchar(max) OUTPUT, 
     @genselectlist varchar(max) OUTPUT,
@@ -88469,7 +86159,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSmerge_upgrade_subscriber @upgrade_metadata bit = 1, @upgrade_done bit = NULL output
+create procedure BP_PRD.sys.sp_MSmerge_upgrade_subscriber @upgrade_metadata bit = 1, @upgrade_done bit = NULL output
 as
     -- this stored procedure is called every time the merge runs
     -- however we will only do anything if we find that upgrade is in progress
@@ -88586,7 +86276,6 @@ as
                 delete from dbo.MSrepl_identity_range where objid=@objid
         end
 
-
         /* Drop the default constraint on the rowguid column and create a new
         ** one that uses newsequential id. This will help improve performance.
         */
@@ -88629,8 +86318,7 @@ error:
     return 1
 go
 
-
-create procedure sys.sp_MSmergesubscribedb(
+create procedure BP_PRD.sys.sp_MSmergesubscribedb(
     @value sysname,
     @create_ddl_triggers bit = 1,
     @whattocreate smallint = 1    -- 1=heavyweight,2=lightweight
@@ -88653,7 +86341,7 @@ create procedure sys.sp_MSmergesubscribedb(
 
     IF LOWER(@value collate SQL_Latin1_General_CP1_CS_AS) = 'true'
     BEGIN
-        execute @retcode = sys.sp_MScreate_mergesystables @whattocreate=@whattocreate
+        execute @retcode = sys.sp_MScreate_mergeBP_PRD.create_mergesystables @whattocreate=@whattocreate
         if @@ERROR <> 0 or @retcode <> 0 return (1)
 
 		if @create_ddl_triggers = 1
@@ -88670,7 +86358,7 @@ create procedure sys.sp_MSmergesubscribedb(
     
 go
 
-create procedure sys.sp_MSmergeupdatelastsyncinfo (
+create procedure BP_PRD.sys.sp_MSmergeupdatelastsyncinfo (
 @subid             uniqueidentifier,
 @last_sync_status  int,
 @last_sync_summary sysname
@@ -88680,7 +86368,6 @@ set nocount on
 
 declare @retcode    int
 
--- Security check
 exec @retcode= sys.sp_MSrepl_PAL_rolecheck @repid = @subid
 if @retcode<>0 or @@error<>0 return 1
 
@@ -88697,7 +86384,7 @@ end
 return (0)
 go
 
-create procedure sys.sp_MSneedmergemetadataretentioncleanup
+create procedure BP_PRD.sys.sp_MSneedmergemetadataretentioncleanup
     @replicaid      uniqueidentifier,
     @needcleanup    bit output
 as
@@ -88726,10 +86413,7 @@ as
         from dbo.sysmergepublications
         where pubid = @pubid
 
-go
-
-
-create proc sys.sp_MSobjectprivs
+create proc BP_PRD.sys.sp_MSobjectprivs
 	@objname nvarchar(776) = null,
 	@mode nvarchar(10) = N'object',	
 	@objid int = null,				
@@ -88788,7 +86472,7 @@ as
 			and p.uid = user_id(@grantee)
 			and p.columns != 0x01 and syso.object_id = p.id
 				and convert(tinyint, substring(isnull(p.columns, 0x01), a.low, 1)) &
-					-- 6.5 changed so that the bit 0 position is an "invert the bits" indicator:
+					-- 6.5 changed so that the bit 0 position is an 'invert the bits' indicator:
 					--		when 0, behaviour is the same as in prior versions, and other bits
 					--			indicate columns with the specified privilege
 					--		when 1, the other bits are indicate columns lacking the specified privilege
@@ -88827,7 +86511,7 @@ as
   		and (@uid is null or p.uid = @uid)
    	and p.action in (193, 195, 196, 197, 224, 26) and p.uid not in (16382, 16383)
 
-	/* Use a "fake cursor" by deleting successive id's from #objs, as this must run on 4.21 */
+	/* Use a 'fake cursor' by deleting successive id's from #objs, as this must run on 4.21 */
 	select @id = min(id) from #objs
 	while (@id is not null) begin
 		select @cols = count(*) from dbo.syscolumns c where c.id = @id
@@ -88892,7 +86576,7 @@ as
          delete #tmp
       end
 
-		/* Increment our "fake cursor" column and get the next one. */
+		/* Increment our 'fake cursor' column and get the next one. */
 		delete #objs where id = @id
 		select @id = min(id) from #objs
 	end
@@ -88977,7 +86661,7 @@ as
    end
 go
 
-create procedure sys.sp_MSpeerapplyresponse
+create procedure BP_PRD.sys.sp_MSpeerapplyresponse
 (
 	@request_id		int,
 	@originator		sysname,
@@ -89047,7 +86731,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSpeerapplytopologyinfo
+create procedure BP_PRD.sys.sp_MSpeerapplytopologyinfo
 (
 	@request_id		int,
 	@originator		sysname,
@@ -89143,7 +86827,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSpeerconflictdetection_statuscollection_applyresponse (
+create procedure BP_PRD.sys.sp_MSpeerconflictdetection_statuscollection_applyresponse (
 	@request_id	int,
 	@peer_node	sysname, 
 	@peer_db	sysname,
@@ -89232,7 +86916,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_MSpeerconflictdetection_statuscollection_sendresponse (
+create procedure BP_PRD.sys.sp_MSpeerconflictdetection_statuscollection_sendresponse (
 	@request_id	int,
 	@publication	sysname, 
 	@originator_node sysname,
@@ -89263,7 +86947,6 @@ begin
 			@OPT_ENABLED_FOR_P2P_CONFLICTDETECTION int,
 			@OPT_ENABLED_FOR_P2P_CONTINUE_ONCONFLICT int,
 			@cmdtxt nvarchar(max)
-
 
 	select 	@OPT_ENABLED_FOR_P2P = 0x1,
 			@OPT_ENABLED_FOR_P2P_CONFLICTDETECTION = 0x8,
@@ -89302,7 +86985,6 @@ begin
 				@peer_continue_onconflict = NULL
 	end
 
-
 	-- obtain histids
 	declare @histidtab table (originator_id int,  originator_node sysname,  originator_db sysname,  originator_db_version int, originator_version int)
 	insert  @histidtab
@@ -89318,7 +87000,6 @@ begin
 		
 	--add root: /peer_histids
 	select @peer_histids = N'<peer_histids>' + @peer_histids + N'</peer_histids>' 
-
 
 	-- construct the command to be forwarded
 	select @cmdtxt = N'if @@microsoftversion >= 0x0A000000 
@@ -89362,7 +87043,7 @@ begin
 end 
 go
 
-create procedure sys.sp_MSpeerconflictdetection_topology_applyresponse (
+create procedure BP_PRD.sys.sp_MSpeerconflictdetection_topology_applyresponse (
 	@request_id	int,
 	@peer_node	sysname, 
 	@peer_db	sysname,
@@ -89444,29 +87125,7 @@ UNDO:
 end 
 go
 
---
--- Name: 
---		sp_MSpeerdbinfo
--- 
--- Description: 
---		Checks to see if this database contains any peer to peer publications. If so, it
---		will also output the guid restore version value as an int.
--- 	
--- Parameters: 
---	 	See the procedure definition.
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Called by logreader agents  (must be made public).
---		SYSADMIN or DBO of publisher db
---
-create procedure sys.sp_MSpeerdbinfo
+create procedure BP_PRD.sys.sp_MSpeerdbinfo
 (
 	@is_p2p				bit output,
 	@current_version 	int output
@@ -89517,7 +87176,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSpeersendresponse
+create procedure BP_PRD.sys.sp_MSpeersendresponse
 (
 	@request_id				int,
 	@originator				sysname,
@@ -89580,7 +87239,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSpeersendtopologyinfo
+create procedure BP_PRD.sys.sp_MSpeersendtopologyinfo
 (
 	@request_id				int,
 	@originator				sysname,
@@ -89717,7 +87376,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSpeertopeerfwdingexec
+create procedure BP_PRD.sys.sp_MSpeertopeerfwdingexec
 (
 	@command					nvarchar(max),
 	@publication				sysname,
@@ -89821,7 +87480,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSpost_auto_proc 
+create procedure BP_PRD.sys.sp_MSpost_auto_proc 
 (
     @pubid int, 
     @artid int, 
@@ -89863,7 +87522,6 @@ begin
             ,@k_scriptinsproccore = 6
             ,@k_scriptdelproccore = 7
             ,@snapshot_bit = 0x80000000
-
 
     /*
     ** Security Check
@@ -89976,8 +87634,7 @@ begin
 end
 go
 
--- This proc is called by the .prc file to mark merge replication objects as system objects.
-create procedure sys.sp_MSpostapplyscript_forsubscriberprocs    (
+create procedure BP_PRD.sys.sp_MSpostapplyscript_forsubscriberprocs    (
     @procsuffix sysname)
     
 as
@@ -90069,7 +87726,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSprep_exclusive 
+create procedure BP_PRD.sys.sp_MSprep_exclusive 
 	@objname sysname
 	,@objid int = NULL
 as
@@ -90130,7 +87787,7 @@ FAILURE:
     return (1)
 go
 
-create procedure sys.sp_MSprepare_mergearticle
+create procedure BP_PRD.sys.sp_MSprepare_mergearticle
     @source_owner    sysname,
     @source_table     sysname,         /* table name */
     @publication     sysname,
@@ -90256,7 +87913,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSproxiedmetadata
+create procedure BP_PRD.sys.sp_MSproxiedmetadata
     @tablenick          int,
     @rowguid            uniqueidentifier,
     @proxied_lineage    varbinary(311),
@@ -90353,7 +88010,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSproxiedmetadatabatch
+create procedure BP_PRD.sys.sp_MSproxiedmetadatabatch
     @tablenick          int,
     @rowguid            uniqueidentifier,
     @proxied_lineage    varbinary(311),
@@ -90450,7 +88107,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSproxiedmetadatalightweight
+create procedure BP_PRD.sys.sp_MSproxiedmetadatalightweight
 	@tablenick			int,
 	@rowguid			uniqueidentifier,
 	@pubid				uniqueidentifier,
@@ -90494,7 +88151,7 @@ as
 
 	-- We replace proxied metadata if either:
 	-- 1) The sync_cookie matches. This means that there was no local change since the upload
-	--	  began, and the "right" publisher is acknowledging the upload. In that case, the
+	--	  began, and the 'right' publisher is acknowledging the upload. In that case, the
 	--	  change type is reset, too, because the current row value was succesfully uploaded.
 	--	  The rowvector is only replaced if the currently stored version is not higher. This
 	--	  could be the case because of scenario 2 described below.
@@ -90615,7 +88272,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MSpub_adjust_identity
+create procedure BP_PRD.sys.sp_MSpub_adjust_identity
 (
     @artid int = null
     ,@max_identity bigint = null -- used only during initialization
@@ -91103,7 +88760,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSpublicationcleanup (
+create procedure BP_PRD.sys.sp_MSpublicationcleanup (
     @publication         sysname,
     @publisher_db        sysname,
     @publisher               sysname = NULL,
@@ -91158,7 +88815,6 @@ create procedure sys.sp_MSpublicationcleanup (
     exec @retcode = sys.sp_MSdropctsviews @pubid
     IF @@ERROR <> 0 or @retcode <> 0
         return (1)
-
 
     /*
     ** If we are in the middle of delivering a snapshot for the specified
@@ -91392,7 +89048,7 @@ Error:
     return (1)
 go
 
-create procedure sys.sp_MSpublicationview(
+create procedure BP_PRD.sys.sp_MSpublicationview(
     @publication sysname,
     @force_flag int = 0,  -- force_flag = 1 : pub-wide mode, force_flag = 2 : article mode
     @max_network_optimization bit = 0,
@@ -91528,7 +89184,6 @@ create procedure sys.sp_MSpublicationview(
     begin
         goto FAILURE
     end
-
 
     begin tran
     save tran sp_MSpublicationview
@@ -91691,7 +89346,7 @@ create procedure sys.sp_MSpublicationview(
         end
     end
 
-    -- do the following only after all tables have been "activated" i.e. rowguid column has been added
+    -- do the following only after all tables have been 'activated' i.e. rowguid column has been added
     -- basically this proc gets calls twice from the snapshot agent. Once before rowguidcols are present
     -- and once after the rowguid columns have been created. We want the partition groups related setup
     -- to happen only afte rowguidcols have been established.
@@ -91713,7 +89368,7 @@ create procedure sys.sp_MSpublicationview(
     
     if (@use_partition_groups = 1)
     begin
-        create table #list_of_functions (function_name_with_parens nvarchar(500), function_name_without_parens sysname)
+        create table #list_of_functions (function_name_with_parens nvarchar(500), function_name_without_parens BP_PRD.create table #list_of_functions (function_name_with_parens nvarchar(500), function_name_without_parens sysname)
         exec @retcode = sp_MSsetup_function_list_table @pubid
         if @retcode <> 0 or @@error <> 0 goto FAILURE
     end
@@ -92117,7 +89772,7 @@ create procedure sys.sp_MSpublicationview(
             if @hasguid = 0
                 set @view_rule = ' select ' + @column_list + ' from '+ @source_object + ' ' + @unqual_sourcename +
                                             ' where ({fn ISPALUSER(''' + convert(nvarchar(36), @pubid) + ''')} = 1)'
-            exec ('create view dbo.'+ @quoted_obj + ' as '+ @view_rule)
+            exec ('create view BP_PRD.create view dbo.'+ @quoted_obj + ' as '+ @view_rule)
             if @@ERROR<>0
                 goto FAILURE
 
@@ -92170,7 +89825,7 @@ create procedure sys.sp_MSpublicationview(
             
                 set @before_view_rule= @before_view_rule + ') and ({ fn ISPALUSER(''' + convert(nvarchar(36), @pubid) + ''') } = 1)'
                 
-                exec ('create view dbo.' + @quoted_obj + ' as ' + @before_view_rule)
+                exec ('create view BP_PRD.create view dbo.' + @quoted_obj + ' as ' + @before_view_rule)
                 if @@ERROR<>0
                     goto FAILURE
 
@@ -92233,7 +89888,7 @@ create procedure sys.sp_MSpublicationview(
                 set @view_rule = ' select ' + @column_list + ' from '+ @source_object + ' ' + @unqual_sourcename + 
                             ' where ({fn ISPALUSER(''' + convert(nvarchar(36), @pubid) + ''')} = 1)'
 
-                exec ('create view dbo.'+ @quoted_obj + ' as '+ @view_rule)
+                exec ('create view BP_PRD.create view dbo.'+ @quoted_obj + ' as '+ @view_rule)
                 if @@ERROR<>0
                     goto FAILURE
                 execute dbo.sp_MS_marksystemobject @quoted_obj
@@ -92268,7 +89923,7 @@ create procedure sys.sp_MSpublicationview(
                         goto FAILURE 
                 end
                 set @view_rule = ' select  * from ' + @source_object  + ' where ({fn ISPALUSER(''' + convert(nvarchar(36), @pubid) + ''')} = 1)'     
-                exec ('create view dbo.'+ @quoted_obj + ' as '+ @view_rule)
+                exec ('create view BP_PRD.create view dbo.'+ @quoted_obj + ' as '+ @view_rule)
                 if @@ERROR<>0
                     goto FAILURE
                 execute dbo.sp_MS_marksystemobject @quoted_obj
@@ -92320,7 +89975,7 @@ create procedure sys.sp_MSpublicationview(
                    
             if @allhaveguids = 1
             begin
-                exec ('create view dbo.'+ @quoted_partition_view + ' as '+ @partition_view_rule)
+                exec ('create view BP_PRD.create view dbo.'+ @quoted_partition_view + ' as '+ @partition_view_rule)
                 if @@ERROR<>0
                     goto FAILURE
                 /* grant select permission on sync view to public - security check is performed inside the view */ 
@@ -92412,7 +90067,7 @@ FAILURE:
     return (1)
 go
 
-create procedure sys.sp_MSquery_syncstates
+create procedure BP_PRD.sys.sp_MSquery_syncstates
 (
     @publisher_id smallint, 
     @publisher_db sysname
@@ -92438,8 +90093,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSquerysubtype (@pubid uniqueidentifier,@subscriber sysname, @subscriber_db sysname)
+create procedure BP_PRD.sys.sp_MSquerysubtype (@pubid uniqueidentifier,@subscriber sysname, @subscriber_db sysname)
 as
     -- Security check
     if (1 <> {fn ISPALUSER(@pubid)} and
@@ -92464,41 +90118,7 @@ as
     select @subtype
 go
 
---
--- Name: sp_MSrecordsnapshotdeliveryprogress
---
--- Description: This procedure is used by the distribution agent or the merge
---              agent to record a snapshot delivery work item that has been
---              applied to a subscriber database in the 
---              MSsnapshotdeliveryprogress table. In the event of restarting 
---              an interrupted snapshot delivery process, the distribution or
---              merge agent can use the information stored in the 
---              MSsnapshotdeliveryprogress table to avoid redoing snapshot
---              delivery processing that has already been applied to the 
---              subscriber.
--- 
--- Note: This procedure should only be called by the distribution agent or
---       the merge agent at the subscriber database.
---
--- Parameters: @snapshot_session_token nvarchar(260) (mandatory)
---               - a UniCode string that uniquely identifies a snapshot
---                 delivery session. For now, this will be a the full folder
---                 path of the particular snapshot being applied (hence the
---                 260 characters size).
---             @snapshot_progress_token nvarchar(500) (mandatory)
---               - A unicode string that uniquely identifies a snapshot work
---                 item (schema creation, bulk-loading data) that has been 
---                 applied to the subscriber. 
---
--- Returns: 0 - succeeded
---          1 - failed
--- 
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_MSrecordsnapshotdeliveryprogress (
+create procedure BP_PRD.sys.sp_MSrecordsnapshotdeliveryprogress (
     @snapshot_session_token nvarchar(260),
     @snapshot_progress_token nvarchar(500)
     )
@@ -92519,7 +90139,7 @@ begin
     
     if object_id('dbo.MSsnapshotdeliveryprogress') is null
     begin
-        create table dbo.MSsnapshotdeliveryprogress 
+        create table BP_PRD.create table dbo.MSsnapshotdeliveryprogress 
         (
            session_token nvarchar(260) not null,
            progress_token_hash int not null,
@@ -92600,7 +90220,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSreenable_check @objname sysname, @objowner sysname = NULL
+create procedure BP_PRD.sys.sp_MSreenable_check @objname sysname, @objowner sysname = NULL
 as
     set nocount on
     
@@ -92705,8 +90325,7 @@ begin
 end
 go
 
--- this proc will refresh the local publisher's range
-create procedure sys.sp_MSrefresh_publisher_idrange
+create procedure BP_PRD.sys.sp_MSrefresh_publisher_idrange
     @qualified_object_name nvarchar(517),
     @subid uniqueidentifier,  -- pubid of the publisher whose range is to be refreshed.
     @artid uniqueidentifier,  -- though the artid can be derived from the @qualified_object_name, we will take it as a parameter to do one less query
@@ -92795,7 +90414,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSregenerate_mergetriggersprocs(
+create procedure BP_PRD.sys.sp_MSregenerate_mergetriggersprocs(
     @pubid uniqueidentifier)
 as
 begin
@@ -92877,29 +90496,7 @@ begin
 end
 go
 
---
--- Name: sp_MSregisterdynsnapseqno
---
--- Description: This procedure works exactly like 
---              sp_MSregistermergesnappubid except that it uses 
---              the dynamic snapshot sequence number (a guid) to detect 
---              whether a different dynamic snapshot is being delivered over
---              a previously interrupted dynamic snapshot.
---
--- Parameters: @snapshot_session_token nvarchar(260) (mandatory)
---             @dynsnapseqno uniqueidentifier (mandatory)
--- 
--- Note: This procedure should only be called by the merge agent at the 
---       subscriber database.
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: This is a public interface object, security check is performed 
---           inside this procedure to restrict access to sysadmins and 
---           db_owners of the subscriber database.
---
-create procedure sys.sp_MSregisterdynsnapseqno (
+create procedure BP_PRD.sys.sp_MSregisterdynsnapseqno (
     @snapshot_session_token nvarchar(260),
     @dynsnapseqno uniqueidentifier 
     )
@@ -93015,35 +90612,7 @@ Failure:
 end
 go
 
---
--- Name: sp_MSregistermergesnappubid
---
--- Description: This procedure is used by the merge agent to register the 
---              pubid of the publication for which the current snapshot is 
---              being delivered in the snapshot delivery progress table. By 
---              registering the pubid and the snapshot session token in the 
---              snapshot delivery progress table, the merge agent will be 
---              able to detect the case where a different snapshot is 
---              being delivered over a previously interrupted snapshot. 
---              If a different snapshot is being delivered over an 
---              interrupted snapshot, this procedure will perform the 
---              necessary cleanup in the merge meta-data tables to ensure that
---              the new snapshot can be delivered successfully.
---              
--- Parameters: @snapshot_session_token nvarchar(260) (mandatory)
---             @pubid uniqueidentifier (mandatory)
---
--- Note: This procedure should only be called by the merge agent at the 
---       subscriber database.
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: This is a public interface object, security check is performed 
---           inside this procedure to restrict access to sysadmins and 
---           db_owners of the subscriber database.
---
-create procedure sys.sp_MSregistermergesnappubid (
+create procedure BP_PRD.sys.sp_MSregistermergesnappubid (
     @snapshot_session_token nvarchar(260),
     @pubid uniqueidentifier
     )
@@ -93127,21 +90696,7 @@ Failure:
 end
 go
 
-
---
--- Name: sp_MSregistersubscription
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSregistersubscription (
+create procedure BP_PRD.sys.sp_MSregistersubscription (
     @replication_type            int, /* Transactional = 1, Merge = 2 */
     @publisher                     sysname,
     @publisher_db                 sysname,
@@ -93234,7 +90789,6 @@ create procedure sys.sp_MSregistersubscription (
                                 @publisher_db
     if @retcode <> 0 OR @@ERROR <> 0
         return 1
-
 
     IF @use_interactive_resolver IS NOT NULL
     BEGIN
@@ -93403,10 +90957,7 @@ create procedure sys.sp_MSregistersubscription (
     return 0
 go
 
--- This stored procedure is used as a response to the Replication Validation Failure Alert.
--- It will reinit the failed subscription. If the publisher is remote, it must be configured as a remote server 
--- for this procedure to work.
-create procedure sys.sp_MSreinit_failed_subscriptions
+create procedure BP_PRD.sys.sp_MSreinit_failed_subscriptions
 @failure_level int = 0      -- 0 All failure  1 Validation failures
 as
 
@@ -93536,7 +91087,7 @@ as
     return @return_value 
 go
 
-create procedure sys.sp_MSreinit_hub
+create procedure BP_PRD.sys.sp_MSreinit_hub
 	@publisher		sysname,
 	@publisher_db	sysname,
 	@publication	sysname,
@@ -93688,7 +91239,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSreinitoverlappingmergepublications
+create procedure BP_PRD.sys.sp_MSreinitoverlappingmergepublications
     @pubid uniqueidentifier,
     @upload_before_reinit bit
 as
@@ -93742,18 +91293,11 @@ as
     return @retcode
 go
 
-
--- this stored procedure is called by merge agent to release the application lock
--- acquired by sp_MSacquireSlotLock
-
-create procedure sys.sp_MSreleaseSlotLock
+create procedure BP_PRD.sys.sp_MSreleaseSlotLock
 @process_name   sysname,
 @DbPrincipal    sysname = N'public'
 AS
 declare @retcode int
-
--- Security Checking 
--- sysadmin or db_owner or replication agent have access
 
 exec @retcode = sys.sp_MSrepl_PAL_rolecheck 
 if (@retcode <> 0) or (@@error <> 0)
@@ -93771,7 +91315,7 @@ IF (@retcode <> 0)
 return @retcode
 go
 
-create procedure sys.sp_MSreleasedynamicsnapshotapplock(
+create procedure BP_PRD.sys.sp_MSreleasedynamicsnapshotapplock(
     @publication sysname,
     @partition_id int)
 as
@@ -93830,8 +91374,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSreleasemakegenerationapplock
+create procedure BP_PRD.sys.sp_MSreleasemakegenerationapplock
     as
     set nocount on
 
@@ -93861,7 +91404,7 @@ create procedure sys.sp_MSreleasemakegenerationapplock
                 
 go
 
-create procedure sys.sp_MSreleasemergeadminapplock
+create procedure BP_PRD.sys.sp_MSreleasemergeadminapplock
     @lockowner nvarchar(32) = N'Session'
 as
 begin
@@ -93897,25 +91440,7 @@ begin
 end
 go
 
---
--- Name: sp_MSreleasesnapshotdeliverysessionlock
---
--- Description: This procedure is used by the distribution/merge agent to
---              release the application lock acquired through 
---              sp_MSacquiresnapshotdeliverysessionlock.
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Notes: i) This procedure should be executed by the distribution/merge agent
---        at the subscription database.
---
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_MSreleasesnapshotdeliverysessionlock
+create procedure BP_PRD.sys.sp_MSreleasesnapshotdeliverysessionlock
 as
 begin
     set nocount on
@@ -93945,9 +91470,8 @@ FAILURE:
 end
 go
 
-
 /* Remove an article command of a specific tyep from dbo.sysmergeschemachange- Used by snapshot */
-create procedure sys.sp_MSremove_mergereplcommand (
+create procedure BP_PRD.sys.sp_MSremove_mergereplcommand (
     @publication        sysname,
     @article            sysname,
     @schematype         int
@@ -93986,9 +91510,7 @@ create procedure sys.sp_MSremove_mergereplcommand (
                                   and artid = @artid
                              and schematype = @schematype
 
-go
-
-create procedure sys.sp_MSremoveoffloadparameter (
+create procedure BP_PRD.sys.sp_MSremoveoffloadparameter (
     @job_id    VARBINARY(16),
     @agenttype NVARCHAR(20) 
     ) AS
@@ -94178,7 +91700,7 @@ AS
 
     -- using a temp table because of the following error
     -- EXECUTE cannot be used as a source when inserting into a table variable.
-    create table #logins_table (login sysname)
+    create table #logins_table (login BP_PRD.create table #logins_table (login sysname)
     
     SELECT @distproc = QUOTENAME(RTRIM(@rpcsrvname)) + '.' + QUOTENAME(RTRIM(@distribdb)) + '.dbo.sp_MSenumerate_PAL'
 				,@publishingservername = publishingservername()
@@ -94234,34 +91756,6 @@ FAILURE1:
     return 1
 go
 
-
---
--- Name:
---		sp_MSrepl_IsLastPubInSharedSubscription
---
--- Description:
---		Function to determine if the passed publication is the only
---      publication having a shared agent with a subscription 
---      at the given publisher/publisher database pair.  It is used
---      by the user interface to determine when the last publication
---      is being dropped and shared meta data at the subscriber can
---      be cleaned up.
---
---      This stored procedure is executed in the publishing database.
---      For heterogeneous publishers, it is executed in the distribution
---      database.
---
--- Returns:  A result set with a single integer value:
---		0 == FALSE  Other publications with shared agents exist for this publisher db/subscriber db pair
---		1 == TRUE	This is the only publication having a shared agent for this publisher db/subscriber db pair
---
--- Security:
---		public
--- Requires Certificate signature for catalog access
---
--- Notes:
---		Includes logic to determine if a db is being used as a distribution db
---
 CREATE PROCEDURE sys.sp_MSrepl_IsLastPubInSharedSubscription
 (
 	@subscriber sysname,
@@ -94283,7 +91777,7 @@ BEGIN
     -- Check to see if database is activated for publication
     IF sys.fn_MSrepl_ispublished(db_name()) <> 1
     BEGIN
-        -- "This database is not enabled for publication."
+        -- 'This database is not enabled for publication.'
         RAISERROR (14013, 16, -1)
         RETURN 1
     END
@@ -94466,24 +91960,6 @@ AS
     return 0
 go
 
-
---
--- Name:    
---        sp_MSrepl_summaryagentstatus
---            
--- Description: 
---        Called by sp_MSrepl_summarypublication in the context of the 
---        distribution database to get snapshot and log reader agent status
---        for a publication
---
--- Security: 
---        Public, PAL access 
---  Requires Certificate signature for catalog access
---
--- Returns:     
---        0 : success
---        1 : failure          
---
 CREATE PROCEDURE sys.sp_MSrepl_agentstatussummary
 (
     @publisher     sysname,
@@ -94583,7 +92059,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_backup_complete
+create procedure BP_PRD.sys.sp_MSrepl_backup_complete
 as
     declare @sync_bit int
     declare @dist_bit int
@@ -94617,7 +92093,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSrepl_backup_start
+create procedure BP_PRD.sys.sp_MSrepl_backup_start
 as
     declare @sync_bit int
     declare @dist_bit int
@@ -94672,27 +92148,6 @@ as
     
 go
 
-
---
--- Name:
---		sp_MSrepl_check_publisher
---
--- Description:
---		Determine if an ad-hoc datasource is currently published.
---
--- Returns:
---		Result set:
---		Distributor that owns publisher
---		NULL if not published
---
--- Security:
---		public
---
--- Notes:
---		Used by the UI
---		Connect time out is measure in seconds (default of 60)
---
-
 CREATE PROCEDURE sys.sp_MSrepl_check_publisher
 (
 	@publisher_type		sysname,
@@ -94722,28 +92177,7 @@ BEGIN
 END
 go
 
-
---
--- Name:
---		sp_MSrepl_createdatatypemappings
---
--- Description:
---		Create data type mapping tables and load default values
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		Public
--- Requires Certificate signature for catalog access
---
--- Notes:
---		Expected to be called internally only via MSDB install script
---		
---
-
-create procedure sys.sp_MSrepl_createdatatypemappings
+create procedure BP_PRD.sys.sp_MSrepl_createdatatypemappings
 as
 begin
 	DECLARE @cmd nvarchar(4000)
@@ -94914,24 +92348,6 @@ begin
 END
 go
 
-
---
--- Name:
---      sp_MSrepl_distributionagentstatussummary
---
--- Description:
---      Called by sp_MSrepl_subscriptionsummary in the context of the 
---      distribution database via the distributor RPC link to get distribution
---      agent status for a subscription.
---
--- Security:
---      Public, PAL access
---  Requires Certificate signature for catalog access
---
--- Returns:     
---        0 : success
---        1 : failure          
---
 CREATE PROCEDURE sys.sp_MSrepl_distributionagentstatussummary
 (
     @publisher              sysname,
@@ -95029,28 +92445,7 @@ BEGIN
 END
 go
 
-
---
--- Name:
---		sp_MSrepl_dropdatatypemappings
---
--- Description:
---		Drops data type mapping tables
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		Public
--- Requires Certificate signature for catalog access
---
--- Notes:
---		Expected to be called internally only via MSDB install script
---		
---
-
-create procedure sys.sp_MSrepl_dropdatatypemappings
+create procedure BP_PRD.sys.sp_MSrepl_dropdatatypemappings
 as
 begin
 	DECLARE @cmd nvarchar(4000)
@@ -95116,7 +92511,6 @@ begin
 END
 go
 
-
 CREATE PROCEDURE sys.sp_MSrepl_enumarticlecolumninfo
 (
 	@publisher		sysname,
@@ -95171,30 +92565,6 @@ BEGIN
 END
 go
 
-
---
--- Name:
---  sp_MSrepl_enumpublications
---
--- Description:
---  Enumerate publications on a database
---
--- Returns:
---		0 == Failed
---		1 == Succeed
---
--- Security:
---  public, PAL access for tran publications, dbo check for merge publications
---  Requires Certificate signature for catalog access
---
--- Notes:
---  Used by the UI to generate a list of pubications
---
---  Publication type:
---      0 == TRAN
---      1 == SNAPSHOT
---      2 == MERGE
---
 CREATE PROCEDURE sys.sp_MSrepl_enumpublications
 (
     @reserved bit = 0   -- Set to 1 when used by UI
@@ -95429,7 +92799,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_MSrepl_enumpublishertables
 (
 	@publisher	sysname,
@@ -95509,25 +92878,6 @@ BEGIN
 END
 go
 
-
---
--- Name:
--- sp_MSrepl_enumsubscriptions
---
--- Description:
---  Enumerate subscriptions on a database
---
--- Returns:
---  0 == Failed
---  1 == Succeed
---
--- Security:
---  public, db_owner check
---  Requires Certificate signature for catalog access
---
--- Notes:
---  Used by the UI to generate a list of subscriptions
---
 CREATE PROCEDURE sys.sp_MSrepl_enumsubscriptions 
 (
     @publication sysname,
@@ -95742,7 +93092,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_MSrepl_enumtablecolumninfo
 (
 	@publisher	sysname,
@@ -95795,33 +93144,7 @@ BEGIN
 END
 go
 
-
---
--- Name:
---		sp_MSrepl_getdistributorinfo
---
--- Description:
---		Procedure used to efficiently obtain distributor, distribution database
---              rpc server name, and publisher type.
---
--- Returns:
---		0 == SUCCESS
---		1 == FAILURE
---              Several output parameters
---
--- Security:
---		public
--- Requires Certificate signature for catalog access
---
--- Notes:
---		This is an internal stored procedure to be used as an alternative
---              to sp_helpdistributor when only basic information about the
---              distributor is desired.  It must be called from a publisher 
---              having an entry in the sysservers table associated
---              with the distributor.  
---
-
-create procedure sys.sp_MSrepl_getdistributorinfo
+create procedure BP_PRD.sys.sp_MSrepl_getdistributorinfo
 (
     @distributor    sysname = NULL OUTPUT,
     @distribdb      sysname = NULL OUTPUT,
@@ -95934,7 +93257,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_getpkfkrelation
+create procedure BP_PRD.sys.sp_MSrepl_getpkfkrelation
     @filtered_table nvarchar(400),
     @joined_table nvarchar(400)
 as
@@ -96009,7 +93332,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSrepl_gettype_mappings
+create procedure BP_PRD.sys.sp_MSrepl_gettype_mappings
 (
 	@dbms_name		sysname,
 	@dbms_version 		sysname = NULL,
@@ -96045,25 +93368,7 @@ as
         return 0
 go
 
-
---
--- Name:    
---          sp_MSrepl_helparticlermo
---          
--- Description: 
---          Special version of help article for RMO.  Returns extended
---			HREPL information.
---  
--- Security: 
---          SQL Server publication:     'sysadmin', db_owner of publishing database, PAL
---          Heterogeneous publication:  'sysadmin', db_owner of distribution database, PAL
---
--- Returns:
---          Result set of article properties
---      
---
-
-create procedure sys.sp_MSrepl_helparticlermo
+create procedure BP_PRD.sys.sp_MSrepl_helparticlermo
 (
     @publication sysname,         /* The publication name */
     @article sysname = '%',       /* The article name */
@@ -96119,7 +93424,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_init_backup_lsns
+create procedure BP_PRD.sys.sp_MSrepl_init_backup_lsns
 as
 begin
     -- The stored procedure is called by sp_replicationdboption when changing a dist
@@ -96145,7 +93450,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSrepl_isdbowner 
+create procedure BP_PRD.sys.sp_MSrepl_isdbowner 
     @dbname sysname
 AS
 BEGIN
@@ -96171,7 +93476,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_linkedservers_rowset
+create procedure BP_PRD.sys.sp_MSrepl_linkedservers_rowset
 (
     @srvname sysname,
     @agent_id int,
@@ -96211,24 +93516,6 @@ begin
 end
 go
 
-
---
--- Name:
---      sp_MSrepl_mergeagentstatussummary
---
--- Description:
---      Called by sp_mergesubscriptionsummary in the context of the 
---      distribution database via the distributor RPC link to get merge
---      agent status for a subscription.
---
--- Security:
---      Public, PAL access
---  Requires Certificate signature for catalog access
---
--- Returns:     
---        0 : success
---        1 : failure          
---
 CREATE PROCEDURE sys.sp_MSrepl_mergeagentstatussummary
 (
     @publisher              sysname,
@@ -96334,7 +93621,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_raiserror
+create procedure BP_PRD.sys.sp_MSrepl_raiserror
 (
     @agent sysname,
     @agent_name nvarchar(100),
@@ -96369,8 +93656,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSrepl_schema @pubname sysname
+create procedure BP_PRD.sys.sp_MSrepl_schema @pubname sysname
                 ,@artid int 
                 ,@qual_source_object nvarchar(517) -- quoted table name
                 ,@column sysname -- column name, not quoted, as we need to search in dbo.syscolumns by it.
@@ -96541,34 +93827,7 @@ BEGIN
 END
 go
 
-
---
--- Name:    
---          sp_MSrepl_snapshot_helparticlecolumns
---          
--- Description: 
---          Returns information about an article's columns.  
---
---          For a SQL Server publication, this stored procedure is executed
---          at the Publisher on the publication database.  For a heterogeneous
---          publication, this stored procedure may be executed in any database
---          at the distributor for the associated publisher.
---  
--- Security: 
---          SQL Server publication:     'sysadmin', db_owner of publishing database, PAL
---          Heterogeneous publication:  'sysadmin', db_owner of distribution database, PAL
---
--- Returns:
---          Result set of article properties
---
--- Notes:
---			Snapshot specific version that returns extra precision/scale information
---
--- Owner:   
---          <current owner> 
---
-
-create procedure sys.sp_MSrepl_snapshot_helparticlecolumns
+create procedure BP_PRD.sys.sp_MSrepl_snapshot_helparticlecolumns
 (
 	@publication	sysname,
 	@article		sysname,
@@ -96605,7 +93864,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_snapshot_helppublication
+create procedure BP_PRD.sys.sp_MSrepl_snapshot_helppublication
 (
 	@publication	sysname,
 	@publisher		sysname
@@ -96724,7 +93983,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSrepl_startup_internal
+create procedure BP_PRD.sys.sp_MSrepl_startup_internal
 as
     /*
     ** Security Check: require sysadmin
@@ -96741,7 +94000,7 @@ as
     type = 'U')
         drop table tempdb.dbo.MSpublisher_access
 
-    create table tempdb.dbo.MSpublisher_access
+    create table tempdb.BP_PRD.create table tempdb.dbo.MSpublisher_access
     (
     spid int NOT NULL,
     db_id int not null,
@@ -96765,7 +94024,7 @@ as
         type = 'U')
             drop table tempdb.dbo.MSdistributor_access
 
-        create table tempdb.dbo.MSdistributor_access
+        create table tempdb.BP_PRD.create table tempdb.dbo.MSdistributor_access
         (
         spid int NOT NULL,
         db_id int not null,
@@ -96775,7 +94034,7 @@ as
         login_time datetime not null
         )
 
-		create clustered index ucMSdistributor_access on tempdb.dbo.MSdistributor_access
+		create clustered index ucMSdistributor_access on tempdb.BP_PRD.create clustered index ucMSdistributor_access on tempdb.dbo.MSdistributor_access
 			(spid, login_time)
         
         exec tempdb.dbo.sp_MS_marksystemobject 'dbo.MSdistributor_access'
@@ -96785,7 +94044,7 @@ as
    end
 go
 
-create procedure sys.sp_MSrepl_subscription_rowset
+create procedure BP_PRD.sys.sp_MSrepl_subscription_rowset
 (
     @subscriber sysname,
     @agent_id int,
@@ -96853,7 +94112,6 @@ BEGIN
     RETURN 0
 END
 go
-
 
 CREATE PROCEDURE sys.sp_MSrepl_testadminconnection
 (
@@ -96949,7 +94207,6 @@ UNDO:
     RETURN (@retcode)
 END
 go
-
 
 CREATE PROCEDURE sys.sp_MSrepl_testconnection
 (
@@ -97342,7 +94599,7 @@ begin
 END
 go
 
-create procedure sys.sp_MSreplcheck_permission(
+create procedure BP_PRD.sys.sp_MSreplcheck_permission(
     @objid int,
     @type int,
     @permissions int)
@@ -97378,7 +94635,7 @@ AS
     return (0)
 go
 
-create procedure sys.sp_MSreplcheck_pull
+create procedure BP_PRD.sys.sp_MSreplcheck_pull
 (
     @publication sysname= NULL,
     @raise_fatal_error bit = 1,
@@ -97625,7 +94882,7 @@ error:
 end
 go
 
-create procedure sys.sp_MSreplcheck_subscribe
+create procedure BP_PRD.sys.sp_MSreplcheck_subscribe
 as
 begin
     --
@@ -97648,7 +94905,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSreplcheck_subscribe_withddladmin
+create procedure BP_PRD.sys.sp_MSreplcheck_subscribe_withddladmin
 as
 begin
     --
@@ -97672,7 +94929,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSreplcheckoffloadserver (
+create procedure BP_PRD.sys.sp_MSreplcheckoffloadserver (
     @offloadserver sysname
     )
 as 
@@ -97685,20 +94942,6 @@ begin
 end
 go
 
---
--- Name: sp_MSreplcopyscriptfile
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: Public procedure invoked via RPC. db_owner check
---
--- Requires Certificate signature for catalog access
---
 CREATE PROCEDURE sys.sp_MSreplcopyscriptfile
 (
     @directory nvarchar(4000),
@@ -97720,7 +94963,7 @@ begin
         return (1)
     end
     
-    select @cmd = N'if not exist "' + sys.fn_escapecmdshellsymbolsremovequotes(@directory) collate database_default + '" md "' + sys.fn_escapecmdshellsymbolsremovequotes(@directory) collate database_default + '"'
+    select @cmd = N'if not exist '' + sys.fn_escapecmdshellsymbolsremovequotes(@directory) collate database_default + '' md '' + sys.fn_escapecmdshellsymbolsremovequotes(@directory) collate database_default + '''
     exec @retcode = master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     if(@retcode <> 0)
     begin
@@ -97729,7 +94972,7 @@ begin
     end
 
     -- Copy script to distributor
-    select @cmd = N'copy "' + sys.fn_escapecmdshellsymbolsremovequotes(@scriptfile) collate database_default + N'" "' + sys.fn_escapecmdshellsymbolsremovequotes(@directory) collate database_default + N'"'
+    select @cmd = N'copy '' + sys.fn_escapecmdshellsymbolsremovequotes(@scriptfile) collate database_default + N'' '' + sys.fn_escapecmdshellsymbolsremovequotes(@directory) collate database_default + N'''
     exec @retcode = master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     if(@retcode <> 0)
     begin 
@@ -97741,8 +94984,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSreplraiserror @errorid int, @param1 sysname = null, @param2 sysname= null, @param3 int = null
+create procedure BP_PRD.sys.sp_MSreplraiserror @errorid int, @param1 sysname = null, @param2 sysname= null, @param3 int = null
 as
     if @errorid = 20508 raiserror (20508, 11, 1)
     else if @errorid = 20509 raiserror (20509, 16, 1)
@@ -97763,20 +95005,6 @@ as
     else if @errorid = 20598 raiserror (20598, 16, 1, @param3, @param1, @param2)
 go
 
---
--- Name: sp_MSreplremoveuncdir
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: Public procedure invoked via RPC. db_owner check
---
--- Requires Certificate signature for catalog access
---
 CREATE PROCEDURE sys.sp_MSreplremoveuncdir
 (
     @dir            nvarchar(260),
@@ -97826,7 +95054,7 @@ begin
     select @platform_nt = 0x1
     IF (( platform() & @platform_nt = @platform_nt))
     BEGIN 
-        SELECT @cmd = 'if exist "' + sys.fn_escapecmdshellsymbolsremovequotes(@local_dir) collate database_default + '" rmdir /S /Q ' + '"' + sys.fn_escapecmdshellsymbolsremovequotes(@local_dir) collate database_default + '"'
+        SELECT @cmd = 'if exist '' + sys.fn_escapecmdshellsymbolsremovequotes(@local_dir) collate database_default + '' rmdir /S /Q ' + ''' + sys.fn_escapecmdshellsymbolsremovequotes(@local_dir) collate database_default + '''
     END
     ELSE
     BEGIN
@@ -97836,7 +95064,7 @@ begin
         BEGIN
             SELECT @local_dir = LEFT(@local_dir, LEN(@local_dir)-1)
         END
-        SELECT @cmd = 'deltree /Y ' + '"' + sys.fn_escapecmdshellsymbolsremovequotes(@local_dir) collate database_default + '"'
+        SELECT @cmd = 'deltree /Y ' + ''' + sys.fn_escapecmdshellsymbolsremovequotes(@local_dir) collate database_default + '''
     END
 
     EXECUTE  @retcode = master.dbo.xp_cmdshell @cmd, NO_OUTPUT
@@ -97854,8 +95082,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSreplupdateschema  @object_name nvarchar(517)
+create procedure BP_PRD.sys.sp_MSreplupdateschema  @object_name nvarchar(517)
 as
 begin
     declare @retcode int
@@ -97874,7 +95101,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSrequestreenumeration
+create procedure BP_PRD.sys.sp_MSrequestreenumeration
                                                 @tablenick int,
                                                 @rowguid uniqueidentifier
 as
@@ -97915,7 +95142,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSrequestreenumeration_lightweight
+create procedure BP_PRD.sys.sp_MSrequestreenumeration_lightweight
 						@tablenick int,
 						@rowguid uniqueidentifier
 						
@@ -97958,7 +95185,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MSreset_attach_state 
+create procedure BP_PRD.sys.sp_MSreset_attach_state 
 (
     @publisher      sysname,                    -- publishing server name
     @publisher_db   sysname,                    -- publishing database name. If NULL then same as current db
@@ -98062,7 +95289,7 @@ failure:
 END
 go
 
-create procedure sys.sp_MSreset_queued_reinit 
+create procedure BP_PRD.sys.sp_MSreset_queued_reinit 
 (
     @subscriber      sysname,                    -- subscriber server name
     @subscriber_db   sysname,                -- subscribing database name. 
@@ -98347,7 +95574,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSreset_synctran_bit (
+create procedure BP_PRD.sys.sp_MSreset_synctran_bit (
     @owner          sysname,
     @table          sysname
 )AS
@@ -98416,33 +95643,7 @@ begin
 end
 go
 
---
--- Name: sp_MSresetsnapshotdeliveryprogress
---
--- Description: This procedure removes all rows in the  
---              MSsnapshotdeliveryprogress table (if it exists) corresponding
---              to the specified snapshot delivery session. This will
---              effectively wipes out all memory of any previous 
---              progress that the snapshot delivery processes had made to
---              the subscriber database.
---
--- Notes: This procedure should be called at the subscriber database by
---        the distribution or the merge agent.
---
--- Parameter: @snapshot_session_token nvarchar(260) (mandatory)
---                - A UniCode string that uniquely identifies a snapshot
---                  delivery session. For now, this will be the snapshot
---                  generation folder of the snapshot being applied. 
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_MSresetsnapshotdeliveryprogress
+create procedure BP_PRD.sys.sp_MSresetsnapshotdeliveryprogress
     @snapshot_session_token nvarchar(260)
 as
 begin
@@ -98471,13 +95672,12 @@ begin
         goto FAILURE
     end
 
-
 FAILURE:
     return @retcode    
 end
 go
 
-create procedure sys.sp_MSrestoresavedforeignkeys (
+create procedure BP_PRD.sys.sp_MSrestoresavedforeignkeys (
     @program_name   sysname = null
 )
 as
@@ -98505,7 +95705,6 @@ begin
            @transaction_opened = 0,
            @cursor_allocated = 0,
            @cursor_opened = 0
-
 
     -- Security check
     exec @retcode = sys.sp_MSreplcheck_subscribe
@@ -98716,7 +95915,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSretrieve_publication_attributes 
+create procedure BP_PRD.sys.sp_MSretrieve_publication_attributes 
 @name             sysname,
 @database         sysname
 AS
@@ -98766,7 +95965,7 @@ select * from #publication_property
 drop table #publication_property
 go
 
-create procedure sys.sp_MSscript_article_view 
+create procedure BP_PRD.sys.sp_MSscript_article_view 
 (
     @artid int,
     @view_name sysname, 
@@ -98815,7 +96014,6 @@ begin
            and art.objid = so.object_id
            and art.pubid = pub.pubid
 
-
     select @rowguid_column_id = null
            ,@has_filestream_column = 0
 
@@ -98823,7 +96021,7 @@ begin
     -- sp_articleview will strip out owner qualifications on @view_name so we will
     -- just prepend dbo.
     --
-    insert into @tempcmd (cmdfrag) values ( N'create view [dbo].' + QUOTENAME(@view_name) + N'as select ' )
+    insert into @tempcmd (cmdfrag) values ( N'create view [BP_PRD.create view [dbo].' + QUOTENAME(@view_name) + N'as select ' )
     --
     -- script the column list in the select statement
     --
@@ -98939,7 +96137,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSscript_dri
+create procedure BP_PRD.sys.sp_MSscript_dri
     (@publication    sysname, 
     @article        sysname)
 AS
@@ -98948,7 +96146,6 @@ declare @pubid    uniqueidentifier
     
 select @pubid = pubid from dbo.sysmergepublications where name = @publication and UPPER(publisher)=UPPER(publishingservername()) and publisher_db=db_name()
         
--- Security check
 if (1 <> {fn ISPALUSER(@pubid)} and
     1 <> is_member('db_owner'))
 begin    
@@ -98961,7 +96158,7 @@ select referenced_object_id, parent_object_id from sys.foreign_keys
             and referenced_object_id not in (select objid from dbo.sysmergearticles where pubid = @pubid)
 go
 
-create procedure sys.sp_MSscript_pub_upd_trig 
+create procedure BP_PRD.sys.sp_MSscript_pub_upd_trig 
 (
     @publication sysname, 
     @article     sysname,
@@ -99035,7 +96232,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSscript_sync_del_proc (
+create procedure BP_PRD.sys.sp_MSscript_sync_del_proc (
     @publication sysname, 
     @article     sysname,
     @procname    sysname,
@@ -99153,7 +96350,7 @@ END
 END
 go
 
-create procedure sys.sp_MSscript_sync_del_trig (
+create procedure BP_PRD.sys.sp_MSscript_sync_del_trig (
     @objid        int,
     @publisher    sysname,
     @publisher_db sysname,
@@ -99227,7 +96424,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSscript_sync_ins_proc (
+create procedure BP_PRD.sys.sp_MSscript_sync_ins_proc (
     @publication sysname, 
     @article     sysname,
     @procname    sysname,
@@ -99351,7 +96548,7 @@ END
 END
 go
 
-create procedure sys.sp_MSscript_sync_ins_trig (
+create procedure BP_PRD.sys.sp_MSscript_sync_ins_trig (
     @objid          int,
     @publisher    sysname,
     @publisher_db sysname,
@@ -99425,7 +96622,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSscript_sync_upd_proc (
+create procedure BP_PRD.sys.sp_MSscript_sync_upd_proc (
     @publication sysname, 
     @article     sysname,
     @procname    sysname,
@@ -99553,7 +96750,7 @@ END
 END
 go
 
-create procedure sys.sp_MSscript_sync_upd_trig (
+create procedure BP_PRD.sys.sp_MSscript_sync_upd_trig (
     @objid        int,
     @publisher    sysname,
     @publisher_db sysname,
@@ -99627,7 +96824,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSscriptcustomdelproc 
+create procedure BP_PRD.sys.sp_MSscriptcustomdelproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -99713,7 +96910,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSscriptcustominsproc 
+create procedure BP_PRD.sys.sp_MSscriptcustominsproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -99805,7 +97002,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSscriptcustomupdproc 
+create procedure BP_PRD.sys.sp_MSscriptcustomupdproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -99896,7 +97093,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSscriptdatabase
+create procedure BP_PRD.sys.sp_MSscriptdatabase
 @dbname nvarchar(258)
 as
    /* verify */
@@ -99914,7 +97111,7 @@ as
    exec (N'[' + @dbTempname + N']' + N'..sp_MSscriptdb_worker ')
 go
 
-create procedure sys.sp_MSscriptdb_worker
+create procedure BP_PRD.sys.sp_MSscriptdb_worker
 as
 
 	create table #tempFG
@@ -99962,9 +97159,7 @@ as
    select * from #tempFG
    DROP TABLE #tempFG
 
-go
-
-create procedure sys.sp_MSscriptforeignkeyrestore (
+create procedure BP_PRD.sys.sp_MSscriptforeignkeyrestore (
     @program_name               sysname,
     @constraint_name            sysname,
     @parent_schema              sysname,
@@ -100062,9 +97257,7 @@ begin
 end
 go
 
--- This proc returns the text of all procs that should be created on the subscriber to the caller
--- the result set should be processed by the snapshot agent and added to a file.
-create procedure sys.sp_MSscriptsubscriberprocs    (
+create procedure BP_PRD.sys.sp_MSscriptsubscriberprocs    (
     @publication sysname, 
     @article sysname)
     
@@ -100177,7 +97370,6 @@ SET QUOTED_IDENTIFIER ON
 
     -- add code in the script to drop all the procedures first
     select @command = '
--- drop all the procedures first
 if object_id(''' + @ins_procname + ''',''P'') is not NULL
     drop procedure ' + @ins_procname + '
 if object_id(''' + @ins_batch_procname + ''',''P'') is not NULL
@@ -100196,7 +97388,6 @@ if object_id(''' + @conflict_proc + ''',''P'') is not NULL
     drop procedure ' + @conflict_proc + '
 '
     select @command
-
 
     exec @retcode = sys.sp_MSmakeinsertproc @objectname, @ownername, @ins_procname, @pubid, @artid, @generate_downlevel_procs = 0, @generate_subscriber_proc = 1, @destination_owner = @destowner
     if @@ERROR<>0 OR @retcode <>0 goto FAILURE
@@ -100270,7 +97461,7 @@ FAILURE:
     return 1    
 go
 
-create procedure sys.sp_MSscriptviewproc (
+create procedure BP_PRD.sys.sp_MSscriptviewproc (
     @viewname sysname, 
     @ownername sysname, 
     @procname sysname, 
@@ -100322,7 +97513,7 @@ begin
     select @quoted_procname=QUOTENAME(@procname)
         
     insert into @proctext (line) values ('
-create procedure dbo.' + @quoted_procname + ' (
+create procedure BP_PRD.dbo.' + @quoted_procname + ' (
     @tablenick int, 
     @max_rows int = NULL,
     @guidlast uniqueidentifier = ''00000000-0000-0000-0000-000000000000'', 
@@ -100356,7 +97547,6 @@ begin
 
         select @coltracked = sys.fn_fIsColTracked(@tablenick)
         select @colv80 = sys.fn_cColvEntries_80(@pubid, @tablenick)
-
 
         set @maxint= 2147483647
 
@@ -100474,7 +97664,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSsendtosqlqueue (
+create procedure BP_PRD.sys.sp_MSsendtosqlqueue (
     @objid int
     ,@publisher sysname
     ,@publisher_db sysname
@@ -100555,7 +97745,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSset_dynamic_filter_options @publication sysname, @dynamic_filters bit = NULL OUTPUT, @dont_raise_error bit = NULL
+create procedure BP_PRD.sys.sp_MSset_dynamic_filter_options @publication sysname, @dynamic_filters bit = NULL OUTPUT, @dont_raise_error bit = NULL
 
 as
     declare @show_errors bit
@@ -100668,7 +97858,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSset_logicalrecord_metadata
+create procedure BP_PRD.sys.sp_MSset_logicalrecord_metadata
     (@parent_nickname int, 
      @parent_rowguid uniqueidentifier, 
      @logical_record_lineage varbinary(311))
@@ -100726,7 +97916,7 @@ as
     return 0
 go
 
-create procedure sys.sp_MSset_new_identity_range
+create procedure BP_PRD.sys.sp_MSset_new_identity_range
     @subid uniqueidentifier,
     @artid uniqueidentifier,
     @range_type tinyint, -- 1=publisher range, 2=subscriber range
@@ -100873,8 +98063,7 @@ as
     return 0
 go
 
-
-create procedure sys.sp_MSset_oledb_prop
+create procedure BP_PRD.sys.sp_MSset_oledb_prop
 	@provider_name as sysname = NULL,
 	@property_name as sysname = NULL,
 	@property_value as bit = NULL
@@ -100887,10 +98076,10 @@ begin
 	return (1)
 end
 
-create table #oledbprop (provider_name sysname null, allow_in_process bit, disallow_adhoc_access bit, dynamic_parameters bit, index_as_access_path bit,
+create table #oledbprop (provider_name BP_PRD.sysname null, allow_in_process bit, disallow_adhoc_access bit, dynamic_parameters bit, index_as_access_path bit,
 				level_zero_only bit, nested_queries bit, non_transacted_updates bit, sql_server_like bit) 
 
-create table #param_list(property_name sysname, property_value int)
+create table #param_list(property_name BP_PRD.sysname, property_value int)
 
 create table #providers (name nvarchar(100), guid nvarchar(100) NULL, description nvarchar(100) NULL)
 if @provider_name is null 
@@ -100904,7 +98093,6 @@ end
 
 declare @regpath nvarchar(512)
 set @regpath = N'SOFTWARE\Microsoft\MSSQLServer\Providers\' + @provider_name
-
 
 insert #param_list(property_name) VALUES ('AllowInProcess')
 insert #param_list(property_name) VALUES ('DisallowAdHocAccess')
@@ -101120,7 +98308,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSset_sub_guid (
+create procedure BP_PRD.sys.sp_MSset_sub_guid (
     @publisher      sysname,                    -- publishing server name
     @publisher_db   sysname,                    -- publishing database name. If NULL then same as current db
     @publication    sysname,                    -- publication name,
@@ -101203,7 +98391,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSset_subscription_properties 
+create procedure BP_PRD.sys.sp_MSset_subscription_properties 
 (
     @publisher      sysname,            -- publishing server name
     @publisher_db   sysname,          -- publishing database name. If NULL then same as current db
@@ -101297,7 +98485,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_MSsetaccesslist
+create procedure BP_PRD.sys.sp_MSsetaccesslist
 @publication     sysname,
 @publisher         sysname,
 @publisher_db    sysname
@@ -101306,7 +98494,7 @@ AS
     return 0
 go
 
-create procedure sys.sp_MSsetalertinfo
+create procedure BP_PRD.sys.sp_MSsetalertinfo
 	@failsafeoperator nvarchar(255) = null,
 	@notificationmethod int = null,
 	@forwardingserver nvarchar(255) = null,
@@ -101358,8 +98546,7 @@ as
 		exec sys.xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'SOFTWARE\Microsoft\MSSQLServer\SQLServerAgent', N'AlertForwardAlways', N'REG_DWORD', @forwardalways
 go
 
--- NOTE: call this proc only on the publisher. On the subscriber call sp_MSmakearticleprocs
-create procedure sys.sp_MSsetartprocs
+create procedure BP_PRD.sys.sp_MSsetartprocs
     (@publication       sysname,
     @article            sysname,
     @force_flag         int = 0,
@@ -101533,7 +98720,6 @@ as
             @generate_downlevel_procs = 0
     if @retcode<>0 or @@ERROR<>0 goto FAILURE
 
-
     return 0
 
 FAILURE:
@@ -101542,7 +98728,7 @@ FAILURE:
     
 go
 
-create procedure sys.sp_MSsetbit
+create procedure BP_PRD.sys.sp_MSsetbit
     @bm varbinary(128) output,
     @coltoadd smallint,
     @toset    int = 1
@@ -101581,9 +98767,8 @@ AS
         set @bm = substring(@bm, 1, @bytenum - 1) + convert(binary(1), @newbyte) + substring(@bm, @bytenum + 1, 128 - @bytenum)
 go
 
-
 /* Add the conflict script pointer to dbo.sysmergearticles - Used by snapshot */
-create procedure sys.sp_MSsetconflictscript (
+create procedure BP_PRD.sys.sp_MSsetconflictscript (
     @publication        sysname,
     @article            sysname,
     @conflict_script    nvarchar(255),
@@ -101621,9 +98806,8 @@ create procedure sys.sp_MSsetconflictscript (
     return (0)
 go
 
-
 /* Add the conflict table pointer to dbo.sysmergearticles - Used by reconciler */
-create procedure sys.sp_MSsetconflicttable (
+create procedure BP_PRD.sys.sp_MSsetconflicttable (
     @article            sysname,
     @conflict_table     sysname,
     @publisher          sysname = NULL,
@@ -101707,7 +98891,7 @@ create procedure sys.sp_MSsetconflicttable (
     return (0)
 go
 
-create procedure sys.sp_MSsetcontext_bypasswholeddleventbit @onoff bit -- 1 to turn on
+create procedure BP_PRD.sys.sp_MSsetcontext_bypasswholeddleventbit @onoff bit -- 1 to turn on
 as
 begin
     declare @cur_context varbinary(128)
@@ -101753,15 +98937,13 @@ begin
 end
 go
 
-create procedure sys.sp_MSsetcontext_replagent @agent_type tinyint, @is_publisher bit = 0
+create procedure BP_PRD.sys.sp_MSsetcontext_replagent @agent_type tinyint, @is_publisher bit = 0
 as
 begin
 declare @cur_context varbinary(128)
 declare @cur_context_first_byte binary(1)
 declare @bitmask tinyint
 
--- agent type: snapshot=1, logreader=2, distrib=3, merge=4
--- bit to set: snapshot=1, logreader=2, distrib=4, merge=8
 select @bitmask =    case     
                         when @agent_type = 1 then 1 
                         when @agent_type = 2 then 2
@@ -101774,13 +98956,9 @@ if @is_publisher = 1
 
 select @cur_context = isnull(context_info(),0x00)
 
--- get the first byte out. the replication agent flags are set in the first byte.
 select @cur_context_first_byte = substring(@cur_context, 1, 1)
--- set the appropriate bit in this one byte (leaving other bits unchanged).
 select @cur_context_first_byte = (convert(tinyint,@cur_context_first_byte) | @bitmask)
--- replace the first byte of the 128 byte binary variable, so that now it has the appropriate bit set.
 select @cur_context = convert(varbinary(128),stuff (@cur_context, 1, 1, @cur_context_first_byte))
--- set the context_info again with the new binary(128) value.
 set context_info @cur_context
 
 if @@error <> 0
@@ -101790,7 +98968,7 @@ return 0
 end
 go
 
-create procedure sys.sp_MSsetgentozero
+create procedure BP_PRD.sys.sp_MSsetgentozero
         (@tablenick int, 
          @rowguid uniqueidentifier,
          @metatype tinyint= null)
@@ -101870,7 +99048,6 @@ as
     return 0
 go
 
-
 CREATE PROCEDURE sys.sp_MSsetlastrecgen
     (@repid uniqueidentifier, @srcgen bigint, @srcguid uniqueidentifier)
 as
@@ -101912,9 +99089,6 @@ as
     IF @@ERROR <>0 return (1) 
    
     return (0)
-
-go
-
 
 CREATE PROCEDURE sys.sp_MSsetlastsentgen
     (@repid uniqueidentifier, @srcgen bigint, @srcguid uniqueidentifier)
@@ -101990,7 +99164,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSsetreplicainfo
+create procedure BP_PRD.sys.sp_MSsetreplicainfo
     (@publisher         sysname,
      @publisher_db      sysname,
      @publication       sysname,
@@ -102145,7 +99319,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSsetreplicaschemaversion(
+create procedure BP_PRD.sys.sp_MSsetreplicaschemaversion(
     @subid          uniqueidentifier,
     @schemaversion  int,
     @schemaguid     uniqueidentifier
@@ -102171,8 +99345,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSsetreplicastatus
+create procedure BP_PRD.sys.sp_MSsetreplicastatus
     (@subid uniqueidentifier,
      @status_value int
      ) AS
@@ -102210,7 +99383,7 @@ create procedure sys.sp_MSsetreplicastatus
     return (0)
 go
 
-create procedure sys.sp_MSsetrowmetadata
+create procedure BP_PRD.sys.sp_MSsetrowmetadata
     (@tablenick int, 
      @rowguid uniqueidentifier, 
      @generation bigint,
@@ -102395,7 +99568,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSsetsubscriberinfo 
+create procedure BP_PRD.sys.sp_MSsetsubscriberinfo 
     (@pubid uniqueidentifier, @expr nvarchar(500))
 as
     -- Security Checking 
@@ -102417,17 +99590,14 @@ as
     update dbo.sysmergepublications set validate_subscriber_info = @expr where pubid = @pubid
 go
 
-
-create procedure sys.sp_MSsettopology
+create procedure BP_PRD.sys.sp_MSsettopology
 	@server nvarchar(258), @X int, @Y int
 as
 	/* empty */
 	return 0
 go
 
--- this stored procedure should be called on the subscriber to setup automatic
--- identity range for aritcles that use it during the first merge.
-create procedure sys.sp_MSsetup_identity_range
+create procedure BP_PRD.sys.sp_MSsetup_identity_range
     @pubid uniqueidentifier,
     @artid uniqueidentifier,
     @range_type tinyint, -- 1=publisher range, 2=subscriber range
@@ -102551,9 +99721,7 @@ as
     end
 go
 
-
--- Requires Certificate signature for catalog access
-create procedure sys.sp_MSsetup_partition_groups @publication sysname
+create procedure BP_PRD.sys.sp_MSsetup_partition_groups @publication sysname
 as
 begin
     declare @use_partition_groups smallint
@@ -102646,7 +99814,7 @@ begin
         IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name = 'nc5MSmerge_contents' 
             AND object_id = OBJECT_ID('MSmerge_contents'))
         begin
-            create unique index nc5MSmerge_contents on dbo.MSmerge_contents(tablenick, marker, rowguid)
+            create unique index nc5MSmerge_contents on BP_PRD.create unique index nc5MSmerge_contents on dbo.MSmerge_contents(tablenick, marker, rowguid)
             if @@ERROR <> 0    goto UNDO
         end
     end
@@ -102673,7 +99841,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_MSsetup_use_partition_groups @publication sysname
+create procedure BP_PRD.sys.sp_MSsetup_use_partition_groups @publication sysname
 as
     declare @use_partition_groups smallint
             , @dynamic_filters bit
@@ -102752,11 +99920,7 @@ UNDO:
     return 1
 go
 
--- If the default parameters change, make sure to adjust the corresponding values in
--- OSQL_Q_SETUPBELONGS_90 and OSQL_Q_SETUPBELONGS2_90.
---
--- Modify temp table. No security check needed.
-create procedure sys.sp_MSsetupbelongs
+create procedure BP_PRD.sys.sp_MSsetupbelongs
     @publisher          sysname,
     @publisher_db       sysname,
     @publication        sysname,
@@ -102923,7 +100087,7 @@ AS
                 and nickname = @artnick_to_process
                 if @article_statistics_table is not NULL
                 begin
-                -- @art_name has all ' and " removed by fn_getvalidname
+                -- @art_name has all ' and ' removed by fn_getvalidname
 				select @cmd = 'insert ' + @quoted_article_statistics_table + ' (article_name) values (''' + @art_name + ''')'
                 exec(@cmd)
                 if @@ERROR<>0
@@ -102939,9 +100103,6 @@ AS
             exec @retcode = @procname @tablenick=@artnick_to_process, @compatlevel=@compatlevel, @pubid=@pubid
             if @@ERROR <>0 or @retcode <> 0
                 begin
--- DEBUG        insert into MSmerge_debug 
--- DEBUG            (okay, artnick, successcode, twhen, comment)
--- DEBUG            values (1, @artnick_to_process, @retcode, getdate(), 'sp_MSsetupbelongs: could not exec sel_GUID')
                 return (1)
                 end
         end
@@ -102988,9 +100149,6 @@ AS
 
             if @@ERROR<>0 OR @retcode<>0
                 begin
--- DEBUG        insert into MSmerge_debug 
--- DEBUG            (okay, twhen, comment)
--- DEBUG            values (9, getdate(), 'sp_MSsetupbelongs: could not exec sp_MSexpandbelongs')
                 return (1)
                 end
         end
@@ -103091,8 +100249,6 @@ EXITPROC:
 		exec(@cmd)
         if @@ERROR <>0  
         begin
--- DEBUG            insert into MSmerge_debug (okay, twhen, comment)
--- DEBUG            values (11, getdate(), 'sp_MSsetupbelongs: could not transfer from #notbelong to global notbelong')
             return (1)
         end
 
@@ -103102,8 +100258,6 @@ EXITPROC:
         if @@ERROR <>0  
             return (1)
         
--- DEBUG        exec ('insert into MSmerge_debug (okay, artnick, rowguid, generation_new, lineage_new, twhen, comment)
--- DEBUG            select 0, tablenick, rowguid, generation, lineage, getdate(), ''sp_MSsetupbelongs: notbelong-content'' from ' + @notbelongsname)
 
     end
 
@@ -103131,51 +100285,7 @@ EXITPROC:
     return (0)
 go
 
---
--- Name: sp_MSsetupnosyncsubwithlsnatdist
---
--- Description: This procedure performs the following steps
---              to set up a no-/backup-sync subscription with
---              a given lsn at the distributor:
---              1) Acquire the db_name()_nosyncsetup lock to prevent the 
---                 distribution cleanup task from interfering with the nosync
---                 subscription setup process.
---              2) Validate the given subscription lsn, make sure that we
---                 have all the transactions required to synchronize
---                 the nosync subscription starting with the given lsn.
---                 (See code comment for details)
---              3) Try to allocate a unique "snapshot sequence number" (a.k.a.
---                 subscription_seqno in dbo.MSsubscriptions) for the current
---                 subscription (subscriptionS if you think in terms of
---                 article-level subscription). Note that the same backup lsn 
---                 may be used for initializing multiple subscriptions.
---              4) Perform the actual insert of transaction in 
---                 MSrepl_transactions.
---              5) Update the status of the subscriptions to active in
---                 dbo.MSsubscriptions. 
---              6) Perform setup script file manipulations depending
---                 on the publication's snapshot file settings.
---              7) Insert "snapshot" commands for the subscription setup script
---                 in MSrepl_commands.
--- 
--- Parameters: (Publication properties)
---             @publisher                  sysname         (mandatory)
---             @publisher_db               sysname         (mandatory)
---             @publication                sysname         (mandatory)
---             (Subscription properties)
---             @subsciber                  sysname         (mandatory)
---             @destination_db             sysname         (mandatory)
---             -- Subscription LSN
---             @subscriptionlsn            binary(10)      (mandatory)
---             @lsnsource                  tinyint         (mandatory)
---
--- Security: Procedural security check is performed inside this procedure to
---           ensure that the caller is a member of sysadmin. Execute 
---           permission of this procedure is granted to public. This procedure 
---           is invoked via RPC
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_MSsetupnosyncsubwithlsnatdist 
+create procedure BP_PRD.sys.sp_MSsetupnosyncsubwithlsnatdist 
 (
     -- Publication properties
     @publisher                  sysname,
@@ -103361,7 +100471,7 @@ begin
     -- the given subscription LSN is probably too old, raise different
     -- error messages depending on the source of the lsn.
 
-    -- Don't raise error for "old" 'replication support only' subscriptions
+    -- Don't raise error for 'old' 'replication support only' subscriptions
     if @hasbeforetransactions = 0 and @transactionentrytime is not null and @lsnsource <> 0 
     begin
         if @lsnsource = 2
@@ -103432,16 +100542,16 @@ begin
     --
 
     --
-    -- Choosing the right entry_time for the nosync "snapshot" transaction:
+    -- Choosing the right entry_time for the nosync 'snapshot' transaction:
     -- In cases i) and ii) above, the current datetime will be used as the 
-    -- entry time of the nosync "snapshot" transaction that we are about to 
+    -- entry time of the nosync 'snapshot' transaction that we are about to 
     -- insert into MSrepl_transactions. Any further transactions that are 
     -- inserted by the logreader or other sources will have an entry time > 
-    -- than the entry time of this nosync "snapshot" transaction including 
+    -- than the entry time of this nosync 'snapshot' transaction including 
     -- those that are logically committed after the nosync lsn. It is, 
     -- however, possible that a transaction with an lsn less than the nosync 
-    -- lsn will be inserted after the nosync "snapshot" transaction. The worse
-    -- that can happen with this odd scenario is that the "nosync" snapshot
+    -- lsn will be inserted after the nosync 'snapshot' transaction. The worse
+    -- that can happen with this odd scenario is that the 'nosync' snapshot
     -- transaction may be cleaned up before some of the (not needed) 
     -- regular transactions with smaller lsns which is totally harmless.  
     -- For case iii), the entry_time of the minimum transaction greater than
@@ -103469,7 +100579,7 @@ begin
     -- dbo.MSsubscriptions 
     if @subscriptionlsntag is null
         select @subscriptionlsntag = 1
-    -- Insert the nosync "snapshot" transaction into MSrepl_transactions
+    -- Insert the nosync 'snapshot' transaction into MSrepl_transactions
     
     select @nosyncsubscriptionseqno = @subscriptionlsn + 
                                       convert(binary(4), @subscriptionlsntag)
@@ -103647,21 +100757,7 @@ Failure:
 end
 go
 
---
--- Name: sp_MSsetupnosyncsubwithlsnatdist_cleanup
--- 
--- Description: try to revert the status change of MSsubscription during the execution
--- of MSsubscriptions for the article, and to remove the rows added for the subscription
--- in table MSnosyncsubsetup. The table itself will not be removed just in case it will be
--- used later soon. The cleanup process is in best-effor way, which does not run 
--- under a transaction.
---
--- Security: Procedural security check is performed inside this procedure to
---           ensure that the caller is a member of sysadmin. Execute 
---           permission of this procedure is granted to public. This procedure 
---           is invoked via RPC
---
-create procedure sys.sp_MSsetupnosyncsubwithlsnatdist_cleanup
+create procedure BP_PRD.sys.sp_MSsetupnosyncsubwithlsnatdist_cleanup
 (
     @publisher                              sysname,
     @publisher_db                         sysname,
@@ -103747,22 +100843,7 @@ Failure:
 end
 go
 
---
--- Name: sp_MSsetupnosyncsubwithlsnatdist_helper
--- 
--- Description: activate nosync subscription at distributor
--- and return the article id corresponding to the article;
--- when article = N'all', return the first retrieved article id in MSarticles;
--- create a temporary table (named 'MSnosyncsubsetup') in distribution db
--- if the table does not exist, and update the table with the parameters 
--- to be needed for setting up of the specified non-sync subscription.
---
--- Security: Procedural security check is performed inside this procedure to
---           ensure that the caller is a member of sysadmin. Execute 
---           permission of this procedure is granted to public. This procedure 
---           is invoked via RPC
---
-create procedure sys.sp_MSsetupnosyncsubwithlsnatdist_helper
+create procedure BP_PRD.sys.sp_MSsetupnosyncsubwithlsnatdist_helper
 (
     -- Publication properties
     @publisher                              sysname,
@@ -104105,7 +101186,7 @@ Failure:
 end
 go
 
-create procedure sys.sp_MSstartdistribution_agent
+create procedure BP_PRD.sys.sp_MSstartdistribution_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -104144,7 +101225,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSstartmerge_agent
+create procedure BP_PRD.sys.sp_MSstartmerge_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -104183,7 +101264,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSstartsnapshot_agent
+create procedure BP_PRD.sys.sp_MSstartsnapshot_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -104220,7 +101301,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSstopdistribution_agent
+create procedure BP_PRD.sys.sp_MSstopdistribution_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -104258,7 +101339,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSstopmerge_agent
+create procedure BP_PRD.sys.sp_MSstopmerge_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -104298,7 +101379,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSstopsnapshot_agent
+create procedure BP_PRD.sys.sp_MSstopsnapshot_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -104333,7 +101414,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSsub_check_identity
+create procedure BP_PRD.sys.sp_MSsub_check_identity
 @lower_bound_id int
 as
     declare @retcode int
@@ -104405,7 +101486,7 @@ as
     select 'objid' = @objid, 'table_name' = @table_name where @objid is not null    
 go
 
-create procedure sys.sp_MSsub_set_identity
+create procedure BP_PRD.sys.sp_MSsub_set_identity
 @objid int,
 @threshold int,
 @range bigint,
@@ -104595,8 +101676,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSsubscriptionvalidated
+create procedure BP_PRD.sys.sp_MSsubscriptionvalidated
     @subid      uniqueidentifier,
     @pubid      uniqueidentifier,
     @log_attempt bit = 0
@@ -104634,8 +101714,7 @@ as
     return (0)
 go
 
-
-create procedure sys.sp_MStablechecks
+create procedure BP_PRD.sys.sp_MStablechecks
 	@tablename nvarchar(517), @flags int = null
 as
    /*** @flags added for DaVinci uses.  If the bit isn't set, use 6.5 ***/
@@ -104665,12 +101744,9 @@ as
 	order by object_name(t.id), t.colid
 go
 
-
-create procedure sys.sp_MStablekeys
+create procedure BP_PRD.sys.sp_MStablekeys
 @tablename nvarchar(776) = null, @colname nvarchar(258) = null, @type int = null, @keyname nvarchar(517) = null, @flags int = null
 as
-
-
 
 	create table #tempID
 	   (
@@ -104882,7 +101958,6 @@ as
    deallocate hCur
    set nocount off
 
-
 	/* Now output the data */
 ReturnSet:
 	set nocount off
@@ -105011,10 +102086,7 @@ ReturnSet:
 	if (@flags & 1 <> 0)
 		exec sys.sp_MStablerefs @tablename, N'actualkeycols', N'foreign'
 
-go
-
-
-create procedure sys.sp_MStablerefs
+create procedure BP_PRD.sys.sp_MStablerefs
 	@tablename nvarchar(517),					
 	@type nvarchar(20) = N'actualtables',		
 	@direction nvarchar(20) = N'primary',		
@@ -105216,8 +102288,7 @@ ReturnSet:
 	end
 go
 
-
-create procedure sys.sp_MStablespace
+create procedure BP_PRD.sys.sp_MStablespace
 @name nvarchar(517), @id int = null
 as
 	declare @rows int, @datasizeused int, @indexsizeused int, @pagesize int
@@ -105285,7 +102356,7 @@ as
 	select Rows = @rows, DataSpaceUsed = @datasizeused * @pagesize, IndexSpaceUsed = @indexsizeused * @pagesize
 go
 
-create procedure sys.sp_MStestbit
+create procedure BP_PRD.sys.sp_MStestbit
             @bm varbinary(128),
             @coltotest smallint
 AS
@@ -105310,7 +102381,7 @@ AS
             return  convert( smallint, @oldword ) & convert( smallint, @mask )
 go
 
-create procedure sys.sp_MStran_ddlrepl 
+create procedure BP_PRD.sys.sp_MStran_ddlrepl 
 (
 	@EventData xml
 	,@procmapid int
@@ -105403,7 +102474,7 @@ begin
             return 0
     end
 	
-    --stored procedures published as "proc execution" article cannot contain
+    --stored procedures published as 'proc execution' article cannot contain
     --table value parameters (Note: proc exec articles are only listed in 
     --dbo.sysarticles
     if exists (select * 
@@ -105433,7 +102504,7 @@ begin
 	-- sys.fn_replgetparsedddlcmd will return empty string if DDL contains 
 	-- syntax that we don't currently handle (after Katmai DDL
 	-- improvement)
-	--It will also handle a duplicate trigger in the case of "alter table switch"
+	--It will also handle a duplicate trigger in the case of 'alter table switch'
 	if @pass_through_scripts = N''
 		return 0
 
@@ -105481,7 +102552,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MStran_is_snapshot_required
+create procedure BP_PRD.sys.sp_MStran_is_snapshot_required
     @publisher             sysname,
     @publisher_db         sysname,
     @publication         sysname,
@@ -105903,7 +102974,7 @@ begin
             return (1)
         end
 
-        -- By now, we should be in "a" distribution database so regardless
+        -- By now, we should be in 'a' distribution database so regardless
         -- of whether the distribution database procedure sp_MScheck_pull_access
         -- has been moved into the resource database.
         exec @retcode = sys.sp_MScheck_pull_access
@@ -106070,46 +103141,16 @@ begin
     end
 
 Results_Handler:
-    select "is_snapshot_required" = @is_needed,
-            "last_xact_seqno"    = @transaction_timestamp,
-            "subscription_guid"    = @subscription_guid,
-            "subid"             = @subid
+    select 'is_snapshot_required' = @is_needed,
+            'last_xact_seqno'    = @transaction_timestamp,
+            'subscription_guid'    = @subscription_guid,
+            'subid'             = @subid
 
     return 0
 end
 go
 
---
--- Name: sp_MStrypurgingoldsnapshotdeliveryprogress
---
--- Description: This function removes snapshot sessions in 
---              MSsnapshotdeliveryprogress containing progress tokens that
---              are too old (3 days or older) provided that it can acquire the 
---              'snapshot_delivery_in_progress_' + db_name() application lock
---              in exclusive mode immediately. This is to ensure that the 
---              the removal of progress tokens will not disrupt any on-going
---              snapshot delivery processes.
---
--- Parameter: none
---
--- Notes: This procedure is normally invoked by the distribution/merge agent
---        at the begining of a snapshot delivery session although the database
---        adminstrator can invoke this procedure to actively purge old entries
---        in sp_MSsnapshotdeliveryprogress. Since this procedure
---        is meant to provide a best-effort mechanism for cleaning up old 
---        sessions in MSsnapshotdeliveryprogress, it will not raise an error
---        if it fails to acquire the 'snapshot_in_progress_' + db_name() 
---        application lock.
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_MStrypurgingoldsnapshotdeliveryprogress
+create procedure BP_PRD.sys.sp_MStrypurgingoldsnapshotdeliveryprogress
 as
 begin
     set nocount on
@@ -106238,8 +103279,7 @@ Failure:
 end
 go
 
-
-create procedure sys.sp_MSuniquename
+create procedure BP_PRD.sys.sp_MSuniquename
 	@seed nvarchar(128), @start int = null
 as
 	/* Return a unique name for sysobjects, based on a passed-in seed. */
@@ -106280,7 +103320,7 @@ as
 	end
 go
 
-create procedure sys.sp_MSunmarkifneeded(
+create procedure BP_PRD.sys.sp_MSunmarkifneeded(
 @object                sysname,
 @pubid                uniqueidentifier,
 @pre_command         int = 0,
@@ -106295,8 +103335,6 @@ if @@error<>0 or @retcode<>0
     return (1)
         
 select @table_in_use = 0
---if pre-creation_command is 'drop (1)' or 'truncate (3)', then disallow this deployment if there is already an article using that table.
---other commands like 'delete, truncate, none are fine'
 
 if exists (select * from dbo.sysmergearticles where objid=object_id(@object) and pubid in
     (select pubid from dbo.sysmergepublications where LOWER(publisher)=LOWER(@publisher) and 
@@ -106317,7 +103355,7 @@ select @table_in_use
 return (0)
 go
 
-create procedure sys.sp_MSunmarkreplinfo(
+create procedure BP_PRD.sys.sp_MSunmarkreplinfo(
     @object                sysname,            /* Name of the table, unqualitied */
     @owner                sysname = NULL,            /* Name of the owner, unqualified */
     @type                smallint = 0        /* default is to unmark, as name implies */
@@ -106342,7 +103380,6 @@ create procedure sys.sp_MSunmarkreplinfo(
     if not (@id is null)
     begin
         EXEC %%Object(MultiName = @qualified_name).LockMatchID(ID = @id, Exclusive = 1, BindInternal = 0)
---EXEC %%Object(MultiName = @qualified_name).LockExclusiveMatchID(ID = @id)
         if @@error <> 0
             select @id = null
     end
@@ -106357,7 +103394,7 @@ create procedure sys.sp_MSunmarkreplinfo(
     COMMIT TRANSACTION
 go
 
-create procedure sys.sp_MSunmarkschemaobject(
+create procedure BP_PRD.sys.sp_MSunmarkschemaobject(
     @object           sysname,     
     @owner            sysname = NULL
 )AS
@@ -106395,8 +103432,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_MSunregistersubscription
+create procedure BP_PRD.sys.sp_MSunregistersubscription
 (
     @publisher         sysname = NULL, 
     @publisher_db     sysname = NULL, 
@@ -106463,9 +103499,7 @@ BEGIN
 END
 go
 
-
--- Set a profile as a default for an agent_type
-create procedure sys.sp_MSupdate_agenttype_default(
+create procedure BP_PRD.sys.sp_MSupdate_agenttype_default(
     @profile_id int
 )
 as
@@ -106487,7 +103521,6 @@ as
         RAISERROR (20066, 16, -1)   -- profile not defined
         RETURN (1)
     END
-
 
     select @agent_type = agent_type
     from msdb.dbo.MSagent_profiles 
@@ -106523,9 +103556,7 @@ UNDO:
     return 1 
 go
 
-
--- Requires Certificate signature for catalog access
-create procedure sys.sp_MSupdate_singlelogicalrecordmetadata    @logical_record_parent_nickname int, 
+create procedure BP_PRD.sys.sp_MSupdate_singlelogicalrecordmetadata    @logical_record_parent_nickname int, 
                                                                 @logical_record_parent_rowguid uniqueidentifier, 
                                                                 @replnick binary(6),
                                                                 @parent_row_inserted bit output
@@ -106616,8 +103647,6 @@ as
     
     return 0
 
-go
-
 CREATE PROCEDURE sys.sp_MSupdate_subscriber_info
 (
     @publisher sysname,
@@ -106668,7 +103697,6 @@ begin
             RAISERROR(21038, 16, -1)
             goto FAILED
         END
-
 
    begin transaction
    save transaction update_subscriber
@@ -106951,30 +103979,7 @@ FAILED:
 end
 go
 
---
--- Name: 
---		sp_MSupdate_subscriber_tracer_history
--- 
--- Description: 
---		This procedure will update the MStracer_history row's subscriber_commit  
---		time to getdate(). 
---  
--- Parameters: 
---		@parent_tracer_id	int				tracer id of the parent
---		@subscriber			sysname			subscriber server name
---		@subscriber_db		sysname			subscriber database
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Sysadmin/dbo/pal (run by distribution agent)
---
-create procedure sys.sp_MSupdate_subscriber_tracer_history
+create procedure BP_PRD.sys.sp_MSupdate_subscriber_tracer_history
 (
 	@parent_tracer_id	int,
 	@agent_id			int
@@ -107182,7 +104187,7 @@ begin
         begin
             update dbo.MSsubscriptions set status = @status, subscription_time = getdate(), 
                 publisher_seqno = @subscription_seqno, ss_cplt_seqno = @subscription_seqno,
-                -- Have to do this. Refer to anonymous agent "no init sync" option logic above
+                -- Have to do this. Refer to anonymous agent 'no init sync' option logic above
                 -- and sp_MSset_snapshot_seqno.
                 snapshot_seqno_flag = 0
               from dbo.MSsubscriptions with (index(iMSsubscriptions)) 
@@ -107307,28 +104312,7 @@ UNDO:
 end
 go
 
---
--- Name: 
---		sp_MSupdate_tracer_history
--- 
--- Description: 
---		This procedure will update the tracer history row's distrib_commit 
---		time to getdate(). 
---  
--- Parameters: 
---		@tracer_id	int		Id of the tracer to be updated
---
--- Returns: 
---		0 - succeeded
---      1 - failed
---
--- Result: 
---		None
---
--- Security: 
---		Sysadmin/dbo (run by logreader only)
---
-create procedure sys.sp_MSupdate_tracer_history
+create procedure BP_PRD.sys.sp_MSupdate_tracer_history
 (
 	@tracer_id	int
 )
@@ -107362,7 +104346,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSupdatecachedpeerlsn
+create procedure BP_PRD.sys.sp_MSupdatecachedpeerlsn
 (
 	@type						int,		-- 1-insert/update, 2-clear
 	@agent_id					int,
@@ -107455,7 +104439,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_MSupdategenerations_afterbcp
+create procedure BP_PRD.sys.sp_MSupdategenerations_afterbcp
     @pubid uniqueidentifier
 as
     declare @guidsrc uniqueidentifier
@@ -107570,8 +104554,7 @@ FAILURE:
     return(1)
 go
 
-
-create procedure sys.sp_MSupdategenhistory
+create procedure BP_PRD.sys.sp_MSupdategenhistory
     (@guidsrc uniqueidentifier, 
      @pubid uniqueidentifier, 
      @gen bigint, 
@@ -107668,8 +104651,6 @@ as
             
         set identity_insert dbo.MSmerge_genhistory off
 
--- DEBUG        insert into MSmerge_debug (okay, artnick, generation_new, comment)
--- DEBUG            values (1, @art_nick, @gen, 'sp_MSupdategenhistory did an insert')
     end
 
     commit
@@ -107683,7 +104664,7 @@ FAILURE:
     return(1)
 go
 
-create procedure sys.sp_MSupdateinitiallightweightsubscription
+create procedure BP_PRD.sys.sp_MSupdateinitiallightweightsubscription
 	@publisher					sysname,
 	@publisher_db				sysname,
 	@publication_name			sysname,
@@ -107747,7 +104728,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_MSupdatelastsyncinfo
+create procedure BP_PRD.sys.sp_MSupdatelastsyncinfo
     @publisher      sysname,                    -- publishing server name
     @publisher_db   sysname,                    -- publishing database name. If NULL then same as current db
     @publication    sysname,                    -- publication name,
@@ -107801,7 +104782,7 @@ AS
         subscription_type = @subscription_type
 go
 
-create procedure sys.sp_MSupdatepeerlsn
+create procedure BP_PRD.sys.sp_MSupdatepeerlsn
 (
 	@originator					sysname,
 	@originator_db				sysname,
@@ -107873,8 +104854,7 @@ FAILURE:
 end
 go
 
--- updates info about received generations, or inserts a corresponding row
-create procedure sys.sp_MSupdaterecgen
+create procedure BP_PRD.sys.sp_MSupdaterecgen
         @altrepid uniqueidentifier,
         @altrecguid uniqueidentifier,
         @altrecgen bigint
@@ -107896,8 +104876,7 @@ as
         return (0)
 go
 
-
-create procedure sys.sp_MSupdatereplicastate
+create procedure BP_PRD.sys.sp_MSupdatereplicastate
         @pubid uniqueidentifier,
         @subid uniqueidentifier,
         @replicastate uniqueidentifier
@@ -107919,9 +104898,7 @@ as
         return (0)
 go
 
--- in yukon this proc should never be called with the identity range
--- parameters being set.
-create procedure sys.sp_MSupdatesysmergearticles(
+create procedure BP_PRD.sys.sp_MSupdatesysmergearticles(
     @object                 sysname,                /* Name of the table */
     @artid                  uniqueidentifier,       /* Article ID */
     @owner                  sysname             = NULL,
@@ -108028,8 +105005,7 @@ UNDO:
     RETURN 1
 go
 
-
-create procedure sys.sp_MSuplineageversion
+create procedure BP_PRD.sys.sp_MSuplineageversion
     (@tablenick int,
      @rowguid uniqueidentifier,
      @version int)
@@ -108120,8 +105096,7 @@ Failure:
     return(1)
 go
 
-
-create procedure sys.sp_MSuploadsupportabilitydata
+create procedure BP_PRD.sys.sp_MSuploadsupportabilitydata
     (@publisher            sysname,
      @publisher_db         sysname,
      @publication          sysname,
@@ -108187,7 +105162,7 @@ as
     return (0)
 go
 
-create procedure sys.sp_MSuselightweightreplication
+create procedure BP_PRD.sys.sp_MSuselightweightreplication
 	@publisher 		sysname,
     @publisher_db 	sysname,
     @publication 	sysname,
@@ -108283,7 +105258,7 @@ begin
 end
 go
 
-create procedure sys.sp_MSvalidate_subscription (
+create procedure BP_PRD.sys.sp_MSvalidate_subscription (
     @subscriber sysname,
     @subscriber_db sysname,
     @artid int
@@ -108304,9 +105279,7 @@ begin
 end
 go
 
-
-
-create procedure sys.sp_MSvalidate_wellpartitioned_articles @publication sysname as
+create procedure BP_PRD.sys.sp_MSvalidate_wellpartitioned_articles @publication sysname as
 begin
     declare @pubid uniqueidentifier, @use_partition_groups smallint, @allow_subscriber_initiated_snapshot bit
     
@@ -108481,8 +105454,7 @@ EXIT_PROC:
 end
 go
 
-
-create procedure sys.sp_MSvalidatearticle
+create procedure BP_PRD.sys.sp_MSvalidatearticle
     @artid      uniqueidentifier,
     @pubid      uniqueidentifier,
     @expected_rowcount bigint = NULL OUTPUT,
@@ -108573,7 +105545,7 @@ as
     
 go
 
-create procedure sys.sp_MSwritemergeperfcounter 
+create procedure BP_PRD.sys.sp_MSwritemergeperfcounter 
 (
     @agent_id int,
     @thread_num int,
@@ -108588,7 +105560,7 @@ begin
 
 	if object_id('MSmerge_perfcounters') is NULL
 	begin
-		create table dbo.MSmerge_perfcounters
+		create table BP_PRD.create table dbo.MSmerge_perfcounters
 		(
 			agent_id int NOT NULL,
 			thread_num int NULL,
@@ -108604,35 +105576,7 @@ begin
 end
 go
 
-create procedure sys.sp_OACreate() as
--- missing source code
-go
-
-create procedure sys.sp_OADestroy() as
--- missing source code
-go
-
-create procedure sys.sp_OAGetErrorInfo() as
--- missing source code
-go
-
-create procedure sys.sp_OAGetProperty() as
--- missing source code
-go
-
-create procedure sys.sp_OAMethod() as
--- missing source code
-go
-
-create procedure sys.sp_OASetProperty() as
--- missing source code
-go
-
-create procedure sys.sp_OAStop() as
--- missing source code
-go
-
-create procedure sys.sp_ORbitmap (
+create procedure BP_PRD.sys.sp_ORbitmap (
     @inputbitmap1 varbinary(128), 
     @inputbitmap2 varbinary(128),
     @resultbitmap3 varbinary(128)    OUTPUT
@@ -108645,11 +105589,7 @@ begin
 end
 go
 
-create procedure sys.sp_PostAgentInfo() as
--- missing source code
-go
-
-create procedure sys.sp_SetAutoSAPasswordAndDisable
+create procedure BP_PRD.sys.sp_SetAutoSAPasswordAndDisable
 as
     -- can execute only as SysAdmin
 	if (not (is_srvrolemember('sysadmin') = 1))  -- Make sure that it is the SA executing this.
@@ -108710,13 +105650,7 @@ as
 	COMMIT TRANSACTION
 go
 
-create procedure sys.sp_SetOBDCertificate() as
--- missing source code
-go
-
-
--- Add a row into the "MSagent_parameters" table
-create procedure sys.sp_add_agent_parameter (
+create procedure BP_PRD.sys.sp_add_agent_parameter (
     @profile_id int,
     @parameter_name         sysname,
     @parameter_value        nvarchar(255)
@@ -108754,7 +105688,6 @@ as
     if @retcode <> 0
         RETURN(1)
 
-
     select @slash_parameter_name = lower(stuff(@parameter_name, 1, 1, N'/') collate SQL_Latin1_General_CP1_CS_AS)
     select @dash_parameter_name = lower(stuff(@parameter_name, 1, 1, N'-') collate SQL_Latin1_General_CP1_CS_AS)
      
@@ -108776,12 +105709,11 @@ as
         return(1)
 go
 
-
 /*
 ** The system profile of the same type of agent will be used as a template for 
 ** the parameters in this new user profile.
 */
-create procedure sys.sp_add_agent_profile (
+create procedure BP_PRD.sys.sp_add_agent_profile (
     @profile_id             int = NULL OUTPUT,
     @profile_name           sysname,
     @agent_type             int,            -- 1-Snapshot, 2-Logreader, 
@@ -108895,14 +105827,7 @@ UNDO:
     RETURN 1 
 go
 
---
--- Name: sp_add_data_file_recover_suspect_db
--- Purpose: Adds a data file to a suspect database and runs
--- 		recovery on the database.  This SP should only be used
---		on databases that have been marked suspect due to
---		insufficient data (error 1105) or log (error 9002) space.
---
-create procedure sys.sp_add_data_file_recover_suspect_db
+create procedure BP_PRD.sys.sp_add_data_file_recover_suspect_db
 	@dbName 	sysname			-- database name
 	,@filegroup	nvarchar(260)		-- file group for new file
 	,@name		nvarchar(260)		-- logical file name
@@ -108920,14 +105845,7 @@ as
 	EXEC sys.sp_add_file_recover_suspect_db @dbName, 'DATA', @filegroup, @name, @filename, @size, @maxsize, @filegrowth
 go
 
---
--- Name: sp_add_log_file_recover_suspect_db
--- Purpose: Adds a log file to a suspect database and runs
--- 		recovery on the database.  This SP should only be used
---		on databases that have been marked suspect due to
---		insufficient data (error 1105) or log (error 9002) space.
---
-create procedure sys.sp_add_log_file_recover_suspect_db
+create procedure BP_PRD.sys.sp_add_log_file_recover_suspect_db
 	@dbName 	sysname			-- database name
 	,@name		nvarchar(260)		-- logical file name
 	,@filename	nvarchar(260)		-- OS file name
@@ -108944,7 +105862,7 @@ as
 	EXEC sys.sp_add_file_recover_suspect_db @dbName, 'LOG', NULL, @name, @filename, @size, @maxsize, @filegrowth
 go
 
-create procedure sys.sp_add_log_shipping_alert_job 
+create procedure BP_PRD.sys.sp_add_log_shipping_alert_job 
 (
     @alert_job_id uniqueidentifier = null output
 )
@@ -108979,7 +105897,7 @@ begin
 end
 go
 
-create procedure sys.sp_add_log_shipping_primary_database 
+create procedure BP_PRD.sys.sp_add_log_shipping_primary_database 
 (
     @database sysname   -- cannot be NULL
     ,@backup_directory nvarchar(500) -- cannot be NULL
@@ -109171,7 +106089,7 @@ begin
         select @backup_job_name = sys.fn_MSgetlogshippingjobname(NULL, @database, 0)
     end
     select @jobdescription = isnull(formatmessage(32001, @database), N'Message 32001')
-              ,@jobcommand = N'"' + @toolpath + N'sqllogship.exe" -Backup ' + cast(@primary_id as nvarchar(40)) + N' -server ' + @@servername 
+              ,@jobcommand = N''' + @toolpath + N'sqllogship.exe' -Backup ' + cast(@primary_id as nvarchar(40)) + N' -server ' + @@servername 
     --
     -- Create a backup job for the primary database 
     --
@@ -109290,7 +106208,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_add_log_shipping_primary_secondary 
+create procedure BP_PRD.sys.sp_add_log_shipping_primary_secondary 
 (
     @primary_database sysname
     ,@secondary_server sysname
@@ -109384,7 +106302,7 @@ begin
 end
 go
 
-create procedure sys.sp_add_log_shipping_secondary_database 
+create procedure BP_PRD.sys.sp_add_log_shipping_secondary_database 
 (
     @secondary_database sysname -- cannot be NULL
     ,@primary_server sysname -- cannot be NULL
@@ -109608,7 +106526,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_add_log_shipping_secondary_primary 
+create procedure BP_PRD.sys.sp_add_log_shipping_secondary_primary 
 (
     @primary_server sysname -- cannot be NULL
     ,@primary_database sysname -- cannot be NULL
@@ -109779,7 +106697,7 @@ begin
         select @copy_job_name = sys.fn_MSgetlogshippingjobname(@primary_server, @primary_database, 1)
     end
     select @jobdescription = isnull(formatmessage(32002, @primary_server, @primary_database), N'Message 32002')
-              ,@jobcommand = N'"' + @toolpath + N'sqllogship.exe" -Copy ' + cast(@secondary_id as nvarchar(40)) + N' -server ' + @@servername 
+              ,@jobcommand = N''' + @toolpath + N'sqllogship.exe' -Copy ' + cast(@secondary_id as nvarchar(40)) + N' -server ' + @@servername 
     --
     -- Create a copy job for the secondary 
     --
@@ -109800,7 +106718,7 @@ begin
         select @restore_job_name = sys.fn_MSgetlogshippingjobname(@primary_server, @primary_database, 2)
     end
     select @jobdescription = isnull(formatmessage(32003, @primary_server, @primary_database), N'Message 32003')
-              ,@jobcommand = N'"' + @toolpath + N'sqllogship.exe" -Restore ' + cast(@secondary_id as nvarchar(40)) + N' -server ' + @@servername 
+              ,@jobcommand = N''' + @toolpath + N'sqllogship.exe' -Restore ' + cast(@secondary_id as nvarchar(40)) + N' -server ' + @@servername 
     --
     -- Create a restore job for the secondary 
     --
@@ -109890,7 +106808,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_addapprole
+create procedure BP_PRD.sys.sp_addapprole
     @rolename   sysname,        -- name of new app role
     @password   sysname         -- password for app role
 as
@@ -109965,7 +106883,7 @@ as
     return (0) -- sp_addapprole
 go
 
-create procedure sys.sp_addarticle
+create procedure BP_PRD.sys.sp_addarticle
 (
     @publication					sysname,
     @article						sysname,
@@ -110055,25 +106973,6 @@ BEGIN
     RETURN (@retcode)
 END
 go
-
-
---
--- Name:
---		sp_adddatatype
---
--- Description:
---		Add DBMS data type as an available type
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
---
--- Notes:
---		Implicitly will create a DBMS if it doesn't currently exist.
---
 
 CREATE PROCEDURE sys.sp_adddatatype
 (
@@ -110167,28 +107066,6 @@ BEGIN
 END
 go
 
-
---
--- Name:
---		sp_adddatatypemapping
---
--- Description:
---		Add source/destination data type mapping
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
---
--- Notes:
---		Implicitly will create a DBMS map if it doesn't
---		currently exist.  DBMS types must exist before
---		adding a mapping.  If no default currently
---		exists, this is set as the default mapping
---
-
 CREATE PROCEDURE sys.sp_adddatatypemapping
 (
 	@source_dbms				sysname,
@@ -110245,7 +107122,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_adddistpublisher
+create procedure BP_PRD.sys.sp_adddistpublisher
 (
     @publisher				sysname,
     @distribution_db		sysname,
@@ -110302,21 +107179,7 @@ BEGIN
 END
 go
 
---
--- Name: sp_adddistributiondb
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: Public (sysadmin check)
---
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_adddistributiondb 
+create procedure BP_PRD.sys.sp_adddistributiondb 
 (
     @database sysname,
     @data_folder nvarchar(255) = NULL,
@@ -110397,7 +107260,6 @@ BEGIN
     
 	select @model_data_size = sum (size)*8/1024 from sys.master_files where database_id = db_id('model') and type_desc = 'ROWS'
 	select @model_log_size = sum (size)*8/1024 from sys.master_files where database_id = db_id('model') and type_desc = 'LOG'
-
 
     select @password = case when (@password = N'') then NULL else @password end
             ,@data_folder = case when (@data_folder = N'') then NULL else @data_folder end
@@ -110546,8 +107408,8 @@ BEGIN
 
     SELECT @data_path = @data_folder + N'\' + @data_file
                 ,@log_path = @log_folder + N'\' + @log_file
-                ,@data_path_quoted_for_copy = N'"' + sys.fn_escapecmdshellsymbolsremovequotes(@data_folder) collate database_default + N'\' + sys.fn_escapecmdshellsymbolsremovequotes(@data_file) collate database_default + N'"'
-                ,@log_path_quoted_for_copy = N'"' + sys.fn_escapecmdshellsymbolsremovequotes(@log_folder) collate database_default + N'\' + sys.fn_escapecmdshellsymbolsremovequotes(@log_file) collate database_default + N'"'
+                ,@data_path_quoted_for_copy = N''' + sys.fn_escapecmdshellsymbolsremovequotes(@data_folder) collate database_default + N'\' + sys.fn_escapecmdshellsymbolsremovequotes(@data_file) collate database_default + N'''
+                ,@log_path_quoted_for_copy = N''' + sys.fn_escapecmdshellsymbolsremovequotes(@log_folder) collate database_default + N'\' + sys.fn_escapecmdshellsymbolsremovequotes(@log_file) collate database_default + N'''
                 ,@logical_data_file = @database
                 -- Truncate the logical log file name back to 128 characters
                 -- long so the 'CREATE DATABASE' statement won't complain.
@@ -110601,7 +107463,7 @@ BEGIN
                 return 1
             end
 
-            select @filecopy_cmd = N'copy "' + sys.fn_escapecmdshellsymbolsremovequotes(@canneddbdata_file) collate database_default + N'" ' + @data_path_quoted_for_copy
+            select @filecopy_cmd = N'copy '' + sys.fn_escapecmdshellsymbolsremovequotes(@canneddbdata_file) collate database_default + N'' ' + @data_path_quoted_for_copy
             EXEC @retcode = master.dbo.xp_cmdshell @filecopy_cmd, NO_OUTPUT
             IF @retcode <> 0 OR @@ERROR <> 0
             BEGIN
@@ -110609,7 +107471,7 @@ BEGIN
                 return (1)
             END
 
-            select @filecopy_cmd = N'copy "' + sys.fn_escapecmdshellsymbolsremovequotes(@canneddblog_file) collate database_default + N'" ' + @log_path_quoted_for_copy
+            select @filecopy_cmd = N'copy '' + sys.fn_escapecmdshellsymbolsremovequotes(@canneddblog_file) collate database_default + N'' ' + @log_path_quoted_for_copy
             EXEC @retcode = master.dbo.xp_cmdshell @filecopy_cmd, NO_OUTPUT
             IF @retcode <> 0 OR @@ERROR <> 0
             BEGIN
@@ -110690,7 +107552,7 @@ BEGIN
     select @retcode2 = 0
             ,@distproc = QUOTENAME(@database) + N'.sys.sp_executesql'
             ,@command = 
-        -- If the db is created by sa or from attach, sa is dbo already.
+        -- If the db is created by sa or from attach, sa is BP_PRD.created by sa or from attach, sa is dbo already.
         -- sp_changedbowner will fail if the new owner is an user in the db already.
         -- Addendum: we don't perform the check for existing rows in
         -- sysusers anymore as the server has implemented special logic 
@@ -110975,7 +107837,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_adddistributor (
+create procedure BP_PRD.sys.sp_adddistributor (
     @distributor sysname,            /* distributor server name */
     @heartbeat_interval int = 10,    	-- minutes
     @password sysname = NULL, 
@@ -111315,7 +108177,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_adddynamicsnapshot_job (
+create procedure BP_PRD.sys.sp_adddynamicsnapshot_job (
     @publication sysname,
     @suser_sname sysname = null,
     @host_name sysname = null,
@@ -111366,9 +108228,7 @@ as
      return @retcode
 go
 
-
----------------------------- sp_addextendedproc ------------------------------
-create procedure sys.sp_addextendedproc
+create procedure BP_PRD.sys.sp_addextendedproc
 	@functname nvarchar(517),	-- (owner.)name of function to call
 	@dllname varchar(255)		-- name of DLL containing function
 as
@@ -111416,7 +108276,7 @@ as
 	return (0) -- sp_addextendedproc
 go
 
-create procedure sys.sp_addextendedproperty
+create procedure BP_PRD.sys.sp_addextendedproperty
 	@name sysname,
 	@value sql_variant			= NULL,
 	@level0type	varchar(128)	= NULL,
@@ -111464,7 +108324,7 @@ as
 	return (0)
 go
 
-create procedure sys.sp_addlinkedserver
+create procedure BP_PRD.sys.sp_addlinkedserver
 	@server			sysname,				-- server name
 	@srvproduct		nvarchar(128) = NULL,	-- product name (dflt to ss)
 	@provider		nvarchar(128) = NULL,	-- oledb provider name
@@ -111490,7 +108350,7 @@ as
 			return (1)
 		end
 
-		-- THIS MUST BE A WELL-KNOWN "SQL Server" TYPE (DEFAULT IS SS)
+		-- THIS MUST BE A WELL-KNOWN 'SQL Server' TYPE (DEFAULT IS SS)
 		if @srvproduct IS NOT null AND lower(@srvproduct) <> N'sql server'
 		begin
 			raiserror(15427,-1,-1,@srvproduct)
@@ -111537,7 +108397,6 @@ as
 			ID = -1, ID = 0, ID = 0, Value = NULL, 
 			ID = 7, Value = @server, Value = @srvproduct2, Value = @provider, Value = @datasrc, Value = @location, Value = NULL, Value = @catalog)
 
-
 		COMMIT TRANSACTION
 		-- SUCCESS
 		return (0) -- sp_addlinkedserver
@@ -111554,9 +108413,7 @@ as
 		return (1)
 	end
 
-go
-
-create procedure sys.sp_addlinkedsrvlogin
+create procedure BP_PRD.sys.sp_addlinkedsrvlogin
 	@rmtsrvname		sysname,
 	@useself		varchar(8) = 'true',
 	@locallogin		sysname = NULL,
@@ -111584,7 +108441,6 @@ as
 		return (1)
 	end
 		EXEC %%System().AuditEvent(ID = 1380142156, Success = 1, TargetLoginName = @locallogin, TargetUserName = NULL, Role = NULL, Object = @rmtuser, Provider = NULL, Server = @rmtsrvname)
-
 
 	-- VALIDATE @useself PARAMETER --
 	-- IF @useself IS TRUE IT OVERRIDES PARAMETERS @rmtuser and @rmtpassword
@@ -111670,7 +108526,7 @@ as
 	return(0) -- sp_addlinkedsrvlogin
 go
 
-create procedure sys.sp_addlogin
+create procedure BP_PRD.sys.sp_addlogin
     @loginame		sysname
    ,@passwd         sysname = Null
    ,@defdb          sysname = 'master'      -- UNDONE: DEFAULT CONFIGURABLE???
@@ -111786,7 +108642,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addmergealternatepublisher (
+create procedure BP_PRD.sys.sp_addmergealternatepublisher (
 	@publisher					sysname,					/* Publisher server */
 	@publisher_db				sysname,					/* Publisher database */
 	@publication				sysname,					/* Publication name */
@@ -111925,7 +108781,7 @@ FAILURE:
 	
 go
 
-create procedure sys.sp_addmergearticle
+create procedure BP_PRD.sys.sp_addmergearticle
     @publication            sysname,                            /* publication name */
     @article                sysname,                            /* article name */
     @source_object          sysname,                            /* source object name */
@@ -112287,7 +109143,6 @@ create procedure sys.sp_addmergearticle
         close compted_columns_cursor
         deallocate compted_columns_cursor
 
-
         -- check if the subsetfilter clause contains any column of type that is not supported in
         --  a subset filter.
 
@@ -112380,7 +109235,6 @@ create procedure sys.sp_addmergearticle
     ELSE IF LOWER(@pre_creation_cmd collate SQL_Latin1_General_CP1_CS_AS) = 'truncate'
        select @precmdid = 3
 
-
     /*
     ** Set the typeid.    The default type is table.    It can 
     ** be one of following.
@@ -112426,14 +109280,12 @@ create procedure sys.sp_addmergearticle
        SET @typeid = 0xA0
     END
 
-
     select @sync_objid = OBJECT_ID(@qualified_name)
     if @sync_objid is NULL
         begin
             raiserror (14027, 11, -1, @qualified_name)
             return (1)
         end
-
 
     if @typeid in (0x20,0x40,0x80, 0xA0)
     begin
@@ -112635,7 +109487,6 @@ create procedure sys.sp_addmergearticle
         select @schema_option_has_changed = 1;
     end
 
-
     /*
     ** For hierarchy we will map it to varbinarymax for 100 RTM compatibility level in character sync mode (for SSCE subscriber).
     ** Turn off the data compression for SSCE subscriber
@@ -112815,7 +109666,7 @@ create procedure sys.sp_addmergearticle
     -- articles with >=246 columns can only be added to Yukon-compatible publications
     -- if the article is about to be republished, there might already be missing/excluded columns
     --
-    if @compatlevel <= 90    -- After Yukon beta 1, we will change this to " < 90".
+    if @compatlevel <= 90    -- After Yukon beta 1, we will change this to ' < 90'.
     begin
         declare @cCols int -- number of columns in the table
         declare @cMissing int -- number of missing cols
@@ -112898,7 +109749,6 @@ create procedure sys.sp_addmergearticle
         return (1)
     end
 
-
     if LOWER(@identityrangemanagementoption collate SQL_Latin1_General_CP1_CS_AS) = 'auto'
     begin
         /*
@@ -112980,7 +109830,6 @@ create procedure sys.sp_addmergearticle
         SET @column_tracking_id = 1
     else 
         SET @column_tracking_id = 0
-
 
     /*
     ** Check for partioned tables. Not supported when sync_mode is 1 (SSCE)
@@ -113121,7 +109970,6 @@ create procedure sys.sp_addmergearticle
             if @resolver_info is null
                 select @resolver_info = @dotnet_class_name
         end
-
 
     /*
     ** If article resolver is 'SP resolver', make sure that resolver_info refers to an SP or XP;
@@ -113938,7 +110786,6 @@ DONE_TRAN:
         RAISERROR (22584, 10, -1, @schema_option_strg)
     end
 
-
     exec @retcode = sys.sp_MSfillupmissingcols @publication, @qualified_name
     if @retcode<>0 or @@ERROR<>0
         goto FAILURE
@@ -113983,7 +110830,7 @@ FAILURE:
     return (1)
 go
 
-create procedure sys.sp_addmergefilter(
+create procedure BP_PRD.sys.sp_addmergefilter(
     @publication            sysname,            /* publication name */
     @article                sysname,            /* article name */
     @filtername                sysname,            /* join filter name */
@@ -114355,7 +111202,6 @@ create procedure sys.sp_addmergefilter(
             return 1
         end
 
-
         -- We do not allow logical records to be used if the articles involved in a join filter
         -- have cascading constraints defined on them
         if exists (select * from sys.foreign_keys fks
@@ -114511,9 +111357,7 @@ FAILURE:
     RAISERROR (20038, 16, -1, @article, @publication)
     return (1)
 
-go
-
-create procedure sys.sp_addmergelogsettings (
+create procedure BP_PRD.sys.sp_addmergelogsettings (
     @publication        sysname = NULL, 	/* Publication name */
     @subscriber         sysname = NULL,     /* Subscriber server */
     @subscriber_db      sysname = NULL,     /* Subscription database */
@@ -114550,7 +111394,6 @@ create procedure sys.sp_addmergelogsettings (
         raiserror(15247,-1,-1)
         return (1)
     end
-
 
     /*
     **    Check to see if current database is doing publishing/subscribing
@@ -114717,7 +111560,7 @@ FAILURE:
     RETURN (1)
 go
 
-create procedure sys.sp_addmergepartition (
+create procedure BP_PRD.sys.sp_addmergepartition (
         @publication sysname,
         @suser_sname sysname = NULL,
         @host_name sysname = NULL) 
@@ -114775,7 +111618,6 @@ begin
             return 1
     end
 
-
     exec @retcode = sys.sp_MSget_subscriber_partition_id 
                         @publication,
                         @partition_id output,
@@ -114793,8 +111635,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_addmergepublication (
+create procedure BP_PRD.sys.sp_addmergepublication (
     @publication            sysname,                  /* Publication name */
     @description            nvarchar(255)= NULL,      /* Publication description */
     @retention              int          = 14,        /* Retention period of 14 days */
@@ -114826,7 +111667,7 @@ create procedure sys.sp_addmergepublication (
     @use_partition_groups        nvarchar(5) = NULL,  /* NULL = Let system decide, otherwise manually set to 'true' or 'false' */
     @publication_compatibility_level nvarchar(6) = '80SP3',  -- backward compatibility level, default=Sphinx
     @replicate_ddl            int = NULL,           -- for now we only use value 1 for alter table add/drop columns and other alter table sub-statements.
-                                                    -- we may need more bits for "create table, drop table, " and others
+                                                    -- we may need more bits for 'create table, drop table, ' and others
     @allow_subscriber_initiated_snapshot nvarchar(5) = 'false',
     @allow_web_synchronization      nvarchar(5) = 'false',
     @web_synchronization_url        nvarchar(500) = null, -- Default value of InternetURL for subscriptions
@@ -114952,7 +111793,6 @@ create procedure sys.sp_addmergepublication (
     set @REPOLEVersion_90RTM_string = N'90RTM'
     set @REPOLEVersion_100RTM_string = N'100RTM'    
 
-
     /*
     ** Set the status to Active (1)
     */
@@ -115036,8 +111876,6 @@ create procedure sys.sp_addmergepublication (
         raiserror(21402, 16, -1, '@publication_compatibility_level')
         return (1)
     end
-
-
 
     -- Parameter check: @publication_compatibility_level: A Katmai publication db can 
     -- only have Katmai compatible publications for the new data types.
@@ -115396,7 +112234,6 @@ create procedure sys.sp_addmergepublication (
         SELECT @compress_snapshot_bit = 0
     END
 
-
     -- Only bump up the compatibility level if only a compressed snapshot
     -- is generated at the alternate snapshot folder
     if @snapshot_in_defaultfolder_bit = 0 and
@@ -115610,7 +112447,6 @@ create procedure sys.sp_addmergepublication (
         END
     end
 
-
     /*
     **    Add the publication as the designmaster of the replica set.
     */
@@ -115823,7 +112659,6 @@ create procedure sys.sp_addmergepublication (
                 goto FAILURE
             end
 
-
         /*
         ** Add the publication to the distributor side
         */
@@ -115885,7 +112720,7 @@ FAILURE:
 go
 
  
-create procedure sys.sp_addmergepullsubscription (
+create procedure BP_PRD.sys.sp_addmergepullsubscription (
     @publication             sysname,                      /* Publication name */
     @publisher                sysname = NULL,      /* Publisher server */
     @publisher_db            sysname = NULL,              /* Publication database */
@@ -115963,7 +112798,6 @@ create procedure sys.sp_addmergepullsubscription (
         RETURN (1)
     END
 
-
     /*
     ** Parameter Check: @publisher
     ** Check to make sure that the publisher is defined
@@ -115995,7 +112829,6 @@ create procedure sys.sp_addmergepullsubscription (
         RETURN (1)
     END
 
-
    /*
    ** Parameter Check: @sync_type.
    ** Set sync_typeid based on the @sync_type specified.
@@ -116011,7 +112844,6 @@ create procedure sys.sp_addmergepullsubscription (
        RAISERROR (14052, 16, -1)
        RETURN (1)
    END
-
 
    IF LOWER(@sync_type collate SQL_Latin1_General_CP1_CS_AS) = 'automatic'
    BEGIN
@@ -116064,11 +112896,11 @@ create procedure sys.sp_addmergepullsubscription (
     BEGIN
         if @subscription_typeid = 3
         begin
-            execute @retcode = sys.sp_MScreate_mergesystables @whattocreate=2
+            execute @retcode = sys.sp_MScreate_mergeBP_PRD.create_mergesystables @whattocreate=2
         end
         else
         begin
-            execute @retcode = sys.sp_MScreate_mergesystables @whattocreate=1
+            execute @retcode = sys.sp_MScreate_mergeBP_PRD.create_mergesystables @whattocreate=1
         end
         if @@ERROR <> 0 or @retcode <> 0 return (1)
     END
@@ -116131,13 +112963,11 @@ create procedure sys.sp_addmergepullsubscription (
     EXECUTE @retcode = sys.sp_validname @publisher
     IF @@ERROR <> 0 OR @retcode <> 0 RETURN (1)
 
-
     if UPPER(@publisher) = UPPER(publishingservername()) and @publisher_db = db_name()
     begin
         raiserror(21126, 16, -1)
         return (1)
     end
-
 
     /*
     ** Check to see if the publication name is already used in the subscription 
@@ -116176,7 +113006,6 @@ create procedure sys.sp_addmergepullsubscription (
     */
     if @subscriber_typeid = 2 or @subscriber_typeid = 3
         select @subscription_priority = 0.0
-
 
     /*
     ** UNDONE: Validate that the publisher is of type 'republisher'
@@ -116231,7 +113060,6 @@ create procedure sys.sp_addmergepullsubscription (
             values (@subid, suser_sname(suser_sid()))
     if @@ERROR <> 0 goto FAILURE
 
-
     /* Generate a new replica nickname from the @pubid */
     execute @retcode = sys.sp_MSgenreplnickname 
                             @srcguid= @pubid, 
@@ -116262,14 +113090,12 @@ create procedure sys.sp_addmergepullsubscription (
     end
     if @@ERROR <> 0 goto FAILURE
 
-
     /*
     **  Add row for merge publication to dbo.MSmerge_replinfo.
     */
     insert dbo.MSmerge_replinfo(repid, login_name)
         values (@pubid, suser_sname(suser_sid()))
     if @@ERROR <> 0 goto FAILURE
-
 
     COMMIT TRAN
     return (0)
@@ -116284,7 +113110,7 @@ FAILURE:
     RETURN (1)
 go
 
-create procedure sys.sp_addmergepullsubscription_agent 
+create procedure BP_PRD.sys.sp_addmergepullsubscription_agent 
 (
     @name                            sysname = NULL,
     @publisher                        sysname,                          /* Publisher server */
@@ -116499,14 +113325,14 @@ create procedure sys.sp_addmergepullsubscription_agent
 	IF @offloadagent IS NOT NULL
 		AND RTRIM(LTRIM(LOWER(@offloadagent))) != 'false'
 	BEGIN
-		-- "Parameter '@offloadagent' is no longer supported."
+		-- 'Parameter '@offloadagent' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadagent')
 		RETURN 1
 	END
 
 	IF ISNULL(@offloadserver, N'') != N''
 	BEGIN
-		-- "Parameter '@offloadserver' is no longer supported."
+		-- 'Parameter '@offloadserver' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadserver')
 		RETURN 1
 	END    
@@ -117045,14 +113871,14 @@ BEGIN
 	-- Parameter Check: @subscriber 
 	IF @subscriber IS NULL
 	BEGIN
-		-- "The parameter @subscriber cannot be NULL."
+		-- 'The parameter @subscriber cannot be NULL.'
 		RAISERROR (14043, 16, -1, '@subscriber', 'sp_addmergepushsubscription_agent')
 		RETURN 1
 	END
 
 	IF @subscriber = 'all'
 	BEGIN
-		-- "The keyword 'all' is reserved by replication stored procedures."
+		-- 'The keyword 'all' is reserved by replication stored procedures.'
 		RAISERROR (14136, 16, -1)
 		RETURN 1
 	END
@@ -117064,14 +113890,14 @@ BEGIN
 	-- Parameter Check: @subscriber_db
 	IF @subscriber_db IS NULL
 	BEGIN
-		-- "The parameter @subscriber_db cannot be NULL."
+		-- 'The parameter @subscriber_db cannot be NULL.'
 		RAISERROR (14043, 16, -1, '@subscriber_db', 'sp_addmergepushsubscription_agent')
 		RETURN 1
 	END
 
 	IF @subscriber_db = 'all'
 	BEGIN
-		-- "The keyword 'all' is reserved by replication stored procedures."
+		-- 'The keyword 'all' is reserved by replication stored procedures.'
 		RAISERROR (14136, 16, -1)
 		RETURN 1
 	END
@@ -117104,7 +113930,7 @@ BEGIN
 			AND subscription_type = 0
 	IF @subid IS NULL
 	BEGIN
-		-- "The subscription could not be found."
+		-- 'The subscription could not be found.'
 		RAISERROR (20021, 16, -1)
 		RETURN 1
 	END
@@ -117204,7 +114030,7 @@ BEGIN
 	EXEC @retcode = sys.sp_helpdistributor @rpcsrvname = @distributor_rpc OUTPUT, @distribdb = @distribution_db OUTPUT
 	IF @@error <> 0 or @retcode <> 0 or @distribution_db is NULL
 	BEGIN
-		-- "The Distributor has not been installed correctly."
+		-- 'The Distributor has not been installed correctly.'
 		RAISERROR(20036, 16, -1)
 		RETURN 1
 	END
@@ -117235,7 +114061,7 @@ BEGIN
 		IF sys.fn_yukonsecuritymodelrequired(NULL) = 1
 			OR @proxy_id IS NOT NULL
 		BEGIN
-			-- "A replication agent job (%s) for this subscription already exists."
+			-- 'A replication agent job (%s) for this subscription already exists.'
 			RAISERROR (21837, 11, -1, @merge_job_name)
 			RETURN 1	
 		END
@@ -117345,7 +114171,6 @@ BEGIN
 			IF @retcode <> 0 OR @@ERROR <> 0
 	            RETURN 1
 
-
 	        IF @job_password IS NOT NULL
 	        BEGIN
 				EXEC @retcode = sys.sp_changemergesubscription @publication = @publication,
@@ -117363,7 +114188,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addmergesubscription (
+create procedure BP_PRD.sys.sp_addmergesubscription (
     @publication                    sysname,                    /* Publication name */
     @subscriber                     sysname = NULL,                /* Subscriber server */
     @subscriber_db                  sysname = NULL,                /* Subscription database */
@@ -117480,14 +114305,14 @@ create procedure sys.sp_addmergesubscription (
 	IF @offloadagent IS NOT NULL
 		AND @offloadagent != 0
 	BEGIN
-		-- "Parameter '@offloadagent' is no longer supported."
+		-- 'Parameter '@offloadagent' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadagent')
 		RETURN 1
 	END
 
 	IF ISNULL(@offloadserver, N'') != N''
 	BEGIN
-		-- "Parameter '@offloadserver' is no longer supported."
+		-- 'Parameter '@offloadserver' is no longer supported.'
 		RAISERROR(21698, 16, -1, '@offloadserver')
 		RETURN 1
 	END
@@ -117527,7 +114352,7 @@ create procedure sys.sp_addmergesubscription (
 			OR @enabled_for_syncmgr IS NOT NULL
 			OR @merge_job_name IS NOT NULL
 		BEGIN
-			-- "The %s parameter(s) have been deprecated from this procedure. The value(s) should now be specified when calling '%s'."
+			-- 'The %s parameter(s) have been deprecated from this procedure. The value(s) should now be specified when calling '%s'.'
 			RAISERROR(21838, 10, -1, 'scheduling, optional command line, sync manager and merge job name', 'sp_addmergepushsubscription_agent'' or ''sp_addmergepullsubscription_agent')
 
 			SELECT @frequency_type = NULL,
@@ -117614,11 +114439,8 @@ create procedure sys.sp_addmergesubscription (
     
     IF object_id('sysmergesubscriptions') is NULL
     BEGIN
-        execute @retcode = sys.sp_MScreate_mergesystables @whattocreate=1
+        execute @retcode = sys.sp_MScreate_mergeBP_PRD.create_mergesystables @whattocreate=1
         if @@ERROR <> 0 or @retcode <> 0 return (1)
-
---        execute @retcode = sys.sp_MScreate_DDLtriggers
---        if @@ERROR <> 0 or @retcode <> 0 return (1)
 
         execute @retcode= sys.sp_MSrepl_ddl_triggers @type='merge', @mode='add'
         if @@ERROR <> 0 or @retcode <> 0 return (1)                        
@@ -117720,7 +114542,6 @@ create procedure sys.sp_addmergesubscription (
         END
     end
 
-
     /* 
     ** Parameter Check: Make sure that the subscriber,subscription_db and publisher,publication_db are different
     ** This proc is called on the publisher and publisher db.
@@ -117812,13 +114633,11 @@ create procedure sys.sp_addmergesubscription (
    **              2        none
    */
 
-
    IF LOWER(@sync_type collate SQL_Latin1_General_CP1_CS_AS) NOT IN ('automatic', 'none')
        BEGIN
            RAISERROR (14052, 16, -1)
            RETURN (1)
        END
-
 
     /*
     ** If current publication contains an article without rowguidcol, do not allow no-sync subscription
@@ -117840,9 +114659,8 @@ create procedure sys.sp_addmergesubscription (
             SET @sync_typeid = @nosync
    END
 
-
     /*
-    ** UNDONE: Validate that the publisher is of type "republisher"
+    ** UNDONE: Validate that the publisher is of type 'republisher'
     */
     begin tran
     save TRAN addmergesubscription
@@ -118005,9 +114823,7 @@ FAILURE:
     end
     RETURN (1)
 
-go
-
-create procedure sys.sp_addmessage
+create procedure BP_PRD.sys.sp_addmessage
 	@msgnum int = null,				-- Number of new message.
 	@severity smallint = null,		-- Severity of new message.
 	@msgtext nvarchar(255) = null,	-- Text of new message.
@@ -118174,26 +114990,7 @@ as
 	return (0) -- sp_addmessage
 go
 
-
---
--- Name:
---		sp_addpublication
---
--- Description:
---		Creates a snapshot or transactional publication. This stored procedure is executed at
---		the Publisher on the publication database.
---
--- Returns:
---		Return code (0 for success, 1 for failure)
---
--- Security:
---		Public
---
--- Notes:
---		Re-directs to call sp_MSrepl_addpublication in the correct db context (distributor for HREPL)
---
-
-create procedure sys.sp_addpublication
+create procedure BP_PRD.sys.sp_addpublication
 (
     @publication                sysname,
     @taskid                        int = 0,                        -- backward compatible
@@ -118326,7 +115123,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_addpublication_snapshot
 (
     @publication					sysname,    
@@ -118393,7 +115189,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addpullsubscription
+create procedure BP_PRD.sys.sp_addpullsubscription
 (
     @publisher            sysname,
     @publisher_db        sysname = NULL,
@@ -118661,21 +115457,7 @@ UNDO:
 END
 go
 
-
---
--- Name: sp_addpullsubscription_agent
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_addpullsubscription_agent
+create procedure BP_PRD.sys.sp_addpullsubscription_agent
 (
     @publisher                        sysname,
     @publisher_db                   sysname = NULL,
@@ -118765,7 +115547,6 @@ BEGIN
         set @optional_command_line = ''
     else
         set @optional_command_line = N' ' + LTRIM( RTRIM(@optional_command_line) ) + N' '
-
 
     IF @distributor_password = N''
         select @distributor_password = NULL
@@ -118974,7 +115755,6 @@ BEGIN
 		END
 	END
 
-
     -- Subscriber must be Windows Authentication
     SELECT @subscriber_security_mode = 1,
             @subscriber_login = N'',
@@ -119058,7 +115838,6 @@ BEGIN
         SELECT @use_ftp_bit = 0
     END
 
-
     /*
     ** Parameter check: @publication_type
     ** Must be 0 - Transactional or 1 - Snapshot
@@ -119124,14 +115903,14 @@ BEGIN
     IF @offloadagent IS NOT NULL
         AND RTRIM(LTRIM(LOWER(@offloadagent))) != 'false'
     BEGIN
-        -- "Parameter '@offloadagent' is no longer supported."
+        -- 'Parameter '@offloadagent' is no longer supported.'
         RAISERROR(21698, 16, -1, '@offloadagent')
         RETURN 1
     END
 
     IF ISNULL(@offloadserver, N'') != N''
     BEGIN
-        -- "Parameter '@offloadserver' is no longer supported."
+        -- 'Parameter '@offloadserver' is no longer supported.'
         RAISERROR(21698, 16, -1, '@offloadserver')
         RETURN 1
     END
@@ -119351,7 +116130,6 @@ BEGIN
         END
         IF @@ERROR <> 0 
             goto cleanup
-
 
         -- For dependent subscriptions we need to fix up all the
         -- shared properties  
@@ -119688,7 +116466,7 @@ BEGIN
 
 		IF @qreader_exists = 1
 		BEGIN
-			-- "The %s already exists. Use '%' to update any settings/properties."
+			-- 'The %s already exists. Use '%' to update any settings/properties.'
 			RAISERROR(21831, 16, -1, 'qreader agent', 'sp_changeqreader_agent')
 			RETURN 1
 		END
@@ -119735,7 +116513,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_addqueued_artinfo 
+create procedure BP_PRD.sys.sp_addqueued_artinfo 
 (
     @artid                int
     ,@article            sysname
@@ -119817,7 +116595,7 @@ BEGIN
         -- MSMQ subscription only allowed for platforms that support MSMQ 2.0
         -- version 5.0.2195 or higher
         --
-        create table #tosversion ( propid int, propname sysname collate database_default, value int, charvalue nvarchar(255) collate database_default)
+        create table #tosversion ( propid int, propname BP_PRD.create table #tosversion ( propid int, propname sysname collate database_default, value int, charvalue nvarchar(255) collate database_default)
         insert into #tosversion (propid, propname, value, charvalue)
         exec master.dbo.xp_msver N'WindowsVersion'
 
@@ -119902,7 +116680,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addremotelogin
+create procedure BP_PRD.sys.sp_addremotelogin
 	@remoteserver	sysname,			-- name of remote server
 	@loginame		sysname = NULL,		-- user's local user name
 	@remotename		sysname = NULL		-- user's remote name
@@ -119979,7 +116757,7 @@ as
 	return (0)	-- sp_addremotelogin
 go
 
-create procedure sys.sp_addrole
+create procedure BP_PRD.sys.sp_addrole
     @rolename   sysname,        -- name of new role
     @ownername  sysname = NULL  -- name of owner of new role
 as
@@ -120026,7 +116804,6 @@ as
 		return (1)
 	end
 
-
 	-- create the Schema if not one exists with same name and owner
 	declare @schema_uid int
 	declare @owner_uid  int
@@ -120049,8 +116826,7 @@ as
     return (0) -- sp_addrole
 go
 
--- FOR BACKWARD COMPATIBILTY ONLY --
-create procedure sys.sp_addrolemember
+create procedure BP_PRD.sys.sp_addrolemember
 	@rolename       sysname,
 	@membername     sysname
 AS
@@ -120107,7 +116883,7 @@ AS
     return (0) -- sp_addrolemember
 go
 
-create procedure sys.sp_addscriptexec
+create procedure BP_PRD.sys.sp_addscriptexec
 (
     @publication    sysname,
     @scriptfile        nvarchar (4000),
@@ -120140,7 +116916,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addserver
+create procedure BP_PRD.sys.sp_addserver
 	@server			sysname,			-- server name
 	@local			varchar(10) = NULL,	-- NULL or 'local'
 	@duplicate_ok	varchar(13) = NULL	-- NULL or 'duplicate_ok'
@@ -120231,8 +117007,7 @@ as
 	end
 go
 
--- FOR BACKWARD COMPATIBILTY ONLY --
-create procedure sys.sp_addsrvrolemember
+create procedure BP_PRD.sys.sp_addsrvrolemember
     @loginame sysname,			-- login name
     @rolename sysname = NULL	-- server role name
 as
@@ -120287,8 +117062,7 @@ as
 	return (0) -- sp_addsrvrolemember
 go
 
-
-create procedure sys.sp_addsubscriber
+create procedure BP_PRD.sys.sp_addsubscriber
 (
 	@subscriber						sysname,
 	@type							tinyint = 0,
@@ -120375,7 +117149,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addsubscriber_schedule (
+create procedure BP_PRD.sys.sp_addsubscriber_schedule (
     @subscriber sysname,
     @agent_type smallint = 0,
     @frequency_type int = 64,
@@ -120504,7 +117278,7 @@ create procedure sys.sp_addsubscriber_schedule (
     RETURN (0)
 go
 
-create procedure sys.sp_addsubscription
+create procedure BP_PRD.sys.sp_addsubscription
 (
     @publication					sysname,
     @article						sysname = 'all',
@@ -120621,7 +117395,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_addsynctriggers 
+create procedure BP_PRD.sys.sp_addsynctriggers 
 (
     @sub_table       sysname,            -- table name 
     @sub_table_owner sysname,            -- table owner
@@ -120747,7 +117521,6 @@ BEGIN
         if @@error <> 0
             select @object_id = null
     end
-
 
     if @object_id is null
     begin
@@ -121034,7 +117807,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_addsynctriggerscore (
+create procedure BP_PRD.sys.sp_addsynctriggerscore (
     @sub_table       sysname,            -- table name 
     @sub_table_owner sysname,            -- table owner
     @publisher      sysname,            -- publishing server name
@@ -121384,7 +118157,7 @@ BEGIN
     begin
         if not exists (select * from sys.objects where name = 'MSsub_identity_range')
         begin
-            create table dbo.MSsub_identity_range (
+            create table BP_PRD.create table dbo.MSsub_identity_range (
             objid int not null,
             range bigint not null,
             last_seed bigint not null,
@@ -121566,11 +118339,7 @@ UNDO:
 END
 go
 
-
---
--- DEVNOTE: Uses @filterclause. Do not sign.
---
-create procedure sys.sp_addtabletocontents 
+create procedure BP_PRD.sys.sp_addtabletocontents 
 	(@table_name sysname,
 	 @owner_name sysname = NULL,
 	 @filter_clause nvarchar(4000) = NULL)
@@ -121683,7 +118452,7 @@ Error:
 end
 go
 
-create procedure sys.sp_addtype
+create procedure BP_PRD.sys.sp_addtype
 	@typename sysname,			-- name of user-defined type
 	@phystype sysname,			-- physical system type of user-defined type
 	@nulltype varchar(8) = null,-- nullability of new type
@@ -121702,7 +118471,7 @@ as
 	
 	declare @stmt nvarchar(1280)
 
-	-- Warning: User types created via sp_addtype are contained in dbo schema. The @owner parameter is ignored.
+	-- Warning: User types created via sp_addtype are contained in BP_PRD.created via sp_addtype are contained in dbo schema. The @owner parameter is ignored.
 	if (@owner is null)
 		select @owner = user_name()
 	if (@owner <> N'dbo')
@@ -121736,7 +118505,6 @@ as
 		raiserror(15085,-1,-1)
 		return (1)
 	end
-
 
 	-- Check that the physical type string matches expected pattern.
 	-- It should be one of <string(s)>, <string(s)>(number), or <string(s)>(number, number)
@@ -121858,7 +118626,7 @@ as
 		select @phystype = @phystype + '(' + RTRIM(@numqual1) + ')'
 
 	-- Construct create type stmt
-	select @stmt = 'create type [dbo].' +  quotename(@typename)
+	select @stmt = 'create type [BP_PRD.create type [dbo].' +  quotename(@typename)
 		+ ' from ' + @phystype + ' '
 		+ case @isnull when 1 then 'null' else 'not null' end
 
@@ -121868,7 +118636,7 @@ as
 	return (@@error) -- sp_addtype
 go
 
-create procedure sys.sp_addumpdevice	-- 1995/09/07 12:01
+create procedure BP_PRD.sys.sp_addumpdevice	-- 1995/09/07 12:01
 	@devtype varchar(20),				-- disk, tape, or virtual_device
 	@logicalname   sysname,				-- logical name of the device
 	@physicalname  nvarchar(260),		-- physical name of the device
@@ -121958,7 +118726,7 @@ as
 	return (0) -- sp_addumpdevice
 go
 
-create procedure sys.sp_adduser
+create procedure BP_PRD.sys.sp_adduser
 	@loginame       sysname,	    -- user's login name in syslogins
 	@name_in_db     sysname = NULL, -- user's name to add to current db
 	@grpname		sysname = NULL  -- role to which user should be added.
@@ -122007,7 +118775,7 @@ as
         EXEC @ret = sys.sp_addrolemember @grpname, @name_in_db
         if @ret <> 0
 		begin
-			-- "ROLLBACK" THE ABOVE sp_grantdbaccess --
+			-- 'ROLLBACK' THE ABOVE sp_grantdbaccess --
 			exec sys.sp_revokedbaccess @name_in_db
             return (1)
 		end
@@ -122017,7 +118785,7 @@ as
     return (0) -- sp_adduser
 go
 
-create procedure sys.sp_adjustpublisheridentityrange (
+create procedure BP_PRD.sys.sp_adjustpublisheridentityrange (
     @publication    sysname = NULL,
     @table_name         sysname = NULL,
     @table_owner    sysname = NULL
@@ -122061,7 +118829,6 @@ begin
     end
 end
 
---Do this for merge?
 if object_id('sysmergepublications') is not NULL
 begin
     if @publication is NULL
@@ -122155,7 +118922,7 @@ end
 RETURN (0)
 go
 
-create procedure sys.sp_altermessage
+create procedure BP_PRD.sys.sp_altermessage
 	@message_id       int,
 	@parameter        sysname,
 	@parameter_value  varchar(5)
@@ -122218,7 +118985,7 @@ as
 	return (0)	-- sp_altermessage
 go
 
-create procedure sys.sp_approlepassword
+create procedure BP_PRD.sys.sp_approlepassword
 	@rolename		sysname,			-- name of app role
 	@newpwd			sysname				-- new password
 AS
@@ -122265,7 +119032,6 @@ AS
     -- RETURN SUCCESS --
 	return (0) -- sp_approlepassword
 go
-
 
 CREATE PROCEDURE sys.sp_article_validation
 (
@@ -122327,7 +119093,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_articlecolumn (
+create procedure BP_PRD.sys.sp_articlecolumn (
         @publication sysname,           /* The publication name */
         @article sysname,               /* The article name */
         @column sysname = NULL,         /* The column name */
@@ -122420,7 +119186,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_articlefilter
+create procedure BP_PRD.sys.sp_articlefilter
 (
     @publication                sysname,
     @article                    sysname,
@@ -122435,7 +119201,6 @@ BEGIN
     DECLARE @cmd            nvarchar(4000)
                 ,@retcode        int
                 ,@publisher_type    sysname
-
 
     EXEC @retcode = sys.sp_MSrepl_getpublisherinfo    @publisher        = @publisher,
                                                     @publisher_type    = @publisher_type OUTPUT,
@@ -122525,8 +119290,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_assemblies_rowset
+create procedure BP_PRD.sys.sp_assemblies_rowset
 (
     @assembly_name      sysname,
     @assembly_schema    sysname = null,
@@ -122558,8 +119322,7 @@ as
     order by 1, 2, 3
 go
 
-
-create procedure sys.sp_assemblies_rowset2
+create procedure BP_PRD.sys.sp_assemblies_rowset2
 (
     @assembly_schema    sysname = null,
     @assembly_id        int = null
@@ -122589,8 +119352,7 @@ as
     order by 1, 2, 3
 go
 
-
-create procedure sys.sp_assemblies_rowset_rmt
+create procedure BP_PRD.sys.sp_assemblies_rowset_rmt
 (
     @server_name        sysname,
     @catalog_name       sysname,
@@ -122617,8 +119379,7 @@ as
     order by 1,2,3
 go
 
-
-create procedure sys.sp_assembly_dependencies_rowset
+create procedure BP_PRD.sys.sp_assembly_dependencies_rowset
 (
     @assembly_id            int = null,
     @assembly_schema        sysname = null,
@@ -122643,8 +119404,7 @@ as
     order by 1, 2
 go
 
-
-create procedure sys.sp_assembly_dependencies_rowset2
+create procedure BP_PRD.sys.sp_assembly_dependencies_rowset2
 (
     @assembly_schema        sysname = null,
     @assembly_referenced    int = null
@@ -122667,8 +119427,7 @@ as
     order by 1, 2
 go
 
-
-create procedure sys.sp_assembly_dependencies_rowset_rmt
+create procedure BP_PRD.sys.sp_assembly_dependencies_rowset_rmt
 (
     @server                 sysname,
     @catalog                sysname = null,
@@ -122692,7 +119451,7 @@ as
     order by 1, 2
 go
 
-create procedure sys.sp_attach_db
+create procedure BP_PRD.sys.sp_attach_db
 	@dbname sysname
 	, @filename1 nvarchar(260)
 	, @filename2 nvarchar(260) = NULL
@@ -122852,7 +119611,6 @@ as
 			+ ''''
 	end
 
-
 	-- note it as for attach
 	select @execstring = @execstring + ' ) FOR ATTACH'
 
@@ -122865,7 +119623,7 @@ as
 	return (0) -- sp_attach_db
 go
 
-create procedure sys.sp_attach_single_file_db
+create procedure BP_PRD.sys.sp_attach_single_file_db
 	@dbname sysname,
 	@physname nvarchar(260)
 as
@@ -122905,20 +119663,7 @@ as
 	return (0) -- sp_attach_single_file_db
 go
 
---
--- Name: sp_attachsubscription
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_attachsubscription 
+create procedure BP_PRD.sys.sp_attachsubscription 
 (
 	@dbname    					sysname,
 	@filename 					nvarchar(260),
@@ -123015,9 +119760,8 @@ begin
     select @guid_name =  convert (nvarchar(36), newid())
     select @temp_copy = @file_dir + @guid_name + '.tmp'
 
-
     -- copy file
-    select @cmd = 'copy "' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '" "' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_copy) collate database_default + '"'
+    select @cmd = 'copy '' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '' '' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_copy) collate database_default + '''
     exec @retcode = master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     if @@error <> 0 or @retcode <> 0
     begin
@@ -123099,7 +119843,7 @@ begin
 
     -- Prepare the database for detach. 2 things will be done
     -- 1. Set a flag to indicate that this is a prepare sub db for detach
-    -- 2. For merge, create table to store dbo.sysservers info for later fixing up after attach
+    -- 2. For merge, create table to store BP_PRD.create table to store dbo.sysservers info for later fixing up after attach
     select @cmd = quotename(@dbname) + '.sys.sp_MSrestore_sub'
     exec @retcode = @cmd
         @subscriber_security_mode = @subscriber_security_mode,    
@@ -123137,12 +119881,12 @@ Cleanup:
         -- Restore the original file, ignore errors
         if @retcode <> 0 and @copy_created = 1
         begin
-            select @cmd = 'copy "' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_copy) collate database_default + '" "' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '"'
+            select @cmd = 'copy '' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_copy) collate database_default + '' '' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '''
             exec master.dbo.xp_cmdshell @cmd, NO_OUTPUT
         end
 
         -- Delete the temp file.
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_copy) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_copy) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     end
 
@@ -123150,11 +119894,7 @@ Cleanup:
 end
 go
 
-create procedure sys.sp_audit_write() as
--- missing source code
-go
-
-create procedure sys.sp_autostats
+create procedure BP_PRD.sys.sp_autostats
 	@tblname 	nvarchar(776),
 	@flagc		varchar(10)=null,
 	@indname	sysname=null
@@ -123285,12 +120025,7 @@ begin
 end
 go
 
-create procedure sys.sp_availability_group_command_internal() as
--- missing source code
-go
-
-
-create procedure sys.sp_bcp_dbcmptlevel
+create procedure BP_PRD.sys.sp_bcp_dbcmptlevel
 (
     @dbname sysname
 )
@@ -123303,11 +120038,7 @@ as
         name = @dbname
 go
 
-create procedure sys.sp_begin_parallel_nested_tran() as
--- missing source code
-go
-
-create procedure sys.sp_bindefault	--- 1996/08/30 20:04
+create procedure BP_PRD.sys.sp_bindefault	--- 1996/08/30 20:04
 	@defname nvarchar(776),			-- name of the default
 	@objname nvarchar(776),			-- table or usertype name
 	@futureonly varchar(15) = NULL	-- flag to indicate extent of binding
@@ -123629,7 +120360,7 @@ error_abort_exit:
 	return 1	-- sp_bindefault
 go
 
-create procedure sys.sp_bindrule	-- 1996/08/14 15:02
+create procedure BP_PRD.sys.sp_bindrule	-- 1996/08/14 15:02
 	@rulename nvarchar(776),		-- name of the rule
 	@objname nvarchar(776),			-- table or usertype name
 	@futureonly varchar(15) = NULL	-- column name
@@ -123932,11 +120663,7 @@ error_abort_exit:
 	return (1) -- sp_bindrule
 go
 
-create procedure sys.sp_bindsession() as
--- missing source code
-go
-
-create procedure sys.sp_browsemergesnapshotfolder (
+create procedure BP_PRD.sys.sp_browsemergesnapshotfolder (
     @publication sysname
     )
 AS
@@ -123976,8 +120703,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_browsereplcmds 
+create procedure BP_PRD.sys.sp_browsereplcmds 
 	@xact_seqno_start nchar(22) = NULL, --lower boundry of the query
 	@xact_seqno_end nchar(22) = NULL, -- upper boundry of the query
 	@originator_id int = NULL, -- limit query to the specified originator source
@@ -124006,7 +120732,6 @@ as
 	if @retcode != 0 or @@error != 0
 	    return (1)
 
---first let's find out if we are returning cmds specific to an agent
 if(@agent_id is not NULL)
 begin
 	if @xact_seqno_start is null
@@ -124018,7 +120743,6 @@ begin
 	return 0
 end
 
---we know this is not specific to an agent, now go against the entire table.
 if( @command_id is not null )
 begin
     if( @xact_seqno_start is null or @publisher_database_id is null )
@@ -124084,11 +120808,10 @@ end
 
 select @query = @query + N' order by cmds.originator_id, cmds.publisher_database_id, cmds.xact_seqno, cmds.article_id, cmds.command_id asc'
 
-
 exec sys.sp_printstatement @query
 go
 
-create procedure sys.sp_browsesnapshotfolder
+create procedure BP_PRD.sys.sp_browsesnapshotfolder
 (
     @publication    sysname,
     @subscriber     sysname = NULL,
@@ -124125,7 +120848,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_can_tlog_be_applied
+create procedure BP_PRD.sys.sp_can_tlog_be_applied
 (
     @backup_file_name nvarchar(500)
     ,@database_name sysname
@@ -124221,8 +120944,8 @@ begin
     --
     -- get the redo start lsn for the database
     -- choose the smallest value from all of the files of the database being restored
-    -- State 0 is "online", so this handles page restore, or cases where the "restoring" state isn't marked properly.
-    -- State 1 is "restoring", which is the expected state.
+    -- State 0 is 'online', so this handles page restore, or cases where the 'restoring' state isn't marked properly.
+    -- State 1 is 'restoring', which is the expected state.
     -- redo_start_lsn is null for files which are not subject to restore.
     --
     select @db_redo_start_lsn = min(redo_start_lsn)
@@ -124288,8 +121011,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_catalogs
+create procedure BP_PRD.sys.sp_catalogs
 (
     @server_name        sysname
 )
@@ -124302,8 +121024,7 @@ as
     order by CATALOG_NAME
 go
 
-
-create procedure sys.sp_catalogs_rowset
+create procedure BP_PRD.sys.sp_catalogs_rowset
 (
     @catalog_name       sysname
 )
@@ -124318,12 +121039,8 @@ as
     order by 1
 go
 
-
-create procedure sys.sp_catalogs_rowset2
+create procedure BP_PRD.sys.sp_catalogs_rowset2
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         CATALOG_NAME    = name,
         DESCRIPTION     = convert(nvarchar(1),null)
@@ -124334,8 +121051,7 @@ as
     order by 1
 go
 
-
-create procedure sys.sp_catalogs_rowset_rmt
+create procedure BP_PRD.sys.sp_catalogs_rowset_rmt
 (
     @server_name    sysname,
     @catalog_name   sysname = NULL
@@ -124351,7 +121067,6 @@ as
     order by 1
 go
 
-
 CREATE PROC sys.sp_cci_tuple_mover (@rowset_id BIGINT, @rowGroupId BIGINT, @rowGroupState BIGINT) AS
 BEGIN
     declare @count int
@@ -124362,7 +121077,7 @@ BEGIN
 END			
 go
 
-create procedure sys.sp_cdc_add_job
+create procedure BP_PRD.sys.sp_cdc_add_job
 (
     @job_type nvarchar(20),
     @start_job bit = 1,
@@ -124552,7 +121267,7 @@ begin
 end
 go
 
-create procedure sys.sp_cdc_change_job
+create procedure BP_PRD.sys.sp_cdc_change_job
 (
 	@job_type nvarchar(20) = N'capture',
 	@maxtrans int = null,
@@ -124611,7 +121326,7 @@ begin
 end
 go
 
-create procedure [sys].[sp_cdc_cleanup_change_table]
+create procedure [BP_PRD.sys].[sp_cdc_cleanup_change_table]
 (
 	@capture_instance sysname,
 	@low_water_mark	binary(10),
@@ -124683,8 +121398,7 @@ begin
 end
 go
 
-
-create procedure [sys].[sp_cdc_dbsnapshotLSN]
+create procedure [BP_PRD.sys].[sp_cdc_dbsnapshotLSN]
 (
 	@db_snapshot sysname,
 	@lastLSN binary(10) = null output,
@@ -124730,7 +121444,7 @@ begin
 end
 go
 
-create procedure [sys].[sp_cdc_disable_db]
+create procedure [BP_PRD.sys].[sp_cdc_disable_db]
 as
 begin
 	declare @retcode int
@@ -124762,7 +121476,7 @@ begin
 end
 go
 
-create procedure sys.sp_cdc_disable_table 
+create procedure BP_PRD.sys.sp_cdc_disable_table 
 (
 	@source_schema sysname,
 	@source_name sysname,
@@ -124811,7 +121525,7 @@ begin
 end
 go
 
-create procedure sys.sp_cdc_drop_job
+create procedure BP_PRD.sys.sp_cdc_drop_job
 (
 	@job_type nvarchar(20)
 )	
@@ -124860,7 +121574,7 @@ begin
 end
 go
 
-create procedure [sys].[sp_cdc_enable_db]
+create procedure [BP_PRD.sys].[sp_cdc_enable_db]
 as
 begin
 	declare @retcode int
@@ -124918,7 +121632,7 @@ begin
 end
 go
 
-create procedure sys.sp_cdc_enable_table 
+create procedure BP_PRD.sys.sp_cdc_enable_table 
 (
 	@source_schema sysname,
 	@source_name sysname,
@@ -124987,7 +121701,7 @@ begin
 end
 go
 
-create procedure [sys].[sp_cdc_generate_wrapper_function]  				
+create procedure [BP_PRD.sys].[sp_cdc_generate_wrapper_function]  				
 (														
 	@capture_instance		sysname = null,
 	@closed_high_end_point  bit = 1,
@@ -125102,8 +121816,7 @@ begin
 end																
 go
 
-
-create procedure [sys].[sp_cdc_get_captured_columns]  				
+create procedure [BP_PRD.sys].[sp_cdc_get_captured_columns]  				
 (														
 	@capture_instance		sysname
 )														
@@ -125139,7 +121852,7 @@ begin
 end																
 go
 
-create procedure [sys].[sp_cdc_get_ddl_history]  				
+create procedure [BP_PRD.sys].[sp_cdc_get_ddl_history]  				
 (														
 	@capture_instance		sysname
 )														
@@ -125173,8 +121886,7 @@ begin
 end																
 go
 
-
-create procedure [sys].[sp_cdc_help_change_data_capture]  				
+create procedure [BP_PRD.sys].[sp_cdc_help_change_data_capture]  				
 (														
 	@source_schema sysname = null,
 	@source_name sysname = null
@@ -125234,7 +121946,7 @@ begin
 end																
 go
 
-create procedure sys.sp_cdc_help_jobs
+create procedure BP_PRD.sys.sp_cdc_help_jobs
 as
 begin
 
@@ -125265,7 +121977,7 @@ begin
 end		
 go
 
-create procedure [sys].[sp_cdc_restoredb]
+create procedure [BP_PRD.sys].[sp_cdc_restoredb]
 (
     @srv_orig sysname,
     @db_orig sysname,
@@ -125303,8 +122015,7 @@ begin
 end
 go
 
-
-create procedure [sys].[sp_cdc_scan]
+create procedure [BP_PRD.sys].[sp_cdc_scan]
 (
 	@maxtrans int = 500 -- maximum # of committed transactions to scan for
 	,@maxscans int = 10 -- maximum # of scans to perform
@@ -125620,7 +122331,7 @@ Failure:
 END
 go
 
-create procedure sys.sp_cdc_start_job
+create procedure BP_PRD.sys.sp_cdc_start_job
 (
 	@job_type nvarchar(20) = N'capture'
 )	
@@ -125687,27 +122398,10 @@ begin
 	return 0		
 end
 
---
--- Name: [sys].[sp_cdc_stop_job_internal]
---
--- Description:
---	Stops the CDC job if it exists
---
--- Parameters: 
---   @job_type	'capture' (default), 'cleanup'
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: Internal.
---
---	        Module requires with execute as 'dbo' in order to authorize
---          access to msdb.
--- 
 raiserror(15339,-1,-1,'[sys].[sp_cdc_stop_job_internal]')
 go
 
-create procedure sys.sp_cdc_stop_job
+create procedure BP_PRD.sys.sp_cdc_stop_job
 (
 	@job_type nvarchar(20) = N'capture'
 )	
@@ -125755,7 +122449,7 @@ begin
 end
 go
 
-create procedure [sys].[sp_cdc_vupgrade]
+create procedure [BP_PRD.sys].[sp_cdc_vupgrade]
 as
 begin
 
@@ -125785,7 +122479,7 @@ begin
 	-- (trace flag 8218)
 	exec sys.sp_is_trace_flag_to_bypass_proc_gen_set @bypass_proc_gen output
 	
-	create table #index_column_names(column_name sysname null, index_ordinal int null)
+	create table #index_column_names(column_name BP_PRD.create table #index_column_names(column_name sysname null, index_ordinal int null)
 
 	-- Encapsulate transaction logic in TRY/CATCH. 
 	begin try
@@ -126081,7 +122775,6 @@ begin
 
 		commit tran
 
-
 	end try
 	begin catch
     
@@ -126115,7 +122808,7 @@ begin
 end
 go
 
-create procedure [sys].[sp_cdc_vupgrade_databases]
+create procedure [BP_PRD.sys].[sp_cdc_vupgrade_databases]
 as
 begin
 	declare @db_name sysname
@@ -126162,7 +122855,7 @@ begin
 end
 go
 
-create procedure sys.sp_certify_removable  --1996/03/12 12:02
+create procedure BP_PRD.sys.sp_certify_removable  --1996/03/12 12:02
         @dbname sysname,
         @autofix nvarchar(4) = null
 as
@@ -126228,7 +122921,6 @@ as
 		else                           'null'
 		end)
 
-
 	select @exec_stmt =
 		'use ' + quotename(@dbname) + '
 
@@ -126257,8 +122949,7 @@ as
 	return(0)	-- sp_certify_removable
 go
 
--- Change one parameter of a profile from the MSagent_parameters table
-create procedure sys.sp_change_agent_parameter(
+create procedure BP_PRD.sys.sp_change_agent_parameter(
     @profile_id int,
     @parameter_name         sysname,
     @parameter_value        nvarchar(255)
@@ -126298,7 +122989,6 @@ create procedure sys.sp_change_agent_parameter(
     if @retcode <> 0
         RETURN(1)
 
-
     select @slash_parameter_name = lower(stuff(@parameter_name, 1, 1, N'/') collate SQL_Latin1_General_CP1_CS_AS)
     select @dash_parameter_name = lower(stuff(@parameter_name, 1, 1, N'-') collate SQL_Latin1_General_CP1_CS_AS)
    
@@ -126317,8 +123007,7 @@ create procedure sys.sp_change_agent_parameter(
     END
 go
 
--- Change one parameter of a profile from the MSagent_profiles table
-create procedure sys.sp_change_agent_profile(
+create procedure BP_PRD.sys.sp_change_agent_profile(
     @profile_id         int,
     @property           sysname,
     @value              nvarchar(3000)
@@ -126347,7 +123036,7 @@ create procedure sys.sp_change_agent_profile(
     END
 go
 
-create procedure sys.sp_change_log_shipping_primary_database 
+create procedure BP_PRD.sys.sp_change_log_shipping_primary_database 
 (
     @database sysname   -- cannot be NULL
     ,@backup_directory nvarchar(500) = NULL
@@ -126491,7 +123180,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_change_log_shipping_secondary_database 
+create procedure BP_PRD.sys.sp_change_log_shipping_secondary_database 
 (
     @secondary_database sysname -- cannot be NULL
     ,@restore_delay int = NULL
@@ -126637,7 +123326,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_change_log_shipping_secondary_primary 
+create procedure BP_PRD.sys.sp_change_log_shipping_secondary_primary 
 (
     @primary_server sysname -- cannot be NULL
     ,@primary_database sysname -- cannot be NULL
@@ -126740,7 +123429,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_change_subscription_properties
+create procedure BP_PRD.sys.sp_change_subscription_properties
 (
     @publisher          sysname, 
     @publisher_db       sysname, 
@@ -126991,14 +123680,14 @@ ExpFailure:
 	*/
 	IF (lower(@property collate SQL_Latin1_General_CP1_CS_AS) = 'offload_agent')
 	BEGIN
-		-- "Parameter 'offload_agent' is no longer supported."
+		-- 'Parameter 'offload_agent' is no longer supported.'
 		RAISERROR(21698, 16, -1, 'offload_agent')
 		RETURN 1
 	END
 
 	IF (lower(@property collate SQL_Latin1_General_CP1_CS_AS) = 'offload_server')
 	BEGIN
-		-- "Parameter 'offload_server' is no longer supported."
+		-- 'Parameter 'offload_server' is no longer supported.'
 		RAISERROR(21698, 16, -1, 'offload_server')
 		RETURN 1
 	END
@@ -127473,7 +124162,6 @@ ExpFailure:
     -- 'dynamic_snapshot_location' should also be added to the
     -- list of mutually exclusive properties
 
-
     IF (@column_to_update = 'ftp_address') AND (@value <> N''
        AND @value IS NOT NULL)
     BEGIN
@@ -127549,7 +124237,6 @@ ExpFailure:
         END
     END
 
-
     IF (@column_to_update = 'dynamic_snapshot_location') AND (@value <> N''
         AND @value IS NOT NULL)
     BEGIN
@@ -127598,11 +124285,7 @@ Failure:
 END
 go
 
-create procedure sys.sp_change_tracking_waitforchanges() as
--- missing source code
-go
-
-create procedure sys.sp_change_users_login
+create procedure BP_PRD.sys.sp_change_users_login
     @Action               varchar(10)       -- REPORT / UPDATE_ONE / AUTO_FIX
    ,@UserNamePattern      sysname  = Null
    ,@LoginName            sysname  = Null
@@ -127631,7 +124314,6 @@ AS
 
     -- set the sanitized password to NULL - we do not want to give any information about this parameter in eventdata
     set @sanitizedPwd = NULL
-
 
     -- INVALIDATE USE OF SPECIAL LOGIN/USER NAMES --
     if suser_sid(@LoginName) = 0x1 -- 'sa'
@@ -127879,7 +124561,7 @@ AS
     return (0) -- sp_change_users_login
 go
 
-create procedure sys.sp_changearticle
+create procedure BP_PRD.sys.sp_changearticle
 (
     @publication				sysname = NULL,
     @article					sysname = NULL,
@@ -127922,25 +124604,7 @@ BEGIN
 END
 go
 
-
---
--- Name:    
---          sp_chagnearticlecolumndatatype
---          
--- Description: 
---			Sets article column datatype mapping
---  
--- Security: 
---          Public
---
--- Returns:
---          Success (0) or failure (1)
---      
--- Owner:   
---          <current owner> 
---
-
-create procedure sys.sp_changearticlecolumndatatype
+create procedure BP_PRD.sys.sp_changearticlecolumndatatype
 (
 	@publication	sysname,
 	@article		sysname,
@@ -127994,7 +124658,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_changedbowner
+create procedure BP_PRD.sys.sp_changedbowner
     @loginame       sysname,		-- login to become dbo
     @map            varchar(5) = NULL	-- We deprecate this parameter and ignore it for now: True to map aliases, else drop
 as
@@ -128023,7 +124687,7 @@ as
     return (0) -- sp_changedbowner
 go
 
-create procedure sys.sp_changedistpublisher (
+create procedure BP_PRD.sys.sp_changedistpublisher (
     @publisher sysname,
     @property sysname     = NULL,     /* The property to change */
     @value nvarchar(255)     = NULL      /* The new property value */
@@ -128199,7 +124863,7 @@ create procedure sys.sp_changedistpublisher (
             -- don't have access to the UNC path.
             if substring(@value, 1,2) <> '\\'
             begin
-                select @command = 'dir "' + sys.fn_escapecmdshellsymbolsremovequotes(@value) collate database_default + '"'
+                select @command = 'dir '' + sys.fn_escapecmdshellsymbolsremovequotes(@value) collate database_default + '''
                 exec @retcode = master.dbo.xp_cmdshell @command, 'no_output'
                 if @@error <> 0
                     return 1
@@ -128418,7 +125082,7 @@ DONE:
     RETURN (0)
 go
 
-create procedure sys.sp_changedistributiondb (
+create procedure BP_PRD.sys.sp_changedistributiondb (
     @database sysname,
     @property sysname     = NULL,     /* The property to change */
     @value nvarchar(255)     = NULL      /* The new property value */
@@ -128440,7 +125104,6 @@ create procedure sys.sp_changedistributiondb (
     DECLARE @command nvarchar(255)
     DECLARE @security_mode int
     DECLARE @distbit int
-
 
     /*
     ** Security Check: require sysadmin
@@ -128666,7 +125329,7 @@ create procedure sys.sp_changedistributiondb (
     RETURN (0)
 go
 
-create procedure sys.sp_changedistributor_password (
+create procedure BP_PRD.sys.sp_changedistributor_password (
     @password sysname       
     ) AS
 
@@ -128712,7 +125375,7 @@ create procedure sys.sp_changedistributor_password (
     return (0)
 go
 
-create procedure sys.sp_changedistributor_property (
+create procedure BP_PRD.sys.sp_changedistributor_property (
     @property 				sysname     	= NULL,     /* The property to change */
     @value 					nvarchar(255)  	= NULL		/* The new property value */
     ) AS
@@ -128741,7 +125404,7 @@ create procedure sys.sp_changedistributor_property (
     -- Return list of properties if @property is NULL
     if @property is NULL
     begin
-		create table #tab1 (properties sysname collate database_default not null)
+		create table #tab1 (properties BP_PRD.create table #tab1 (properties sysname collate database_default not null)
         insert into #tab1 values ('heartbeat_interval')
         select * from #tab1
         
@@ -128781,31 +125444,7 @@ create procedure sys.sp_changedistributor_property (
     return (0)
 go
 
---
--- Name: sp_changedynamicsnapshot_job
---
--- Description: This procedure changes the scheduled dynamic snapshot job
---
--- Parameters: @publication sysname (mandatory)
---			   @dynamic_snapshot_jobname (optional, default '%')
---			   @dynamic_snapshot_jobid uniqueidentifier (optional, default 
---			   null) When @dynamic_snapshot_jobid is null and 
---			   @dynamic_snapshot_jobname is '%', all dynamic snapshot
---			   jobs for the specified publication will be changed.
---
--- Notes: 1) At most one of @dynamic_snapshot_jobid and 
---			 @dynamic_snapshot_jobname can be specified with a non-default 
---			 value.
---			 
--- Returns: 0 - succeeded
---			1 - failed
---
--- Security: Only members of the 'sysadmin' server role and the 'db_owner'	
--- database role can execute this procedure successfully even though execute
--- permission of this procedure is granted to public.
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_changedynamicsnapshot_job (
+create procedure BP_PRD.sys.sp_changedynamicsnapshot_job (
     @publication sysname,
     @dynamic_snapshot_jobname sysname = N'%',
     @dynamic_snapshot_jobid uniqueidentifier = null,
@@ -128852,7 +125491,6 @@ as
     exec @retcode = sys.sp_MSreplcheck_publish
     if @@error <> 0 or @retcode <> 0
         return (1)
-
 
     if object_id('sysmergepublications') is NULL
     begin
@@ -128912,7 +125550,6 @@ as
         if @@error <> 0
             return 1
 
-
         fetch hJobsCursor into @dynamic_snapshot_jobid_from_cursor 
           
         begin transaction
@@ -128949,7 +125586,6 @@ as
         return 0
     CursorFailure:
 
-
         rollback transaction sp_MSchangedynamicsnapshotjobC
         commit transaction
         close hJobsCursor
@@ -128983,8 +125619,6 @@ as
 Failure:
     raiserror(20702, 16, -1)
     return 1
-
-go
 
 CREATE PROCEDURE sys.sp_changelogreader_agent 
 (
@@ -129027,8 +125661,7 @@ BEGIN
 END
 go
 
-
-create   procedure sys.sp_changemergearticle (
+create   procedure BP_PRD.sys.sp_changemergearticle (
     @publication sysname,               /* Publication name */
     @article sysname,               /* Article name */
     @property sysname = NULL,           /* The property to change */
@@ -129124,7 +125757,6 @@ create   procedure sys.sp_changemergearticle (
     declare @num_columns            smallint
 
     select @got_merge_admin_applock = 0
-
 
     /*
     ** Security Check
@@ -129379,7 +126011,6 @@ create   procedure sys.sp_changemergearticle (
     select @maximum_resolver    = formatmessage(21708)
     select @pricolumn_resolver  = formatmessage(21709)
     select @sp_resolver         = formatmessage(21712)
-
 
     BEGIN TRAN
     save TRAN changemergearticle
@@ -129707,7 +126338,6 @@ create   procedure sys.sp_changemergearticle (
                     goto UNDO
                 end
 
-
                 -- Cannot use Logical records and BusinessLogicResolvers at the same time.
                 if exists (select * from dbo.sysmergearticles where (objid = @objid) and resolver_clsid = '00000000-0000-0000-0000-000000000000')
                 begin
@@ -129983,8 +126613,6 @@ create   procedure sys.sp_changemergearticle (
             goto UNDO        
     END
 
-
-
     if LOWER(@property collate SQL_Latin1_General_CP1_CS_AS)='description'
     BEGIN
         UPDATE dbo.sysmergearticles     SET description = @value WHERE artid = @artid and pubid = @pubid
@@ -130014,7 +126642,7 @@ create   procedure sys.sp_changemergearticle (
               select @object_view='TEMP_VIEW_' + @object
               select @qual_object_view = QUOTENAME(@object_view)
               exec @retcode = sys.sp_MSgetcolumnlist @pubid, @column_list OUTPUT, @objid
-              exec ('create view dbo.' + @qual_object_view + ' as select ' + @column_list + ' from ' + @quoted_object)
+              exec ('create view BP_PRD.create view dbo.' + @qual_object_view + ' as select ' + @column_list + ' from ' + @quoted_object)
               if @@ERROR<>0
               begin
                 raiserror(21256, 16, -1, @value, @object)
@@ -130053,7 +126681,6 @@ create   procedure sys.sp_changemergearticle (
             end
             close compted_columns_cursor
             deallocate compted_columns_cursor
-
 
             -- check if the subsetfilter clause contains any column of type that is not supported in
             --  a subset filter.
@@ -130194,7 +126821,6 @@ create   procedure sys.sp_changemergearticle (
                 raiserror(20708, 16, -1)
                 goto UNDO
             end
-
 
             select @tablenick = nickname from dbo.sysmergearticles where artid = @artid
             
@@ -130412,7 +127038,6 @@ create   procedure sys.sp_changemergearticle (
         end
 
     END /* for property = 'resolver_info' */
-
 
     if LOWER(@property collate SQL_Latin1_General_CP1_CS_AS) = 'pre_creation_command'
     BEGIN
@@ -130744,7 +127369,6 @@ create   procedure sys.sp_changemergearticle (
             RAISERROR (20732, 10, -1, @schema_option_str)
         end
 
-
         -- Raise warnings only when we are enabling the Shiloh specific
         -- options
         IF ((@old_schema_option_lodword & @collation_schema_option) = 0)
@@ -130791,7 +127415,6 @@ create   procedure sys.sp_changemergearticle (
         and (@prev_schema_option_hidword & @schema_option_filestream <> @schema_option_filestream) )
 		RAISERROR (22585, 10, -1, @article)    
 
-
         UPDATE dbo.sysmergearticles 
            SET schema_option = @schema_option 
             WHERE artid = @artid
@@ -130826,7 +127449,7 @@ create   procedure sys.sp_changemergearticle (
         BEGIN
             if @value NOT IN ('1', '0')
                 BEGIN
-                    raiserror(21344, 16, -1, '"verify_resolver_signature"')
+                    raiserror(21344, 16, -1, ''verify_resolver_signature'')
                     goto UNDO
                 END
 
@@ -130992,7 +127615,6 @@ create   procedure sys.sp_changemergearticle (
                 values (default,@pubid,@artid,@eventtype,@property,@previousbitvalue,@delete_tracking,NULL)
         end
 
-
         /*
         ** Insert the schema change for all the publications that the article is in.
         */
@@ -131030,7 +127652,6 @@ create   procedure sys.sp_changemergearticle (
                     goto UNDO      
                 end
 
-
                 /* Regenerate triggers */
                 -- Run this on the publisher
                 exec @retcode = dbo.sp_MSregenerate_mergetriggersprocs @pubid = @pubid
@@ -131055,7 +127676,6 @@ create   procedure sys.sp_changemergearticle (
                     deallocate one_pub                    
                     goto UNDO      
                 end
-
 
             end
 
@@ -131194,7 +127814,7 @@ UNDO:
     return (1)
 go
 
-create procedure sys.sp_changemergefilter(
+create procedure BP_PRD.sys.sp_changemergefilter(
     @publication            sysname,
     @article                sysname,
     @filtername                sysname,
@@ -131335,7 +127955,6 @@ create procedure sys.sp_changemergefilter(
         select * FROM #tab1
         RETURN (0)
     END 
-
 
     if @value is null
     begin
@@ -131678,7 +128297,7 @@ FAILURE:
  
 go
 
-create procedure sys.sp_changemergelogsettings (
+create procedure BP_PRD.sys.sp_changemergelogsettings (
     @publication        sysname = NULL, 	/* Publication name */
     @subscriber         sysname = NULL,     /* Subscriber server */
     @subscriber_db      sysname = NULL,     /* Subscription database */
@@ -131715,7 +128334,6 @@ create procedure sys.sp_changemergelogsettings (
         raiserror(15247,-1,-1)
         return (1)
     end
-
 
     /*
     **    Check to see if current database is doing publishing/subscribing
@@ -131907,20 +128525,7 @@ FAILURE:
     RETURN (1)
 go
 
---
--- Name: sp_changemergepublication
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_changemergepublication (
+create procedure BP_PRD.sys.sp_changemergepublication (
     @publication sysname,               /* Publication name */
     @property sysname = NULL,           /* The property to change */
     @value nvarchar(255) = NULL,        /* The new property value */
@@ -132223,7 +128828,6 @@ create procedure sys.sp_changemergepublication (
     END  
 */
 
-
     /*
     ** Parameter Check:
     ** 'ftp_port' cannot be null or negative
@@ -132394,7 +128998,6 @@ create procedure sys.sp_changemergepublication (
         exec @retcode=sys.sp_MSinsertschemachange @pubid, @artid, @schemaversion, @schemaguid, @schematype, @schematext
         if @@ERROR<>0 or @retcode<>0 goto UNDO    
     end
-
 
     if @property='dynamic_filters' 
     begin
@@ -132591,7 +129194,6 @@ create procedure sys.sp_changemergepublication (
         end
 
     END
-
 
     if @property = 'retention'
     BEGIN
@@ -132796,7 +129398,6 @@ create procedure sys.sp_changemergepublication (
             values (default,@pubid,NULL,@eventtype,@property,@previousMaxConcMrg,@max_concurrent_merge,NULL)
         end
     END
-
 
     if @property = 'sync_mode'
     BEGIN
@@ -133892,7 +130493,6 @@ create procedure sys.sp_changemergepublication (
         END
     END
 
-
     /*
     ** Update merge publication property at distributor side if necessaray 
     */
@@ -134092,7 +130692,6 @@ create procedure sys.sp_changemergepublication (
                 where pubid = @pubid
             if @@error <> 0 goto UNDO
 
-
             -- Insert event into MSmerge_settingshistory
             if (@previousAutoReinitPolicy <> convert(bit, @value))
             begin
@@ -134147,8 +130746,7 @@ UNDO:
     end
 go
 
-
-create procedure sys.sp_changemergepullsubscription (
+create procedure BP_PRD.sys.sp_changemergepullsubscription (
     @publication         sysname = '%',    /* Publication name */
     @publisher            sysname = '%',  /* Publisher server */
     @publisher_db        sysname = '%',     /* Publication database */
@@ -134198,7 +130796,6 @@ create procedure sys.sp_changemergepullsubscription (
     if @@ERROR <> 0 or @retcode <> 0
         return(1)
 
-
     /*
     **    Check to see if current database is enabled for subscribing
     */
@@ -134207,7 +130804,6 @@ create procedure sys.sp_changemergepullsubscription (
         RAISERROR (14055, 16, -1)
         RETURN (1)
     END
-
 
     /*
     ** Parameter Check:  @property.
@@ -134293,7 +130889,6 @@ create procedure sys.sp_changemergepullsubscription (
         RAISERROR (14050, 11, -1)
         RETURN(1)
     end                 
-
 
     /*
     ** Parameter Check:  @property.
@@ -134527,7 +131122,6 @@ create procedure sys.sp_changemergepullsubscription (
             RETURN 1
     END
 
-
     /*
     ** Return succeed.
     */
@@ -134541,8 +131135,7 @@ Rollback_tran:
     return (1)
 go
 
-
-create procedure sys.sp_changemergesubscription (
+create procedure BP_PRD.sys.sp_changemergesubscription (
     @publication        sysname = NULL, /* Publication name */
     @subscriber            sysname = NULL,     /* Subscriber server */
     @subscriber_db        sysname = NULL,     /* Subscription database */
@@ -134599,7 +131192,6 @@ create procedure sys.sp_changemergesubscription (
         raiserror(15247,-1,-1)
         return (1)
     end
-
 
     /*
     **    Check to see if current database is doing publishing/subscribing
@@ -134941,7 +131533,7 @@ create procedure sys.sp_changemergesubscription (
         -- this is only valid for a push subscription
         IF @subscription_type <> @push
         BEGIN
-            -- "The property '@property' is only valid for push subscriptions."
+            -- 'The property '@property' is only valid for push subscriptions.'
             RAISERROR (21817, 16, -1, @property)
             goto UNDO
         END
@@ -134985,8 +131577,8 @@ UNDO:
     return (1)
 go
 
-create procedure sys.sp_changeobjectowner
-	@objname	nvarchar(776),		-- may be "[owner].[object]"
+create procedure BP_PRD.sys.sp_changeobjectowner
+	@objname	nvarchar(776),		-- may be '[owner].[object]'
 	@newowner	sysname				-- must be entry from sysusers
 as
 	Set nocount      on
@@ -135120,8 +131712,7 @@ as
 	return (0)	-- sp_changeobjectowner
 go
 
-
-create procedure sys.sp_changepublication
+create procedure BP_PRD.sys.sp_changepublication
 (
     @publication				sysname = NULL,
     @property					nvarchar(255) = NULL,
@@ -135161,7 +131752,6 @@ BEGIN
 	RETURN (@retcode)
 END
 go
-
 
 CREATE PROCEDURE sys.sp_changepublication_snapshot
 (
@@ -135328,7 +131918,7 @@ BEGIN
 
 	IF @qreader_exists = 0
 	BEGIN
-		-- "The qreader agent for publisher (%s), database (N/A), publication (N/A) could not be found."
+		-- 'The qreader agent for publisher (%s), database (N/A), publication (N/A) could not be found.'
 		RAISERROR(21799, 16, -1, 'qreader', @@servername, 'N/A', 'N/A')
 		RETURN 1
 	END
@@ -135376,14 +131966,14 @@ BEGIN
 	-- Security Check
 	IF IS_SRVROLEMEMBER('sysadmin') <> 1
 	BEGIN
-		-- "Only members of the sysadmin fixed server role can perform this operation."
+		-- 'Only members of the sysadmin fixed server role can perform this operation.'
 		RAISERROR(21089, 16, -1)
 		RETURN 1 
 	END
 
 	IF LOWER(DB_NAME()) != N'master'
 	BEGIN
-		-- "sp_changereplicationserverpasswords can only be executed in the master database."
+		-- 'sp_changereplicationserverpasswords can only be executed in the master database.'
 		RAISERROR (21482, 16, -1, 'sp_changereplicationserverpasswords', 'master')
 		RETURN 1
 	END
@@ -135646,7 +132236,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_changesubscriber
+create procedure BP_PRD.sys.sp_changesubscriber
 (
 	@subscriber						sysname,
 	@type							tinyint = NULL,
@@ -135715,8 +132305,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_changesubscriber_schedule
+create procedure BP_PRD.sys.sp_changesubscriber_schedule
 (
 	@subscriber						sysname,
 	@agent_type						smallint,
@@ -135814,21 +132403,7 @@ BEGIN
 END
 go
 
-
---
--- Name: sp_changesubscriptiondtsinfo
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_changesubscriptiondtsinfo (
+create procedure BP_PRD.sys.sp_changesubscriptiondtsinfo (
     @job_id varbinary(16),
     @dts_package_name sysname = NULL,
     @dts_package_password sysname = NULL,
@@ -135991,7 +132566,7 @@ create procedure sys.sp_changesubscriptiondtsinfo (
     RETURN (0)
 go
 
-create procedure sys.sp_changesubstatus
+create procedure BP_PRD.sys.sp_changesubstatus
 (
     @publication					sysname = '%',
     @article						sysname = '%',
@@ -136079,7 +132654,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_checkOraclepackageversion
 (
     @publisher          sysname,
@@ -136120,8 +132694,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_check_constbytable_rowset
+create procedure BP_PRD.sys.sp_check_constbytable_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null,
@@ -136151,17 +132724,13 @@ as
     order by 1,2,3,4,5,6
 go
 
-
-create procedure sys.sp_check_constbytable_rowset2
+create procedure BP_PRD.sys.sp_check_constbytable_rowset2
 (
     @table_schema       sysname = null,
     @constraint_name    sysname = null,
     @constraint_schema  sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG       = s_ccr.TABLE_CATALOG,
         TABLE_SCHEMA        = s_ccr.TABLE_SCHEMA,
@@ -136181,8 +132750,7 @@ as
     order by 1,2,3,4,5,6
 go
 
-
-create procedure sys.sp_check_constraints_rowset
+create procedure BP_PRD.sys.sp_check_constraints_rowset
 (
     @constraint_name    sysname,
     @constraint_schema  sysname = null
@@ -136203,15 +132771,11 @@ as
     order by 1,2,3
 go
 
-
-create procedure sys.sp_check_constraints_rowset2
+create procedure BP_PRD.sys.sp_check_constraints_rowset2
 (
     @constraint_schema  sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         CONSTRAINT_CATALOG  = db_name(),
         CONSTRAINT_SCHEMA   = schema_name(o.schema_id),
@@ -136227,7 +132791,7 @@ as
     order by 1,2,3
 go
 
-create procedure sys.sp_check_dynamic_filters @publication sysname
+create procedure BP_PRD.sys.sp_check_dynamic_filters @publication sysname
 as
     set nocount on
     
@@ -136267,7 +132831,7 @@ as
                                     
 go
 
-create procedure sys.sp_check_for_sync_trigger 
+create procedure BP_PRD.sys.sp_check_for_sync_trigger 
 (
     @tabid int, 
     @trigger_op char(10) = NULL OUTPUT,
@@ -136331,8 +132895,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_check_join_filter @filtered_table nvarchar(400)
+create procedure BP_PRD.sys.sp_check_join_filter @filtered_table nvarchar(400)
                                         , @join_table nvarchar(400)
                                         , @join_filterclause nvarchar(1000)
 as
@@ -136402,7 +132965,7 @@ as
     begin tran
     save tran check_join_filter
     
-    exec ('create view dbo.' + @viewname + ' as select placeholder = 1 from ' + @owner_qualified_art_name + ' ' + @art_name + ', ' + 
+    exec ('create view BP_PRD.create view dbo.' + @viewname + ' as select placeholder = 1 from ' + @owner_qualified_art_name + ' ' + @art_name + ', ' + 
                 @owner_qualified_join_name + ' ' + @join_name + ' where ' + '(' + @join_filterclause + ')')
                     
     if @@error <> 0
@@ -136459,7 +133022,7 @@ UNDO:
     end
 go
 
-create procedure sys.sp_check_log_shipping_monitor_alert 
+create procedure BP_PRD.sys.sp_check_log_shipping_monitor_alert 
 as
 begin
     set nocount on
@@ -136531,8 +133094,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_check_publication_access
+create procedure BP_PRD.sys.sp_check_publication_access
 (
 	@publication	sysname,
 	@given_login	sysname = NULL,
@@ -136558,7 +133120,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_check_removable @autofix varchar(4)
+create procedure BP_PRD.sys.sp_check_removable @autofix varchar(4)
 as
 	declare @dbname sysname
 	declare @exec_stmt nvarchar(max)
@@ -136626,8 +133188,7 @@ as
 	return(0) -- sp_check_removable
 go
 
-
-create procedure sys.sp_check_subset_filter @filtered_table nvarchar(400)
+create procedure BP_PRD.sys.sp_check_subset_filter @filtered_table nvarchar(400)
                                         , @subset_filterclause nvarchar(1000)
                                         , @has_dynamic_filters bit = NULL OUTPUT
                                         , @dynamic_filters_function_list nvarchar(500) = NULL OUTPUT
@@ -136683,7 +133244,7 @@ as
     begin tran
     save tran check_subset_filter
         
-    exec ('create view dbo.' + @viewname + ' as select placeholder = 1 from ' + @owner_qualified_art_name + ' ' + @art_name +  
+    exec ('create view BP_PRD.create view dbo.' + @viewname + ' as select placeholder = 1 from ' + @owner_qualified_art_name + ' ' + @art_name +  
             ' where ' + '(' + @subset_filterclause + ')')
                     
     if @@error <> 0
@@ -136738,7 +133299,7 @@ UNDO:
     return 1
 go
 
-create procedure sys.sp_check_sync_trigger
+create procedure BP_PRD.sys.sp_check_sync_trigger
 (
     @trigger_procid int
     ,@trigger_op char(10) OUTPUT
@@ -136784,7 +133345,7 @@ begin
 end
 go
 
-create procedure sys.sp_checkinvalidivarticle 
+create procedure BP_PRD.sys.sp_checkinvalidivarticle 
 	@mode tinyint = 1 -- 0 upgrade, 1 snapshot
 	,@publication sysname = NULL
 as
@@ -136872,8 +133433,7 @@ begin
 end    
 go
 
-
-create procedure sys.sp_clean_db_file_free_space (
+create procedure BP_PRD.sys.sp_clean_db_file_free_space (
 	@dbname sysname,
 	@fileid int,
 	@cleaning_delay int = 0)
@@ -136946,8 +133506,7 @@ begin
 	end
 go
 
-
-create proc sys.sp_clean_db_free_space (@dbname sysname, @cleaning_delay int = 0)
+create proc BP_PRD.sys.sp_clean_db_free_space (@dbname sysname, @cleaning_delay int = 0)
 as
 begin
 	SET NOCOUNT ON
@@ -136999,7 +133558,7 @@ begin
 end
 go
 
-create procedure sys.sp_cleanmergelogfiles(
+create procedure BP_PRD.sys.sp_cleanmergelogfiles(
     @publication            sysname = '%',        /* Publication name */
     @subscriber             sysname = '%',        /* Subscriber server */
     @subscriber_db          sysname = '%',        /* Subscription database */
@@ -137096,7 +133655,7 @@ create procedure sys.sp_cleanmergelogfiles(
     return @retcode 
 go
 
-create procedure sys.sp_cleanup_log_shipping_history 
+create procedure BP_PRD.sys.sp_cleanup_log_shipping_history 
 (
     @agent_id uniqueidentifier     -- primary/secondary ID
     ,@agent_type tinyint              -- 0 = Backup, 1 = Copy, 2 = Restore
@@ -137190,7 +133749,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_cleanupdbreplication
+create procedure BP_PRD.sys.sp_cleanupdbreplication
 AS
     set nocount on
 
@@ -137271,8 +133830,7 @@ AS
     return (0)
 go
 
-
-create procedure sys.sp_column_privileges
+create procedure BP_PRD.sys.sp_column_privileges
 (
     @table_name         sysname,             -- no pattern matching
     @table_owner        sysname = null,      -- no pattern matching
@@ -137391,8 +133949,7 @@ as
     order by 4, 7
 go
 
-
-create procedure sys.sp_column_privileges_ex
+create procedure BP_PRD.sys.sp_column_privileges_ex
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -137426,8 +133983,7 @@ as
     order by TABLE_CAT, TABLE_SCHEM, TABLE_NAME, COLUMN_NAME, PRIVILEGE
 go
 
-
-create procedure sys.sp_column_privileges_rowset
+create procedure BP_PRD.sys.sp_column_privileges_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null,
@@ -137485,8 +134041,7 @@ as
     order by 4, 5, 6, 9, 1, 2
 go
 
-
-create procedure sys.sp_column_privileges_rowset2
+create procedure BP_PRD.sys.sp_column_privileges_rowset2
 (
     @table_schema       sysname = null,
     @column_name        sysname = null,
@@ -137494,9 +134049,6 @@ create procedure sys.sp_column_privileges_rowset2
     @grantee            sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select -- Rows for explicitly set database permissions.
         GRANTOR         = s_cpsv.GRANTOR,
         GRANTEE         = s_cpsv.GRANTEE,
@@ -137540,8 +134092,7 @@ as
     order by 4, 5, 6, 9, 1, 2
 go
 
-
-create procedure sys.sp_column_privileges_rowset_rmt
+create procedure BP_PRD.sys.sp_column_privileges_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -137575,8 +134126,7 @@ as
     order by 3, 4, 5, 6, 9, 1, 2
 go
 
-
-create procedure sys.sp_columns
+create procedure BP_PRD.sys.sp_columns
 (
     @table_name         nvarchar(384),
     @table_owner        nvarchar(384) = null,
@@ -137603,7 +134153,7 @@ as
         end
     end
 
-    -- "ALL" is represented by NULL value.
+    -- 'ALL' is represented by NULL value.
     if @table_name = '%'
         select @table_name = null
     if @table_owner = '%'
@@ -137655,8 +134205,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE_28,
             TYPE_NAME                   = s_cov.TYPE_NAME_28,
-            "PRECISION"                 = s_cov.PRECISION_28,
-            "LENGTH"                    = s_cov.LENGTH_28,
+            'PRECISION'                 = s_cov.PRECISION_28,
+            'LENGTH'                    = s_cov.LENGTH_28,
             SCALE                       = s_cov.SCALE_90,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -137701,8 +134251,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE_28,
             TYPE_NAME                   = s_cov.TYPE_NAME_28,
-            "PRECISION"                 = s_cov.PRECISION_28,
-            "LENGTH"                    = s_cov.LENGTH_28,
+            'PRECISION'                 = s_cov.PRECISION_28,
+            'LENGTH'                    = s_cov.LENGTH_28,
             SCALE                       = s_cov.SCALE_90,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -137730,8 +134280,7 @@ as
     end
 go
 
-
-create procedure sys.sp_columns_100
+create procedure BP_PRD.sys.sp_columns_100
 (
     @table_name         nvarchar(384),
     @table_owner        nvarchar(384) = null,
@@ -137757,7 +134306,7 @@ as
         end
     end
 
-    -- "ALL" is represented by NULL value.
+    -- 'ALL' is represented by NULL value.
     if @table_name = '%'
         select @table_name = null
     if @table_owner = '%'
@@ -137809,8 +134358,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE,
             TYPE_NAME                   = s_cov.TYPE_NAME,
-            "PRECISION"                 = s_cov.PRECISION,
-            "LENGTH"                    = s_cov.LENGTH,
+            'PRECISION'                 = s_cov.PRECISION,
+            'LENGTH'                    = s_cov.LENGTH,
             SCALE                       = s_cov.SCALE,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -137874,8 +134423,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE,
             TYPE_NAME                   = s_cov.TYPE_NAME,
-            "PRECISION"                 = s_cov.PRECISION,
-            "LENGTH"                    = s_cov.LENGTH,
+            'PRECISION'                 = s_cov.PRECISION,
+            'LENGTH'                    = s_cov.LENGTH,
             SCALE                       = s_cov.SCALE,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -137920,8 +134469,7 @@ as
     end
 go
 
-
-create procedure sys.sp_columns_100_rowset
+create procedure BP_PRD.sys.sp_columns_100_rowset
 (
     @table_name     sysname = NULL,
     @table_schema   sysname = NULL,
@@ -137985,8 +134533,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_100_rowset2
+create procedure BP_PRD.sys.sp_columns_100_rowset2
 (
     @table_schema   sysname = NULL,
     @column_name    sysname = NULL
@@ -138046,8 +134593,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_90
+create procedure BP_PRD.sys.sp_columns_90
 (
     @table_name         nvarchar(384),
     @table_owner        nvarchar(384) = null,
@@ -138072,7 +134618,7 @@ as
         end
     end
 
-    -- "ALL" is represented by NULL value.
+    -- 'ALL' is represented by NULL value.
     if @table_name = '%'
         select @table_name = null
     if @table_owner = '%'
@@ -138124,8 +134670,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE_90,
             TYPE_NAME                   = s_cov.TYPE_NAME,
-            "PRECISION"                 = s_cov.PRECISION,
-            "LENGTH"                    = s_cov.LENGTH_90,
+            'PRECISION'                 = s_cov.PRECISION,
+            'LENGTH'                    = s_cov.LENGTH_90,
             SCALE                       = s_cov.SCALE_90,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -138175,8 +134721,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE_90,
             TYPE_NAME                   = s_cov.TYPE_NAME,
-            "PRECISION"                 = s_cov.PRECISION,
-            "LENGTH"                    = s_cov.LENGTH_90,
+            'PRECISION'                 = s_cov.PRECISION,
+            'LENGTH'                    = s_cov.LENGTH_90,
             SCALE                       = s_cov.SCALE_90,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -138209,8 +134755,7 @@ as
     end
 go
 
-
-create procedure sys.sp_columns_90_rowset
+create procedure BP_PRD.sys.sp_columns_90_rowset
 (
     @table_name     sysname,
     @table_schema   sysname = NULL,
@@ -138272,16 +134817,12 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_90_rowset2
+create procedure BP_PRD.sys.sp_columns_90_rowset2
 (
     @table_schema   sysname = NULL,
     @column_name    sysname = NULL
 )
 as
------------------------------------------
--- copy & pasted from version 2 !
------------------------------------------
     select
         TABLE_CATALOG           = s_cv.TABLE_CATALOG,
         TABLE_SCHEMA            = s_cv.TABLE_SCHEMA,
@@ -138334,8 +134875,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_90_rowset_rmt
+create procedure BP_PRD.sys.sp_columns_90_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -138344,9 +134884,6 @@ create procedure sys.sp_columns_90_rowset_rmt
     @column_name        sysname = null
 )
 as
------------------------------------------
--- copy & pasted from version 5 !
------------------------------------------
     select
         TABLE_CATALOG,
         TABLE_SCHEMA,
@@ -138395,8 +134932,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_ex
+create procedure BP_PRD.sys.sp_columns_ex
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -139009,8 +135545,7 @@ as
     drop table #tmp_columns
 go
 
-
-create procedure sys.sp_columns_ex_100
+create procedure BP_PRD.sys.sp_columns_ex_100
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -139630,10 +136165,7 @@ as
 
     drop table #tmp_columns
 
-go
-
-
-create procedure sys.sp_columns_ex_90
+create procedure BP_PRD.sys.sp_columns_ex_90
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -140273,10 +136805,7 @@ as
 
     drop table #tmp_columns
 
-go
-
-
-create procedure sys.sp_columns_managed 
+create procedure BP_PRD.sys.sp_columns_managed 
 ( 
 	@Catalog			sysname = NULL,
 	@Owner			sysname = NULL,
@@ -140327,8 +136856,7 @@ as
 	order by TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, IS_NULLABLE 
 go
 
-
-create procedure sys.sp_columns_rowset
+create procedure BP_PRD.sys.sp_columns_rowset
 (
     @table_name     sysname,
     @table_schema   sysname = NULL,
@@ -140383,16 +136911,12 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_rowset2
+create procedure BP_PRD.sys.sp_columns_rowset2
 (
     @table_schema   sysname = NULL,
     @column_name    sysname = NULL
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG           = s_cv.TABLE_CATALOG,
         TABLE_SCHEMA            = s_cv.TABLE_SCHEMA,
@@ -140438,8 +136962,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_columns_rowset_rmt
+create procedure BP_PRD.sys.sp_columns_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -140448,9 +136971,6 @@ create procedure sys.sp_columns_rowset_rmt
     @column_name        sysname = null
 )
 as
------------------------------------------
--- copy & pasted from version 5 !
------------------------------------------
     select
         TABLE_CATALOG,
         TABLE_SCHEMA,
@@ -140492,13 +137012,7 @@ as
     order by 1, 2, 3, 7
 go
 
-create procedure sys.sp_commit_parallel_nested_tran() as
--- missing source code
-go
-
-
----------------------------- sp_configure ------------------------------
-create procedure sys.sp_configure
+create procedure BP_PRD.sys.sp_configure
     @configname   varchar(35) = null   -- option name to configure
    ,@configvalue  int         = null   -- new configuration value
 as
@@ -140507,7 +137021,7 @@ as
 	declare
 		@confignum                smallint   --Num of the opt to be configured
 	   ,@configcount              int   --Num of options like @configname
-	   ,@show_advance             int   --Y/N Read&Write actions on "advanced" opts
+	   ,@show_advance             int   --Y/N Read&Write actions on 'advanced' opts
 	   ,@prevvalue                int
 	   ,@confignameIn             varchar(35)
 	    
@@ -140643,8 +137157,8 @@ as
 		end
 	end
 
-	--  "user options" should not try to set incompatible options/values.
-	if @confignum = 1534  --"user options"
+	--  'user options' should not try to set incompatible options/values.
+	if @confignum = 1534  --'user options'
 	begin
 		if (@configvalue & (1024+2048) = (1024+2048)) --ansi_null_default_on/off
 		begin
@@ -140685,7 +137199,7 @@ as
 	end
 go
 
-create procedure sys.sp_configure_peerconflictdetection
+create procedure BP_PRD.sys.sp_configure_peerconflictdetection
 (
     @publication                sysname,
     @action			   nvarchar(32), --values:enable, disable, continue_enable, continue_disable
@@ -140766,7 +137280,6 @@ begin
 		return (1)
 	end
 	select @local = LOWER(@local)
-
 
 	if @local = N'true'
 	begin
@@ -140917,7 +137430,7 @@ begin
 				if @@error <> 0 or @retcode <> 0
 					goto UNDO
 
-				-- post to log, which will be applied to the immediate subscribers, SQL_NOSYNCSETUPSCRIPT allows comments and "go" in the script
+				-- post to log, which will be applied to the immediate subscribers, SQL_NOSYNCSETUPSCRIPT allows comments and 'go' in the script
 				exec @retcode = sys.sp_replpostcmd 0/*not partial*/, @pubid, @artid, 104/*@sql_cmd_type = SQL_NOSYNCSETUPSCRIPT*/, @peercmdtxt 
 				if @retcode <> 0 or @@error <> 0
 					goto UNDO
@@ -140925,7 +137438,6 @@ begin
 			
 
 		end --@artid is not NULL
-
 
 		-- by sp_MSpeertopeerfwdingexec: executes and posts sp_MSchange_originatorid, which inserts the new ID 
 		-- 							into MSpeer_lsns and MSpeer_originatorid_history
@@ -141000,8 +137512,7 @@ UNDO:
 end
 go
 
-
-create procedure sys.sp_constr_col_usage_rowset
+create procedure BP_PRD.sys.sp_constr_col_usage_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null,
@@ -141049,8 +137560,7 @@ as
     order by 1, 2, 3, 4, 5, 6, 7, 8, 9
 go
 
-
-create procedure sys.sp_constr_col_usage_rowset2
+create procedure BP_PRD.sys.sp_constr_col_usage_rowset2
 (
     @table_schema       sysname = null,
     @column_name        sysname = null,
@@ -141059,9 +137569,6 @@ create procedure sys.sp_constr_col_usage_rowset2
     @constr_name        sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select  *
     from
     (
@@ -141097,11 +137604,7 @@ as
     order by 1, 2, 3, 4, 5, 6, 7, 8, 9
 go
 
-create procedure sys.sp_control_dbmasterkey_password() as
--- missing source code
-go
-
-create procedure sys.sp_control_plan_guide
+create procedure BP_PRD.sys.sp_control_plan_guide
 	@operation nvarchar(60),
 	@name sysname = NULL
 as
@@ -141113,7 +137616,6 @@ if( lower(@operation) = 'drop' OR lower(@operation) = 'enable' OR lower(@operati
 	exec @return_code = sys.sp_control_plan_guide_int @operation, @name
 else
 	exec @return_code = sys.sp_control_plan_guide_int @operation
-
 
 if( @return_code = 0 )
 begin
@@ -141133,9 +137635,7 @@ end
 
 COMMIT TRANSACTION
 
-go
-
-create procedure sys.sp_copymergesnapshot (
+create procedure BP_PRD.sys.sp_copymergesnapshot (
     @publication          sysname,
     @destination_folder   nvarchar(255)
     )
@@ -141190,7 +137690,7 @@ Failure:
 END
 go
 
-create procedure sys.sp_copysnapshot
+create procedure BP_PRD.sys.sp_copysnapshot
 (
     @publication        sysname,
     @destination_folder nvarchar(255),
@@ -141228,24 +137728,9 @@ BEGIN
 END
 go
 
---
--- Name: sp_copysubscription
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_copysubscription (
+create procedure BP_PRD.sys.sp_copysubscription (
 @filename nvarchar(260),
 @temp_dir nvarchar(260) = NULL,
--- Directory contains temp files. If not specified, SQL
--- server default data directory will be used.
 @overwrite_existing_file bit = 0
 )
 AS
@@ -141458,7 +137943,6 @@ AS
         return (1)
     end
 
-
     if @overwrite_existing_file is null
         set @overwrite_existing_file = 0
 
@@ -141480,7 +137964,7 @@ AS
     -- Check to see if have write permissions to the file location.
     -- Try create the file
     -- Echo text can be anything.
-    select @cmd = 'echo Subscription copy failed. > "' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '"'
+    select @cmd = 'echo Subscription copy failed. > '' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '''
     exec @retcode = master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     if @@error <> 0 or @retcode <> 0
     begin
@@ -141566,7 +138050,6 @@ AS
         goto Cleanup
     end
 
-
     -- Restore it to a temporary working database
     -- Get phy data and log file name for the temp db
     select @temp_data_path = @temp_dir + @temp_db_name + '.mdf'
@@ -141601,14 +138084,14 @@ AS
     -- Once we successfully restored, we delete to back up file to save disk space.
     if @backup_path is not null
     begin
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@backup_path) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@backup_path) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
         set @backup_path = null
     end
 
     -- Prepare the database for detach. 2 things will be done
     -- 1. Set a flag to indicate that this is a prepare sub db for detach
-    -- 2. For merge, create table to store dbo.sysservers info for later fixing up after attach
+    -- 2. For merge, create table to store BP_PRD.create table to store dbo.sysservers info for later fixing up after attach
     select @cmd = quotename(@temp_db_name) + '.sys.sp_MSprepare_sub_for_detach'
 
     exec @retcode = @cmd @subscriber_server = @subscriber_server, @subscriber_db = @subscriber_db
@@ -141636,7 +138119,7 @@ AS
     -- Delete the log file to save disk space
     if @temp_log_path is not null
     begin
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_log_path) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_log_path) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
         set @temp_log_path = null
     end
@@ -141653,11 +138136,9 @@ AS
         goto Cleanup
     end
 
-
 Cleanup:
     if exists (select * from sys.objects where name = 'MSreplication_restore_stage')
         drop table dbo.MSreplication_restore_stage
-
 
     if exists (select * from master.dbo.sysdatabases where name = @temp_db_name collate database_default)
     begin
@@ -141667,32 +138148,32 @@ Cleanup:
 
     if @backup_path is not null
     begin
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@backup_path) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@backup_path) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     end
 
     if @temp_data_path is not null
     begin
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_data_path) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_data_path) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     end
 
     if @temp_log_path is not null
     begin
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_log_path) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@temp_log_path) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     end
 
     if @retcode <> 0
     begin
-        select @cmd = 'del "' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + '"' 
+        select @cmd = 'del '' + sys.fn_escapecmdshellsymbolsremovequotes(@filename) collate database_default + ''' 
         EXEC master.dbo.xp_cmdshell @cmd, NO_OUTPUT
     end
 
     return @retcode
 go
 
-create procedure sys.sp_create_plan_guide
+create procedure BP_PRD.sys.sp_create_plan_guide
 	@name sysname,
 	@stmt nvarchar(max) = NULL,
 	@type nvarchar(60),
@@ -141718,8 +138199,7 @@ end
 COMMIT TRANSACTION
 go
 
-
-create procedure sys.sp_create_plan_guide_from_handle
+create procedure BP_PRD.sys.sp_create_plan_guide_from_handle
 	@name sysname,
 	@plan_handle varbinary(64),
 	@statement_start_offset int = NULL
@@ -141731,7 +138211,7 @@ EXEC %%PlanGuide(Name = @name).CreateAndFireTriggerFromCache(Value = @name, Valu
 COMMIT TRANSACTION
 go
 
-create procedure sys.sp_create_removable
+create procedure BP_PRD.sys.sp_create_removable
 	@dbname		sysname = null,				-- name of db
 	@syslogical	sysname = null,				-- logical name of system device
 	@sysphysical	nvarchar (260) = null,	-- physical name of system device
@@ -142336,7 +138816,7 @@ no_more_devs:
 	return(0)	-- sp_create_removable
 go
 
-CREATE PROCEDURE sys.sp_createmergepalrole (@publication sysname)
+CREATE PROCEDURE sys.sp_createmergepalrole (@publication BP_PRD.createmergepalrole (@publication sysname)
 AS
 BEGIN
     set nocount on
@@ -142349,12 +138829,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_createorphan() as
--- missing source code
-go
-
-
-create procedure sys.sp_createstats
+create procedure BP_PRD.sys.sp_createstats
 	@indexonly		char(9)= 'NO',     -- Optional 'INDEXONLY' text - if present, then only the columns
 					-- covered by indexes are subject of statistics creation
 	@fullscan		char(9)= 'NO',      -- Optional 'FULLSCAN' text - if present, then the statistics
@@ -142365,7 +138840,7 @@ create procedure sys.sp_createstats
 				-- will be created with the INCREMENTAL property where possible.
 as
 	--	NOTE: This sp will create statistics for *all* columns of all tables
-	--	which the user has the privilege to create stats on (sysadmin, dbo, owner).
+	--	which the user has the privilege to create stats on (BP_PRD.create stats on (sysadmin, dbo, owner).
 	--	The following columns are not considered
 	--	- first column of an index
 	--	- column which already has statistics
@@ -142551,7 +139026,7 @@ as
 					
 					-- determining the correct suffix
 					-- Add FULLSCAN and NORECOMPUTE for hekaton tables
-					-- Note that OBJECTPROPERTY returns NULL on type="IT" tables, thus we only call it on type='U' tables
+					-- Note that OBJECTPROPERTY returns NULL on type='IT' tables, thus we only call it on type='U' tables
 					if (@fullscan = 'FULLSCAN' OR ((@table_type = 'U') AND (1 = OBJECTPROPERTY(@table_id, 'TableIsMemoryOptimized'))))
 						insert into @params values ('@fullscan', 'FULLSCAN')
 					if (@norecompute = 'NORECOMPUTE' OR ((@table_type = 'U') AND (1 = OBJECTPROPERTY(@table_id, 'TableIsMemoryOptimized'))))
@@ -142629,13 +139104,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_cursor() as
--- missing source code
-go
-
--- Creation of sp_cursor_list
-
-create procedure sys.sp_cursor_list
+create procedure BP_PRD.sys.sp_cursor_list
 (
    @cursor_return CURSOR VARYING OUTPUT,
    @cursor_scope int
@@ -142679,39 +139148,7 @@ end
 open @cursor_return
 go
 
-create procedure sys.sp_cursorclose() as
--- missing source code
-go
-
-create procedure sys.sp_cursorexecute() as
--- missing source code
-go
-
-create procedure sys.sp_cursorfetch() as
--- missing source code
-go
-
-create procedure sys.sp_cursoropen() as
--- missing source code
-go
-
-create procedure sys.sp_cursoroption() as
--- missing source code
-go
-
-create procedure sys.sp_cursorprepare() as
--- missing source code
-go
-
-create procedure sys.sp_cursorprepexec() as
--- missing source code
-go
-
-create procedure sys.sp_cursorunprepare() as
--- missing source code
-go
-
-create procedure sys.sp_cycle_errorlog  --- 1997/06/24
+create procedure BP_PRD.sys.sp_cycle_errorlog  --- 1997/06/24
 as
 if (not (is_srvrolemember('sysadmin') = 1))  -- Make sure that it is the SA executing this.
         begin
@@ -142723,8 +139160,7 @@ dbcc errorlog
 return (0)
 go
 
-
-create procedure sys.sp_databases
+create procedure BP_PRD.sys.sp_databases
 as
     set nocount on
 
@@ -142746,8 +139182,7 @@ as
     order by 1
 go
 
-
-create procedure sys.sp_datatype_info
+create procedure BP_PRD.sys.sp_datatype_info
 (
     @data_type int = 0,
     @ODBCVer tinyint = 2
@@ -142805,8 +139240,7 @@ as
     order by 2, v.MAPPED_TYPE, 12, 11, 20
 go
 
-
-create procedure sys.sp_datatype_info_100
+create procedure BP_PRD.sys.sp_datatype_info_100
 (
     @data_type int = 0,
     @ODBCVer tinyint = 2
@@ -142864,8 +139298,7 @@ as
     order by 2, 12, 11, 20
 go
 
-
-create procedure sys.sp_datatype_info_90
+create procedure BP_PRD.sys.sp_datatype_info_90
 (
     @data_type int = 0,
     @ODBCVer tinyint = 2
@@ -142923,8 +139356,7 @@ as
     order by 2, v.MAPPED_TYPE, 12, 11, 20
 go
 
-
-create procedure sys.sp_db_ebcdic277_2
+create procedure BP_PRD.sys.sp_db_ebcdic277_2
 (
 	@dbname sysname = null,
 	@status varchar(6) = null
@@ -142933,7 +139365,7 @@ as
 	return (0);
 go
 
-create procedure sys.sp_db_increased_partitions
+create procedure BP_PRD.sys.sp_db_increased_partitions
 (
 	@dbname sysname = null,
 	@increased_partitions varchar(6) = null
@@ -142976,7 +139408,7 @@ as
 	return (0);
 go
 
-create procedure sys.sp_db_selective_xml_index
+create procedure BP_PRD.sys.sp_db_selective_xml_index
 (
 	@dbname sysname = null,
 	@selective_xml_index varchar(6) = null --> 'true', 'false', 'on', 'off'
@@ -143017,7 +139449,7 @@ as
 	return (0);
 go
 
-create procedure sys.sp_db_vardecimal_storage_format	
+create procedure BP_PRD.sys.sp_db_vardecimal_storage_format	
 	@dbname sysname = NULL,			-- database name to change
 	@vardecimal_storage_format  varchar(3) = NULL	-- vardecimal format to turn on/off
 as
@@ -143088,7 +139520,7 @@ as
 	return (0) -- sp_db_vardecimal_storage_format
 go
 
-create procedure sys.sp_dbcmptlevel			-- 1997/04/15
+create procedure BP_PRD.sys.sp_dbcmptlevel			-- 1997/04/15
 	@dbname sysname = NULL,					-- database name to change
 	@new_cmptlevel tinyint = NULL OUTPUT	-- the new compatibility level to change to
 as
@@ -143188,7 +139620,7 @@ as
 	return (0) -- sp_dbcmptlevel
 go
 
-create procedure sys.sp_dbfixedrolepermission
+create procedure BP_PRD.sys.sp_dbfixedrolepermission
 	@rolename       sysname = NULL
 AS
 	if @rolename is not null
@@ -143225,7 +139657,7 @@ AS
     return (0) -- sp_dbfixedrolepermission
 go
 
-create procedure sys.sp_dbmmonitoraddmonitoring 
+create procedure BP_PRD.sys.sp_dbmmonitoraddmonitoring 
 (
     @update_period		int = 1	-- in minutes
 )
@@ -143350,7 +139782,7 @@ begin
 end
 go
 
-create procedure sys.sp_dbmmonitorchangealert
+create procedure BP_PRD.sys.sp_dbmmonitorchangealert
 (
 	@database_name		sysname, 
     @alert_id			int ,	-- 1 TimeBehind (minutes), 2 = SendQueue (kb), 3 = RedoQueue (kb), 4 = AverageDelay (milleseconds), 5 retention period (hours)
@@ -143466,7 +139898,7 @@ begin
 end
 go
 
-create procedure sys.sp_dbmmonitorchangemonitoring 
+create procedure BP_PRD.sys.sp_dbmmonitorchangemonitoring 
 (
     @parameter_id		int,	-- There is only one parameter_id now.  1 = update period in minutes.
     @value				int
@@ -143518,7 +139950,7 @@ begin
 end
 go
 
-create procedure sys.sp_dbmmonitordropalert
+create procedure BP_PRD.sys.sp_dbmmonitordropalert
 (
 	@database_name		sysname, 
     @alert_id			int = null
@@ -143597,7 +140029,7 @@ begin
 end
 go
 
-create procedure sys.sp_dbmmonitordropmonitoring 
+create procedure BP_PRD.sys.sp_dbmmonitordropmonitoring 
 as
 begin
 	set nocount on
@@ -143612,8 +140044,6 @@ begin
 
 	select @jobname=isnull( formatmessage( 32047 ), N'Database Mirroring Monitor Job' )
 
--- Drop the jobstep
--- TO DO: get the job_id and use that to delete the job and job step.
 	exec @retcode = msdb.dbo.sp_delete_jobstep @job_name = @jobname,
 		@step_id = 0								-- Removes all jobsteps from job
 	if ( @@error != 0 OR @retcode != 0 )
@@ -143623,7 +140053,6 @@ begin
 										-- if it wasn't there, continue.
 		end
 
--- Drop the job
 	exec @retcode = msdb.dbo.sp_delete_job @job_name = @jobname, 
 		@delete_history = 1,					-- Deletes the history
 		@delete_unused_schedule = 1				-- Deletes the schedule
@@ -143638,7 +140067,7 @@ return 0
 end
 go
 
-create procedure sys.sp_dbmmonitorhelpalert
+create procedure BP_PRD.sys.sp_dbmmonitorhelpalert
 (
 	@database_name				sysname,
 	@alert_id					int = null
@@ -143722,7 +140151,7 @@ begin
 end
 go
 
-create procedure sys.sp_dbmmonitorhelpmonitoring 
+create procedure BP_PRD.sys.sp_dbmmonitorhelpmonitoring 
 as
 begin
 	set nocount on
@@ -143771,7 +140200,7 @@ begin
 end
 go
 
-create procedure sys.sp_dbmmonitorresults 
+create procedure BP_PRD.sys.sp_dbmmonitorresults 
 (
     @database_name	sysname,	-- name of database
     @mode	int = 0,			-- 0 = last row, 1 last two hours, 2 last four, 3 last eight, 4 last day
@@ -143900,7 +140329,7 @@ begin
 	-- 3. while (we should loop is true)
 	-- 4.	get the next row of data	might break out of the loop here.
 	-- 5.	calculate differences between rates
-	-- 6.	calculate the difference in "time" between the failover LSN (what the mirror has) and the end of log LSN (the latest value on the principal)
+	-- 6.	calculate the difference in 'time' between the failover LSN (what the mirror has) and the end of log LSN (the latest value on the principal)
 	-- 7.   insert the data into the table
 	-- 8.	copy older values of data into newer values (basically we are doing step 2 here.  or putting step 4's data into the original
 	--			variables since we are done with that information anyway.
@@ -144107,8 +140536,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_dbmmonitorupdate 
+create procedure BP_PRD.sys.sp_dbmmonitorupdate 
 (
 	@database_name		sysname = null	-- if null update all mirrored databases
 )
@@ -144130,7 +140558,7 @@ begin
 
 	if object_id ( N'msdb.dbo.dbm_monitor_data', N'U' ) is null
 	begin 
-		create table msdb.dbo.dbm_monitor_data (		-- go through the code to see if there SHOULD be nulls.
+		create table msdb.BP_PRD.create table msdb.dbo.dbm_monitor_data (		-- go through the code to see if there SHOULD be nulls.
 			database_id				smallint,
 			role					bit null,
 			status					tinyint null,
@@ -144163,7 +140591,7 @@ begin
 	-- TO DO: make sure that the rows are unique
 	if object_id ( N'msdb.dbo.dbm_monitor_alerts', N'U' ) is null
 	begin
-		create table msdb.dbo.dbm_monitor_alerts (
+		create table msdb.BP_PRD.create table msdb.dbo.dbm_monitor_alerts (
 			database_id				smallint,
 			retention_period		int null,	--this defaults to 7 days.  checked during the table update
 			time_behind				int null,
@@ -144232,7 +140660,6 @@ begin
 
 		set @database_id = DB_ID( @database_name )
 
--- To select the correct perf counter, we need the instance name.
 		declare 
 			@perf_instance1		nvarchar(256),
 			@perf_instance2		nvarchar(256),
@@ -144250,13 +140677,6 @@ begin
 
 		set @perf_instance1 = left(@instance, len(@instance)) + N':Database Mirroring'
 		set @perf_instance2 = left(@instance, len(@instance)) + N':Databases'
-
---
--- Insert a single row in the table for each database
---
--- 1. Pull out the perf counters
--- 2. Pull out the information from sys.database_mirroring
--- 3. Get the end of log lsn
 
 		declare @perfcounters table(
 			counter_name		nchar(128),
@@ -144285,7 +140705,6 @@ begin
 		set @time = getutcdate()
 		set @local_time = getdate()
 
--- 4. and insert it here
 		insert into msdb.dbo.dbm_monitor_data (database_id, role, status, witness_status, failover_lsn, end_of_log_lsn, log_flush_rate,
 				send_queue_size, send_rate, redo_queue_size, redo_rate, transaction_delay, transactions_per_sec, time, local_time)
 		values( @database_id, @role, @status, @witness_status, @failover_lsn, @end_of_log_lsn, @log_flush_rate, @send_queue_size, @send_rate,
@@ -144401,7 +140820,6 @@ begin
 
 		while @@fetch_status=0
 		begin
--- Better make sure sys.sp_dbmmonitorupdate with a null parameter.  Could cause real bad problems.
 			set @database_name = db_name( @database_id )
 			if @database_name is not null
 			begin
@@ -144420,7 +140838,7 @@ return 0
 end
 go
 
-create procedure sys.sp_dbremove --- 1996/04/08 00:00
+create procedure BP_PRD.sys.sp_dbremove --- 1996/04/08 00:00
 	@dbname sysname = null,
 	@dropdev varchar(10) = null
 as
@@ -144489,8 +140907,7 @@ as
 	return(0)	-- sp_dbremove
 go
 
-
-create procedure sys.sp_ddopen;1
+create procedure BP_PRD.sys.sp_ddopen;1
 (
     @handle         int output,
     @procname       sysname,
@@ -144688,7 +141105,7 @@ as
     return isnull(@ret,0)
 go
 
-create procedure sys.sp_defaultdb
+create procedure BP_PRD.sys.sp_defaultdb
     @loginame   sysname,	-- login name
     @defdb      sysname     -- default db
 as
@@ -144752,7 +141169,7 @@ as
 	return (0) -- sp_defaultdb
 go
 
-create procedure sys.sp_defaultlanguage
+create procedure BP_PRD.sys.sp_defaultlanguage
     @loginame sysname,			-- login name
     @language sysname = NULL	-- default language
 as
@@ -144818,11 +141235,7 @@ as
 	return (0) -- sp_defaultlanguage
 go
 
-create procedure sys.sp_delete_http_namespace_reservation() as
--- missing source code
-go
-
-create procedure sys.sp_delete_log_shipping_alert_job 
+create procedure BP_PRD.sys.sp_delete_log_shipping_alert_job 
 as
 begin
     set nocount on
@@ -144853,7 +141266,7 @@ begin
 end
 go
 
-create procedure sys.sp_delete_log_shipping_primary_database 
+create procedure BP_PRD.sys.sp_delete_log_shipping_primary_database 
 (
     @database sysname   -- cannot be NULL
     ,@ignoreremotemonitor bit = 0
@@ -144955,7 +141368,7 @@ begin
 end
 go
 
-create procedure sys.sp_delete_log_shipping_primary_secondary 
+create procedure BP_PRD.sys.sp_delete_log_shipping_primary_secondary 
 (
     @primary_database sysname
     ,@secondary_server sysname
@@ -145012,7 +141425,7 @@ begin
 end
 go
 
-create procedure sys.sp_delete_log_shipping_secondary_database
+create procedure BP_PRD.sys.sp_delete_log_shipping_secondary_database
 (
     @secondary_database sysname -- cannot be NULL
     ,@ignoreremotemonitor bit = 0
@@ -145046,7 +141459,7 @@ begin
 end
 go
 
-create procedure sys.sp_delete_log_shipping_secondary_primary 
+create procedure BP_PRD.sys.sp_delete_log_shipping_secondary_primary 
 (
     @primary_server sysname -- cannot be NULL
     ,@primary_database sysname -- cannot be NULL
@@ -145155,8 +141568,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_deletemergeconflictrow(
+create procedure BP_PRD.sys.sp_deletemergeconflictrow(
 	@conflict_table			sysname = '%',
 	@source_object			nvarchar(386) = NULL,
 	@rowguid				uniqueidentifier,
@@ -145212,7 +141624,7 @@ as
                 select @cmd = @cmd + quotename(@conflict_table) 
                 select @cmd = @cmd + ')'
                 select @cmd = @cmd + ' update dbo.sysmergearticles set ins_conflict_proc = NULL, conflict_table = NULL where conflict_table = ''' + quotename(@conflict_table) + ''''
-                -- DEBUG select "Update conflict_table query" = @cmd
+                -- DEBUG select 'Update conflict_table query' = @cmd
                 exec (@cmd)
                 if @@ERROR<>0 
                     return (1)
@@ -145223,7 +141635,7 @@ as
                 select @cmd = @cmd + ' drop table '
                 select @cmd = @cmd + quotename(@conflict_table)
                 select @cmd = @cmd + ''
-                -- DEBUG select "Drop conflict_table query" = @cmd
+                -- DEBUG select 'Drop conflict_table query' = @cmd
                 exec (@cmd)
                 if @@ERROR<>0 return (1)
             end
@@ -145263,9 +141675,7 @@ as
 
 		end
 
-go
-
-create procedure sys.sp_deletepeerrequesthistory
+create procedure BP_PRD.sys.sp_deletepeerrequesthistory
 (
 	@publication	sysname,
 	@request_id		int = NULL,
@@ -145288,7 +141698,7 @@ begin
     -- check this db is published
 	if sys.fn_MSrepl_istranpublished(db_name(),0) <> 1
     begin
-		-- "The database is not published."
+		-- 'The database is not published.'
 		raiserror (18757, 16, -1)
 		return 1
 	end
@@ -145296,13 +141706,13 @@ begin
 	-- parameter checks
 	if @request_id is null and @cutoff_date is null
 	begin
-		-- "The parameter @request_id and @cutoff_date cannot be NULL."
+		-- 'The parameter @request_id and @cutoff_date cannot be NULL.'
 		raiserror (14043, 16, -1, '@request_id and @cutoff_date', 'sp_deletepeerrequesthistory')
         return 1
 	end
 	else if @request_id is not null and @cutoff_date is not null
 	begin
-		-- "There must be one and only one of '@request_id' and '@cut_off' that is not NULL."
+		-- 'There must be one and only one of '@request_id' and '@cut_off' that is not NULL.'
 		raiserror(21314, 16, -1, '@request_id', '@cut_off')
 		return 1
 	end
@@ -145366,7 +141776,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_deletetracertokenhistory
+create procedure BP_PRD.sys.sp_deletetracertokenhistory
 (
 	@publication	sysname,
 	@tracer_id		int 		= NULL,
@@ -145423,7 +141833,7 @@ begin
     -- check this db is published
 	if sys.fn_MSrepl_istranpublished(db_name(),1) <> 1
 	begin
-		-- "The database is not published."
+		-- 'The database is not published.'
 		raiserror (18757, 16, -1)
 		return 1
 	end
@@ -145450,7 +141860,7 @@ begin
 											@publisher = @publisher
 	if @@error <> 0 or @retcode <> 0 or @distributor is NULL or @distribution_db is NULL
 	begin
-		-- "The Distributor has not been installed correctly."
+		-- 'The Distributor has not been installed correctly.'
 		raiserror(20036, 16, -1)
 		return 1
 	end
@@ -145470,7 +141880,7 @@ begin
 end
 go
 
-create procedure sys.sp_denylogin
+create procedure BP_PRD.sys.sp_denylogin
     @loginame		sysname
 AS
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -145530,16 +141940,13 @@ AS
     return (0)	-- sp_denylogin
 go
 
-create procedure sys.sp_depends  --- 1996/08/09 16:51
+create procedure BP_PRD.sys.sp_depends  --- 1996/08/09 16:51
 @objname nvarchar(776)		-- the object we want to check
 as
 
 declare @objid int			-- the id of the object we want
 declare @found_some bit			-- flag for dependencies found
 declare @dbname sysname
-
-
---  Make sure the @objname is local to the current database.
 
 select @dbname = parsename(@objname,3)
 
@@ -145549,7 +141956,6 @@ if @dbname is not null and @dbname <> db_name()
 		return (1)
 	end
 
---  See if @objname exists.
 select @objid = object_id(@objname)
 if @objid is null
 	begin
@@ -145558,12 +141964,10 @@ if @objid is null
 		return (1)
 	end
 
---  Initialize @found_some to indicate that we haven't seen any dependencies.
 select @found_some = 0
 
 set nocount on
 
---  Print out the particulars about the local dependencies.
 if exists (select *
 		from sysdepends
 			where id = @objid)
@@ -145591,7 +141995,6 @@ begin
 	select @found_some = 1
 end
 
---  Now check for things that depend on the object.
 if exists (select *
 		from sysdepends
 			where depid = @objid)
@@ -145610,7 +142013,6 @@ begin
 	select @found_some = 1
 end
 
---  Did we find anything in sysdepends?
 if @found_some = 0
 	raiserror(15461,-1,-1)
 
@@ -145619,9 +142021,7 @@ set nocount off
 return (0) -- sp_depends
 go
 
--- Creation of sp_describe_cursor
-
-create procedure sys.sp_describe_cursor
+create procedure BP_PRD.sys.sp_describe_cursor
 (  @cursor_return CURSOR VARYING OUTPUT,
    @cursor_source nvarchar (30),
    @cursor_identity nvarchar (128)
@@ -145641,7 +142041,6 @@ begin
 	if convert(varchar(30), @cursor_source) = 'global'
 		select @scope = 2
 
-
 	set @cursor_return =  CURSOR LOCAL SCROLL DYNAMIC FOR
 			    	SELECT reference_name, cursor_name, cursor_scope,
 					status, model, concurrency, scrollable,
@@ -145659,9 +142058,7 @@ begin
 end
 go
 
--- Creation of sp_describe_cursor_columns
-
-create procedure sys.sp_describe_cursor_columns
+create procedure BP_PRD.sys.sp_describe_cursor_columns
 (  @cursor_return CURSOR VARYING OUTPUT,
    @cursor_source nvarchar (30),
    @cursor_identity nvarchar (128)
@@ -145683,7 +142080,7 @@ begin
 	set @cursor_return =  	CURSOR LOCAL SCROLL DYNAMIC FOR
 				SELECT column_name, ordinal_position, column_characteristics_flags,
 					column_size, 
-					convert(smallint, case when data_type_sql > 32767 then 0 else data_type_sql end) as "data_type_sql", 
+					convert(smallint, case when data_type_sql > 32767 then 0 else data_type_sql end) as 'data_type_sql', 
 					column_precision,
 					column_scale, order_position, order_direction,
 					hidden_column, columnid, objectid, dbid, dbname
@@ -145698,9 +142095,7 @@ begin
 end
 go
 
--- Creation of sp_describe_cursor_tables
-
-create procedure sys.sp_describe_cursor_tables
+create procedure BP_PRD.sys.sp_describe_cursor_tables
 (  @cursor_return CURSOR VARYING OUTPUT,
    @cursor_source nvarchar (30),
    @cursor_identity nvarchar (128)
@@ -145731,15 +142126,7 @@ begin
 end
 go
 
-create procedure sys.sp_describe_first_result_set() as
--- missing source code
-go
-
-create procedure sys.sp_describe_undeclared_parameters() as
--- missing source code
-go
-
-create procedure sys.sp_detach_db
+create procedure BP_PRD.sys.sp_detach_db
 	@dbname sysname = null,
 	@skipchecks nvarchar(10) = null,
 	@keepfulltextindexfile nvarchar(10) = null
@@ -145798,7 +142185,6 @@ as
 		EXEC (@exec_stmt)
 	end
 
-
 	if @keepfulltextindexfile is null
 	begin
 		select @exec_stmt = 'DBCC DETACHDB ('
@@ -145825,7 +142211,7 @@ as
 	return (0) -- sp_detach_db
 go
 
-create procedure sys.sp_disableagentoffload (
+create procedure BP_PRD.sys.sp_disableagentoffload (
     @job_id         VARBINARY(16),
     @offloadserver  sysname = NULL,
     @agent_type     sysname = NULL -- 'distribution' or 'merge', case insensitive
@@ -145837,8 +142223,7 @@ create procedure sys.sp_disableagentoffload (
     RETURN (1)
 go
 
-
-create procedure sys.sp_distcounters
+create procedure BP_PRD.sys.sp_distcounters
     AS
 
     SET NOCOUNT ON
@@ -145872,9 +142257,7 @@ create procedure sys.sp_distcounters
     EXEC @retcode = @distproc @publisher
 go
 
-
--- Drop a/all parameter(s) of a/all profile(s) from the MSagent_parameters table
-create procedure sys.sp_drop_agent_parameter (
+create procedure BP_PRD.sys.sp_drop_agent_parameter (
     @profile_id int,
     @parameter_name     sysname = '%'
 )
@@ -145933,10 +142316,7 @@ UNDO:
     return @retstatus
 go
 
--- Drop a profile from the MSagent_profiles table, as well as the corresponding
--- parameters from the MSagent_parameters table
-
-create procedure sys.sp_drop_agent_profile (
+create procedure BP_PRD.sys.sp_drop_agent_profile (
     @profile_id int
 )
 AS
@@ -146075,13 +142455,10 @@ UNDO:
     close hCdistdbs
     deallocate hCdistdbs
 
-
     RETURN (1)
 go
 
-
-
-create procedure sys.sp_dropanonymousagent
+create procedure BP_PRD.sys.sp_dropanonymousagent
 @subid uniqueidentifier,
 @type int -- 1 tran sub, 2 merge sub
 as
@@ -146177,7 +142554,7 @@ begin
 end
 go
 
-create procedure sys.sp_dropapprole
+create procedure BP_PRD.sys.sp_dropapprole
     @rolename       sysname     -- role to be dropped
 as
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -146227,26 +142604,7 @@ as
     return (0) -- sp_dropapprole
 go
 
-
---
--- Name:    
---          sp_droparticle
---          
--- Description: 
---          Drops an article from a snapshot or transactional publication.
---			An article cannot be removed if one or more subscriptions to it exist.
---			This stored procedure is executed at the Publisher on the publication database.
---  
--- Security: 
---          Public
---
--- Returns:
---          Success (0) or Failure (1)
---      
--- Owner:   
---          <current owner> 
-
-create procedure sys.sp_droparticle
+create procedure BP_PRD.sys.sp_droparticle
 (
     @publication				sysname,
     @article					sysname,
@@ -146286,28 +142644,6 @@ BEGIN
 	RETURN (@retcode)
 END
 go
-
-
---
--- Name:
---		sp_dropdatatypemapping
---
--- Description:
---		Drop data type mapping
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
---
--- Notes:
---		Implicitly will create a DBMS map if it doesn't
---		currently exist.  DBMS types must exist before
---		adding a mapping.  If no remaining mappings exist
---		for a map, the map is dropped
---
 
 CREATE PROCEDURE sys.sp_dropdatatypemapping
 (
@@ -146664,7 +143000,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_dropdevice --- 1996/04/08 00:00
+create procedure BP_PRD.sys.sp_dropdevice --- 1996/04/08 00:00
 	@logicalname	sysname,		-- logical name of the device
 	@delfile	varchar(7) = null	-- optional param. to delete disk file
 as
@@ -146720,26 +143056,7 @@ as
 	return (0) -- sp_dropdevice
 go
 
-
---
--- Name:    
---          sp_dropdistpublisher
---          
--- Description: 
---          Drops a distribution Publisher.
---			This stored procedure is executed at the Distributor on any database.
---  
--- Security: 
---          Public
--- Requires Certificate signature for catalog access
---
--- Returns:
---          Success (0) or failure (1)
---      
--- Owner:   
---          <current owner> 
-
-create procedure sys.sp_dropdistpublisher
+create procedure BP_PRD.sys.sp_dropdistpublisher
 (
 	@publisher			sysname,
 	@no_checks			bit = 0,
@@ -147052,30 +143369,7 @@ FAILURE:
 END
 go
 
-
---
--- Name:
---		sp_dropdistributiondb
---
--- Description:
---		Drop distribution database
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
--- Requires Certificate signature for catalog access
---
--- Notes:
---		@force is a brute force cleanup option intended only for use
---		in removing an orphaned or corrupted distribution database.
---		It can only be called after sp_dropdistributor 1, 1 has been
---		called to force removal of distributor pieces.
---
-
-create procedure sys.sp_dropdistributiondb
+create procedure BP_PRD.sys.sp_dropdistributiondb
 (
 	@database	sysname
 )
@@ -147390,7 +143684,7 @@ BEGIN
 END                
 go
 
-create procedure sys.sp_dropdistributor
+create procedure BP_PRD.sys.sp_dropdistributor
 (
 	@no_checks			bit = 0,
 	@ignore_distributor	bit = 0
@@ -147650,7 +143944,6 @@ AS
         END
     end
 
-
     /*
     ** Clear the server option to indicate that this is a distributor.
     */
@@ -147673,7 +143966,6 @@ AS
             RETURN(1)
         END
     end
-
 
     -- Drop table after unmark distributor to prevent 
     -- sp_helpdist* failures.
@@ -147728,14 +144020,12 @@ AS
         if @@error <> 0
             return 1 ;
 
-
         if exists (select * from msdb.sys.objects where name = 'MSagent_profiles'
             and type = 'U')
             drop table msdb..MSagent_profiles
 
         if @@error <> 0
             return 1 ;
-
 
        if exists (select * from msdb.sys.objects where name = 'MSagent_parameters'
                 and type = 'U')
@@ -147755,7 +144045,7 @@ AS
     RETURN (0)        
 go
 
-create procedure sys.sp_dropdynamicsnapshot_job (
+create procedure BP_PRD.sys.sp_dropdynamicsnapshot_job (
     @publication sysname,
     @dynamic_snapshot_jobname sysname = '%',
     @dynamic_snapshot_jobid uniqueidentifier = null,
@@ -147774,9 +144064,7 @@ AS
     return @retcode
 go
 
-
----------------------------- sp_dropextendedproc ------------------------------
-create procedure sys.sp_dropextendedproc
+create procedure BP_PRD.sys.sp_dropextendedproc
 	@functname nvarchar(517)		-- name of function
 as
 	-- If we're in a transaction, disallow the dropping of the
@@ -147798,7 +144086,7 @@ as
 	return (0) -- sp_dropextendedproc
 go
 
-create procedure sys.sp_dropextendedproperty
+create procedure BP_PRD.sys.sp_dropextendedproperty
 	@name sysname,
 	@level0type	varchar(128)	= NULL,
 	@level0name	sysname			= NULL,
@@ -147837,7 +144125,7 @@ as
 	return (0)
 go
 
-create procedure sys.sp_droplinkedsrvlogin
+create procedure BP_PRD.sys.sp_droplinkedsrvlogin
 	@rmtsrvname		sysname,
 	@locallogin		sysname
 as
@@ -147891,7 +144179,7 @@ as
 				return (1)
 			END
 
-			-- "SUCCESS" --
+			-- 'SUCCESS' --
 			COMMIT TRAN
 			return(0)
 		end
@@ -147917,7 +144205,7 @@ as
 	return(0) -- sp_droplinkedsrvlogin
 go
 
-create procedure sys.sp_droplogin
+create procedure BP_PRD.sys.sp_droplogin
 	@loginame sysname
 as
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -147957,7 +144245,7 @@ as
 	return (0)	-- sp_droplogin
 go
 
-create procedure sys.sp_dropmergealternatepublisher (
+create procedure BP_PRD.sys.sp_dropmergealternatepublisher (
 	@publisher					sysname,					/* Publisher server */
 	@publisher_db				sysname,					/* Publisher database */
 	@publication				sysname,					/* Publication name */
@@ -148040,8 +144328,7 @@ FAILURE:
 	RETURN (1)
 go
 
-
-create procedure sys.sp_dropmergearticle(
+create procedure BP_PRD.sys.sp_dropmergearticle(
     @publication sysname,      /* The publication name */
     @article sysname,          /* The article name */
     @ignore_distributor bit = 0,
@@ -148373,7 +144660,7 @@ FAILURE:
     RETURN (1)
 go
 
-create procedure sys.sp_dropmergefilter
+create procedure BP_PRD.sys.sp_dropmergefilter
     @publication            sysname,            /* publication name */
     @article                sysname,            /* article name */
     @filtername                sysname,             /* Name of the table being joined to the base table */
@@ -148596,7 +144883,7 @@ FAILURE:
     return (1)
 go
 
-create procedure sys.sp_dropmergelogsettings (
+create procedure BP_PRD.sys.sp_dropmergelogsettings (
     @publication        sysname = NULL, 	/* Publication name */
     @subscriber         sysname = NULL,     /* Subscriber server */
     @subscriber_db      sysname = NULL,     /* Subscription database */
@@ -148615,7 +144902,6 @@ create procedure sys.sp_dropmergelogsettings (
         raiserror(15247,-1,-1)
         return (1)
     end
-
 
     /*
     **    Check to see if current database is doing publishing/subscribing
@@ -148725,7 +145011,7 @@ FAILURE:
     RETURN (1)
 go
 
-create procedure sys.sp_dropmergepartition (
+create procedure BP_PRD.sys.sp_dropmergepartition (
         @publication sysname,
         @suser_sname sysname,
         @host_name sysname) 
@@ -148803,20 +145089,7 @@ begin
 end
 go
 
---
--- Name: sp_dropmergepublication
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_dropmergepublication(
+create procedure BP_PRD.sys.sp_dropmergepublication(
         @publication sysname,       /* The publication name */
         @ignore_distributor bit = 0,
         @reserved bit = 0,
@@ -148977,7 +145250,6 @@ create procedure sys.sp_dropmergepublication(
     begin
         select @ignore_merge_metadata = 1
     end
-
 
     /*
     ** Delete all articles from the publication.
@@ -149186,7 +145458,7 @@ FAILURE:
     RETURN (1)
 go
 
-create procedure sys.sp_dropmergepullsubscription(
+create procedure BP_PRD.sys.sp_dropmergepullsubscription(
     @publication        sysname = NULL,             /* Publication name */
     @publisher          sysname = NULL,             /* Publisher server */
     @publisher_db       sysname = NULL,             /* Publication database */
@@ -149630,7 +145902,7 @@ FAILURE:
     return 1
 go
 
-create procedure sys.sp_dropmergesubscription(
+create procedure BP_PRD.sys.sp_dropmergesubscription(
     @publication        sysname = NULL,                /* Publication name */
     @subscriber            sysname = NULL,                /* Subscriber server */
     @subscriber_db        sysname = NULL,                /* Subscription database */
@@ -150130,7 +146402,7 @@ FAILURE:
     return (1)
 go
 
-create procedure sys.sp_dropmessage
+create procedure BP_PRD.sys.sp_dropmessage
 	@msgnum int = null,		-- Number of message to drop.
 	@lang sysname = null	-- Language of message to drop (or 'ALL')
 as
@@ -150217,29 +146489,7 @@ as
 	return (0) -- sp_dropmessage
 go
 
-create procedure sys.sp_droporphans() as
--- missing source code
-go
-
-
---
--- Name:    
---          sp_droppublication
---          
--- Description: 
---          Drops a publication and its associated articles.
---			This stored procedure is executed at the Publisher on the publication database.
---  
--- Security: 
---          Public with checks for sysadmin/dbo
---
--- Returns:
---          Success (0) or failure (1)
---      
--- Owner:   
---          <current owner> 
-
-create procedure sys.sp_droppublication
+create procedure BP_PRD.sys.sp_droppublication
 (
 	@publication		sysname,
 	@ignore_distributor	bit = 0,
@@ -150276,8 +146526,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_droppublisher (
+create procedure BP_PRD.sys.sp_droppublisher (
     @publisher sysname,         /* publisher server name */
     @type nvarchar (5) = NULL      /* NULL or 'dist' */
         ) AS
@@ -150286,9 +146535,7 @@ create procedure sys.sp_droppublisher (
     RAISERROR (21023, 16, -1,'sp_droppublisher')
     RETURN(1)
 
-go
-
-create procedure sys.sp_droppullsubscription
+create procedure BP_PRD.sys.sp_droppullsubscription
 (
     @publisher        sysname,
     @publisher_db    sysname = NULL,
@@ -150704,7 +146951,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_dropremotelogin
+create procedure BP_PRD.sys.sp_dropremotelogin
 	@remoteserver	sysname,			-- name of remote server
 	@loginame		sysname = NULL,		-- user's local user name
 	@remotename		sysname = NULL		-- user's remote name
@@ -150728,7 +146975,6 @@ as
 	end
 	else
 		EXEC %%System().AuditEvent(ID = 1380207698, Success = 1, TargetLoginName = @loginame, TargetUserName = NULL, Role = NULL, Object = @remotename, Provider = NULL, Server = @remoteserver)
-
 
 	-- CHECK FOR INVALID PARAMETER SYNTAX --
 	if @remoteserver is null OR (@loginame is null and @remotename is not null)
@@ -150783,29 +147029,6 @@ as
 	return (0)	-- sp_dropremotelogin
 go
 
---
--- Name: 
---	sp_dropreplsymmetrickey
--- 
--- Description: 
---	This procedure drops the following:
---		Database symmetric key based on a password seed
---		Database level certificate with associated asymmetric public/private keys
---		Database level scoped replication symetric key used for encrypting
---
--- Parameters: 
---	See the procedure definition.
---
--- Returns: 
---	0 - On success
---	1 - On Failure
---
--- Result: 
---	None
---
--- Security: 
---	Must be DBO to execute.
---
 CREATE PROCEDURE sys.sp_dropreplsymmetrickey
 (
 	@check_replication bit = 0, 
@@ -150816,7 +147039,6 @@ BEGIN
 	DECLARE @error_number 	int,
 			@error_severity int,
 			@error_state 	int
-
 
 	-- security check
     IF IS_MEMBER('db_owner') != 1
@@ -150893,7 +147115,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_droprole
+create procedure BP_PRD.sys.sp_droprole
     @rolename       sysname     -- role to be dropped
 as
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -150943,7 +147165,7 @@ as
     return (0) -- sp_droprole
 go
 
-create procedure sys.sp_droprolemember
+create procedure BP_PRD.sys.sp_droprolemember
 	@rolename       sysname,
 	@membername     sysname
 AS
@@ -150979,7 +147201,7 @@ AS
     return (0) -- sp_droprolemember
 go
 
-create procedure sys.sp_dropserver
+create procedure BP_PRD.sys.sp_dropserver
 	@server		sysname,			-- server name
 	@droplogins	char(10) = NULL		-- drop all related logins?
 as
@@ -151088,8 +147310,7 @@ as
 	return (0) -- sp_dropserver
 go
 
--- FOR BACKWARD COMPATIBILTY ONLY --
-create procedure sys.sp_dropsrvrolemember
+create procedure BP_PRD.sys.sp_dropsrvrolemember
     @loginame sysname,			-- login name
     @rolename sysname = NULL	-- server role name
 as
@@ -151125,8 +147346,7 @@ as
 	return (0) -- sp_dropsrvrolemember
 go
 
-
-create procedure sys.sp_dropsubscriber
+create procedure BP_PRD.sys.sp_dropsubscriber
 (
 	@subscriber			sysname,
 	@reserved			nvarchar(50) = NULL,
@@ -151167,8 +147387,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_dropsubscription
+create procedure BP_PRD.sys.sp_dropsubscription
 (
 	@publication sysname = NULL,
 	@article sysname = NULL,
@@ -151213,15 +147432,12 @@ BEGIN
 END
 go
 
-create procedure sys.sp_droptype
+create procedure BP_PRD.sys.sp_droptype
 	@typename sysname		-- the user type to drop
 as
 	
 	declare @schid int
 
---  Find the user type with @typename.  It must be a user type (xusertype > 256)
---  and you must be db_owner, db_ddladmin or sa (covered by db_owner check) to
--- drop the type. Only types owned by dbo are accessible thru sp_droptype.
 	select @schid = schema_id from sys.types
 			where name = @typename and user_type_id > 256 and schema_id = 1
 	if (@schid is null)
@@ -151247,7 +147463,7 @@ as
 	return (@@error) -- sp_droptype
 go
 
-create procedure sys.sp_dropuser
+create procedure BP_PRD.sys.sp_dropuser
 	@name_in_db     sysname     -- user name to drop
 as
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -151280,22 +147496,7 @@ as
     return (0) -- sp_dropuser
 go
 
-
---
--- Name: sp_dsninfo
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_dsninfo
---  xp_dsninfo does not support unicode
+create procedure BP_PRD.sys.sp_dsninfo
     @dsn varchar(128),
     @infotype varchar(128) = NULL,
     @login varchar(128) = NULL,
@@ -151361,27 +147562,7 @@ create procedure sys.sp_dsninfo
         END
     end
 
-go
-
-
---
--- Name:    
---          sp_enable_heterogeneous_subscription
---          
--- Description: 
---          Enable or disable publication properties for
---			supporting heterogeneous subscriptions.
---  
--- Security: 
---          sysadmin or DBO of publisher db
---
--- Returns:
---      
--- Owner:   
---          <current owner> 
---
-
-create procedure sys.sp_enable_heterogeneous_subscription
+create procedure BP_PRD.sys.sp_enable_heterogeneous_subscription
 (
     @publication	sysname = NULL,
     @publisher		sysname = NULL
@@ -151414,11 +147595,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_enable_sql_debug() as
--- missing source code
-go
-
-create procedure sys.sp_enableagentoffload (
+create procedure BP_PRD.sys.sp_enableagentoffload (
     @job_id         VARBINARY(16),
     @offloadserver  sysname = NULL,
     @agent_type     sysname = NULL -- 'distribution' or 'merge', case insensitive
@@ -151431,7 +147608,7 @@ create procedure sys.sp_enableagentoffload (
     RETURN (1)
 go
 
-create proc sys.sp_enum_oledb_providers
+create proc BP_PRD.sys.sp_enum_oledb_providers
 as
 begin
 
@@ -151444,22 +147621,7 @@ begin
 end
 go
 
-
---
--- Name: sp_enumcustomresolvers
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_enumcustomresolvers
---    @distributor parameter will be removed in the next version.      
+create procedure BP_PRD.sys.sp_enumcustomresolvers
     @distributor     sysname = NULL
     AS
     SET NOCOUNT ON
@@ -151540,8 +147702,7 @@ create procedure sys.sp_enumcustomresolvers
     RETURN (0)
 go
 
-
-create procedure sys.sp_enumdsn
+create procedure BP_PRD.sys.sp_enumdsn
     AS
 
     if 1 <> is_srvrolemember('sysadmin')
@@ -151574,7 +147735,7 @@ create procedure sys.sp_enumdsn
             RETURN (1)
     END
 
-    create table #datasourcestemptable (DataSourceName sysname collate database_default not null, Description nvarchar(255) collate database_default null, DataSourceType int null, ProviderName nvarchar(255) collate database_default null)
+    create table #datasourcestemptable (DataSourceName BP_PRD.create table #datasourcestemptable (DataSourceName sysname collate database_default not null, Description nvarchar(255) collate database_default null, DataSourceType int null, ProviderName nvarchar(255) collate database_default null)
     
     /*
     ** Call xp_enumdsn
@@ -151619,7 +147780,7 @@ create procedure sys.sp_enumdsn
     return (0)
 go
 
-create procedure sys.sp_enumeratependingschemachanges(
+create procedure BP_PRD.sys.sp_enumeratependingschemachanges(
     @publication                sysname,
     @starting_schemaversion     int = 0
     )
@@ -151683,7 +147844,7 @@ begin
 end
 go
 
-create proc sys.sp_enumerrorlogs(
+create proc BP_PRD.sys.sp_enumerrorlogs(
 	@p1		int = 1)
 as
 begin
@@ -151697,8 +147858,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_enumfullsubscribers
+create procedure BP_PRD.sys.sp_enumfullsubscribers
 (
 	@publication	sysname = '%',
 	@publisher		sysname = NULL
@@ -151730,23 +147890,10 @@ BEGIN
 	RETURN (@retcode)
 END
 
---
--- Name: sp_MSrepl_enumfullsubscribers
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: Public - publish check
--- Requires Certificate signature for catalog access
---
 raiserror(15339,-1,-1,'sp_MSrepl_enumfullsubscribers')
 go
 
-create procedure sys.sp_enumoledbdatasources
+create procedure BP_PRD.sys.sp_enumoledbdatasources
     AS
     set nocount on
 
@@ -151756,8 +147903,7 @@ create procedure sys.sp_enumoledbdatasources
     return (0)
 go
 
-
-create procedure sys.sp_estimate_data_compression_savings
+create procedure BP_PRD.sys.sp_estimate_data_compression_savings
 	@schema_name		sysname,
 	@object_name		sysname,
 	@index_id		int,
@@ -151943,7 +148089,7 @@ begin
 	deallocate c;	
 
 	-- Create results table
-	create table #estimated_results ([object_name] sysname, [schema_name] sysname, [index_id] int, [partition_number] int,
+	create table #estimated_results ([object_name] BP_PRD.create table #estimated_results ([object_name] sysname, [schema_name] sysname, [index_id] int, [partition_number] int,
 									[size_with_current_compression_setting(KB)] bigint, [size_with_requested_compression_setting(KB)] bigint,
 									[sample_size_with_current_compression_setting(KB)] bigint, [sample_size_with_requested_compression_setting(KB)] bigint);
 
@@ -152119,7 +148265,7 @@ begin
 end
 go
 
-create procedure sys.sp_estimated_rowsize_reduction_for_vardecimal  
+create procedure BP_PRD.sys.sp_estimated_rowsize_reduction_for_vardecimal  
 	@table_name nvarchar (776)
 as
 begin
@@ -152181,14 +148327,6 @@ begin
 		cast(@avg_rowlen_vardecimal_format as decimal(12, 2)) as avg_rowlen_vardecimal_format,
 		@row_count as row_count;
 end;
-go
-
-create procedure sys.sp_execute() as
--- missing source code
-go
-
-create procedure sys.sp_executesql() as
--- missing source code
 go
 
  
@@ -152336,8 +148474,7 @@ DONE:
 END
 go
 
-
-create procedure sys.sp_filestream_force_garbage_collection
+create procedure BP_PRD.sys.sp_filestream_force_garbage_collection
 (
 	@dbname sysname = NULL,		-- name of the database where to collect
 	@filename sysname = NULL	-- FILESTREAM file container name
@@ -152356,8 +148493,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_filestream_recalculate_container_size
+create procedure BP_PRD.sys.sp_filestream_recalculate_container_size
 (
 	@dbname sysname,			-- name of the database to process
 	@filename sysname = NULL	-- FILESTREAM file container name to recalculate
@@ -152374,7 +148510,7 @@ begin
 end
 go
 
-create procedure sys.sp_firstonly_bitmap (
+create procedure BP_PRD.sys.sp_firstonly_bitmap (
     @inputbitmap1 varbinary(128), 
     @inputbitmap2 varbinary(128),
     @resultbitmap3 varbinary(128)   OUTPUT
@@ -152387,8 +148523,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_fkeys
+create procedure BP_PRD.sys.sp_fkeys
 (
     @pktable_name        sysname = null,    -- Wildcard pattern matching IS NOT supported.
     @pktable_owner       sysname = null,    -- Wildcard pattern matching IS NOT supported.
@@ -152549,26 +148684,7 @@ as
     end
 go
 
--- Name: 
---	sp_flush_CT_internal_table_on_demand 
--- 
--- Description: 
---	This procedure is called by user by passing a table name for which CT is enabled.  This calls the internal stored proc to manually clean up the backlog of the auto cleanup task.
---
--- Parameters: 
---	See the procedure definition.
---
--- Returns: 
---	0 - succeeded
---	1 - failed
---
--- Result: 
---	None
---
--- Security: 
---    Internal
---
-create procedure sys.sp_flush_CT_internal_table_on_demand 
+create procedure BP_PRD.sys.sp_flush_CT_internal_table_on_demand 
 	@TableToClean SYSNAME
 AS
 BEGIN
@@ -152592,7 +148708,6 @@ BEGIN
 		@TableToClean
 END			
 go
-
 
 CREATE PROC sys.sp_flush_commit_table (@flush_ts BIGINT, @cleanup_version BIGINT = NULL, @rowcount INT OUTPUT, @date_cleanedup DATETIME OUTPUT) AS
 BEGIN
@@ -152637,7 +148752,6 @@ BEGIN
 		raiserror(21089,0,1)
 		return 1
 	END
-
 
 	IF (@numrows<=0)
 	BEGIN
@@ -152689,12 +148803,7 @@ BEGIN
 END			
 go
 
-create procedure sys.sp_flush_log() as
--- missing source code
-go
-
-
-create procedure sys.sp_foreign_keys_rowset
+create procedure BP_PRD.sys.sp_foreign_keys_rowset
 (
     @pk_table_name          sysname,
     @pk_table_schema        sysname = null,
@@ -152704,14 +148813,12 @@ create procedure sys.sp_foreign_keys_rowset
 )
 as
     select
---        PK_TABLE_CATALOG    = db_name(r.rkeydbid),
         PK_TABLE_CATALOG    = db_name(),
         PK_TABLE_SCHEMA     = schema_name(o1.schema_id),
         PK_TABLE_NAME       = o1.name,
         PK_COLUMN_NAME      = c1.name,
         PK_COLUMN_GUID      = convert(uniqueidentifier,null),
         PK_COLUMN_PROPID    = convert(int,null),
---        FK_TABLE_CATALOG    = db_name(r.fkeydbid),
         FK_TABLE_CATALOG    = db_name(),
         FK_TABLE_SCHEMA     = schema_name(o2.schema_id),
         FK_TABLE_NAME       = o2.name,
@@ -152719,14 +148826,12 @@ as
         FK_COLUMN_GUID      = convert(uniqueidentifier,null),
         FK_COLUMN_PROPID    = convert(int,null),
         ORDINAL             = convert(int,k.constraint_column_id),
---        UPDATE_RULE         = CASE ObjectProperty(r.constid, 'CnstIsUpdateCascade')
         UPDATE_RULE         = CASE r.update_referential_action
                               WHEN 1 THEN N'CASCADE'
                               WHEN 2 THEN N'SET NULL'
                               WHEN 3 THEN N'SET DEFAULT'
                               ELSE        N'NO ACTION'
                               END,
---        DELETE_RULE         = CASE ObjectProperty(r.constid, 'CnstIsDeleteCascade')
         DELETE_RULE         = CASE r.delete_referential_action
                               WHEN 1 THEN N'CASCADE'
                               WHEN 2 THEN N'SET NULL'
@@ -152734,7 +148839,6 @@ as
                               ELSE        N'NO ACTION'
                               END,
         PK_NAME             = i.name,
---        FK_NAME             = object_name(r.constid),
         FK_NAME             = object_name(r.object_id),
         DEFERRABILITY       = convert(smallint, 3) -- DBPROPVAL_DF_NOT_DEFERRABLE
     from
@@ -152743,7 +148847,6 @@ as
         sys.all_columns c1,
         sys.all_columns c2,
 
---        sysreferences r,
         sys.foreign_keys r inner join
         sys.foreign_key_columns k on (k.constraint_object_id = r.object_id) inner join
         sys.indexes i on (r.referenced_object_id = i.object_id and r.key_index_id = i.index_id)
@@ -152763,8 +148866,7 @@ as
     order by 8,9,2,3,13
 go
 
-
-create procedure sys.sp_foreign_keys_rowset2
+create procedure BP_PRD.sys.sp_foreign_keys_rowset2
 (
     @foreignkey_tab_name    sysname,
     @foreignkey_tab_schema  sysname = null,
@@ -152774,14 +148876,12 @@ create procedure sys.sp_foreign_keys_rowset2
 )
 as
     select
---        PK_TABLE_CATALOG    = db_name(r.rkeydbid),
         PK_TABLE_CATALOG    = db_name(),
         PK_TABLE_SCHEMA     = schema_name(o1.schema_id),
         PK_TABLE_NAME       = o1.name,
         PK_COLUMN_NAME      = c1.name,
         PK_COLUMN_GUID      = convert(uniqueidentifier,null),
         PK_COLUMN_PROPID    = convert(int,null),
---        FK_TABLE_CATALOG    = db_name(r.fkeydbid),
         FK_TABLE_CATALOG    = db_name(),
         FK_TABLE_SCHEMA     = schema_name(o2.schema_id),
         FK_TABLE_NAME       = o2.name,
@@ -152789,14 +148889,12 @@ as
         FK_COLUMN_GUID      = convert(uniqueidentifier,null),
         FK_COLUMN_PROPID    = convert(int,null),
         ORDINAL             = convert(int,k.constraint_column_id),
---        UPDATE_RULE         = CASE ObjectProperty(r.constid, 'CnstIsUpdateCascade')
         UPDATE_RULE         = CASE r.update_referential_action
                               WHEN 1 THEN N'CASCADE'
                               WHEN 2 THEN N'SET NULL'
                               WHEN 3 THEN N'SET DEFAULT'
                               ELSE        N'NO ACTION'
                               END,
---        DELETE_RULE         = CASE ObjectProperty(r.constid, 'CnstIsDeleteCascade')
         DELETE_RULE         = CASE r.delete_referential_action
                               WHEN 1 THEN N'CASCADE'
                               WHEN 2 THEN N'SET NULL'
@@ -152804,7 +148902,6 @@ as
                               ELSE        N'NO ACTION'
                               END,
         PK_NAME             = i.name,
---        FK_NAME             = object_name(r.constid),
         FK_NAME             = object_name(r.object_id),
         DEFERRABILITY       = convert(smallint, 3) -- DBPROPVAL_DF_NOT_DEFERRABLE
     from
@@ -152813,7 +148910,6 @@ as
         sys.all_columns c1,
         sys.all_columns c2,
 
---        sysreferences r,
         sys.foreign_keys r inner join
         sys.foreign_key_columns k on (k.constraint_object_id = r.object_id) inner join
         sys.indexes i on (r.referenced_object_id = i.object_id and r.key_index_id = i.index_id)
@@ -152834,8 +148930,7 @@ as
     order by 8,9,2,3,13
 go
 
-
-create procedure sys.sp_foreign_keys_rowset3
+create procedure BP_PRD.sys.sp_foreign_keys_rowset3
 (
     @pk_table_schema        sysname = null,
     @pk_table_catalog       sysname = null,
@@ -152843,18 +148938,13 @@ create procedure sys.sp_foreign_keys_rowset3
     @foreignkey_tab_catalog sysname = null
 )
 as
---------------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st & 3rd parameters !
---------------------------------------------------------------------------------------------------
     select
---        PK_TABLE_CATALOG    = db_name(r.rkeydbid),
         PK_TABLE_CATALOG    = db_name(),
         PK_TABLE_SCHEMA     = schema_name(o1.schema_id),
         PK_TABLE_NAME       = o1.name,
         PK_COLUMN_NAME      = c1.name,
         PK_COLUMN_GUID      = convert(uniqueidentifier,null),
         PK_COLUMN_PROPID    = convert(int,null),
---        FK_TABLE_CATALOG    = db_name(r.fkeydbid),
         FK_TABLE_CATALOG    = db_name(),
         FK_TABLE_SCHEMA     = schema_name(o2.schema_id),
         FK_TABLE_NAME       = o2.name,
@@ -152862,14 +148952,12 @@ as
         FK_COLUMN_GUID      = convert(uniqueidentifier,null),
         FK_COLUMN_PROPID    = convert(int,null),
         ORDINAL             = convert(int,k.constraint_column_id),
---        UPDATE_RULE         = CASE ObjectProperty(r.constid, 'CnstIsUpdateCascade')
         UPDATE_RULE         = CASE r.update_referential_action
                               WHEN 1 THEN N'CASCADE'
                               WHEN 2 THEN N'SET NULL'
                               WHEN 3 THEN N'SET DEFAULT'
                               ELSE        N'NO ACTION'
                               END,
---        DELETE_RULE         = CASE ObjectProperty(r.constid, 'CnstIsDeleteCascade')
         DELETE_RULE         = CASE r.delete_referential_action
                               WHEN 1 THEN N'CASCADE'
                               WHEN 2 THEN N'SET NULL'
@@ -152877,7 +148965,6 @@ as
                               ELSE        N'NO ACTION'
                               END,
         PK_NAME             = i.name,
---        FK_NAME             = object_name(r.constid),
         FK_NAME             = object_name(r.object_id),
         DEFERRABILITY       = convert(smallint, 3) -- DBPROPVAL_DF_NOT_DEFERRABLE
     from
@@ -152886,7 +148973,6 @@ as
         sys.all_columns c1,
         sys.all_columns c2,
 
---        sysreferences r,
         sys.foreign_keys r inner join
         sys.foreign_key_columns k on (k.constraint_object_id = r.object_id) inner join
         sys.indexes i on (r.referenced_object_id = i.object_id and r.key_index_id = i.index_id)
@@ -152905,8 +148991,7 @@ as
     order by 8,9,2,3,13
 go
 
-
-create procedure sys.sp_foreign_keys_rowset_rmt
+create procedure BP_PRD.sys.sp_foreign_keys_rowset_rmt
 (
     @server_name                sysname,
     @pk_table_name              sysname = null,
@@ -152947,8 +149032,7 @@ as
     order by 7,8,9,1,2,3,13
 go
 
-
-create procedure sys.sp_foreignkeys
+create procedure BP_PRD.sys.sp_foreignkeys
 (
     @table_server       sysname,
     @pktab_name         sysname = null,
@@ -153001,7 +149085,7 @@ as
     order by FKTABLE_CAT, FKTABLE_SCHEM, FKTABLE_NAME, KEY_SEQ
 go
 
-create proc sys.sp_fulltext_catalog
+create proc BP_PRD.sys.sp_fulltext_catalog
     @ftcat      sysname,        -- full-text catalog name
     @action     varchar(20),    -- create | drop | | rebuild | ...
     @path       nvarchar(101) = null    -- optional file path for create (max of 100 chars!!!)
@@ -153083,7 +149167,6 @@ as
         EXEC (@execstring)
     end
 
-
     if @action = 'start_full'
     begin
         -- FIND all the table and start full crawl --
@@ -153160,7 +149243,7 @@ as
     return 0    -- sp_fulltext_catalog
 go
 
-create proc sys.sp_fulltext_column
+create proc BP_PRD.sys.sp_fulltext_column
     @tabname        nvarchar(517),      -- table name
     @colname        sysname,            -- column name
     @action         varchar(20),        -- add | drop
@@ -153287,7 +149370,7 @@ as
     return 0
 go
 
-create proc sys.sp_fulltext_database
+create proc BP_PRD.sys.sp_fulltext_database
     @action     varchar(20)     -- 'enable' | 'disable'
 as
     declare @ftcat      sysname,
@@ -153298,7 +149381,7 @@ as
             @dbname     sysname,
             @objname    sysname,
             @sch_id        int,
-            @vc1        nvarchar(517)   -- "[owner].[object]"
+            @vc1        nvarchar(517)   -- '[owner].[object]'
 
     declare @execstring nvarchar (4000)
 
@@ -153353,7 +149436,7 @@ as
         checkpoint
 
         -- DROP ALL CATALOGS WITH THIS DATABASE --
-        DBCC CALLFULLTEXT ( 7, @dbid )  -- FTDropAllCatalogs ( "@dbid" )
+        DBCC CALLFULLTEXT ( 7, @dbid )  -- FTDropAllCatalogs ( '@dbid' )
         if @@error <> 0
             return 1
     end
@@ -153382,7 +149465,6 @@ as
         end
         deallocate ms_crs_ftcat
 
-
     end
 
 	BEGIN TRANSACTION
@@ -153398,14 +149480,6 @@ as
 
     -- SUCCESS --
     return 0    -- sp_fulltext_database
-go
-
-create procedure sys.sp_fulltext_getdata() as
--- missing source code
-go
-
-create procedure sys.sp_fulltext_keymappings() as
--- missing source code
 go
 
 CREATE PROC sys.sp_fulltext_load_thesaurus_file
@@ -153462,7 +149536,7 @@ BEGIN
     DECLARE @diacritics_sensitive bit
     SELECT @diacritics_sensitive = 0
     SELECT @diacritics_sensitive = Thesaurus.d_s.value('.', 'bit') 
-    FROM @thesaurus.nodes(N'declare namespace PD="x-schema:tsSchema.xml";/XML/PD:thesaurus/PD:diacritics_sensitive') AS Thesaurus(d_s)
+    FROM @thesaurus.nodes(N'declare namespace PD='x-schema:tsSchema.xml';/XML/PD:thesaurus/PD:diacritics_sensitive') AS Thesaurus(d_s)
 
     -- This takes a lock on the lcid row
     -- All codepaths accessing the state table, phrase table serialize on the lcid row in this table
@@ -153510,13 +149584,13 @@ BEGIN
     INSERT INTO tempdb.sys.fulltext_thesaurus_phrase_table (groupid, isExpansion, isLHSOfReplacement, lcid, terms)
     SELECT X.rowid AS GroupId, 
            X.isexp AS IsExpansion, 
-           Sub.Val.value('if (local-name(.) eq "pat") then 1 else 0', 'int') AS isLHSOfReplacement,
+           Sub.Val.value('if (local-name(.) eq 'pat') then 1 else 0', 'int') AS isLHSOfReplacement,
            @lcid,
            WordBrokenPhrase.concatenated_terms
     FROM
     (
     SELECT T2.exp.query('.'), 
-           T2.exp.value('if (local-name(.) eq "expansion") then 1 else 0', 'int') isexp, 
+           T2.exp.value('if (local-name(.) eq 'expansion') then 1 else 0', 'int') isexp, 
            row_number() over (order by T3.DummyOrderingColumn) rowid
     FROM @thesaurus.nodes(N'(/XML/PD:thesaurus/PD:expansion, /XML/PD:thesaurus/PD:replacement)') AS T2(exp)
          -- this CROSS APPLY is needed since order by T2.exp is not a supported feature (even though it works)
@@ -153556,11 +149630,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_fulltext_pendingchanges() as
--- missing source code
-go
-
-create proc sys.sp_fulltext_recycle_crawl_log
+create proc BP_PRD.sys.sp_fulltext_recycle_crawl_log
     @ftcat      sysname        -- full-text catalog name
 as
     set nocount on
@@ -153613,7 +149683,7 @@ as
 	return 0
 go
 
-create proc sys.sp_fulltext_semantic_register_language_statistics_db
+create proc BP_PRD.sys.sp_fulltext_semantic_register_language_statistics_db
 	@dbname sysname
 as
 begin
@@ -153624,7 +149694,7 @@ begin
 end
 go
 
-create proc sys.sp_fulltext_semantic_unregister_language_statistics_db
+create proc BP_PRD.sys.sp_fulltext_semantic_unregister_language_statistics_db
 as
 begin
 	set nocount	on
@@ -153634,7 +149704,7 @@ begin
 end
 go
 
-create proc sys.sp_fulltext_service
+create proc BP_PRD.sys.sp_fulltext_service
     @action     nvarchar(100) = NULL,
     @value      sql_variant = NULL
 as
@@ -153752,7 +149822,6 @@ as
 	declare @dfltlonglong   bigint
 	declare @dfltstr		nvarchar(1024)
     declare @sval nvarchar(1024)
-
 
     -- find configuration option from the table --
     select  @Name = Name,
@@ -153905,7 +149974,7 @@ as
     return 0    -- sp_fulltext_service
 go
 
-create proc sys.sp_fulltext_table
+create proc BP_PRD.sys.sp_fulltext_table
     @tabname    nvarchar(517),
     @action     varchar(50),
     @ftcat      sysname = NULL,     -- create: catalog name
@@ -153975,7 +150044,6 @@ as
         raiserror(15002,-1,-1,'sys.sp_fulltext_table')
         return 1
     end
-
 
     if @action = 'create'
     begin
@@ -154078,8 +150146,7 @@ as
     return 0
 go
 
-
-create procedure sys.sp_generate_agent_parameter(
+create procedure BP_PRD.sys.sp_generate_agent_parameter(
     @profile_id     int,        -- Fixed profile id used
     @real_profile_id int = NULL -- Used by version upgrade 
 )
@@ -155141,7 +151208,6 @@ as
         if (@retcode = 1 or @@ERROR <> 0)
             goto FAILURE
 
-
     end
 
     /* 
@@ -155280,7 +151346,6 @@ as
                 @parameter_value = '60'
         if (@retcode = 1 or @@ERROR <> 0)
             goto FAILURE
-
 
         exec @retcode = sys.sp_add_agent_parameter 
                 @profile_id = @real_profile_id,
@@ -156034,8 +152099,7 @@ FAILURE:
     return 1
 go
 
-
-create procedure sys.sp_generatefilters
+create procedure BP_PRD.sys.sp_generatefilters
 	@publication				sysname
 	AS
 	/* Declare	a few variables */
@@ -156078,7 +152142,7 @@ create procedure sys.sp_generatefilters
 
 	/* Set up some temp tables to help keep track of what to process */
 	create table #filtered (object_id int NOT NULL, distance int NOT NULL)
-	create table #unfiltered (object_id int NOT NULL, art_name sysname collate database_default not null)
+	create table #unfiltered (object_id int NOT NULL, art_name BP_PRD.create table #unfiltered (object_id int NOT NULL, art_name sysname collate database_default not null)
 
 	/* Do initial population of temp tables */
 	insert into #filtered (object_id, distance) select objid, 0 from dbo.sysmergearticles where
@@ -156127,7 +152191,6 @@ create procedure sys.sp_generatefilters
 	return (0)
 go
 
-
 CREATE PROCEDURE sys.sp_getProcessorUsage 
 AS
 BEGIN
@@ -156145,7 +152208,6 @@ BEGIN
 	SELECT sys.fn_getProcessorUsage_internal()
 END
 go
-
 
 CREATE PROCEDURE sys.sp_getVolumeFreeSpace
 @database_name sysname,
@@ -156174,27 +152236,7 @@ BEGIN
 END
 go
 
-
---
--- Name:    
---          sp_get_Oracle_publisher_metadata
---          
--- Description: 
---          Specialized stored procedure for repldiag tool to gather
---          Oracle publishing meta data from all Oracle publishers
---          hosted at this distribution database
---
--- Arguments:
---          @database_name -- Name of database where meta data for publishers is to be deposited.
---  
--- Security: 
---          'sysadmin'
--- Requires Certificate signature for catalog access
---
--- Owner:   
---          sward 
-
-create procedure sys.sp_get_Oracle_publisher_metadata
+create procedure BP_PRD.sys.sp_get_Oracle_publisher_metadata
 (
 	@database_name	sysname
 )
@@ -156442,7 +152484,7 @@ FAILURE:
 END
 go
 
-create procedure sys.sp_get_job_status_mergesubscription_agent
+create procedure BP_PRD.sys.sp_get_job_status_mergesubscription_agent
 (
     @publisher      sysname = NULL,
     @publisher_db   sysname = NULL,
@@ -156477,7 +152519,6 @@ begin
 			return (1)
 		end
 	end
-
 
 	
 	    
@@ -156517,7 +152558,7 @@ begin
 end
 go
 
-create procedure sys.sp_get_mergepublishedarticleproperties (
+create procedure BP_PRD.sys.sp_get_mergepublishedarticleproperties (
     @source_object 	sysname = NULL,          /* The name of the object */
     @source_owner 	sysname = NULL          /* The name of the owner of the object */
     ) AS
@@ -156531,7 +152572,6 @@ create procedure sys.sp_get_mergepublishedarticleproperties (
     exec @retcode=sys.sp_MSreplcheck_subscribe
     if @retcode<>0 or @@ERROR<>0 
         return (1)
-
 
     /*
     ** Declarations.
@@ -156588,41 +152628,7 @@ create procedure sys.sp_get_mergepublishedarticleproperties (
     RETURN (0)
 go
 
-create procedure sys.sp_get_query_template() as
--- missing source code
-go
-
---
--- Name: sp_get_redirected_publisher
---
--- Descriptions: Retrieve the redirected publisher for the specified 
---               publisher database pair. If the publisher is not
---               currently redirected, return NULL. 
---
---               For redirected publishers, if the @bypass_publisher_validation
---               parameter is 0 (default), validation checks are performed
---               to verify that the target of the redirection is a suitable
---               host for the published database. Both informational and
---               error messages can be raised by the validation stored 
---               procedure. Raised errors are caught in a TRY/CATCH
---               block and the severity, error number and error message
---               are returned as output parameters.
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - On both success and error; errors caught in TRY/CATCH
---
---          Result set:
---
---              redirected_publisher sysname
---              error_number         int
---              error_severity       int
---              error_message        nvarchar(4000)
---
--- Security: Public procedure invoked via RPC. Check caller for db_owner 
---           or in the PAL of a publication of the named pubisher. 
---
-create procedure sys.sp_get_redirected_publisher
+create procedure BP_PRD.sys.sp_get_redirected_publisher
 (
     @original_publisher sysname,
     @publisher_db sysname,
@@ -156718,7 +152724,7 @@ begin
 end
 go
 
-create procedure sys.sp_getagentparameterlist
+create procedure BP_PRD.sys.sp_getagentparameterlist
 (
     @agent_type int
 )
@@ -156777,7 +152783,7 @@ begin
 end
 go
 
-create procedure sys.sp_getapplock --- 1999/04/14 00:00
+create procedure BP_PRD.sys.sp_getapplock --- 1999/04/14 00:00
  @Resource nvarchar (255) = NULL,           -- Resource to lock
  @LockMode varchar (32),                    -- Lock mode
  @LockOwner varchar (32) = 'Transaction',   -- Lock Owner - [D = Transaction]
@@ -156837,30 +152843,7 @@ as
   return @result
 go
 
-create procedure sys.sp_getbindtoken() as
--- missing source code
-go
-
-
---
--- Name:
---		sp_getdefaultdatatypemapping
---
--- Description:
---		Retrieve default data type for specified parameters
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		Public
---
--- Notes:
---		
---
-
-create procedure sys.sp_getdefaultdatatypemapping
+create procedure BP_PRD.sys.sp_getdefaultdatatypemapping
 (
 	@source_dbms			sysname,
 	@source_version			varchar(10) = NULL,
@@ -156891,7 +152874,6 @@ BEGIN
         RAISERROR(21089,16,-1) 
         RETURN (1)
     END
-
 
 	-- Check if type even exists
 	IF (sys.fn_MSrepl_checktype(@source_type, @source_dbms, @source_version) = 0)
@@ -156931,8 +152913,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_getmergedeletetype(
+create procedure BP_PRD.sys.sp_getmergedeletetype(
 	@source_object	nvarchar (386),
 	@rowguid		uniqueidentifier,
 	@delete_type	int OUTPUT
@@ -156968,7 +152949,7 @@ as
 	select @delete_type = type from dbo.MSmerge_tombstone where rowguid = @rowguid and tablenick = @tablenick
 go
 
-create procedure sys.sp_getpublisherlink 
+create procedure BP_PRD.sys.sp_getpublisherlink 
 (
     @trigger_id int
     ,@connect_string nvarchar(300) output
@@ -157045,7 +153026,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_getqueuedarticlesynctraninfo 
+create procedure BP_PRD.sys.sp_getqueuedarticlesynctraninfo 
 (
     @publication sysname    -- publication - cannot be null
     ,@artid int                     -- article id - cannot be null
@@ -157092,7 +153073,7 @@ begin
 end
 go
 
-create procedure sys.sp_getqueuedrows (
+create procedure BP_PRD.sys.sp_getqueuedrows (
     @tablename sysname
     ,@owner sysname = NULL
     ,@tranid nvarchar(70) = NULL
@@ -157248,7 +153229,7 @@ begin
     --
     -- create an enumeration of all the columns that are part of PK
     --
-    create table #pkcoltab(pkindex int identity, keyname sysname collate database_default not null)
+    create table #pkcoltab(pkindex int identity, keyname BP_PRD.create table #pkcoltab(pkindex int identity, keyname sysname collate database_default not null)
     while (@indkey <= 16)
     begin
         select @key = index_col( @qualified_tabname, @indid, @indkey )
@@ -157470,11 +153451,7 @@ cleanup:
 end
 go
 
-create procedure sys.sp_getschemalock() as
--- missing source code
-go
-
-create procedure sys.sp_getsqlqueueversion 
+create procedure BP_PRD.sys.sp_getsqlqueueversion 
 (
     @publisher sysname       -- pubisher - cannot be null
     ,@publisher_db sysname -- publisher_db - cannot be null
@@ -157540,24 +153517,7 @@ begin
 end
 go
 
-
---
--- Name:    
---          sp_getsubscription_status_hsnapshot
---          
--- Description: 
---          Specialized stored procedure for heterogeneous snapshot agent to
---          determine subscription status.
---  
--- Security: 
---          Agent
---
---          Result set:  Subscription status
---      
--- Owner:   
---          sward 
-
-create procedure sys.sp_getsubscription_status_hsnapshot
+create procedure BP_PRD.sys.sp_getsubscription_status_hsnapshot
 (
 	@publication	sysname,
 	@article	sysname,
@@ -157599,7 +153559,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_getsubscriptiondtspackagename (
+create procedure BP_PRD.sys.sp_getsubscriptiondtspackagename (
     @publication sysname,
     @subscriber sysname = NULL
      ) AS
@@ -157638,7 +153598,7 @@ create procedure sys.sp_getsubscriptiondtspackagename (
     select N'new_package_name' = @name_full
 go
 
-create procedure sys.sp_gettopologyinfo
+create procedure BP_PRD.sys.sp_gettopologyinfo
 (
 	@request_id		int = NULL
 )
@@ -157734,7 +153694,7 @@ begin
 end
 go
 
-create procedure sys.sp_grant_publication_access
+create procedure BP_PRD.sys.sp_grant_publication_access
 (
     @publication    sysname,
     @login            sysname,
@@ -158104,7 +154064,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_grantdbaccess
+create procedure BP_PRD.sys.sp_grantdbaccess
 	@loginame       sysname,
 	@name_in_db     sysname = NULL OUT
 as
@@ -158202,7 +154162,7 @@ as
     return (0)	-- sp_grantdbaccess
 go
 
-create procedure sys.sp_grantlogin
+create procedure BP_PRD.sys.sp_grantlogin
     @loginame		sysname
 AS
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -158266,7 +154226,7 @@ AS
     return (0)	-- sp_grantlogin
 go
 
-create procedure sys.sp_help
+create procedure BP_PRD.sys.sp_help
 	@objname nvarchar(776) = NULL		-- object name we're after
 as
 	-- PRELIMINARY
@@ -158498,7 +154458,7 @@ as
 	return (0) -- sp_help
 go
 
-create procedure sys.sp_help_agent_default (
+create procedure BP_PRD.sys.sp_help_agent_default (
     @profile_id     int OUTPUT, 
     @agent_type         int
 )
@@ -158526,8 +154486,7 @@ begin
 end
 go
 
--- View all the parameters of a profile from the MSagent_parameters table
-create procedure sys.sp_help_agent_parameter(
+create procedure BP_PRD.sys.sp_help_agent_parameter(
     @profile_id     int = -1
 )
 as
@@ -158555,25 +154514,7 @@ as
     end
 go
 
-
-
---
--- Name: sp_help_agent_profile
---
--- Description: 
--- View the row(s) of the MSagent_profiles table
---
--- Parameter: Refer to the comments in the create procedure statement
---
--- Returns: 1 or 0   0 = success
---
--- Resultset:
--- profile_id int
---
--- Security: Public procedure - sa or replmonitor 
--- Requires Certificate signature for catalog access
---
-create procedure sys.sp_help_agent_profile(
+create procedure BP_PRD.sys.sp_help_agent_profile(
     @agent_type     int = 0,
     @profile_id int = -1
 )
@@ -158625,9 +154566,7 @@ as
              (agent_type = @agent_type or @agent_type = 0)
         order by profile_id, profile_name
 
-go
-
-create procedure sys.sp_help_datatype_mapping
+create procedure BP_PRD.sys.sp_help_datatype_mapping
 (
     @dbms_name		sysname,
     @dbms_version 	sysname = NULL,
@@ -158674,7 +154613,7 @@ as
 	ORDER BY source_type, destination_type
 go
 
-create procedure sys.sp_help_fulltext_catalog_components
+create procedure BP_PRD.sys.sp_help_fulltext_catalog_components
 as
 	-- FULLTEXT MUST BE ACTIVE IN DATABASE --
 	if DatabasePropertyEx(db_name(), 'IsFulltextEnabled') = 0
@@ -158690,7 +154629,7 @@ as
 	from sys.fulltext_catalogs as ftcat cross apply sys.fn_ftcatcomponents(0, db_id(), ftcat.file_id) as ftcomp
 go
 
-create procedure sys.sp_help_fulltext_catalogs
+create procedure BP_PRD.sys.sp_help_fulltext_catalogs
 	@fulltext_catalog_name		sysname = NULL		-- full-text catalog name
 as
 	-- FULLTEXT MUST BE ACTIVE IN DATABASE --
@@ -158733,7 +154672,7 @@ as
 	return 0	-- sp_help_fulltext_catalogs
 go
 
-create procedure sys.sp_help_fulltext_catalogs_cursor
+create procedure BP_PRD.sys.sp_help_fulltext_catalogs_cursor
 	@cursor_return CURSOR VARYING OUTPUT,
 	@fulltext_catalog_name		sysname = NULL		-- full-text catalog name
 as
@@ -158780,7 +154719,7 @@ as
 	return 0	-- sp_help_fulltext_catalogs_cursor
 go
 
-create procedure sys.sp_help_fulltext_columns
+create procedure BP_PRD.sys.sp_help_fulltext_columns
 	@table_name nvarchar(517) = NULL,		-- table name
 	@column_name	sysname = NULL			-- column name
 as
@@ -158861,7 +154800,7 @@ as
 	return 0	-- sp_help_fulltext_columns
 go
 
-create procedure sys.sp_help_fulltext_columns_cursor
+create procedure BP_PRD.sys.sp_help_fulltext_columns_cursor
 	@cursor_return CURSOR VARYING OUTPUT,
 	@table_name nvarchar(517) = NULL,		-- table name
 	@column_name	sysname = NULL				-- column name
@@ -158945,7 +154884,7 @@ as
 	return 0	-- sp_help_fulltext_columns_cursor
 go
 
-create procedure sys.sp_help_fulltext_system_components
+create procedure BP_PRD.sys.sp_help_fulltext_system_components
 	@component_type sysname = NULL,		-- component type wordbreaker or filter
 	@param      	sysname = NULL		-- wordbreaker lcid, or filter extension, or PH name, or fullpath
 as
@@ -159036,7 +154975,6 @@ as
            version,
            manufacturer  from @reg_components
 
-
 	-- if we find any registered components meets the requirment, 
 	-- and if we search for a specific type of component, we need to dump all catalogs that used them.
     if (@param is not null and @@ROWCOUNT > 0)
@@ -159049,7 +154987,7 @@ as
     end
 go
 
-create procedure sys.sp_help_fulltext_tables
+create procedure BP_PRD.sys.sp_help_fulltext_tables
 	@fulltext_catalog_name		sysname = NULL, 		-- full-text catalog name
 	@table_name nvarchar(517) = NULL	-- table name
 as
@@ -159123,13 +155061,11 @@ as
 		
 	order by TABLE_OWNER, TABLE_NAME
 
-
-
 	-- SUCCESS --
 	return 0	-- sp_help_fulltext_tables
 go
 
-create procedure sys.sp_help_fulltext_tables_cursor
+create procedure BP_PRD.sys.sp_help_fulltext_tables_cursor
 	@cursor_return CURSOR VARYING OUTPUT,
 	@fulltext_catalog_name		sysname = NULL, 		-- full-text catalog name
 	@table_name nvarchar(517) = NULL	-- table name
@@ -159211,7 +155147,7 @@ as
 	return 0	-- sp_help_fulltext_tables_cursor
 go
 
-create procedure sys.sp_help_log_shipping_alert_job 
+create procedure BP_PRD.sys.sp_help_log_shipping_alert_job 
 as
 begin
     set nocount on
@@ -159241,7 +155177,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_monitor 
+create procedure BP_PRD.sys.sp_help_log_shipping_monitor 
 (
     @verbose bit = 0
 )
@@ -159820,7 +155756,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_monitor_primary 
+create procedure BP_PRD.sys.sp_help_log_shipping_monitor_primary 
 (
     @primary_server sysname
     ,@primary_database sysname
@@ -159857,7 +155793,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_monitor_secondary 
+create procedure BP_PRD.sys.sp_help_log_shipping_monitor_secondary 
 (
     @secondary_server sysname
     ,@secondary_database sysname
@@ -159894,7 +155830,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_primary_database 
+create procedure BP_PRD.sys.sp_help_log_shipping_primary_database 
 (
     @database sysname = NULL
     ,@primary_id uniqueidentifier = NULL
@@ -159957,7 +155893,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_primary_secondary 
+create procedure BP_PRD.sys.sp_help_log_shipping_primary_secondary 
 (
     @primary_database sysname
 )
@@ -160007,7 +155943,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_secondary_database 
+create procedure BP_PRD.sys.sp_help_log_shipping_secondary_database 
 (
     @secondary_database sysname = NULL
     ,@secondary_id uniqueidentifier = NULL
@@ -160088,7 +156024,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_log_shipping_secondary_primary 
+create procedure BP_PRD.sys.sp_help_log_shipping_secondary_primary 
 (
     @primary_server sysname -- cannot be NULL
     ,@primary_database sysname -- cannot be NULL
@@ -160136,7 +156072,7 @@ begin
 end
 go
 
-create procedure sys.sp_help_peerconflictdetection
+create procedure BP_PRD.sys.sp_help_peerconflictdetection
 (
     @publication                sysname,
     @timeout			   int = 60 --seconds 
@@ -160167,7 +156103,6 @@ begin
 		,@phase_timed_out bit
 		,@cursor_allocated bit
 		,@cursor_opened bit
-
 
 	select @OPT_ENABLED_FOR_P2P = 0x1
 		,@OPT_ENABLED_FOR_P2P_CONFLICTDETECTION = 0x8
@@ -160358,7 +156293,6 @@ begin
 			break
 	end
 
-
 	if @elapsetime >= @timeout
 	begin
 		raiserror(22812, 10, -1, N'exploring topology', @timeout) with nowait -- raise a warning
@@ -160446,7 +156380,7 @@ UNDO:
 end
 go
 
-create procedure sys.sp_help_publication_access
+create procedure BP_PRD.sys.sp_help_publication_access
 (
     @publication    sysname,
     @return_granted    bit = 1,
@@ -160506,7 +156440,7 @@ BEGIN
     -- Get logins in the PAL if needed
     if @initial_list = 0
     begin
-        create table #granted (login sysname null)    
+        create table #granted (login BP_PRD.create table #granted (login sysname null)    
 
         insert into #granted
         EXEC @retcode = @distproc
@@ -160523,7 +156457,7 @@ BEGIN
     -- Get distributor valid logins if needed
     if @return_granted = 0 or @initial_list = 1
     begin
-        create table #dist_logins(login sysname null)
+        create table #dist_logins(login BP_PRD.create table #dist_logins(login sysname null)
         
         insert into #dist_logins
         EXEC @retcode = @distproc
@@ -160762,7 +156696,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpallowmerge_publication 
+create procedure BP_PRD.sys.sp_helpallowmerge_publication 
 AS
 declare @db_name    sysname
 declare @retcode    int
@@ -160791,33 +156725,7 @@ end
 select 1
 go
 
-
---
--- Name:    
---          sp_helparticle
---          
--- Description: 
---          Returns information about a publication article.  If the article
---          name is not specified, it returns information for all publication
---          articles.
---
---          For a SQL Server publication, this stored procedure is executed
---          at the Publisher on the publication database.  For a heterogeneous
---          publication, this stored procedure may be executed in any database
---          at the distributor for the associated publisher.
---  
--- Security: 
---          SQL Server publication:     'sysadmin', db_owner of publishing database, PAL
---          Heterogeneous publication:  'sysadmin', db_owner of distribution database, PAL
---
--- Returns:
---          Result set of article properties
---      
--- Owner:   
---          <current owner> 
---
-
-create procedure sys.sp_helparticle
+create procedure BP_PRD.sys.sp_helparticle
 (
     @publication sysname,         /* The publication name */
     @article sysname = '%',       /* The article name */
@@ -160871,31 +156779,7 @@ BEGIN
 END
 go
 
-
---
--- Name:    
---          sp_helparticlecolumns
---          
--- Description: 
---          Returns information about an article's columns.  
---
---          For a SQL Server publication, this stored procedure is executed
---          at the Publisher on the publication database.  For a heterogeneous
---          publication, this stored procedure may be executed in any database
---          at the distributor for the associated publisher.
---  
--- Security: 
---          SQL Server publication:     'sysadmin', db_owner of publishing database, PAL
---          Heterogeneous publication:  'sysadmin', db_owner of distribution database, PAL
---
--- Returns:
---          Result set of article properties
---      
--- Owner:   
---          <current owner> 
---
-
-create procedure sys.sp_helparticlecolumns
+create procedure BP_PRD.sys.sp_helparticlecolumns
 (
 	@publication	sysname,
 	@article		sysname,
@@ -160931,7 +156815,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helparticledts (
+create procedure BP_PRD.sys.sp_helparticledts (
     @publication sysname,        /* Publication name */
     @article sysname             /* Article name */
     ) AS
@@ -160967,7 +156851,6 @@ create procedure sys.sp_helparticledts (
             RETURN (1)
     END
 
-
     /*
     ** Parameter Check:  @publication.
     ** Make sure that the publication exists.
@@ -160994,7 +156877,6 @@ create procedure sys.sp_helparticledts (
             RAISERROR (20026, 11, -1, @publication)
             RETURN (1)
         END
-
 
     if @allow_dts = 0
     begin
@@ -161038,7 +156920,7 @@ create procedure sys.sp_helparticledts (
         N'post_script_task_name' = @article_name + N'_post'
 go
 
-create procedure sys.sp_helpconstraint
+create procedure BP_PRD.sys.sp_helpconstraint
     @objname nvarchar(776)			-- the table to check for constraints
    ,@nomsg   varchar(5) = 'msg'		-- 'nomsg' supresses printing of TBName (sp_help)
 as
@@ -161273,7 +157155,6 @@ as
 	from	sys.columns c join syscomments m on m.id = c.default_object_id
 	where c.object_id = @objid and objectproperty(c.default_object_id, 'IsConstraint') = 0
 
-
 	-- OUTPUT RESULTS: FIRST THE OBJECT NAME (if not suppressed)
 	if @nomsg <> 'nomsg'
 	begin
@@ -161348,27 +157229,6 @@ as
 
 	return (0) -- sp_helpconstraint
 go
-
-
---
--- Name:
---		sp_helpdatatypemap
---
--- Description:
---		Retrieve data type map as result set
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
---
--- Notes:
---		Produces the full data type map based on input
---		parameters.  Includes filtered version based
---		on source and destination dbms, and defaults.
---
 
 CREATE PROCEDURE sys.sp_helpdatatypemap
 (
@@ -161469,7 +157329,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpdb  -- 1995/12/20 15:34 #12755
+create procedure BP_PRD.sys.sp_helpdb  -- 1995/12/20 15:34 #12755
 @dbname sysname = NULL			-- database name
 as
 
@@ -161517,7 +157377,6 @@ if not exists (select * from master.dbo.sysdatabases
 	  return (1)
 	end
 
-
 /*
 **  Initialize #spdbdesc from sysdatabases
 */
@@ -161525,7 +157384,6 @@ insert into #spdbdesc (dbname, owner, created, dbid, cmptlevel)
 		select name, isnull(suser_sname(sid),'~~UNKNOWN~~'), convert(nvarchar(11), crdate),
 			dbid, cmptlevel from master.dbo.sysdatabases
 			where (@dbname is null or name = @dbname)
-
 
 declare ms_crs_c1 cursor global for
 	select db_name (dbid) from #spdbdesc
@@ -161569,7 +157427,6 @@ declare @curdbid smallint	/* the one we're currently working on */
 **  Set @curdbid to the first dbid.
 */
 select @curdbid = min(dbid) from #spdbdesc
-
 
 while @curdbid IS NOT NULL
 begin
@@ -161669,7 +157526,7 @@ end
 return (0) -- sp_helpdb
 go
 
-create procedure sys.sp_helpdbfixedrole
+create procedure BP_PRD.sys.sp_helpdbfixedrole
 	@rolename		sysname = NULL
 AS
 	if @rolename is not null
@@ -161703,7 +157560,7 @@ AS
     return (0) -- sp_helpdbfixedrole
 go
 
-create procedure sys.sp_helpdevice --- 1996/04/08 00:00
+create procedure BP_PRD.sys.sp_helpdevice --- 1996/04/08 00:00
 @devname sysname = NULL		/* device to check out */
 as
 
@@ -161717,16 +157574,11 @@ create table #spdevtab
 	statusdesc nvarchar(255)	null
 )
 
--- alter the columns to master's collation, since we are inserting names from master.dbo.sysdevices.
--- This is needed because if this proc is being run in CDB, then the columns would be the CDB's data 
--- collation that could be different from master db's collation.
--- 
 declare @alterTab nvarchar(1024)
 select @alterTab = N'alter table #spdevtab alter column name sysname COLLATE ' + convert(nvarchar(256), SERVERPROPERTY('collation')) + ' NOT NULL'
 exec(@alterTab)
 select @alterTab = N'alter table #spdevtab alter column statusdesc nvarchar(255) COLLATE ' + convert(nvarchar(256), SERVERPROPERTY('collation')) + ' NULL'
 exec(@alterTab)
-
 
 /*
 **  See if the device exists.
@@ -161750,7 +157602,6 @@ insert into #spdevtab (name)
 	select name
 		from master.dbo.sysdevices
 		where (@devname is null or name = @devname)
-
 
 /*
 **  Now figure out what kind of controller type it is.
@@ -161790,7 +157641,6 @@ update #spdevtab
 		from master.dbo.sysdevices d, #spdevtab
 			where d.cntrltype >= 8
 				and #spdevtab.name = d.name
-
 
 /*
 **  Now check out the status bits and turn them into english.
@@ -161882,7 +157732,7 @@ select device_name = d.name, physical_name = d.phyname,
 return(0) -- sp_helpdevice
 go
 
-create procedure sys.sp_helpdistpublisher
+create procedure BP_PRD.sys.sp_helpdistpublisher
 (
     @publisher sysname = N'%',
     @check_user bit = 0               -- filter entries for distribution dbs where user is a owner
@@ -161919,14 +157769,14 @@ BEGIN
 		drop table #distdbs
     end
     
-    create table #distdbs (publisher sysname collate database_default, name sysname collate database_default)
+    create table #distdbs (publisher BP_PRD.create table #distdbs (publisher sysname collate database_default, name sysname collate database_default)
 
 	if object_id('tempdb..#MSdistlogins') is not NULL
     begin
 		drop table #MSdistlogins
     end
 
-    create table #MSdistlogins (name sysname, distribution_db sysname, login sysname, password nvarchar(524))
+    create table #MSdistlogins (name BP_PRD.create table #MSdistlogins (name sysname, distribution_db sysname, login sysname, password nvarchar(524))
     */
  
     --
@@ -162138,7 +157988,7 @@ BEGIN
 end
 go
 
-create procedure sys.sp_helpdistributiondb 
+create procedure BP_PRD.sys.sp_helpdistributiondb 
 (
     @database sysname = '%'
 )
@@ -162170,8 +158020,8 @@ begin
 
 	if object_id('msdb.dbo.MSdistributiondbs', 'U') is null
 	begin
-		-- "Could not find the Distributor or the distribution database for the local server. The Distributor 
-		--  may not be installed, or the local server may not be configured as a Publisher at the Distributor."
+		-- 'Could not find the Distributor or the distribution database for the local server. The Distributor 
+		--  may not be installed, or the local server may not be configured as a Publisher at the Distributor.'
         raiserror (14071, 16, -1)
         return(1)
     end    
@@ -162280,58 +158130,7 @@ begin
 end
 go
 
-
---
--- Name:
---		sp_helpdistributor
---
--- Description:
---		Procedure used to obtain distributor information.
---
--- Returns:
---		0 == SUCCESS
---		1 == FAILURE
---              Several output parameters or result set
---
--- Security:
---		limited public access
--- Requires Certificate signature for catalog access
---
--- Notes:
---		This is a public stored procedure used to gather general
---              distributor information.  It can be run on a publisher or
---              a subscriber that has a sysservers entry for the distributor.
---
---		Four output parameters are accessible with public access:
---
---			@distributor		Distribution server name
---			@distribdb			Distribution database
---			@rpcsrvname			rpc server name		
---			@publisher_type		Publisher type
---
---              One output parameter requires PAL access to a publication 
---              associated with the publisher.
---
---			@directory		Working directory
---
---		The remaining six output parameters require elevated authorization.
---		'sysadmin' has access to all results, from any database, at a server
---		with a sysservers entry identifying the distributor.  Access is also
---		extended to a 'db_owner' running in a publishing database at a
---		publisher
---
---			@account		SQL Server Agent login
---			@min_distretention	min distribution retention
---			@max_distretention	max distribution retention
---			@history_retention	history retention period
---			@history_cleanupagent	history cleanup agent
---			@distrib_cleanupagent	distribution cleanup agent
---
---              Parameters that the current user is not authorized to access are
---		returned as NULLs, both as output parameters and as columns in the
---		returned result set.
---          
-create procedure sys.sp_helpdistributor (
+create procedure BP_PRD.sys.sp_helpdistributor (
 	@distributor sysname  = '%' OUTPUT, /* The distribution server name */
 	@distribdb   sysname  = '%' OUTPUT, /* The distribution database */
 	@directory   nvarchar(255) = '%' OUTPUT, /* The working directory */
@@ -162555,7 +158354,6 @@ BEGIN
 	IF @loc_distribdb IS NOT NULL
 	    SELECT @loc_distribcleanupagent = formatmessage (20568, @loc_distribdb)
 
-
 	DONE:
 
 	/*
@@ -162585,7 +158383,7 @@ BEGIN
 	begin
 		-- Check to determine whether the current user is in the PAL
 		-- of any publication that makes use of this publisher.
-       		create table #pub (publisher_db sysname, publication sysname)
+       		create table #pub (publisher_db BP_PRD.create table #pub (publisher_db sysname, publication sysname)
 
        		SELECT @proc = RTRIM(@loc_rpcsrvname) + '.' + RTRIM(@loc_distribdb) + '.sys.sp_MSpublication_access'
        		INSERT into #pub (publisher_db, publication)
@@ -162674,7 +158472,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpdistributor_properties 
+create procedure BP_PRD.sys.sp_helpdistributor_properties 
      AS
 
     declare @retcode int
@@ -162701,14 +158499,13 @@ create procedure sys.sp_helpdistributor_properties
     return (1)
 go
 
-create procedure sys.sp_helpdynamicsnapshot_job (
+create procedure BP_PRD.sys.sp_helpdynamicsnapshot_job (
     @publication sysname = N'%',
     @dynamic_snapshot_jobname sysname = N'%',
     @dynamic_snapshot_jobid uniqueidentifier = null
 )
 as
     declare @retcode int
-
 
     exec @retcode = sys.sp_MSreplcheck_publish
     if @@error <> 0 or @retcode <> 0
@@ -162857,7 +158654,7 @@ Failure:
     
 go
 
-create procedure sys.sp_helpextendedproc --- 1996/08/14 15:53
+create procedure BP_PRD.sys.sp_helpextendedproc --- 1996/08/14 15:53
 @funcname sysname = NULL
 as
 
@@ -162891,7 +158688,7 @@ select distinct name, dll = substring(dll_name,1,255)
 return (0) -- sp_helpextendedproc
 go
 
-create procedure sys.sp_helpfile
+create procedure BP_PRD.sys.sp_helpfile
 @filename sysname = NULL			/* file name or all files */
 as
 
@@ -162940,12 +158737,11 @@ end
 return (0) -- sp_helpfile
 go
 
-create procedure sys.sp_helpfilegroup
+create procedure BP_PRD.sys.sp_helpfilegroup
 @filegroupname sysname = NULL		/* filegroup name or all filegroups */
 as
 
 set nocount on
--- status & 0x40 is a log file and thus not in any filegroup
 if @filegroupname IS NULL
 begin
 	select 	g.groupname,  g.groupid, 'filecount' =
@@ -162986,8 +158782,7 @@ end
 return (0) -- sp_helpfilegroup
 go
 
-
-create procedure sys.sp_helpindex
+create procedure BP_PRD.sys.sp_helpindex
 	@objname nvarchar(776)		-- the table to check for indexes
 as
 	-- PRELIM
@@ -163131,11 +158926,10 @@ as
 	from #spindtab
 	order by index_name
 
-
 	return (0) -- sp_helpindex
 go
 
-create procedure sys.sp_helplanguage --- 1996/04/08 00:00
+create procedure BP_PRD.sys.sp_helplanguage --- 1996/04/08 00:00
 @language sysname = NULL
 as
 	-- Print all languages if the user didn't give the language name.
@@ -163178,10 +158972,9 @@ as
 		raiserror(15033,-1,-1,@language)
 		return (1)
 	end
--- sp_helplanguage
 go
 
-create procedure sys.sp_helplinkedsrvlogin
+create procedure BP_PRD.sys.sp_helplinkedsrvlogin
 	@rmtsrvname		sysname = NULL,
 	@locallogin		sysname = NULL
 as
@@ -163217,7 +159010,7 @@ as
     return(0) -- sp_helplinkedsrvlogin
 go
 
-create procedure sys.sp_helplogins  --- 1996/08/12 14:34
+create procedure BP_PRD.sys.sp_helplogins  --- 1996/08/12 14:34
 
     @LoginNamePattern     sysname    = NULL
 AS
@@ -163244,19 +159037,15 @@ declare
       ,@charMaxLenLangName             varchar(11)
 
 declare
-       @DBOptLoading                   int   --0x0020      32  "DoNotRecover"
+       @DBOptLoading                   int   --0x0020      32  'DoNotRecover'
       ,@DBOptPreRecovery               int   --0x0040      64
       ,@DBOptRecovering                int   --0x0080     128
 
-      ,@DBOptSuspect                   int   --0x0100     256  ("not recovered")
+      ,@DBOptSuspect                   int   --0x0100     256  ('not recovered')
       ,@DBOptOffline                   int   --0x0200     512
       ,@DBOptDBOUseOnly                int   --0x0800    2048
 
       ,@DBOptSingleUser                int   --0x1000    4096
-
-
--------------  create work holding tables  ----------------
--- Create temp tables before any DML to ensure dynamic
 
 CREATE TABLE #tb2_PlainLogins
    (
@@ -163276,15 +159065,9 @@ CREATE TABLE #tb1_UA
    ,UserOrAlias                     char(8)		collate catalog_default NOT Null
    )
 
-----------------  Initial data values  -------------------
-
 select
        @RetCode                        = 0  -- 0=good ,1=bad
       ,@CountSkipPossUsers             = 0
-
-
-----------------  Only SA can run this  -------------------
-
 
 if (not (is_srvrolemember('securityadmin') = 1))
    begin
@@ -163292,9 +159075,6 @@ if (not (is_srvrolemember('securityadmin') = 1))
    select @RetCode = 1
    goto label_86return
    end
-
-----------------------  spt_values  ----------------
--------- 'D'
 
 select       @DBOptLoading       = number
       from   master.dbo.spt_values
@@ -163331,11 +159111,6 @@ select       @DBOptSingleUser    = number
       where  type                = 'D'
       and    name                = 'single user'
 
-
-
----------------  Cursor, for DBNames  -------------------
-
-
 declare ms_crs_10_DB
    Cursor local static For
 select
@@ -163343,18 +159118,10 @@ select
       from
              master.dbo.sysdatabases
 
-
-
 OPEN ms_crs_10_DB
 
-
------------------  LOOP 10:  thru Databases  ------------------
-
-
---------------
 WHILE (10 = 10)
    begin    --LOOP 10: thru Databases
-
 
    FETCH
              next
@@ -163365,16 +159132,11 @@ WHILE (10 = 10)
             ,@c10DBStatus
             ,@c10DBSID
 
-
    IF (@@fetch_status <> 0)
       begin
       deallocate ms_crs_10_DB
       BREAK
       end
-
-
---------------------  Okay if we peek inside this DB now?
-
 
    IF (     @c10DBStatus & @DBOptDBOUseOnly  > 0
        AND  @c10DBSID                       <> suser_sid()
@@ -163383,7 +159145,6 @@ WHILE (10 = 10)
       select @CountSkipPossUsers = @CountSkipPossUsers + 1
       CONTINUE
       end
-
 
    IF (@c10DBStatus & @DBOptSingleUser  > 0)
       begin
@@ -163400,7 +159161,6 @@ WHILE (10 = 10)
          end
       end
 
-
    IF (@c10DBStatus &
          (
            @DBOptLoading
@@ -163414,7 +159174,6 @@ WHILE (10 = 10)
       select @CountSkipPossUsers = @CountSkipPossUsers + 1
       CONTINUE
       end
-
 
    IF (@c10DBStatus &
          (
@@ -163433,9 +159192,6 @@ WHILE (10 = 10)
       CONTINUE
       end
 
-
-
----------------------  Add the User info to holding table.
 	select @exec_stmt = '
    INSERT    #tb1_UA
             (
@@ -163488,9 +159244,6 @@ WHILE (10 = 10)
 
    end --loop 10
 
----------------  Populate plain logins work table  ---------------
-
-
 INSERT       #tb2_PlainLogins
             (
              LoginName
@@ -163514,9 +159267,6 @@ INSERT       #tb2_PlainLogins
 			 or name = @LoginNamePattern
              or loginname = @LoginNamePattern
 
-
--- AUser
-
 UPDATE       #tb2_PlainLogins --(1996/08/12)
       set
              AUser  = 'yes'
@@ -163526,8 +159276,6 @@ UPDATE       #tb2_PlainLogins --(1996/08/12)
       where
              #tb2_PlainLogins.LoginName     = tb1.LoginName
       and    #tb2_PlainLogins.AUser        IS Null
-
-
 
 UPDATE       #tb2_PlainLogins
       set
@@ -163539,9 +159287,6 @@ UPDATE       #tb2_PlainLogins
       where
              AUser   IS Null
 
-
--- ARemote
-
 UPDATE       #tb2_PlainLogins
       set
              ARemote   = 'YES'
@@ -163552,18 +159297,11 @@ UPDATE       #tb2_PlainLogins
              #tb2_PlainLogins.SID = rl.sid
       and    #tb2_PlainLogins.ARemote                 IS Null
 
-
-
 UPDATE       #tb2_PlainLogins
       set
              ARemote  = 'no'
       where
              ARemote IS Null
-
-
-
-------------  Optimize widths for plain Logins report  ----------
-
 
 select
              @charMaxLenLoginName      =
@@ -163581,14 +159319,9 @@ select
       from
              #tb2_PlainLogins
 
-
-
-----------------  Print out plain Logins report  -------------
-
 EXEC(
 '
 set nocount off
-
 
 select
           ''LoginName''       = substring (LoginName     ,1 ,'
@@ -163609,15 +159342,9 @@ select
    order by
           LoginName
 
-
 Set nocount on
 '
 )
-
-
-
-------------  Optimize UA report column display widths  -----------
-
 
 select
              @charMaxLenLoginName   =
@@ -163635,14 +159362,9 @@ select
       from
              #tb1_UA
 
-
-
-------------  Print out the UserOrAlias report  ------------
-
 EXEC(
 '
 set nocount off
-
 
 select
           ''LoginName''    = substring (LoginName  ,1 ,'
@@ -163660,13 +159382,10 @@ select
    order by
           1 ,2 ,3
 
-
 Set nocount on
 '
 )
 
-
------------------------  Finalization  --------------------
 label_86return:
 
 IF (object_id('#tb2_PlainLogins') IS NOT Null)
@@ -163708,7 +159427,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpmergealternatepublisher (
+create procedure BP_PRD.sys.sp_helpmergealternatepublisher (
 	@publisher					sysname,	/* Publisher server */
 	@publisher_db				sysname,	/* Publisher database */
 	@publication				sysname	/* Publication name */
@@ -163791,9 +159510,7 @@ create procedure sys.sp_helpmergealternatepublisher (
 	
 	return (0)
 
-go
-
-create procedure sys.sp_helpmergearticle (
+create procedure BP_PRD.sys.sp_helpmergearticle (
     @publication sysname = '%',      /* The publication name */
     @article sysname = '%'          /* The article name */
     ) AS
@@ -164027,7 +159744,6 @@ create procedure sys.sp_helpmergearticle (
         and hma.pubid = smpi.pubid
     end
 
-
     declare @source_owner sysname
     declare @source_object sysname
     declare @identityrangemangementoption int
@@ -164076,8 +159792,7 @@ create procedure sys.sp_helpmergearticle (
     RETURN (0)
 go
 
-
-create procedure sys.sp_helpmergearticlecolumn (
+create procedure BP_PRD.sys.sp_helpmergearticlecolumn (
     @publication sysname,             /* The publication name */
     @article    sysname                 /* The article name */
     ) AS
@@ -164159,7 +159874,7 @@ create procedure sys.sp_helpmergearticlecolumn (
     SELECT @columns = columns, @objid=objid FROM dbo.sysmergearticles
         WHERE name = @article AND pubid = @pubid
 
-    create table #tmp (column_id int, column_name sysname collate database_default, published bit)
+    create table #tmp (column_id int, column_name BP_PRD.create table #tmp (column_id int, column_name sysname collate database_default, published bit)
     select TOP 1 @colid = column_id from sys.columns where object_id = @objid order by column_id ASC
     select TOP 1 @colmax = column_id from sys.columns where object_id = @objid order by column_id DESC
     while (@colid <= @colmax)
@@ -164180,7 +159895,7 @@ create procedure sys.sp_helpmergearticlecolumn (
     drop table #tmp
 go
 
-create procedure sys.sp_helpmergearticleconflicts(
+create procedure BP_PRD.sys.sp_helpmergearticleconflicts(
 	@publication	sysname = '%',
 	@publisher		sysname = NULL,
 	@publisher_db	sysname = NULL
@@ -164233,7 +159948,7 @@ as
 			END
 		end
 
-	create table #temp_conflict(article					sysname collate database_default,
+	create table #temp_conflict(article					BP_PRD.create table #temp_conflict(article					sysname collate database_default,
 								source_owner			sysname collate database_default,
 								source_object			sysname collate database_default,
 								conflict_table			sysname collate database_default,
@@ -164280,7 +159995,7 @@ as
 return(0)		
 go
 
-create procedure sys.sp_helpmergeconflictrows(
+create procedure BP_PRD.sys.sp_helpmergeconflictrows(
     @publication    sysname = '%',
     @conflict_table sysname,
     @publisher		sysname = NULL,
@@ -164371,8 +160086,7 @@ as
    	return (0)
 go
 
-
-create procedure sys.sp_helpmergedeleteconflictrows(
+create procedure BP_PRD.sys.sp_helpmergedeleteconflictrows(
 	@publication	sysname = '%',
 	@source_object	nvarchar(386) = NULL,
 	@publisher		sysname = NULL,
@@ -164401,7 +160115,7 @@ as
 	select @cmd = @cmd + '''.'''
 	select @cmd = @cmd + ' + sys.objects.name, MSmerge_conflicts_info.rowguid, MSmerge_conflicts_info.conflict_type, '
 	select @cmd = @cmd + ' MSmerge_conflicts_info.reason_code, MSmerge_conflicts_info.reason_text, '
-	select @cmd = @cmd + ' MSmerge_conflicts_info.origin_datasource, MSmerge_conflicts_info.pubid, MSmerge_conflicts_info.MSrepl_create_time from MSmerge_conflicts_info, dbo.sysmergearticles, sys.objects'	 
+	select @cmd = @cmd + ' MSmerge_conflicts_info.origin_datasource, MSmerge_conflicts_info.pubid, MSmerge_conflicts_info.MSrepl_create_time from MSmerge_conflicts_info, BP_PRD.create_time from MSmerge_conflicts_info, dbo.sysmergearticles, sys.objects'	 
 	select @cmd = @cmd + ' where dbo.sysmergearticles.nickname = MSmerge_conflicts_info.tablenick 
 					 and sys.objects.object_id = dbo.sysmergearticles.objid '
 
@@ -164461,8 +160175,7 @@ as
 	return 0
 go
 
-
-create procedure sys.sp_helpmergefilter
+create procedure BP_PRD.sys.sp_helpmergefilter
     @publication            sysname,        /* publication name */
     @article                sysname = '%',            /* article name */ 
     @filtername                sysname = '%',
@@ -164581,7 +160294,7 @@ create procedure sys.sp_helpmergefilter
     return(0)
 go
 
-create procedure sys.sp_helpmergelogfiles(
+create procedure BP_PRD.sys.sp_helpmergelogfiles(
     @publication            sysname = '%',        /* Publication name */
     @subscriber             sysname = '%',        /* Subscriber server */
     @subscriber_db          sysname = '%',        /* Subscription database */
@@ -164672,7 +160385,6 @@ create procedure sys.sp_helpmergelogfiles(
 		            log_file_type		 int NULL
                 )
 
-
     insert into #helplogfiles select distinct mlf.id, pubs.name, pubs.publisher, pubs.publisher_db, subs.subscriber_server, subs.db_name, 
 					mlf.web_server, mlf.file_name, mlf.upload_time, mlf.log_file_type
 
@@ -164696,7 +160408,7 @@ create procedure sys.sp_helpmergelogfiles(
     return @retcode 
 go
 
-create procedure sys.sp_helpmergelogfileswithdata(
+create procedure BP_PRD.sys.sp_helpmergelogfileswithdata(
     @publication            sysname = '%',        /* Publication name */
     @subscriber             sysname = '%',        /* Subscriber server */
     @subscriber_db          sysname = '%',        /* Subscription database */
@@ -164789,7 +160501,6 @@ create procedure sys.sp_helpmergelogfileswithdata(
 		            log_file             varbinary(max) NULL
                 )
 
-
     insert into #helplogfileswithdata select distinct mlf.id, pubs.name, pubs.publisher, pubs.publisher_db, subs.subscriber_server, subs.db_name, 
 					mlf.web_server, mlf.file_name, mlf.upload_time, mlf.log_file_type, mlf.log_file
 
@@ -164814,7 +160525,7 @@ create procedure sys.sp_helpmergelogfileswithdata(
     return @retcode 
 go
 
-create procedure sys.sp_helpmergelogsettings(
+create procedure BP_PRD.sys.sp_helpmergelogsettings(
     @publication            sysname = '%',        /* Publication name */
     @subscriber                sysname = '%',        /* Subscriber server */
     @subscriber_db            sysname = '%',        /* Subscription database */
@@ -164915,7 +160626,6 @@ create procedure sys.sp_helpmergelogsettings(
                     sql_xe                          varbinary(max) NULL
                 )
 
-
     insert into #helplogsettings select distinct pubs.name, pubs.publisher, pubs.publisher_db, subs.subscriber_server, subs.db_name, 
 					mss.web_server, mss.support_options, mss.log_severity, mss.log_modules, mss.log_file_path, mss.log_file_name, mss.log_file_size,
 					mss.no_of_log_files, mss.upload_interval, mss.delete_after_upload, mss.custom_script, mss.message_pattern, mss.last_log_upload_time,
@@ -164940,7 +160650,7 @@ create procedure sys.sp_helpmergelogsettings(
     return @retcode 
 go
 
-create procedure sys.sp_helpmergepartition (
+create procedure BP_PRD.sys.sp_helpmergepartition (
         @publication sysname, 
         @suser_sname sysname = NULL,
         @host_name sysname = NULL) 
@@ -165027,7 +160737,7 @@ begin
 end
 go
 
-create procedure sys.sp_helpmergepublication (
+create procedure BP_PRD.sys.sp_helpmergepublication (
     @publication    sysname = '%',    /* The publication name */
     @found          int         = NULL  OUTPUT,
     @publication_id uniqueidentifier = NULL OUTPUT,
@@ -165119,7 +160829,6 @@ create procedure sys.sp_helpmergepublication (
         end
     end
 
-
     -- When the merge agent calls sp_helpmergepublication on the publisher connection,
     -- we don't need row numbers and also don't need some other code that is in 
     -- sp_MShelpmergepub_withrownumbers. With multiple concurrent merge agents calling
@@ -165152,8 +160861,7 @@ create procedure sys.sp_helpmergepublication (
     return @retcode
 go
 
-
-create procedure sys.sp_helpmergepullsubscription(
+create procedure BP_PRD.sys.sp_helpmergepullsubscription(
     @publication         sysname = '%',        /* Publication name */
     @publisher            sysname = '%',      /* Publisher server */
     @publisher_db        sysname = '%',      /* Publication database */
@@ -165404,8 +161112,7 @@ DONE:
     return @retcode    
 go
 
-
-create procedure sys.sp_helpmergesubscription(
+create procedure BP_PRD.sys.sp_helpmergesubscription(
     @publication            sysname = '%',        /* Publication name */
     @subscriber                sysname = '%',        /* Subscriber server */
     @subscriber_db            sysname = '%',        /* Subscription database */
@@ -165566,7 +161273,6 @@ create procedure sys.sp_helpmergesubscription(
                     hostname                sysname        NULL
                 )
 
-
     /* 
     ** Performance Optimization: Eliminate the 'LIKE' clause for publication name.
     **                             Empirical evidence shows almost 50% speed improvement when
@@ -165722,7 +161428,7 @@ DONE:
     return @retcode 
 go
 
-create procedure sys.sp_helpntgroup
+create procedure BP_PRD.sys.sp_helpntgroup
 	@ntname       sysname = NULL
 AS
 	if @ntname is not null
@@ -165754,7 +161460,7 @@ AS
 	return (0) -- sp_helpntgroup
 go
 
-create procedure sys.sp_helppeerrequests
+create procedure BP_PRD.sys.sp_helppeerrequests
 (
 	@publication	sysname,
 	@description	nvarchar(4000) = '%'
@@ -165788,7 +161494,7 @@ begin
 end
 go
 
-create procedure sys.sp_helppeerresponses
+create procedure BP_PRD.sys.sp_helppeerresponses
 (
 	@request_id int
 )
@@ -165819,36 +161525,7 @@ begin
 end
 go
 
-
---
--- Name:    
---          sp_helppublication
---          
--- Description: 
---          Returns information about a publication.  If the article
---          name is not specified, it returns information for all publications
---          associated with the publishing database.
---
---          For a SQL Server publication, this stored procedure is executed
---          at the Publisher on the publishing database.  For a heterogeneous
---          publication, this stored procedure may be executed in any database
---          at the distributor for the associated publisher.
---
---          When the @publication parameter is NULL, results are only returned
---          for those publications that the current user has PAL access to.
---  
--- Security: 
---          SQL Server publication:     'sysadmin', db_owner of publishing database, PAL
---          Heterogeneous publication:  'sysadmin', db_owner of distribution database, PAL
---
--- Returns:
---          Result set of publication properties
---      
--- Owner:   
---          <current owner> 
---
-
-create procedure sys.sp_helppublication
+create procedure BP_PRD.sys.sp_helppublication
 (
     @publication sysname = N'%',
     @found int = 23456 OUTPUT, -- flag indicate returning row
@@ -165914,8 +161591,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_helppublicationsync (
+create procedure BP_PRD.sys.sp_helppublicationsync (
         @publication sysname    /* The publication name */
         ) AS
     SET NOCOUNT ON
@@ -165923,8 +161599,7 @@ create procedure sys.sp_helppublicationsync (
     RETURN(1)
 go
 
-
-create procedure sys.sp_helppullsubscription 
+create procedure BP_PRD.sys.sp_helppullsubscription 
 (
     @publisher sysname = N'%',
     @publisher_db sysname = N'%',
@@ -166099,26 +161774,6 @@ begin
 end
 go
 
---
--- Name:	
---		sp_helpqreader_agent
---			
--- Description: 
---		Displays the following information on qreader agent:
---			QA ID
---			NAME
---			Job ID
---			Job Login
---			Job Password (dummy value of 10 *'s)
---	
--- Security: 
---		DBO of distributiondb
--- Requires Certificate signature for catalog access
---
--- Returns: 	
---		0 : success
---		1 : failure 		 
---
 CREATE PROCEDURE sys.sp_helpqreader_agent
 (
 	@frompublisher bit = 0
@@ -166215,13 +161870,12 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpremotelogin
+create procedure BP_PRD.sys.sp_helpremotelogin
 @remoteserver sysname = NULL,	/* remote server name */
 @remotename sysname = NULL		/* remote login name */
 as
 set nocount on
 
---  If no server given, get 'em all.
 if not exists (select * from master.dbo.sysservers s, master.dbo.sysremotelogins r
 	where s.srvid = r.remoteserverid
 		and (@remoteserver is null or s.srvname = @remoteserver ))
@@ -166236,7 +161890,6 @@ if not exists (select * from master.dbo.sysservers s, master.dbo.sysremotelogins
 		return (1)
 	end
 
---  If no remotename given, get 'em all.
 if not exists (select * from master.dbo.sysremotelogins
 	where (@remotename is null or isnull(remoteusername, ' ') = @remotename))
 	begin
@@ -166251,7 +161904,6 @@ if not exists (select * from master.dbo.sysremotelogins
 
 	end
 
---  Check for empty results.
 if not exists (select *
 	from master.dbo.sysremotelogins r, master.dbo.sysservers s
 	where ( @remotename is null or isnull(r.remoteusername, ' ') = @remotename)
@@ -166262,7 +161914,6 @@ if not exists (select *
 		return (1)
 	end
 
---  select the information.
 select server = substring(s.srvname, 1, 22),
 	local_user_name =
 		substring(isnull(suser_sname(r.sid), '** use local name **'), 1, 22),
@@ -166285,7 +161936,7 @@ order by server, remote_user_name
 return (0) -- sp_helpremotelogin
 go
 
-create procedure sys.sp_helpreplfailovermode (
+create procedure BP_PRD.sys.sp_helpreplfailovermode (
     @publisher sysname,
     @publisher_db sysname,
     @publication sysname,
@@ -166404,7 +162055,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpreplicationdb
+create procedure BP_PRD.sys.sp_helpreplicationdb
         @dbname sysname = '%', @type sysname = 'pub'
     AS
 
@@ -166450,41 +162101,7 @@ create procedure sys.sp_helpreplicationdb
        AND (category & @typebit) <> 0
 go
 
-
---
--- Name:    
---          sp_helpreplicationdboption
---          
--- Description: 
---          This stored procedure shows databases that have the replication
---          option enabled.  It is executed at the publisher on any database.
---          It is used in snapshot, transactional, and merge replication.
---          It is not valid for heterogeneous publishers.
---
---          When the @dbname is speciified, a result set is returned if the
---          database meets the criteria specified in @type.
---
---          When the @dbname parameter is NULL, the result set includes entries
---          for all databases at the publisher that meet the criteria specified
---          in @type.   
---
---          The user must be a member of the db_owner role of a publishing database
---          or in the PAL for a publication associated with the publishing database 
---          to retrieve information for that database.
---  
--- Security: 
---          'sysadmin', db_owner of publishing database, PAL for publication
---          associated with publishing databaseDB
--- Requires Certificate signature for catalog access
---
--- Returns:
---          Result set of database name, database id, transactional publisher,
---          merge publisher, current user is dbowner, database is readonly.
---      
--- Owner:   
---          <current owner> 
---
-create procedure sys.sp_helpreplicationdboption 
+create procedure BP_PRD.sys.sp_helpreplicationdboption 
 (
     @dbname sysname = N'%'
     ,@type sysname = N'replication allowed'
@@ -166684,14 +162301,12 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_helpreplicationoption (
+create procedure BP_PRD.sys.sp_helpreplicationoption (
 @optname        sysname = NULL
 )
 AS
     DECLARE @optbit bit
     DECLARE @retcode int
-
 
     IF @optname IS NOT NULL AND LOWER(@optname collate SQL_Latin1_General_CP1_CS_AS) NOT IN ('transactional','merge')
     BEGIN
@@ -166710,7 +162325,7 @@ FAILURE:
     RETURN(1)
 go
 
-create procedure sys.sp_helprole
+create procedure BP_PRD.sys.sp_helprole
 	@rolename       sysname = NULL
 AS
 	if @rolename is not null
@@ -166737,7 +162352,7 @@ AS
 	return (0) -- sp_helprole
 go
 
-create procedure sys.sp_helprolemember
+create procedure BP_PRD.sys.sp_helprolemember
 	@rolename       sysname = NULL
 AS
 	if @rolename is not null
@@ -166770,7 +162385,7 @@ AS
 	return (0) -- sp_helprolemember
 go
 
-create procedure sys.sp_helprotect
+create procedure BP_PRD.sys.sp_helprotect
 	@name				ncharacter varying(776)  = NULL
 	,@username			sysname  = NULL
 	,@grantorname		sysname  = NULL
@@ -166779,7 +162394,6 @@ as
 
 /********
 Explanation of the parms...
----------------------------
 @name:  Name of [Owner.]Object and Statement; meaning
 for sysprotects.id and sysprotects.action at the
 same time; thus see parm @permissionarea.
@@ -166841,7 +162455,6 @@ CREATE TABLE #t1_Prots(
 
 		,ColumnName			sysname		collate catalog_default Null
 		)
-
 
 	/*	Check for valid @permissionarea */
 	select @permissionarea = upper( isnull(@permissionarea,'?') )
@@ -167013,7 +162626,6 @@ CREATE TABLE #t1_Prots(
 		end
 	end
 
-
 	/* Handle statement permissions here*/
 	IF (charindex('S',@permissionarea) > 0)
 	begin
@@ -167056,7 +162668,6 @@ CREATE TABLE #t1_Prots(
 			and	(@ObjectStatementName is null or permission_name = @ObjectStatementName)
 			
 	end
-
 
 	IF NOT EXISTS (select * from #t1_Prots)
 	begin
@@ -167127,7 +162738,7 @@ set nocount on'
 return (0) -- sp_helprotect
 go
 
-create procedure sys.sp_helpserver
+create procedure BP_PRD.sys.sp_helpserver
     @server         sysname = NULL,         -- server name
     @optname        varchar(35) = NULL,     -- option name to limit results
     @show_topology  varchar(1) = NULL       -- 't' to show topology coordinates
@@ -167203,7 +162814,7 @@ as
     return(0) -- sp_helpserver
 go
 
-create procedure sys.sp_helpsort
+create procedure BP_PRD.sys.sp_helpsort
 AS
 	set nocount on
 
@@ -167222,7 +162833,7 @@ AS
 	return(0) -- sp_helpsort
 go
 
-create procedure sys.sp_helpsrvrole
+create procedure BP_PRD.sys.sp_helpsrvrole
 	@srvrolename		sysname = NULL
 AS
 	if @srvrolename is not null
@@ -167236,7 +162847,7 @@ AS
 		end
 
 		-- RESULT SET FOR SINGLE SERVER-ROLE
-		-- UNDONE: REMOVE THE "Description" OUTPUT (should be BOL only)
+		-- UNDONE: REMOVE THE 'Description' OUTPUT (should be BOL only)
 		select 'ServerRole' = v1.name, 'Description' = v2.name
 			from master.dbo.spt_values v1, master.dbo.spt_values v2
 			where v1.name = @srvrolename and
@@ -167249,7 +162860,7 @@ AS
 	else
 	begin
 		-- RESULT SET FOR ALL SERVER-ROLES
-		-- UNDONE: REMOVE THE "Description" OUTPUT (should be BOL only)
+		-- UNDONE: REMOVE THE 'Description' OUTPUT (should be BOL only)
 		select 'ServerRole' = v1.name, 'Description' = v2.name
 			from master.dbo.spt_values v1, master.dbo.spt_values v2
 			where v1.low = 0 and
@@ -167262,7 +162873,7 @@ AS
     return (0) -- sp_helpsrvrole
 go
 
-create procedure sys.sp_helpsrvrolemember
+create procedure BP_PRD.sys.sp_helpsrvrolemember
 	@srvrolename       sysname = NULL
 AS
 	if @srvrolename is not null
@@ -167293,8 +162904,7 @@ AS
     return (0) -- sp_helpsrvrolemember
 go
 
-
-create procedure sys.sp_helpstats
+create procedure BP_PRD.sys.sp_helpstats
 	@objname nvarchar(776),		-- the table to check for statistics
 	@results nvarchar(5) = 'STATS'	-- 'ALL' returns indexes & stats, 'STATS' returns just stats
 as
@@ -167407,13 +163017,10 @@ as
 
 return (0) -- sp_helpstats
 
------------------------ sp_helptext ----------------------------------------
-
 raiserror(15339,-1,-1,'sys.sp_helptext')
 go
 
-
-create procedure sys.sp_helpsubscriberinfo
+create procedure BP_PRD.sys.sp_helpsubscriberinfo
 (
     @subscriber	sysname = '%',
     @publisher	sysname = null
@@ -167448,26 +163055,7 @@ BEGIN
 END
 go
 
-
---
--- Name:    
---          sp_helpsubscription
---          
--- Description: 
---          Lists subscription information associated with a particular publication, article,
---			Subscriber, or set of subscriptions. This stored procedure is executed at a Publisher
---			on the publication database.
---  
--- Security: 
---          Public
---
--- Returns:
---          Result set of subscription properties
---      
--- Owner:   
---          <current owner> 
-
-create procedure sys.sp_helpsubscription
+create procedure BP_PRD.sys.sp_helpsubscription
 (
 	@publication	sysname = '%',
 	@article		sysname = '%',
@@ -167508,7 +163096,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helpsubscription_properties
+create procedure BP_PRD.sys.sp_helpsubscription_properties
         @publisher sysname = '%', 
         @publisher_db sysname = '%', 
         @publication sysname = '%', 
@@ -167672,7 +163260,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_helptext
+create procedure BP_PRD.sys.sp_helptext
 @objname nvarchar(776)
 ,@columnname sysname = NULL
 as
@@ -167729,7 +163317,6 @@ if (@objid is null)
 		return (1)
         end
 
--- If second parameter was given.
 if ( @columnname is not null)
     begin
         -- Check if it is a table
@@ -167800,7 +163387,6 @@ else
 */
 select @LFCR = 2
 select @LineId = 1
-
 
 OPEN ms_crs_syscom
 
@@ -167882,7 +163468,7 @@ DROP TABLE 	#CommentText
 return (0) -- sp_helptext
 go
 
-create procedure sys.sp_helptracertokenhistory
+create procedure BP_PRD.sys.sp_helptracertokenhistory
 (
 	@publication	sysname,
 	@tracer_id		int,
@@ -167937,7 +163523,7 @@ begin
     -- check this db is published
 	if sys.fn_MSrepl_istranpublished(db_name(),1) <> 1
     begin
-		-- "The database is not published."
+		-- 'The database is not published.'
 		raiserror (18757, 16, -1)
 		return 1
 	end
@@ -167964,7 +163550,7 @@ begin
 											@publisher = @publisher
 	if @@error <> 0 or @retcode <> 0 or @distributor is NULL or @distribution_db is NULL
 	begin
-		-- "The Distributor has not been installed correctly."
+		-- 'The Distributor has not been installed correctly.'
 		raiserror(20036, 16, -1)
 		return 1
 	end
@@ -167983,7 +163569,7 @@ begin
 end
 go
 
-create procedure sys.sp_helptracertokens
+create procedure BP_PRD.sys.sp_helptracertokens
 (
 	@publication	sysname,
 	@publisher		sysname = NULL,
@@ -168036,7 +163622,7 @@ begin
     -- check this db is published
 	if sys.fn_MSrepl_istranpublished(db_name(),1) <> 1
     begin
-		-- "The database is not published."
+		-- 'The database is not published.'
 		raiserror (18757, 16, -1)
 		return 1
 	end
@@ -168063,7 +163649,7 @@ begin
 											@publisher = @publisher
 	if @@error <> 0 or @retcode <> 0 or @distributor is NULL
 	begin
-		-- "The Distributor has not been installed correctly."
+		-- 'The Distributor has not been installed correctly.'
 		raiserror(20036, 16, -1)
 		return 1
 	end
@@ -168081,7 +163667,7 @@ begin
 end
 go
 
-create procedure sys.sp_helptrigger
+create procedure BP_PRD.sys.sp_helptrigger
     @tabname		nvarchar(776),		-- Table name
 	@triggertype	char(6) = NULL	-- Trigger type
 as
@@ -168089,7 +163675,6 @@ as
 declare @objid int,        /* id of the object */
 		@dbname sysname
 
--- Check to see that the object names are local to the current database.
 select @dbname = parsename(@tabname,3)
 	   ,@triggertype = UPPER (@triggertype collate Latin1_General_CI_AS)
 if @dbname is null
@@ -168133,7 +163718,7 @@ select
 return(0)  --sp_helptrigger
 go
 
-create procedure sys.sp_helpuser  --- 1996/08/14 10:33
+create procedure BP_PRD.sys.sp_helpuser  --- 1996/08/14 10:33
     @name_in_db       sysname    = NULL --User,Alias
 AS
 
@@ -168154,7 +163739,6 @@ declare
 declare
     @Name1Type             char(2)
 
------------------------  create holding table  --------------------
 /*Create temp table before any DML to ensure dynamic*/
 
 CREATE TABLE #tb1_uga
@@ -168168,22 +163752,14 @@ CREATE TABLE #tb1_uga
    ,zSID             varbinary(85)  Null
    )
 
---------
-
 select
     @RetCode               = 0
    ,@Name1Type             = Null
-
-
--------------  What type of value (U,G,A) was input?  --------------
-
--------- NULL
 
 IF (@name_in_db IS Null)
    begin
 
    select @Name1Type = '-'
-
 
    INSERT into  #tb1_uga
                (
@@ -168210,13 +163786,9 @@ IF (@name_in_db IS Null)
          left join sys.server_principals l on u.sid = l.sid
          where u.type <> 'R'
 
-
    GOTO LABEL_25NAME1TYPEKNOWN
 
    end
-
-
--------- USER
 
 INSERT   into   #tb1_uga
                (
@@ -168245,7 +163817,6 @@ INSERT   into   #tb1_uga
 
 select @_rowcount = @@rowcount
 
-
 IF (@_rowcount > 0)
    begin
    select @Name1Type = 'US'
@@ -168253,8 +163824,6 @@ IF (@_rowcount > 0)
    GOTO LABEL_25NAME1TYPEKNOWN
 
    end
-
--------- ROLES
 
 if exists (select * from sys.database_principals where  name = @name_in_db and type = 'R')
    begin
@@ -168272,22 +163841,12 @@ if exists (select * from sys.database_principals where  name = @name_in_db and t
 
    end
 
-
--------- Error
 raiserror(15198,-1,-1 ,@name_in_db)  --Input Name is unfound
 select @RetCode = @RetCode | 1
 
 GOTO LABEL_75FINAL
 
---------
-
-
 LABEL_25NAME1TYPEKNOWN:
-
-
------------------------  Printout the report  -------------------------
-
--------- Preparations for dynamic exec
 
 select
           @charMaxLen_UsName  = convert( varchar,
@@ -168306,10 +163865,6 @@ select
                   isnull( max( datalength( zDefScName)),9))
    from
           #tb1_uga
-
-
--------- Dynamic EXEC() to printout report
-
 
 EXECUTE(
 '
@@ -168339,40 +163894,13 @@ select
 '
 )
 
------------------------  Finalization  ----------------------
-
-
 LABEL_75FINAL:
-
 
 IF (object_id('tempdb..#tb1_uga') IS not Null)
             DROP TABLE #tb1_uga
 
 return @RetCode -- sp_helpuser
 go
-
-
---
--- Name:
---		sp_helpxactsetjob
---
--- Description:
---		Return current settings for the xactset Job
---
--- Inputs:
---		@publisher		== name of heterogeneous publisher
---
--- Returns:
---		Return code (0 for success, 1 for failure)
---
--- Security:
---		public -- call must be sysadmin
---
--- Notes:
---		This stored procedure is provided so that the administrator of 
---		heterogeneous publishing can examine the current settings associated 
---      with the xactset job.
---
 
 CREATE PROCEDURE sys.sp_helpxactsetjob
 (
@@ -168387,7 +163915,7 @@ BEGIN
 	-- Security Check
     IF IS_SRVROLEMEMBER ('sysadmin') != 1
     BEGIN
-    	-- "Only members of the sysadmin fixed server role can perform this operation."
+    	-- 'Only members of the sysadmin fixed server role can perform this operation.'
         RAISERROR(21089,16,-1)
         RETURN 1
     END
@@ -168417,12 +163945,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_http_generate_wsdl_complex() as
--- missing source code
-go
-
-
-create procedure sys.sp_http_generate_wsdl_defaultcomplexorsimple 
+create procedure BP_PRD.sys.sp_http_generate_wsdl_defaultcomplexorsimple 
 	@EndpointID int,
 	@IsSSL bit,
 	@Host nvarchar(256),
@@ -168449,8 +163972,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_http_generate_wsdl_defaultsimpleorcomplex
+create procedure BP_PRD.sys.sp_http_generate_wsdl_defaultsimpleorcomplex
 	@EndpointID int,
 	@IsSSL bit,
 	@Host nvarchar(256),
@@ -168477,25 +163999,6 @@ begin
 end
 go
 
-create procedure sys.sp_http_generate_wsdl_simple() as
--- missing source code
-go
-
---
--- Name:
--- 		sp_identitycolumnforreplication
---
--- Description:
---  	This procedure allows customers to set the NFR on
---		identity columns for a particular table.
---	
--- Returns:
---  	0-Success 1-Failure
---
--- Security: DBO check
---
--- Requires Certificate signature for catalog access
---
 CREATE PROCEDURE sys.sp_identitycolumnforreplication
 (
 	@object_id	int,
@@ -168529,8 +164032,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_indexcolumns_managed 
+create procedure BP_PRD.sys.sp_indexcolumns_managed 
 ( 
 	@Catalog			sysname = NULL,
 	@Owner			sysname = NULL,
@@ -168561,8 +164063,7 @@ where
 order by table_name, index_name 
 go
 
-
-create procedure sys.sp_indexes
+create procedure BP_PRD.sys.sp_indexes
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -168610,8 +164111,7 @@ as
     order by NON_UNIQUE, TYPE, INDEX_QUALIFIER, INDEX_NAME, ORDINAL_POSITION
 go
 
-
-create procedure sys.sp_indexes_100_rowset
+create procedure BP_PRD.sys.sp_indexes_100_rowset
 (
     @table_name     sysname,
     @index_name     sysname = null,
@@ -168659,8 +164159,7 @@ as
     order by 8, 10, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_100_rowset2
+create procedure BP_PRD.sys.sp_indexes_100_rowset2
 (
     @index_name     sysname = null,
     @table_schema   sysname = null   
@@ -168704,8 +164203,7 @@ as
     order by 8, 10, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_90_rowset
+create procedure BP_PRD.sys.sp_indexes_90_rowset
 (
     @table_name     sysname,
     @index_name     sysname = null,
@@ -168753,8 +164251,7 @@ as
     order by 8, 10, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_90_rowset2
+create procedure BP_PRD.sys.sp_indexes_90_rowset2
 (
     @index_name     sysname = null,
     @table_schema   sysname = null
@@ -168798,8 +164295,7 @@ as
     order by 8, 10, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_90_rowset_rmt
+create procedure BP_PRD.sys.sp_indexes_90_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -168849,8 +164345,7 @@ as
     order by 8 desc, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_managed 
+create procedure BP_PRD.sys.sp_indexes_managed 
 ( 
 	@Catalog			sysname = NULL,
 	@Owner			sysname = NULL,
@@ -168877,8 +164372,7 @@ where
 order by table_name, index_name 
 go
 
-
-create procedure sys.sp_indexes_rowset
+create procedure BP_PRD.sys.sp_indexes_rowset
 (
     @table_name     sysname,
     @index_name     sysname = null,
@@ -168925,8 +164419,7 @@ as
     order by 8, 10, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_rowset2
+create procedure BP_PRD.sys.sp_indexes_rowset2
 (
     @index_name     sysname = null,
     @table_schema   sysname = null
@@ -168969,8 +164462,7 @@ as
     order by 8, 10, 4, 5, 6, 17
 go
 
-
-create procedure sys.sp_indexes_rowset_rmt
+create procedure BP_PRD.sys.sp_indexes_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -169019,7 +164511,7 @@ as
     order by 8 desc, 4, 5, 6, 17
 go
 
-create procedure sys.sp_indexoption
+create procedure BP_PRD.sys.sp_indexoption
     @IndexNamePattern      nvarchar(1035)
    ,@OptionName            varchar(35)
    ,@OptionValue           varchar(12)
@@ -169108,7 +164600,6 @@ as
 			end
 		end
 
-
 		-- Return a useful error message if the user tries to use
 		-- spatial indexes since they are not supported
 		if exists (select index_id from sys.spatial_indexes
@@ -169129,7 +164620,6 @@ as
 			end
 		end
 
-
 		EXEC %%Object(MultiName = @tablename).LockMatchID(ID = @tabid, Exclusive = 1, BindInternal = 0)
 		if @@error <> 0
 			select @tabid = null
@@ -169149,7 +164639,6 @@ as
 		raiserror(15388,-1,-1,@IndexNamePattern)
 		return @@error
 	end
-
 
 	if @indid = 0	-- all-indexes
 	    select @execstring = 'ALTER INDEX ALL ON '
@@ -169187,19 +164676,14 @@ as
 	return 0 -- sp_indexoption
 go
 
-create procedure sys.sp_invalidate_textptr
+create procedure BP_PRD.sys.sp_invalidate_textptr
 	@TextPtrValue      varbinary(16) = 0x00
 as
 	dbcc invalidate_textptr(@TextPtrValue)
 	return (0); -- sp_invalidate_textptr
 go
 
-
---check if we need to call sp_MSmakegeneration now.
---By default, we don't call MakeGeneration within 0.5 second from the last call
---In the future, we can change the waiting time by setting @wait parameter
---also, when we have generation 0 we need to call MakeGeneration in this sync
-create procedure sys.sp_is_makegeneration_needed
+create procedure BP_PRD.sys.sp_is_makegeneration_needed
  @wait int = 1,    -- default behavior is 500 millisecond, the @wait is in seconds so we use -1 special value for the default value.
  @needed int = 1 OUTPUT
 as
@@ -169261,7 +164745,7 @@ as
     return
 go
 
-create procedure sys.sp_ivindexhasnullcols (
+create procedure BP_PRD.sys.sp_ivindexhasnullcols (
     @viewname sysname
     ,@fhasnullcols bit OUTPUT
 )
@@ -169306,7 +164790,7 @@ begin
     --
     -- create an enumeration of all the columns that are part of the view index
     --
-    create table #indcoltab(vindexcol int identity, keyname sysname collate database_default not null)
+    create table #indcoltab(vindexcol int identity, keyname BP_PRD.create table #indcoltab(vindexcol int identity, keyname sysname collate database_default not null)
     select @indkey = 1
     while (@indkey <= 16)
     begin
@@ -169341,8 +164825,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_kill_filestream_non_transacted_handles
+create procedure BP_PRD.sys.sp_kill_filestream_non_transacted_handles
 (
     @table_name nvarchar(776) = NULL,
     @handle_id int = -1
@@ -169371,7 +164854,7 @@ begin
 end
 go
 
-create procedure sys.sp_kill_oldest_transaction_on_secondary
+create procedure BP_PRD.sys.sp_kill_oldest_transaction_on_secondary
 (
 	@database_name sysname,
 	@kill_all bit = 0,
@@ -169381,7 +164864,7 @@ as
 	exec sys.sp_kill_oldest_transaction_on_secondary_internal @database_name, @kill_all, @killed_xdests output
 go
 
-create procedure sys.sp_lightweightmergemetadataretentioncleanup
+create procedure BP_PRD.sys.sp_lightweightmergemetadataretentioncleanup
 	@num_rowtrack_rows int = 0 output
 as
 	declare @delbatchsize	int
@@ -169415,7 +164898,7 @@ as
 	end
 go
 
-create procedure sys.sp_link_publication 
+create procedure BP_PRD.sys.sp_link_publication 
 (
     @publisher sysname,         -- publishing server name or linked entry name for publisher
     @publisher_db sysname,    -- publishing database name
@@ -169966,8 +165449,7 @@ UNDO:
 end
 go
 
-
-create procedure sys.sp_linkedservers
+create procedure BP_PRD.sys.sp_linkedservers
 as
     select
         SRV_NAME            = srv.name,
@@ -169982,8 +165464,7 @@ as
     order by 1
 go
 
-
-create procedure sys.sp_linkedservers_rowset
+create procedure BP_PRD.sys.sp_linkedservers_rowset
 (
     @srvname    sysname
 )
@@ -170005,12 +165486,8 @@ as
     order by 1
 go
 
-
-create procedure sys.sp_linkedservers_rowset2
+create procedure BP_PRD.sys.sp_linkedservers_rowset2
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         SVR_NAME            = s_s.name,
         SVR_PRODUCT         = s_s.product,
@@ -170027,7 +165504,7 @@ as
     order by 1
 go
 
-create procedure sys.sp_lock --- 1996/04/08 00:00
+create procedure BP_PRD.sys.sp_lock --- 1996/04/08 00:00
 @spid1 int = NULL,		/* server process id to check for locks */
 @spid2 int = NULL		/* other process id to check for locks */
 as
@@ -170094,7 +165571,7 @@ end
 return (0) -- sp_lock
 go
 
-create procedure sys.sp_logshippinginstallmetadata
+create procedure BP_PRD.sys.sp_logshippinginstallmetadata
 as
 begin
     set nocount on
@@ -170129,7 +165606,7 @@ begin
     --
     if object_id(N'msdb.dbo.log_shipping_primary_databases') is null
     begin
-        create table msdb.dbo.log_shipping_primary_databases
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_primary_databases
         (
             primary_id  uniqueidentifier primary key not null,
             primary_database sysname unique not null,
@@ -170155,7 +165632,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_primary_secondaries') is null
     begin
-        create table msdb.dbo.log_shipping_primary_secondaries
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_primary_secondaries
         (
             primary_id  uniqueidentifier not null,
             secondary_server sysname not null, 
@@ -170170,7 +165647,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_monitor_primary') is null
     begin
-        create table msdb.dbo.log_shipping_monitor_primary
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_monitor_primary
         (
             primary_id uniqueidentifier primary key not null,
             primary_server sysname not null,
@@ -170190,7 +165667,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_monitor_history_detail') is null
     begin
-        create table msdb.dbo.log_shipping_monitor_history_detail
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_monitor_history_detail
         (
             agent_id uniqueidentifier not null, -- primary id for backup, secondary id for copy/restore
             agent_type tinyint not null, -- 0 = Backup, 1 = Copy, 2= Restore
@@ -170212,7 +165689,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_monitor_error_detail') is null
     begin
-        create table msdb.dbo.log_shipping_monitor_error_detail
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_monitor_error_detail
         (
             agent_id uniqueidentifier not null, -- primary id for backup, secondary id for copy/restore
             agent_type tinyint not null, -- 0 = Backup, 1 = Copy, 2= Restore
@@ -170236,7 +165713,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_secondary') is null
     begin
-        create table msdb.dbo.log_shipping_secondary
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_secondary
         (
             secondary_id uniqueidentifier primary key not null,
             primary_server sysname not null,
@@ -170263,7 +165740,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_secondary_databases') is null
     begin
-        create table msdb.dbo.log_shipping_secondary_databases
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_secondary_databases
         (
             secondary_database sysname primary key not null,
             secondary_id uniqueidentifier not null,
@@ -170284,7 +165761,7 @@ begin
 
     if object_id(N'msdb.dbo.log_shipping_monitor_secondary') is null
     begin
-        create table msdb.dbo.log_shipping_monitor_secondary
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_monitor_secondary
         (
             secondary_server sysname not null,
             secondary_database sysname not null,
@@ -170318,7 +165795,7 @@ begin
     
     if object_id(N'msdb.dbo.log_shipping_monitor_alert') is null
     begin
-        create table msdb.dbo.log_shipping_monitor_alert
+        create table msdb.BP_PRD.create table msdb.dbo.log_shipping_monitor_alert
         (
             alert_job_id uniqueidentifier primary key not null
         )
@@ -170352,21 +165829,7 @@ UNDO:
 end
 go
 
---
--- Name: sp_lookupcustomresolver
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-
-create procedure sys.sp_lookupcustomresolver
+create procedure BP_PRD.sys.sp_lookupcustomresolver
     @article_resolver  nvarchar(255),
     @resolver_clsid    nvarchar(50)   OUTPUT,
     @is_dotnet_assembly bit = 0 OUTPUT,                 -- This flag is set to TRUE while registering a .NET Framework Assembly 
@@ -170451,7 +165914,7 @@ AS
     return @retcode
 go
 
-create procedure sys.sp_mapdown_bitmap (
+create procedure BP_PRD.sys.sp_mapdown_bitmap (
     @mapdownbm varbinary(128), 
     @bm varbinary(128) OUTPUT   
 )
@@ -170463,7 +165926,7 @@ begin
 end
 go
 
-create procedure sys.sp_markpendingschemachange(
+create procedure BP_PRD.sys.sp_markpendingschemachange(
     @publication        sysname,
     @schemaversion      int = 0,
     @status             nvarchar(10) = 'active'          /* active, skipped */
@@ -170523,8 +165986,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_marksubscriptionvalidation (
+create procedure BP_PRD.sys.sp_marksubscriptionvalidation (
     @publication sysname,    /* publication name */
     @subscriber sysname,     /* subscriber name */
     @destination_db sysname,  /* destination database name */
@@ -170578,8 +166040,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_mergearticlecolumn (
+create procedure BP_PRD.sys.sp_mergearticlecolumn (
     @publication sysname,			/* The publication name */
     @article sysname,				/* The article name */
     @column sysname = NULL,			/* The column name */
@@ -170758,7 +166219,6 @@ create procedure sys.sp_mergearticlecolumn (
             RETURN (1)
         END 
 
-
     /*
     ** Can not drop non-identity, non-timestamp, non-computed columns that are not nullable and have no default value
     */
@@ -170786,7 +166246,6 @@ create procedure sys.sp_mergearticlecolumn (
         select @columns = 0x00
         UPDATE dbo.sysmergearticles SET columns = 0x00 WHERE artid = @artid and pubid=@pubid
     end
-
 
     /*
     **    Make sure that you are not trying to add more than 246 columns to the table.
@@ -170850,7 +166309,6 @@ create procedure sys.sp_mergearticlecolumn (
             end
             select @index_cnt = @index_cnt + 1
         end
-
 
         /* Not allowed to drop identity column if identity_support is set to 1 */
 
@@ -171159,7 +166617,7 @@ create procedure sys.sp_mergearticlecolumn (
                 goto FAILURE
             select @quoted_source_object=QUOTENAME(@source_object)
 
-            exec ('create view dbo.' + @qual_object_view + ' as select ' + @column_list + ' from ' + @qual_source_object + ' ' + @quoted_source_object)
+            exec ('create view BP_PRD.create view dbo.' + @qual_object_view + ' as select ' + @column_list + ' from ' + @qual_source_object + ' ' + @quoted_source_object)
             if @@ERROR<>0
                 GOTO FAILURE
             if @filter_clause is not NULL and @filter_clause <>'' 
@@ -171222,7 +166680,6 @@ create procedure sys.sp_mergearticlecolumn (
         end            
     END      
 
-
    -- filestream_change
     if (@filestream_col_published = 1)    
     begin
@@ -171273,7 +166730,6 @@ create procedure sys.sp_mergearticlecolumn (
             if @@ERROR<>0
                 goto FAILURE
         end
-
 
         /*
         ** make sure we know we really want to do this.
@@ -171344,8 +166800,7 @@ FAILURE:
     return (1)
 go
 
-
-create procedure sys.sp_mergecleanupmetadata
+create procedure BP_PRD.sys.sp_mergecleanupmetadata
 	@publication		sysname = '%',
 	@reinitialize_subscriber	nvarchar(5) = 'true'
 AS
@@ -171356,8 +166811,7 @@ AS
 	return @retcode
 go
 
-
-create procedure sys.sp_mergedummyupdate(
+create procedure BP_PRD.sys.sp_mergedummyupdate(
 	@source_object	nvarchar (386),
 	@rowguid		uniqueidentifier
 )
@@ -171529,8 +166983,7 @@ as
 	end
 go
 
-
-create procedure sys.sp_mergemetadataretentioncleanup
+create procedure BP_PRD.sys.sp_mergemetadataretentioncleanup
     (@num_genhistory_rows int = 0 output, 
      @num_contents_rows int = 0 output, 
      @num_tombstone_rows int = 0 output,
@@ -171801,9 +167254,7 @@ ReleaseAppLockAndExit:
     exec sp_releaseapplock @Resource= @applockname, @LockOwner= 'Session', @DbPrincipal = @DbPrincipal
     return @retcode
 
-go
-
-create procedure sys.sp_mergesubscription_cleanup 
+create procedure BP_PRD.sys.sp_mergesubscription_cleanup 
 (
     @publisher        sysname,
     @publisher_db    sysname,
@@ -171951,7 +167402,6 @@ BEGIN
         delete from dbo.MSmerge_replinfo
     end
 
-
     /* 
     ** If last subscription is dropped and the DB is not enabled for publishing,
     ** then remove the merge system tables
@@ -171972,22 +167422,6 @@ UNDO:
 END
 go
 
---
--- Name: 
---  sp_mergesubscriptionsummary
---
--- Description:
---  Returns the status summary of the merge agent for the specified 
---  merge subscription.
---
--- Returns:
---  0 : success
---  1 : failure
---
--- Security:
---  Public procedure, internal PAL check.
---  Requires Certificate signature for catalog access
---
 CREATE PROCEDURE sys.sp_mergesubscriptionsummary
 (
     @publication    sysname,
@@ -172026,7 +167460,7 @@ BEGIN
     -- Parameter check: @subscriber
     IF @subscriber IS NULL
     BEGIN
-        -- "The parameter @subscriber cannot be NULL."
+        -- 'The parameter @subscriber cannot be NULL.'
         RAISERROR (14043, 16, -1, '@subscriber', 'sp_mergesubscriptionsummary')
         RETURN 1
     END
@@ -172049,7 +167483,7 @@ BEGIN
                       AND db_name = @subscriber_db
                       AND pubid = @pubid) -- We allow retrieval of push and (well-known) pull merge agent status
     BEGIN
-        -- "The subscription could not be found."
+        -- 'The subscription could not be found.'
         RAISERROR (20021, 16, -1)
         RETURN 1
     END
@@ -172059,7 +167493,7 @@ BEGIN
             @distribdb = @distribution_db OUTPUT
     IF (@@error != 0) OR (@retcode != 0) OR @distribution_db IS NULL
     BEGIN
-        -- "The Distributor has not been installed correctly."
+        -- 'The Distributor has not been installed correctly.'
         RAISERROR (20036, 16, -1)
         RETURN 1
     END
@@ -172098,11 +167532,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_migrate_user_to_contained() as
--- missing source code
-go
-
-create procedure sys.sp_monitor
+create procedure BP_PRD.sys.sp_monitor
 as
 if (not (is_srvrolemember('sysadmin') = 1))  -- Make sure that it is the SA executing this.
         begin
@@ -172276,11 +167706,7 @@ update master.dbo.spt_monitor
 return (0) -- sp_monitor
 go
 
-create procedure sys.sp_new_parallel_nested_tran_id() as
--- missing source code
-go
-
-create procedure sys.sp_objectfilegroup --- 1996/08/30 17:44
+create procedure BP_PRD.sys.sp_objectfilegroup --- 1996/08/30 17:44
 @objid	int
 as
 	/*
@@ -172307,8 +167733,7 @@ as
 return (0) -- sp_objectfilegroup
 go
 
-
-create procedure sys.sp_oledb_database
+create procedure BP_PRD.sys.sp_oledb_database
 as
     select
         name
@@ -172316,8 +167741,7 @@ as
         sys.databases
 go
 
-
-create procedure sys.sp_oledb_defdb
+create procedure BP_PRD.sys.sp_oledb_defdb
 as
     select
         dbname
@@ -172327,8 +167751,7 @@ as
         sid=SUSER_SID()
 go
 
-
-create procedure sys.sp_oledb_deflang
+create procedure BP_PRD.sys.sp_oledb_deflang
 as
     if serverproperty('EngineEdition') = 5
     begin
@@ -172358,8 +167781,7 @@ as
     end
 go
 
-
-create procedure sys.sp_oledb_language
+create procedure BP_PRD.sys.sp_oledb_language
 as
     select
         'English','us_english'
@@ -172372,8 +167794,7 @@ as
         sys.syslanguages
 go
 
-
-create procedure sys.sp_oledb_ro_usrname
+create procedure BP_PRD.sys.sp_oledb_ro_usrname
 as
     select
         substring('NY',is_read_only+1,1),user_name()
@@ -172383,7 +167804,7 @@ as
         name=DB_NAME()
 go
 
-create procedure sys.sp_oledbinfo
+create procedure BP_PRD.sys.sp_oledbinfo
     @server nvarchar(128),
     @infotype nvarchar(128) = NULL,
     @login nvarchar(128) = NULL,
@@ -172425,9 +167846,7 @@ create procedure sys.sp_oledbinfo
         RETURN (1)
     END
 
-go
-
-create procedure sys.sp_password
+create procedure BP_PRD.sys.sp_password
     @old sysname = NULL,        -- the old (current) password
     @new sysname,               -- the new password
     @loginame sysname = NULL    -- user to change password on
@@ -172475,7 +167894,7 @@ as
 	return  (0)	-- sp_password
 go
 
-create procedure sys.sp_peerconflictdetection_tableaug (
+create procedure BP_PRD.sys.sp_peerconflictdetection_tableaug (
 	@publisher sysname,
 	@publisher_db sysname,
 	@publication	sysname, -- not null
@@ -172543,7 +167962,6 @@ begin
 		select @tabrepobjsexists = 1 
 	else
 		select @tabrepobjsexists = 0
-
 
 	if @enabling = 1
 	begin --read-only subscription table has its p2porid as 0x80000000
@@ -172670,7 +168088,6 @@ begin
 	commit tran
 	return (0)
 
-
 UNDO:
 
 	if @cursor_opened = 1
@@ -172692,8 +168109,7 @@ UNDO:
 end
 go
 
-
-create procedure sys.sp_pkeys
+create procedure BP_PRD.sys.sp_pkeys
 (
     @table_name      sysname,
     @table_owner     sysname = null,
@@ -172788,7 +168204,7 @@ as
     order by 1, 2, 3, 5
 go
 
-create procedure sys.sp_posttracertoken
+create procedure BP_PRD.sys.sp_posttracertoken
 (
 	@publication sysname,
 	@tracer_token_id int = NULL output,
@@ -172825,20 +168241,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_prepare() as
--- missing source code
-go
-
-create procedure sys.sp_prepexec() as
--- missing source code
-go
-
-create procedure sys.sp_prepexecrpc() as
--- missing source code
-go
-
-
-create procedure sys.sp_primary_keys_rowset
+create procedure BP_PRD.sys.sp_primary_keys_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null
@@ -172861,15 +168264,11 @@ as
     order by 2, 3
 go
 
-
-create procedure sys.sp_primary_keys_rowset2
+create procedure BP_PRD.sys.sp_primary_keys_rowset2
 (
     @table_schema       sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG   = s_pkv.TABLE_CATALOG,
         TABLE_SCHEMA    = s_pkv.TABLE_SCHEMA,
@@ -172886,8 +168285,7 @@ as
     order by 2, 3
 go
 
-
-create procedure sys.sp_primary_keys_rowset_rmt
+create procedure BP_PRD.sys.sp_primary_keys_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -172909,8 +168307,7 @@ as
     order by 1,2,3
 go
 
-
-create procedure sys.sp_primarykeys
+create procedure BP_PRD.sys.sp_primarykeys
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -172935,8 +168332,7 @@ as
     order by TABLE_CAT, TABLE_SCHEM, TABLE_NAME, KEY_SEQ
 go
 
-
-create procedure sys.sp_procedure_params_100_managed
+create procedure BP_PRD.sys.sp_procedure_params_100_managed
 (
 	@procedure_name 	sysname,
 	@group_number		int = 1,
@@ -172970,8 +168366,7 @@ as
 	option (OPTIMIZE CORRELATED UNION ALL)
 go
 
-
-create procedure sys.sp_procedure_params_100_rowset
+create procedure BP_PRD.sys.sp_procedure_params_100_rowset
 (
     @procedure_name     sysname,
     @group_number       int = 1,
@@ -173018,8 +168413,7 @@ as
     option (OPTIMIZE CORRELATED UNION ALL)
 go
 
-
-create procedure sys.sp_procedure_params_100_rowset2
+create procedure BP_PRD.sys.sp_procedure_params_100_rowset2
 (
     @procedure_schema   sysname = null,
     @parameter_name     sysname = null
@@ -173061,8 +168455,7 @@ as
     order by 2, 3, 5
 go
 
-
-create procedure sys.sp_procedure_params_90_rowset
+create procedure BP_PRD.sys.sp_procedure_params_90_rowset
 (
     @procedure_name     sysname,
     @group_number       int = 1,
@@ -173106,8 +168499,7 @@ as
     option (OPTIMIZE CORRELATED UNION ALL)
 go
 
-
-create procedure sys.sp_procedure_params_90_rowset2
+create procedure BP_PRD.sys.sp_procedure_params_90_rowset2
 (
     @procedure_schema   sysname = null,
     @parameter_name     sysname = null
@@ -173146,8 +168538,7 @@ as
     order by 2, 3, 5
 go
 
-
-create procedure sys.sp_procedure_params_managed
+create procedure BP_PRD.sys.sp_procedure_params_managed
 (
 	@procedure_name 	sysname,
 	@group_number		int = 1,
@@ -173191,8 +168582,7 @@ as
 	option (OPTIMIZE CORRELATED UNION ALL)
 go
 
-
-create procedure sys.sp_procedure_params_rowset
+create procedure BP_PRD.sys.sp_procedure_params_rowset
 (
     @procedure_name     sysname,
     @group_number       int = 1,
@@ -173356,16 +168746,12 @@ as
     option (OPTIMIZE CORRELATED UNION ALL)
 go
 
-
-create procedure sys.sp_procedure_params_rowset2
+create procedure BP_PRD.sys.sp_procedure_params_rowset2
 (
     @procedure_schema   sysname = null,
     @parameter_name     sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         PROCEDURE_CATALOG           = s_pp.PROCEDURE_CATALOG,
         PROCEDURE_SCHEMA            = s_pp.PROCEDURE_SCHEMA,
@@ -173436,8 +168822,7 @@ as
     order by 2, 3, 5
 go
 
-
-create procedure sys.sp_procedures_rowset
+create procedure BP_PRD.sys.sp_procedures_rowset
 (
     @procedure_name     sysname,
     @group_number       int = 1,
@@ -173464,8 +168849,7 @@ as
     order by 2, 3
 go
 
-
-create procedure sys.sp_procedures_rowset2
+create procedure BP_PRD.sys.sp_procedures_rowset2
 (
     @procedure_schema   sysname = null
 )
@@ -173486,7 +168870,7 @@ as
     order by 2, 3
 go
 
-create procedure sys.sp_processlogshippingmonitorhistory 
+create procedure BP_PRD.sys.sp_processlogshippingmonitorhistory 
 (
     @mode tinyint -- 1 = add, 2 = delete
     ,@agent_id uniqueidentifier
@@ -173548,7 +168932,7 @@ begin
 end
 go
 
-create procedure sys.sp_processlogshippingmonitorprimary 
+create procedure BP_PRD.sys.sp_processlogshippingmonitorprimary 
 (
     @mode tinyint -- 1 = add, 2 = delete, 3 = update
     ,@primary_id uniqueidentifier
@@ -173614,7 +168998,7 @@ begin
 end
 go
 
-create procedure sys.sp_processlogshippingmonitorsecondary 
+create procedure BP_PRD.sys.sp_processlogshippingmonitorsecondary 
 (
     @mode tinyint -- 1 = add, 2 = delete, 3 = update
     ,@secondary_server sysname
@@ -173692,7 +169076,7 @@ begin
 end
 go
 
-create procedure sys.sp_processlogshippingretentioncleanup 
+create procedure BP_PRD.sys.sp_processlogshippingretentioncleanup 
 (
     @agent_id uniqueidentifier
     ,@agent_type tinyint  -- 0 = backup, 1 = copy, 2 = restore
@@ -173744,7 +169128,7 @@ begin
 end
 go
 
-create procedure sys.sp_procoption
+create procedure BP_PRD.sys.sp_procoption
     @ProcName		nvarchar(776)
    ,@OptionName		varchar(35)
    ,@OptionValue	varchar(12)
@@ -173861,7 +169245,7 @@ as
 	RETURN 0 -- sp_procoption
 go
 
-create proc sys.sp_prop_oledb_provider (
+create proc BP_PRD.sys.sp_prop_oledb_provider (
 @p1 nvarchar(255)=NULL)
 as
 begin
@@ -173875,8 +169259,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_provider_types_100_rowset
+create procedure BP_PRD.sys.sp_provider_types_100_rowset
 (
     @data_type  smallint = null,
     @best_match tinyint  = null
@@ -173912,8 +169295,7 @@ as
     order by 2
 go
 
-
-create procedure sys.sp_provider_types_90_rowset
+create procedure BP_PRD.sys.sp_provider_types_90_rowset
 (
     @data_type  smallint = null,
     @best_match tinyint  = null
@@ -173949,8 +169331,7 @@ as
     order by 2
 go
 
-
-create procedure sys.sp_provider_types_rowset
+create procedure BP_PRD.sys.sp_provider_types_rowset
 (
     @data_type  smallint = null,
     @best_match tinyint  = null
@@ -173985,7 +169366,6 @@ as
         (@best_match is null or s_ptv.BEST_MATCH_28 = @best_match)
     order by 2, 20, 19, 8 -- Adding BEST_MATCH, IS_LONG and CASE_SENSITIVE to workaround a bug in DTS wizard (see SQL BU 372342)
 go
-
 
 CREATE PROCEDURE sys.sp_publication_validation
 (
@@ -174049,7 +169429,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_publicationsummary 
 (
 	@publication sysname,
@@ -174082,9 +169461,8 @@ BEGIN
 END
 go
 
-
 /* For backward compatible */
-create procedure sys.sp_publishdb @dbname sysname,@value nvarchar (5)
+create procedure BP_PRD.sys.sp_publishdb @dbname sysname,@value nvarchar (5)
     AS
 
     DECLARE @retcode int
@@ -174098,53 +169476,6 @@ create procedure sys.sp_publishdb @dbname sysname,@value nvarchar (5)
 
     RETURN(0)
 go
-
-
---
--- Name:
---		sp_publisherproperty
---
--- Description:
---		Displays or changes publisher properties.  sp_publisherproperty should only be
---		used for heterogeneous publishers.
---
--- Inputs:
---		@publisher		== name of heterogeneous publisher
---		@propertyname	== property name
---		@propertyvalue	== property value 
---
--- Returns:
---		Return code (0 for success, 1 for failure)
---
--- Security:
---		public -- call must be sysadmin
---
--- Notes:
---		If publisher is the only supplied parameter, the result set include the
---		current settings for all of the settable properties.  If property name is
---		as well, only the named property appears in the result set.  If value is
---		supplied, sp_publisherproperty does not return a result set.
---
---		Properties:		Description
---
---		xactsetbatching When set to enabled, both the heterogeneous log reader
---						and the xactset job are able to group changes into
---						transactionally consistent sets for subsequent processing
---						by the log reader.  When set to disable, the log reader can
---						process existing xactsets, but neither the log reader not the
---						xactset job may create additional sets.  By default, xactset
---						batching is set to enabled at the publisher.
---
---		xactsetjob		When set to enabled, the xactset job runs periodically to create
---						xactsets at the publisher for subsequent processing by the
---						log reader.  When set to disabled, the creation of xactsets is
---						only done by the log reader when it polls the publisher for
---						change commands.  The xactset job does not run.  By default, the
---						xactset job is set to disabled at the publisher.
--- 
---		xactsetjobinterval	Interval between successive executions of the xactset job in 
---						minutes.
---
 
 CREATE PROCEDURE sys.sp_publisherproperty
 (
@@ -174397,7 +169728,7 @@ BEGIN
 END
 go
 
-create proc sys.sp_readerrorlog(
+create proc BP_PRD.sys.sp_readerrorlog(
 	@p1		int = 0,
 	@p2		int = NULL,
 	@p3		nvarchar(4000) = NULL,
@@ -174418,7 +169749,7 @@ begin
 end
 go
 
-create procedure sys.sp_recompile
+create procedure BP_PRD.sys.sp_recompile
     @objname	 	nvarchar(776)
 as
     -- do sets and declares
@@ -174487,25 +169818,7 @@ as
 	return (0) -- sp_recompile
 go
 
---
--- Name: sp_redirect_publisher
---
--- Descriptions: Redirect the publisher of a published database to a 
---               new target publisher. Target can be an explicit node
---               or a HADRon virtual network name.
---
---               If the target of the redirection is NULL, the current
---               entry for the publisher database pair, if it exists,
---               is removed.
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success, 1 - failure
---          raise error on failure
---
--- Security: Public procedure invoked via RPC. db_owner check
---
-create procedure sys.sp_redirect_publisher
+create procedure BP_PRD.sys.sp_redirect_publisher
 (
     @original_publisher sysname,
     @publisher_db sysname,
@@ -174571,7 +169884,7 @@ begin
 end
 go
 
-create procedure sys.sp_refresh_heterogeneous_publisher
+create procedure BP_PRD.sys.sp_refresh_heterogeneous_publisher
 (
     @publisher sysname
 )
@@ -174600,7 +169913,7 @@ begin
 end
 go
 
-create procedure sys.sp_refresh_log_shipping_monitor 
+create procedure BP_PRD.sys.sp_refresh_log_shipping_monitor 
 (
     @agent_id uniqueidentifier     -- primary/secondary ID
     ,@agent_type tinyint              -- 0 = Backup, 1 = Copy, 2 = Restore
@@ -174853,7 +170166,7 @@ cleanup:
 end
 go
 
-create procedure sys.sp_refreshsqlmodule
+create procedure BP_PRD.sys.sp_refreshsqlmodule
     @name		nvarchar(776),
     @namespace  nvarchar(20) = N'OBJECT'
 as
@@ -174863,18 +170176,7 @@ as
 go
 
  
---
--- Name: sp_refreshsubscriptions
---
--- Description: Add article to existing subscriptions
---
--- Parameter: (see proc below)
---
--- Returns: 
---
--- Security: Why is this public - can it not be internal 
---
-create procedure sys.sp_refreshsubscriptions
+create procedure BP_PRD.sys.sp_refreshsubscriptions
 (
 	@publication sysname,
 	@publisher	 sysname = NULL
@@ -174908,7 +170210,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_refreshview
+create procedure BP_PRD.sys.sp_refreshview
     @viewname	nvarchar(776)
 as
 	declare @ret int
@@ -174916,7 +170218,7 @@ as
 	return @ret
 go
 
-create procedure sys.sp_register_custom_scripting
+create procedure BP_PRD.sys.sp_register_custom_scripting
 (
     @type varchar(16) 		-- one of 'insert', 'delete', 'update', 'custom_script'
     ,@value nvarchar(2048)		-- name of custom scripting proc or path to custom script
@@ -174955,7 +170257,6 @@ begin
 		,@register_upd = 3
 		,@register_custom_script = 4
 		,@auto_genproc = 0x02
-
 
     	select  @register_type = case 
     		when patindex( upper(@type collate SQL_Latin1_General_CP1_CS_AS) + '%', 'INSERT' ) = 1 then @register_ins
@@ -175052,30 +170353,7 @@ begin
 end
 go
 
---
--- Name: sp_registercustomresolver
---
--- Description:  This procedure registers custom resolvers into the MSmerge_articleresolver table in the distribution database
---                     This proc should be called in the context of the distribution database                
--- 
--- Parameters: 
---     1. @article_resolver     nvarchar(255) 
---        This parameter contains the friendly name of the custom resolver or business logic handler
---     2. @resolver_clsid     nvarchar(50), 
---        This parameter must be set to a valid CLSID if registering a COM resolver and to NULL while registering a .NET Framework Assembly 
---     3. @is_dotnet_assembly nvarchar(10)
---        This parameter must be set to TRUE while registering a .NET Framework Assembly and false otherwise
---     4. @dotnet_assembly_name  nvarchar(255)
---        For business logic handlers which are .NET assemblies, this parameter either contains the name of the .NET Assembly such as 
---        "Sample Business Logic Module For Shippers.dll" if the .NET assembly is deployed into the same directory as the 
---        merge agent. Optionally a fully qualified name such as 'C:\Assemblies\COM\Resources\Sample Business Logic Module For Shippers.dll'
---        must be provided that allows the merge agent to load the .NET assembly using the fully qualified path name.
---     5. @dotnet_class_name  nvarchar(255)
---        For business logic handlers which are .NET assemblies, this parameter either contains the name of the .NET class that implements 
---        the BusinessLogicModule class such as "Microsoft.Samples.SqlServer.Replication.BusinessLogicHandler.OrderEntryBusinessLogicHandler"
---
---
-create procedure sys.sp_registercustomresolver
+create procedure BP_PRD.sys.sp_registercustomresolver
     @article_resolver nvarchar(255),
     @resolver_clsid nvarchar(50) = NULL,         -- This must be set to a valid CLSID if registering a COM resolver and to NULL for a .NET Framework Assembly 
     @is_dotnet_assembly nvarchar(10) = 'false',  -- This flag must be set to TRUE while registering a .NET Framework Assembly 
@@ -175172,8 +170450,7 @@ create procedure sys.sp_registercustomresolver
     return @retcode
 go
 
-
-create procedure sys.sp_reinitmergepullsubscription
+create procedure BP_PRD.sys.sp_reinitmergepullsubscription
     @publisher        sysname  = 'all',
     @publisher_db    sysname  = 'all',
     @publication    sysname  = 'all',
@@ -175314,8 +170591,7 @@ AS
     return 0
 go
 
-
-create  procedure sys.sp_reinitmergesubscription
+create  procedure BP_PRD.sys.sp_reinitmergesubscription
 	@publication	sysname	 = 'all',
 	@subscriber		sysname	 = 'all',
 	@subscriber_db	sysname	 = 'all',
@@ -175528,10 +170804,7 @@ Failure:
 	end
 	return (1)
 
-go
-
-
-create procedure sys.sp_reinitpullsubscription (
+create procedure BP_PRD.sys.sp_reinitpullsubscription (
     @publisher sysname,
     @publisher_db sysname = NULL,
     @publication sysname = 'all'                       /* publication name */
@@ -175692,8 +170965,7 @@ create procedure sys.sp_reinitpullsubscription (
     end
 go
 
-
-create procedure sys.sp_reinitsubscription
+create procedure BP_PRD.sys.sp_reinitsubscription
 (
 	@publication				sysname = 'all',
 	@article					sysname = 'all',
@@ -175756,7 +171028,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_releaseapplock --- 1999/04/14 00:00
+create procedure BP_PRD.sys.sp_releaseapplock --- 1999/04/14 00:00
  @Resource nvarchar (255) = NULL,	    -- Resource to unlock
  @LockOwner varchar (32) = 'Transaction',   -- Lock Owner - [D = Transaction]
  @DbPrincipal sysname = N'public'	    -- DB principal to use for name space and permissions
@@ -175786,11 +171058,7 @@ as
   return @result
 go
 
-create procedure sys.sp_releaseschemalock() as
--- missing source code
-go
-
-create procedure sys.sp_remoteoption
+create procedure BP_PRD.sys.sp_remoteoption
 	@remoteserver	sysname,			-- server name to change
 	@loginame		sysname = NULL,		-- user's local user name
 	@remotename		sysname = NULL,		-- user's remote name
@@ -175801,11 +171069,8 @@ as
 	return (0)
 go
 
-
-
-
 /* Permission to sysadmin - Wrapper to include security check*/
-create procedure sys.sp_removedbreplication (
+create procedure BP_PRD.sys.sp_removedbreplication (
       @dbname     sysname = NULL,
       @type		nvarchar(5) = 'both'	-- 'merge' or 'tran' or 'both' to cleanup.
     ) AS
@@ -175867,8 +171132,6 @@ create procedure sys.sp_removedbreplication (
 
     if @@error <> 0 select @retcode = 1
     return @retcode
-
-go
 
 CREATE PROCEDURE sys.sp_removedistpublisherdbreplication
 (
@@ -176029,7 +171292,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_removesrvreplication
+create procedure BP_PRD.sys.sp_removesrvreplication
 as
 begin
 /* 
@@ -176139,13 +171402,12 @@ begin
 
     return (0)
 fail:
--- ad hoc updates not allowed and not single user
 return (1)
 end
 go
 
-create procedure sys.sp_rename
-	@objname	nvarchar(1035),		-- up to 4-part "old" name
+create procedure BP_PRD.sys.sp_rename
+	@objname	nvarchar(1035),		-- up to 4-part 'old' name
 	@newname	sysname,			-- one-part new name
 	@objtype	varchar(13) = null	-- identifying the name
 as
@@ -176174,7 +171436,7 @@ The @objtype parm is sometimes required.  It is always required
 for databases.  It is required whenever ambiguities would
 otherwise exist.  Explicit use of @objtype is always encouraged.
    [7]  Parms can use quoted_identifiers.  For example:
-   Execute sp_rename 'amy."his table"','"her table"','object'
+   Execute sp_rename 'amy.'his table'',''her table'','object'
 */
 	set nocount      on
 	set ansi_padding on
@@ -176188,8 +171450,8 @@ otherwise exist.  Explicit use of @objtype is always encouraged.
 			@QualName1		sysname,
 			@QualName2		sysname,
 			@QualName3		sysname,
-			@OwnAndObjName	nvarchar(517),	-- "[owner].[object]"
-			@SchemaAndTypeName	nvarchar(517),	-- "[schema].[type]"
+			@OwnAndObjName	nvarchar(517),	-- '[owner].[object]'
+			@SchemaAndTypeName	nvarchar(517),	-- '[schema].[type]'
 			@objid			int,
 			@xtype			nchar(2),
 			@indexstatsid		int,
@@ -176201,8 +171463,6 @@ otherwise exist.  Explicit use of @objtype is always encouraged.
 			@xtype_tmp		nchar(2),
 			@retcode		int,
 			@published		bit		-- Indicates table is used in replication
-
-
 
 	-- initial (non-null) settings
 	select	@CurrentDb		= db_name(),
@@ -176780,7 +172040,7 @@ otherwise exist.  Explicit use of @objtype is always encouraged.
 	return 0 -- sp_rename
 go
 
-create procedure sys.sp_renamedb	--- 1996/08/20 13:52
+create procedure BP_PRD.sys.sp_renamedb	--- 1996/08/20 13:52
 	@dbname sysname,				-- old (current) db name
 	@newname sysname				-- new name we want to call it
 as
@@ -176851,11 +172111,7 @@ as
 	return (0) -- sp_renamedb
 go
 
-create procedure sys.sp_repl_generateevent() as
--- missing source code
-go
-
-create procedure sys.sp_repladdcolumn(
+create procedure BP_PRD.sys.sp_repladdcolumn(
     @source_object            nvarchar (358),
     @column                    sysname,
     @typetext                nvarchar(3000),
@@ -176939,13 +172195,11 @@ EXEC @retcode = sys.sp_MSreplcheck_publish
 IF @@ERROR <> 0 or @retcode <> 0
     return (1)
 
-
 select @qual_column=QUOTENAME(@column)
 select @merge_pub_markcolumn_bit = 0x4000
 
 select @objid = object_id(@source_object)
 
--- check to see if this stored procedure is called via replication agent.
 if sessionproperty('replication_agent')<>1
     select @from_agent = 0
 else
@@ -176972,11 +172226,8 @@ begin
         return (0)
 end
 
-
--- PARSENAME VARS
     declare        @UnqualName         sysname  --rightmost name node
     declare        @QualName1         sysname  
--- END PARSENAME VARS
 
     select @UnqualName = PARSENAME(@source_object, 1)
     select @QualName1 = PARSENAME(@source_object, 2)
@@ -177010,7 +172261,6 @@ end
 select @invalid_datatype=0
 select @is_yukon_datatype=0
 select @DATATYPE_ID_UDT = 240 --system_type_id for UDT.
--- signal to db ddl trigger to bail out
 EXEC @retcode = sys.sp_MSsetcontext_bypasswholeddleventbit @onoff=1
 IF @@ERROR <> 0 or @retcode <> 0
     RETURN(1)
@@ -177077,7 +172327,7 @@ begin
     return (1)
 end
 
-create table #tmp_table (name sysname collate database_default)
+create table #tmp_table (name BP_PRD.sysname collate database_default)
 
 if LOWER(@publication_to_add)='all' or LOWER(@publication_to_add)='[all]'
 begin    
@@ -177132,7 +172382,6 @@ else
     
 end
 
--- if in both merge and tran publication
 if exists (select * from sys.objects where name='sysmergepublications')
     and exists (select * from sys.objects where name='syspublications')
 begin
@@ -177150,7 +172399,6 @@ begin
                     or (('[' + name + ']') in (select name from #tmp_table))))
         select @no_schema_replication=1
 end
--- if a merge publication
 else if exists (select * from sys.objects where name='sysmergepublications')
 begin
     if not exists (select * from dbo.sysmergepublications where name like @publication_to_add 
@@ -177162,7 +172410,6 @@ begin
                     or (('[' + name + ']') in (select name from #tmp_table))))
         select @no_schema_replication = 1
 end
--- if tran publication
 else if exists (select * from sys.objects where name='syspublications')
 begin
     if not exists (select * from syspublications where name like @publication_to_add 
@@ -177219,8 +172466,6 @@ end
 else
     select @is_for_merge = 0
 
--- Cannot add yukon specific datatypes using repladdcolumn when backward comp level is less than 90
--- for merge. For tran we never adding these datatypes using sp_repladdcolumn. Use alter table for tran.
 if (@is_for_merge = 1) and (@is_yukon_datatype = 1)
 begin
     if ((select min(backward_comp_level) from dbo.sysmergepublications where pubid 
@@ -177267,7 +172512,7 @@ begin TRAN
 save tran sp_repladdcolumn
     /*
     if not exists (select * from tempdb.sys.objects where name = '##MS_internal_old_style_DDL_support_being_used')
-        create table ##MS_internal_old_style_DDL_support_being_used(db_name sysname, objid int)
+        create table ##MS_internal_old_style_DDL_support_being_used(db_name BP_PRD.create table ##MS_internal_old_style_DDL_support_being_used(db_name sysname, objid int)
 
     insert ##MS_internal_old_style_DDL_support_being_used(db_name, objid) values(db_name(), @objid)
     if @@ERROR<>0
@@ -177302,7 +172547,6 @@ save tran sp_repladdcolumn
             goto FAILURE
         END
     end
-
 
     -- ***********tran alter table part
     if @is_for_tran = 1
@@ -177350,7 +172594,7 @@ save tran sp_repladdcolumn
                     goto FAILURE
         end
     end
-    -- cannot add @not_for_tran = 1 as the case for "if none publist and both merge/tran are on"
+    -- cannot add @not_for_tran = 1 as the case for 'if none publist and both merge/tran are on'
     else if @not_for_merge = 0 and (LOWER(@publication_to_add) = 'none' or LOWER(@publication_to_add) = '[none]')
     begin 
         if not exists (select * from sys.columns where name=@column and object_id =@objid)
@@ -177408,7 +172652,6 @@ save tran sp_repladdcolumn
                 end
         CLOSE #nosnapshot
         DEALLOCATE #nosnapshot
-
 
         /*
         ** Handle those cases where snapshot is already ran and new schema change needs to be added
@@ -177714,12 +172957,6 @@ save tran sp_repladdcolumn
 
             -- Error out if the current publication allows backup subscription
             -- and the column being added is a timestamp column (restriction is temporarily lifted)
---            if @allow_initialize_from_backup = 1 and @is_timestamp_column = 1
---            begin
---                raiserror(18797, 16, -1)
---                select @retcode = 1
---                goto DROPTRAN
---            end
 
             select @artname = name, @tran_pubid = pubid, @owner = dest_owner, @tablename = dest_table from sysarticles where artid=@tran_artid
             exec @retcode = sys.sp_articlecolumn @publication = @pubname, @article = @artname, @column = @column, 
@@ -177811,7 +173048,6 @@ save tran sp_repladdcolumn
         exec sys.sp_MSreleasemergeadminapplock @lockowner = N'Transaction'
 
 COMMIT TRAN
---delete ##MS_internal_old_style_DDL_support_being_used where db_name=db_name() and objid= @objid
 return (0)
 
 INNER_FAIL:
@@ -177840,8 +173076,7 @@ FAILURE:
     return (1)    
 go
 
-
-create procedure sys.sp_replcleanupccsprocs(
+create procedure BP_PRD.sys.sp_replcleanupccsprocs(
 	@publication sysname
 )
 as
@@ -177926,19 +173161,7 @@ begin
 end
 go
 
-create procedure sys.sp_replcmds() as
--- missing source code
-go
-
-create procedure sys.sp_replcounters() as
--- missing source code
-go
-
-create procedure sys.sp_replddlparser() as
--- missing source code
-go
-
-create procedure sys.sp_repldeletequeuedtran 
+create procedure BP_PRD.sys.sp_repldeletequeuedtran 
 (
     @publisher sysname
     ,@publisher_db sysname
@@ -178007,11 +173230,7 @@ Error:
 end
 go
 
-create procedure sys.sp_repldone() as
--- missing source code
-go
-
-create procedure sys.sp_repldropcolumn(
+create procedure BP_PRD.sys.sp_repldropcolumn(
     @source_object      nvarchar(270),
     @column                sysname,
     @from_agent            int = 0, 
@@ -178100,7 +173319,6 @@ EXEC @retcode = sys.sp_MSreplcheck_subscribe_withddladmin
 IF @@ERROR <> 0 or @retcode <> 0
     return (1)
 
--- check to see if this stored procedure is called via replication agent.
 if sessionproperty('replication_agent')<>1
     select @from_agent = 0
 else
@@ -178207,7 +173425,6 @@ begin
 
 end
 
--- if in both tran and merge publication
 if exists (select * from sys.objects where name='sysmergepublications')
     and exists (select * from sys.objects where name='syspublications')
 begin
@@ -178215,13 +173432,11 @@ begin
             and not exists (select * from dbo.sysmergearticles where objid=@objid)
         select @no_schema_replication=1
 end
--- if a merge publication
 else if exists (select * from sys.objects where name='sysmergepublications')
 begin
     if not exists (select * from dbo.sysmergearticles where objid=@objid)
         select @no_schema_replication = 1
 end
--- if a tran publication
 else if exists (select * from sys.objects where name='syspublications')
 begin
     if not exists (select * from sysarticles a join syspublications p on a.pubid = p.pubid 
@@ -178245,10 +173460,8 @@ end
 else
     select @is_for_merge=0
 
--- PARSENAME VARS
     declare      @UnqualName      sysname  --rightmost name node
     declare      @QualName1       sysname  
--- END PARSENAME VARS
 
     select @UnqualName = PARSENAME(@source_object, 1)
     select @QualName1 = PARSENAME(@source_object, 2)
@@ -178277,7 +173490,7 @@ save tran sp_repldropcolumn
     /* will be in once server check in full metadata support
     **
     if not exists (select * from tempdb.sys.objects where name = '##MS_internal_old_style_DDL_support_being_used')
-        create table ##MS_internal_old_style_DDL_support_being_used(db_name sysname, objid int)
+        create table ##MS_internal_old_style_DDL_support_being_used(db_name BP_PRD.create table ##MS_internal_old_style_DDL_support_being_used(db_name sysname, objid int)
 
     insert ##MS_internal_old_style_DDL_support_being_used(db_name, objid) values(db_name(), @objid)
     if @@ERROR<>0
@@ -178298,7 +173511,6 @@ save tran sp_repldropcolumn
         if @retcode<>0 or @@ERROR<>0
             goto FAILURE
     end
-
 
     select @is_for_tran = 0    
     if exists (select * from sys.objects where name='sysarticles')
@@ -178361,7 +173573,6 @@ save tran sp_repldropcolumn
         close #trancolumn
         deallocate #trancolumn
     end
-
 
     if not exists (select * from sys.objects where name='sysmergearticles')
         select @not_for_merge = 1
@@ -178581,7 +173792,6 @@ save tran sp_repldropcolumn
                     goto INNER_FAIL
             end
 
-
                 
             exec @retcode = sys.sp_MSdroparticletriggers @tablename, @owner
             if @retcode<>0 or @@ERROR<>0
@@ -178662,7 +173872,6 @@ save tran sp_repldropcolumn
 
         end
 
-
         if @is_for_merge=1
         begin
             exec @retcode = sys.sp_MSmarkreplinfo @tablename, @owner
@@ -178671,7 +173880,6 @@ save tran sp_repldropcolumn
         end
     end
 
--- finally, if it's transactional, trigger a reinit
 if @is_for_tran = 1
 begin
 
@@ -178747,7 +173955,6 @@ if @got_merge_admin_applock=1
     exec sys.sp_MSreleasemergeadminapplock @lockowner = N'Transaction'
 
 COMMIT TRAN
--- delete ##MS_internal_old_style_DDL_support_being_used where db_name=db_name() and objid=@objid
 
 return (0)
 
@@ -178766,7 +173973,6 @@ CLOSE #dropcolumn_schema
 DEALLOCATE #dropcolumn_schema
 GOTO FAILURE
 
-
 ERROR_EXIT:
 CLOSE #nosnapshot
 DEALLOCATE #nosnapshot
@@ -178784,47 +173990,7 @@ FAILURE:
     return (1)    
 go
 
-create procedure sys.sp_replflush() as
--- missing source code
-go
-
---
--- Name: sp_replgetparsedddlcmd
---
--- Description: This helper sproc strips out the first part 
---	of DDL cmd, up to the point right after object name.
---	
---
--- Parameters: 	
---	@ddlcmd nvarchar(max)
---	,@FirstToken sysname
---	,@objectType sysname	-- comlete form: e.g. procedure/function/tigger
---	,@dbname sysname		-- not quoted
---	,@owner sysname			-- not quoted
---	,@objname sysname		-- not quoted
---	,@targetobject nvarchar(512)-- applies to alter trigger only
---
--- Returns: nvarchar(max) 
---
--- Notes: this is an internal helper function which assumes
---	incoming @ddlcmd is always valid, it strips out the first 
---	part of ddl so we can reconstruct with alternate
---	destination table/owner if so desired, it also helps to 
---	to avoid blandly sending DDL with fully qualified table 
---	name including publisher database:
---	e.g. 
---	sp_replgetparsedddlcmd
--- 							N'table pubs.dbo.authors add newcol1 int'
---							,'alter'
---							,'table'
---							,'pubs'
---							,'dbo'
---							,'authors'
---	should return: N'add newcol1 int'
---		
--- Security: not exposed to public
--- 
-create procedure sys.sp_replgetparsedddlcmd 
+create procedure BP_PRD.sys.sp_replgetparsedddlcmd 
        @ddlcmd nvarchar(max) OUTPUT
 	,@FirstToken sysname
 	,@objectType sysname	-- comlete form: e.g. procedure/function/tigger
@@ -178843,17 +174009,11 @@ declare @left_quote bigint
 		,@trigger_owner sysname
 		,@trigger_objname sysname
 		
--- start with striping off ALTER at the begining
 set @ddloffset = ltrim(right(@ddlcmd, len(@ddlcmd) - len(@FirstToken)))
 
--- strip out any possible comments between alter and next token
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 set @ddlcmd_len = len(@ddloffset)
 
--- now strip out objectType token, 
--- remember, this function is only used by DDL trigger where we know @ddlcmd coming in is valid
--- watch out for space after the second token, e.g. alter proc instead of alter procedure
--- watch out for comments, e.g. alter proc/*..*/myproc instead of alter procedure
 set @first_space = patindex('% %', @ddloffset)
 set @left_quote = patindex('%/*%', @ddloffset)
 if (@first_space > 0 and @first_space < len(@objectType))
@@ -178871,19 +174031,12 @@ else
 	set @left_quote = len(@objectType) + 1
 set @ddloffset = ltrim(substring(@ddloffset, @left_quote, @ddlcmd_len - @left_quote + 1))
 
--- strip out any possible comments between @ObjectType token and object name
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 
--- now strip out object name
--- deal with the following possibilities: w or w/o quotes
--- [db].[owner].[obj]
 set @ddloffset = sys.fn_replremovefullobj(@ddloffset, @dbname, @owner, @objname)
 
--- might as well strip out any possible comments between object name and definition
 set @ddloffset = sys.fn_replremoveleadingcomments(@ddloffset)
 
---alter trigger trigger_name on [db].[owner].[obj] as .... has the same issue, parse to the point before as
---so we can substitute with alter trigger trigger_name on [dest_owner].[dest_obj] as 
 if UPPER(@objectType) = N'TRIGGER' and @targetobject is not NULL and len(@targetobject) > 0
 begin 
 	-- remove leading white space char
@@ -178904,12 +174057,7 @@ return 0
 end
 go
 
-create procedure sys.sp_replhelp() as
--- missing source code
-go
-
-
-create procedure sys.sp_replica (
+create procedure BP_PRD.sys.sp_replica (
         @tabname nvarchar(92),     /* The table being replicated */
         @replicated nvarchar(5)    /* True or false */
         ) AS
@@ -178919,7 +174067,7 @@ create procedure sys.sp_replica (
     RETURN(1)
 go
 
-create procedure sys.sp_replication_agent_checkup
+create procedure BP_PRD.sys.sp_replication_agent_checkup
 @heartbeat_interval int = 10        -- minutes
 as
     declare @distribution_db sysname
@@ -178970,7 +174118,7 @@ UNDO:
     return (@retstatus)
 go
 
-create procedure sys.sp_replicationdboption (
+create procedure BP_PRD.sys.sp_replicationdboption (
       @dbname    sysname,
       @optname   sysname,
       @value     sysname,
@@ -178997,7 +174145,6 @@ create procedure sys.sp_replicationdboption (
                 @done_proc  nvarchar(300),
                 @clearcache_proc  nvarchar(300),
                 @containment tinyint
-
 
     select @optname = LOWER(@optname)
             ,@value   = LOWER(@value)
@@ -179344,7 +174491,7 @@ UNDO:
     return(1)    
 go
 
-create procedure sys.sp_replincrementlsn (
+create procedure BP_PRD.sys.sp_replincrementlsn (
 	@xact_seqno binary(10) OUTPUT,
 	@publisher sysname = NULL
 )
@@ -179384,7 +174531,7 @@ as
 	return (0)
 go
 
-create procedure sys.sp_replmonitorchangepublicationthreshold 
+create procedure BP_PRD.sys.sp_replmonitorchangepublicationthreshold 
 (
     @publisher sysname -- cannot be null
     ,@publisher_db sysname -- cannot be null
@@ -179532,7 +174679,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorhelpmergesession
+create procedure BP_PRD.sys.sp_replmonitorhelpmergesession
 (
 	@agent_name nvarchar(100)= NULL,
 	@hours int = 0, /* @hours < 0 will return TOP 100, otherwise look back at only @hours */
@@ -179722,7 +174869,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorhelpmergesessiondetail
+create procedure BP_PRD.sys.sp_replmonitorhelpmergesessiondetail
 (
 	@session_id	int
 )
@@ -179956,8 +175103,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_replmonitorhelpmergesubscriptionmoreinfo(
+create procedure BP_PRD.sys.sp_replmonitorhelpmergesubscriptionmoreinfo(
     @publisher            sysname,        /* Publisher server */
     @publisher_db            sysname,        /* Publisher database */
     @publication            sysname,        /* Publication name */
@@ -180039,7 +175185,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorhelppublication 
+create procedure BP_PRD.sys.sp_replmonitorhelppublication 
 (
     @publisher sysname = NULL -- pubisher -  cannot be null for sql 2008 or before, for sql 11 or later null means all publisher
     ,@publisher_db sysname = NULL -- NULL for wildcard entry
@@ -180080,7 +175226,6 @@ begin
                 ,@latency = 2
 
 /*
--- warning bitmap definition
 Expiration                      1                    	Threshold to warn expiration of subscription to a transactional publication - percentage of retention in hours
 latency                          2                      The time taken to replicate data from the transactional publisher (committed) to the subscriber (committed) - in seconds
 mergeexpiration             4                      Threshold to warn expiration of merge subscription to a publication - percentage of retention in hours
@@ -180392,7 +175537,7 @@ mergerundurationLAN     64                     The time taken to finish one merg
 end
 go
 
-create procedure sys.sp_replmonitorhelppublicationthresholds 
+create procedure BP_PRD.sys.sp_replmonitorhelppublicationthresholds 
 (
     @publisher sysname -- cannot be null
     ,@publisher_db sysname -- cannot be null
@@ -180494,7 +175639,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorhelppublisher 
+create procedure BP_PRD.sys.sp_replmonitorhelppublisher 
 (
     @publisher sysname = NULL  -- pubisher - null means all publisher
     ,@refreshpolicy tinyint = 0 -- 0 = default cache refresh, 1 = optimistic force refresh, 2 = non-optimistic force refresh
@@ -180601,7 +175746,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorhelpsubscription 
+create procedure BP_PRD.sys.sp_replmonitorhelpsubscription 
 (
     @publisher sysname = NULL  -- pubisher -  cannot be null for sql server 2008 or before. for SQL 11 or later, means all publishers
     ,@publisher_db sysname = NULL -- NULL for wildcard entry
@@ -181153,7 +176298,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorrefreshjob 
+create procedure BP_PRD.sys.sp_replmonitorrefreshjob 
 (
     @iterations tinyint = 0 -- 0 - run continuously, non 0 - run for specified iterations
     ,@profile bit = 0 -- for internal use - DO NOT DOCUMENT (remove this before release)
@@ -181271,7 +176416,7 @@ begin
 end
 go
 
-create procedure sys.sp_replmonitorsubscriptionpendingcmds 
+create procedure BP_PRD.sys.sp_replmonitorsubscriptionpendingcmds 
 (
     @publisher sysname -- cannot be null
     ,@publisher_db sysname -- cannot be null
@@ -181434,7 +176579,7 @@ begin
 end
 go
 
-create procedure sys.sp_replpostsyncstatus (
+create procedure BP_PRD.sys.sp_replpostsyncstatus (
     @pubid int, 
     @artid int, 
     @syncstat int,
@@ -181459,7 +176604,7 @@ as
     return 0
 go
 
-create procedure sys.sp_replqueuemonitor (
+create procedure BP_PRD.sys.sp_replqueuemonitor (
     @publisher      sysname = NULL
     ,@publisherdb   sysname = NULL
     ,@publication   sysname = NULL
@@ -181497,7 +176642,7 @@ begin
     if @@ERROR <> 0 or @retcode <> 0
         return(1)
 
-    create table #mesgs (mesgid int identity PRIMARY KEY, queuetype tinyint default 1, publisher sysname collate database_default, publisher_db sysname collate database_default, publication sysname collate database_default, 
+    create table #mesgs (mesgid int identity PRIMARY KEY, queuetype tinyint default 1, publisher BP_PRD.create table #mesgs (mesgid int identity PRIMARY KEY, queuetype tinyint default 1, publisher sysname collate database_default, publisher_db sysname collate database_default, publication sysname collate database_default, 
                             tranid sysname collate database_default, commandlen int, command ntext)
 
     --
@@ -181534,7 +176679,7 @@ begin
                 --
                 -- enumerate each queue
                 --
-                create table #queues (publisher sysname collate database_default, publisher_db sysname collate database_default, publication sysname collate database_default, queue_id sysname collate database_default)
+                create table #queues (publisher BP_PRD.create table #queues (publisher sysname collate database_default, publisher_db sysname collate database_default, publication sysname collate database_default, queue_id sysname collate database_default)
                 declare #htempcursor cursor local for
                     select publisher, publisher_db, publication, queue_server, queue_id 
                     from dbo.MSsubscription_agents 
@@ -181723,7 +176868,7 @@ begin
 end
 go
 
-create procedure sys.sp_replrestart 
+create procedure BP_PRD.sys.sp_replrestart 
 AS
 
     SET NOCOUNT ON
@@ -181849,7 +176994,6 @@ UNDO:
     return 1
 go
 
-
 CREATE PROCEDURE sys.sp_replrethrow 
 AS
     IF ERROR_NUMBER() IS NULL
@@ -181877,11 +177021,7 @@ AS
         );
 go
 
-create procedure sys.sp_replsendtoqueue() as
--- missing source code
-go
-
-create procedure sys.sp_replsetoriginator (
+create procedure BP_PRD.sys.sp_replsetoriginator (
 	@originator_srv sysname, 
 	@originator_db sysname,
 	@publication sysname = NULL
@@ -181917,12 +177057,7 @@ as
 	return 0
 go
 
-create procedure sys.sp_replsetsyncstatus() as
--- missing source code
-go
-
-
-create procedure sys.sp_replshowcmds 
+create procedure BP_PRD.sys.sp_replshowcmds 
 (
     @maxtrans int = 1
 )
@@ -181951,7 +177086,7 @@ begin
 end
 go
 
-create procedure sys.sp_replsqlqgetrows 
+create procedure BP_PRD.sys.sp_replsqlqgetrows 
 (
 	@publisher sysname
 	,@publisherdb sysname
@@ -182106,8 +177241,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_replsync (
+create procedure BP_PRD.sys.sp_replsync (
     @publisher sysname,    
     @publisher_db sysname,        
     @publication sysname,    
@@ -182119,15 +177253,7 @@ create procedure sys.sp_replsync (
     RETURN(1)
 go
 
-create procedure sys.sp_repltrans() as
--- missing source code
-go
-
-create procedure sys.sp_replwritetovarbin() as
--- missing source code
-go
-
-create procedure sys.sp_requestpeerresponse
+create procedure BP_PRD.sys.sp_requestpeerresponse
 (
 	@publication	sysname,
 	@description	nvarchar(4000) = NULL,
@@ -182279,7 +177405,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_requestpeertopologyinfo
+create procedure BP_PRD.sys.sp_requestpeertopologyinfo
 (
 	@publication	sysname,
 	@request_id	int = NULL output
@@ -182433,45 +177559,7 @@ FAILURE:
 end
 go
 
-create procedure sys.sp_reserve_http_namespace() as
--- missing source code
-go
-
-create procedure sys.sp_reset_connection() as
--- missing source code
-go
-
---
--- Name: sp_resetsnapshotdeliveryprogress
---
--- Description: This procedure removes all rows (if @drop_table = 'false')
---              in the MSsnapshotdeliveryprogress table (if it exists). This 
---              will effectively wipes out all memory of any previous 
---              progress that any snapshot delivery processes had made to
---              the subscriber database.
---
--- Notes: 1) This procedure should be called at the subscriber database.
---        2) This procedure will try to acquire the 
---           'snapshot_delivery_in_progress_<dbname>' application lock in
---           exclusive mode prior to truncating (or drop) 
---           the MSsnapshotdeliveryprogress table. It will raise an error if 
---           it cannot acquire the lock in 5 seconds and the specified 
---           @verbose_level >= 1.
---
--- Parameter: @verbose_level int (optional, default 1)
---            @drop_table nvarchar(5) (optional, default N'false')
---                - specifies whether to drop the progress table or just 
---                  truncate the table
---
--- Returns: 0 - succeeded
---          1 - failed
---
--- Security: Execute permission of this procedure is granted to public;
---           procedural security check will be performed to make sure
---           that the caller is either a db_owner of the current database
---           or a sysadmin. 
---
-create procedure sys.sp_resetsnapshotdeliveryprogress
+create procedure BP_PRD.sys.sp_resetsnapshotdeliveryprogress
     @verbose_level int = 1,
     @drop_table nvarchar(5) = N'false'
 as
@@ -182631,8 +177719,7 @@ Failure:
 end
 go
 
-
-create procedure sys.sp_resetstatus  -- 1995/11/30 14:12 #12092
+create procedure BP_PRD.sys.sp_resetstatus  -- 1995/11/30 14:12 #12092
 	@DBName sysname
 as
 	set nocount on
@@ -182703,7 +177790,7 @@ as
 	return (0) -- sp_resetstatus
 go
 
-create proc sys.sp_resign_database @keytype sysname, @fn nvarchar(512), @pwd sysname = Null
+create proc BP_PRD.sys.sp_resign_database @keytype sysname, @fn nvarchar(512), @pwd sysname = Null
 as
 begin
 	declare @thumbprint 	varbinary(32)
@@ -182853,7 +177940,7 @@ begin
 end
 go
 
-create procedure sys.sp_resolve_logins
+create procedure BP_PRD.sys.sp_resolve_logins
 (
     @dest_db         sysname
    ,@dest_path       nvarchar(255)
@@ -182897,7 +177984,7 @@ begin
     --
     if substring(@dest_path, 1,2) != N'\\'
     BEGIN
-        select @command = N'dir "' + REPLACE(sys.fn_escapecmdshellsymbolsremovequotes(@dest_path) collate database_default, N'''', N'''''' ) + N'"'
+        select @command = N'dir '' + REPLACE(sys.fn_escapecmdshellsymbolsremovequotes(@dest_path) collate database_default, N'''', N'''''' ) + N'''
         begin try
         exec @retcode = master.dbo.xp_cmdshell @command, N'no_output'
         end try
@@ -182927,9 +178014,9 @@ begin
     --
     select @command = REPLACE(sys.fn_escapecmdshellsymbolsremovequotes(@dest_path + N'\' + @filename) collate database_default, N'''', N'''''' )
     begin try
-    exec(N'BULK INSERT #sysloginstemp FROM "' 
+    exec(N'BULK INSERT #sysloginstemp FROM '' 
                 + @command
-                + N'" WITH (DATAFILETYPE = ''widenative'', KEEPNULLS)')
+                + N'' WITH (DATAFILETYPE = ''widenative'', KEEPNULLS)')
     end try
     begin catch
         select @retcode = 1
@@ -182979,7 +178066,7 @@ begin
 end
 go
 
-create procedure sys.sp_restoredbreplication (
+create procedure BP_PRD.sys.sp_restoredbreplication (
     @srv_orig sysname, 
     @db_orig sysname,
     @keep_replication int = 0, -- Make it int so that we can expand later.
@@ -183078,12 +178165,7 @@ begin
 end
 go
 
--- This stored procedure get the maximum identity range allocation from the distributor
--- and sets the max_used values of the article which use automatic identity range management
--- This proc needs to be called by the administrators when a publisher has been restored
--- from backup. This proc can be called with parameters of actual publication and article
--- names or with default which restored the max identity used fro all articles
-create procedure sys.sp_restoremergeidentityrange
+create procedure BP_PRD.sys.sp_restoremergeidentityrange
     @publication            sysname = 'all',  -- publication name 
     @article                sysname = 'all'   -- article name 
 as
@@ -183226,15 +178308,7 @@ ERROR:
     return 1
 go
 
-create procedure sys.sp_resyncexecute() as
--- missing source code
-go
-
-create procedure sys.sp_resyncexecutesql() as
--- missing source code
-go
-
-create procedure sys.sp_resyncmergesubscription 
+create procedure BP_PRD.sys.sp_resyncmergesubscription 
     @publisher            sysname = NULL,
     @publisher_db        sysname = NULL,
     @publication        sysname,
@@ -183372,15 +178446,7 @@ AS
         end
 go
 
-create procedure sys.sp_resyncprepare() as
--- missing source code
-go
-
-create procedure sys.sp_resyncuniquetable() as
--- missing source code
-go
-
-create procedure sys.sp_revoke_publication_access
+create procedure BP_PRD.sys.sp_revoke_publication_access
 (
 	@publication	sysname,
 	@login			sysname,
@@ -183509,7 +178575,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_revokedbaccess
+create procedure BP_PRD.sys.sp_revokedbaccess
 	@name_in_db     sysname
 as
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -183585,7 +178651,7 @@ as
     return (0)	-- sp_revokedbaccess
 go
 
-create procedure sys.sp_revokelogin
+create procedure BP_PRD.sys.sp_revokelogin
     @loginame		sysname
 AS
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -183620,54 +178686,9 @@ AS
 	if @@error <> 0
 		return (1)
 
-    -- RETURN "SUCCESS" --
+    -- RETURN 'SUCCESS' --
     return (0)	-- sp_revokelogin
 go
-
-create procedure sys.sp_rollback_parallel_nested_tran() as
--- missing source code
-go
-
-
---
--- Name:
---		sp_schemafilter
---
--- Description:
---		Update the schema filter set used to control those schema
---		whose tables are examined by sp_ORAenumpublishertables (Oracle specific)
---
--- Inputs:
---		@publisher		== name of Oracle publisher
---		@operation		== operation ('add', 'drop', 'help')
---		@schema			== schema name 
---
--- Returns:
---		Return code (0 for success, 1 for failure)
---
--- Security:
---		public -- call must be sysadmin
---
--- Notes:
---		This stored procedure is provided so that the administrator of Oracle
---		publishing can control those schema that are not included when
---		displaying the tables eligible for publishing within the add publication
---		wizard.  A default filter set is created when the HREPL package is downloaded 
---		to the publisher.  This stored procedure allows the entries in the filter set
---		to be both viewed and updated.
---
---		Operation	Action
---
---		'add'	-	Adds the schema specified in @schema to the filter set
---				if not already present. 
---		'drop	-	Drop the schema specified in @schema from the filter set
---				if present.
---		'help'	-	Returns a result set identifying the schema currently 
---				in the filter set.  If @schema is specified, the result set
---				will be empty if the schema is not in the result set, or
---				will contain the single schema if it was present in the
---				result set. (default)		
---
 
 CREATE PROCEDURE sys.sp_schemafilter
 (
@@ -183710,8 +178731,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_schemata_rowset
+create procedure BP_PRD.sys.sp_schemata_rowset
 (
     @schema_name    sysname = null,
     @schema_owner   sysname = null
@@ -183737,7 +178757,7 @@ as
     order by 2
 go
 
-create procedure sys.sp_script_reconciliation_delproc 
+create procedure BP_PRD.sys.sp_script_reconciliation_delproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -183767,7 +178787,7 @@ begin
 end
 go
 
-create procedure sys.sp_script_reconciliation_insproc 
+create procedure BP_PRD.sys.sp_script_reconciliation_insproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -183797,7 +178817,7 @@ begin
 end
 go
 
-create procedure sys.sp_script_reconciliation_sinsproc 
+create procedure BP_PRD.sys.sp_script_reconciliation_sinsproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -183827,7 +178847,7 @@ begin
 end
 go
 
-create procedure sys.sp_script_reconciliation_vdelproc 
+create procedure BP_PRD.sys.sp_script_reconciliation_vdelproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -183857,7 +178877,7 @@ begin
 end
 go
 
-create procedure sys.sp_script_reconciliation_xdelproc 
+create procedure BP_PRD.sys.sp_script_reconciliation_xdelproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -183887,7 +178907,7 @@ begin
 end
 go
 
-create procedure sys.sp_script_synctran_commands(
+create procedure BP_PRD.sys.sp_script_synctran_commands(
     @publication sysname,    /* publication name */
     @article sysname = 'all'    /* article name, all means all article */
     ,@trig_only bit = 0
@@ -183931,7 +178951,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptdelproc 
+create procedure BP_PRD.sys.sp_scriptdelproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -183961,7 +178981,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptdynamicupdproc 
+create procedure BP_PRD.sys.sp_scriptdynamicupdproc 
 (
     @artid int                  -- id of the article we are processing
 )
@@ -183987,25 +179007,10 @@ begin
     return @retcode
 end
 
---
--- Name: sp_scriptvupdproc
---
--- Owner: KaushikC
---
--- Description: This procs is used for scripting VCALL update custom procedure
--- used for command distribution. Used specifically for updating subscriber articles.
--- Processing is similar to MCALL update procedure, in addition the version is also passed in
---
--- Parameter: Refer to the comments in the create procedure statement
---
--- Returns: 1 or 0   0 = success
---
--- Security: Public procedure - internal security check. 
---
 raiserror('Creating procedure sp_scriptvupdproc', 0,1)
 go
 
-create procedure sys.sp_scriptinsproc 
+create procedure BP_PRD.sys.sp_scriptinsproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -184035,7 +179040,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptmappedupdproc 
+create procedure BP_PRD.sys.sp_scriptmappedupdproc 
 (
     @artid int                  -- id of the article we are processing
     ,@mode tinyint = 1    		-- 1 = static scripting, 2 = dynamic scripting
@@ -184066,31 +179071,7 @@ begin
 end
 go
 
---
--- Name: sp_scriptpublicationcustomprocs
---
--- Description: This is a utility procedure for scripting out the 
---              article "custom" ins/upd/del procedures for all 
---              table articles in a publication with the auto-generate custom
---              procedure schema option enabled. This is particularly useful 
---              and in fact specifically designed for setting up no-sync 
---              subscriptions. 
--- 
--- Notes: 1) Reconciliation procedures for concurrent snapshot will
---           not be scripted by this procedure. It does not really make 
---           sense to have concurrent snapshots for no-sync subscriptions.
---        2) Custom procedures will not be scripted out for articles 
---           without the auto-generate custom procedure (0x2) schema_option.
---
--- Parameter: @publication sysname
---
--- Security: Execute permission is granted to public; procedural security 
---           check is performed inside the procedure to restrict access
---           to sysadmins and db_owners of current database. 
---
--- Example: exec Northwind.sys.sp_scriptpublicationcustomprocs @publication = N'Northwind'
---
-create procedure sys.sp_scriptpublicationcustomprocs
+create procedure BP_PRD.sys.sp_scriptpublicationcustomprocs
 (
 	@publication	sysname,
 	@publisher		sysname = NULL,
@@ -184124,11 +179105,10 @@ BEGIN
 	RETURN (@retcode)
 END
 
-
 raiserror('Creating procedure sp_MSrepl_scriptpublicationcustomprocs',0,-1) with nowait
 go
 
-create procedure sys.sp_scriptsinsproc 
+create procedure BP_PRD.sys.sp_scriptsinsproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -184158,7 +179138,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptsubconflicttable (
+create procedure BP_PRD.sys.sp_scriptsubconflicttable (
     @publication sysname
     ,@article sysname
 	,@alter bit = 0 -- if 1 script alter, otherwise script create
@@ -184212,7 +179192,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptsupdproc 
+create procedure BP_PRD.sys.sp_scriptsupdproc 
 (
     @artid int                  -- id of the article we are processing
     ,@mode tinyint = 1    		-- 1 = static scripting, 2 = dynamic scripting
@@ -184243,7 +179223,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptupdproc 
+create procedure BP_PRD.sys.sp_scriptupdproc 
 (
     @artid int                  -- id of the article we are processing
     ,@mode tinyint = 1    -- 1 = static scripting, 2 = dynamic scripting
@@ -184274,7 +179254,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptvdelproc 
+create procedure BP_PRD.sys.sp_scriptvdelproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -184304,7 +179284,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptvupdproc 
+create procedure BP_PRD.sys.sp_scriptvupdproc 
 (
     @artid int                  -- id of the article we are processing
     ,@mode tinyint = 1    -- 1 = static scripting, 2 = dynamic scripting
@@ -184335,7 +179315,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptxdelproc 
+create procedure BP_PRD.sys.sp_scriptxdelproc 
 (
     @artid int
     ,@publishertype tinyint=1        -- 1 = mssqlserver, 2 = heterogeneous
@@ -184365,7 +179345,7 @@ begin
 end
 go
 
-create procedure sys.sp_scriptxupdproc 
+create procedure BP_PRD.sys.sp_scriptxupdproc 
 (
     @artid int                  -- id of the article we are processing
     ,@mode tinyint = 1    -- 1 = static scripting, 2 = dynamic scripting
@@ -184396,7 +179376,7 @@ begin
 end
 go
 
-create procedure sys.sp_sequence_get_range
+create procedure BP_PRD.sys.sp_sequence_get_range
 	@sequence_name      nvarchar(776),
 	@range_size         bigint,
 	@range_first_value  sql_variant output,
@@ -184412,12 +179392,7 @@ as
 	return @ret
 go
 
-create procedure sys.sp_server_diagnostics() as
--- missing source code
-go
-
-
-create procedure sys.sp_server_info
+create procedure BP_PRD.sys.sp_server_info
 (
     @attribute_id  int = null
 )
@@ -184454,7 +179429,7 @@ as
     where @attribute_id is null or @attribute_id = attribute_id
 go
 
-create procedure sys.sp_serveroption
+create procedure BP_PRD.sys.sp_serveroption
 	@server		sysname,		-- server name to change
 	@optname	varchar(35),	-- option name to turn on/off
 	@optvalue	nvarchar(128)	-- true or false, on or off, collation name, or timeout value
@@ -184466,7 +179441,6 @@ as
 			@collationID	int,
 			@ret			int,
 			@is_linked 	bit
-
 
 	-- DISALLOW USER TRANSACTION
 	set implicit_transactions off
@@ -184654,12 +179628,10 @@ as
 	COMMIT TRAN
 	RETURN (0) -- sp_serveroption
 
-
 bad_option:		-- INVALID PARAMETER
 	raiserror(15600,-1,-1,'sys.sp_serveroption')
 	RETURN 1 -- sp_serveroption
 go
-
 
 CREATE PROCEDURE sys.sp_setOraclepackageversion
 (
@@ -184696,7 +179668,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_setapprole
+create procedure BP_PRD.sys.sp_setapprole
     @rolename   sysname,        -- name app role
     @password   sysname,		-- password for app role
 	@encrypt	varchar(10)	= 'none', 		-- Encryption style ('none' | 'odbc')
@@ -184748,26 +179720,6 @@ as
         return (1)
     return (0)	-- sp_setapprole
 go
-
-
---
--- Name:
---		sp_setdefaultdatatypemapping
---
--- Description:
---		Mark data type mapping as default
---
--- Returns:
---		0 if successful
---		1 if failed
---
--- Security:
---		public
---
--- Notes:
---		Data type mapping must already exist to be marked
---		as the default
---
 
 CREATE PROCEDURE sys.sp_setdefaultdatatypemapping
 (
@@ -184957,7 +179909,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_setnetname
+create procedure BP_PRD.sys.sp_setnetname
 	 @server	sysname	-- server name
 	,@netname	sysname	-- new net name
 as
@@ -185005,7 +179957,7 @@ as
 	end
 
 	-- CHECK FOR LOOPBACK SERVER AND ISSUE WARNING
-	-- Only check linked server for "data access" since that's where the limitation
+	-- Only check linked server for 'data access' since that's where the limitation
 	-- lies.  Replication calls this code although only for RPC servers, so they
 	-- shouldn't be seeing this message
 	if @netname = @@SERVERNAME and @server <> @netname AND @dataaccess = 1
@@ -185041,7 +179993,7 @@ as
 	return (0) -- sp_setnetname
 go
 
-create procedure sys.sp_setreplfailovermode (
+create procedure BP_PRD.sys.sp_setreplfailovermode (
     @publisher sysname,
     @publisher_db sysname,
     @publication sysname,
@@ -185383,15 +180335,15 @@ BEGIN
         RETURN 1
 
 	
-	SELECT @current_xact_seqno AS "ORIGINAL XACT_SEQNO", 
-			@xact_seqno AS "UPDATED XACT_SEQNO",
-			@sub_streams_count AS "SUBSCRIPTION STREAM COUNT"
+	SELECT @current_xact_seqno AS 'ORIGINAL XACT_SEQNO', 
+			@xact_seqno AS 'UPDATED XACT_SEQNO',
+			@sub_streams_count AS 'SUBSCRIPTION STREAM COUNT'
 
 	RETURN 0
 END
 go
 
-create procedure sys.sp_settriggerorder
+create procedure BP_PRD.sys.sp_settriggerorder
 	@triggername	nvarchar(517),	-- name of the trigger (may be 2-part)
 	@order			varchar(10),	-- first, last, or none
 	@stmttype		varchar(50),	-- statement (event) type
@@ -185571,12 +180523,7 @@ abort_exit:
 	return(1)	-- sp_settriggerorder
 go
 
-create procedure sys.sp_setuserbylogin() as
--- missing source code
-go
-
-
-create procedure sys.sp_showcolv
+create procedure BP_PRD.sys.sp_showcolv
     @colv varbinary(2953)
 as
     set nocount on
@@ -185606,8 +180553,7 @@ as
     select * from @result order by colidx
 go
 
-
-create procedure sys.sp_showlineage
+create procedure BP_PRD.sys.sp_showlineage
     @lineage varbinary(311)
 as
     set nocount on
@@ -185633,11 +180579,7 @@ as
     select * from @result order by position
 go
 
-create procedure sys.sp_showmemo_xml() as
--- missing source code
-go
-
-create procedure sys.sp_showpendingchanges
+create procedure BP_PRD.sys.sp_showpendingchanges
             @destination_server sysname = NULL,
             @publication         sysname = NULL,
             @article             sysname = NULL,
@@ -185674,7 +180616,6 @@ as
         pending_ins_and_upd     int,
         is_delete				int,
         rowguid					uniqueidentifier)
-
 
     declare #serv_pub_art cursor local fast_forward for
         select
@@ -185765,7 +180706,6 @@ as
 		                        sys.fn_MSmerge_nicknamefound(gh.nicknames,@replnickname) = 0
 		                    
 
-
 					insert into 
 					@result_table(destination_server,pub_name, destination_db_name, is_dest_subscriber,article_name, pending_deletes, pending_ins_and_upd, is_delete, rowguid)
 					select @current_destination_server, @pub_name, @destination_db_name, @is_dest_subscriber, @article_name, 0, 0, 1,
@@ -185849,7 +180789,6 @@ as
                         gh.generation > @sentgen and
                         sys.fn_MSmerge_nicknamefound(gh.nicknames,@replnickname) = 0
 
-
 				if @show_rows = 1
 				begin
 					insert into 
@@ -185896,7 +180835,7 @@ as
     return 0
 go
 
-create procedure sys.sp_showrowreplicainfo
+create procedure BP_PRD.sys.sp_showrowreplicainfo
     (@ownername sysname = NULL, @tablename sysname = NULL, @rowguid uniqueidentifier, @show nvarchar(20) = 'both')
 as 
     set nocount on
@@ -186184,7 +181123,7 @@ as
     return 0
 go
 
-create procedure sys.sp_spaceused --- 2003/05/19 14:00
+create procedure BP_PRD.sys.sp_spaceused --- 2003/05/19 14:00
 @objname nvarchar(776) = null,		-- The object we want size on.
 @updateusage varchar(5) = false		-- Param. for specifying that
 					-- usage info. should be updated.
@@ -186285,7 +181224,7 @@ begin
 		@usedpages = sum(a.used_pages),
 		@pages = sum(
 				CASE
-					-- XML-Index and FT-Index and semantic index internal tables are not considered "data", but is part of "index_size"
+					-- XML-Index and FT-Index and semantic index internal tables are not considered 'data', but is part of 'index_size'
 					When it.internal_type IN (202,204,207,211,212,213,214,215,216,221,222,236) Then 0
 					When a.type <> 1 and p.index_id < 2 Then a.used_pages
 					When p.index_id < 2 Then a.data_pages
@@ -186372,12 +181311,10 @@ begin
 
 end
 
-
 return (0) -- sp_spaceused
 go
 
-
-create procedure sys.sp_sparse_columns_100_rowset
+create procedure BP_PRD.sys.sp_sparse_columns_100_rowset
 (
     @table_name     sysname = NULL,
     @table_schema   sysname = NULL,
@@ -186444,8 +181381,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_special_columns
+create procedure BP_PRD.sys.sp_special_columns
 (
     @table_name         sysname,         -- Wildcard pattern matching IS NOT supported.
     @table_owner        sysname = null,  -- Wildcard pattern matching IS NOT supported.
@@ -186518,8 +181454,8 @@ as
             COLUMN_NAME     = convert(sysname,NULL),
             DATA_TYPE       = convert(smallint,0),
             TYPE_NAME       = convert(sysname,NULL),
-            "PRECISION"     = convert(int,0),
-            "LENGTH"        = convert(int,0),
+            'PRECISION'     = convert(int,0),
+            'LENGTH'        = convert(int,0),
             SCALE           = convert(smallint,0),
             PSEUDO_COLUMN   = convert(smallint,0)
         where
@@ -186534,8 +181470,8 @@ as
             COLUMN_NAME     = convert(sysname,c.name),
             DATA_TYPE       = convert(smallint, -2),
             TYPE_NAME       = t.name,
-            "PRECISION"     = convert(int,8),
-            "LENGTH"        = convert(int,8),
+            'PRECISION'     = convert(int,8),
+            'LENGTH'        = convert(int,8),
             SCALE           = convert(smallint, NULL),
             PSEUDO_COLUMN   = convert(smallint,1)
         from
@@ -186601,13 +181537,13 @@ as
                                 when (t.system_type_id = 240 or t.user_type_id > 255) then t.name
                                 else d.TYPE_NAME collate catalog_default
                                   end),
-        "PRECISION"     = convert(int,case
+        'PRECISION'     = convert(int,case
                                 when d.DATA_TYPE in (6,7) then d.data_precision         -- FLOAT/REAL
                                 when (c.max_length = -1 and d.ss_dtype = 240) then -- Large UDT => image for non-SNAC clients
                                     2147483647
                                 else OdbcPrec(c.system_type_id,c.max_length,c.precision)
                                 end),
-        "LENGTH"        = convert(int,case
+        'LENGTH'        = convert(int,case
                                 when type_name(d.ss_dtype) IN ('numeric','decimal') then    -- decimal/numeric types
                                   OdbcPrec(c.system_type_id,c.max_length,c.precision)+2
                                 when (c.max_length = -1 and d.ss_dtype = 240) then -- Large UDT => image for non-SNAC clients
@@ -186647,8 +181583,7 @@ as
             )
 go
 
-
-create procedure sys.sp_special_columns_100 
+create procedure BP_PRD.sys.sp_special_columns_100 
 (
     @table_name         sysname,         -- Wildcard pattern matching IS NOT supported.
     @table_owner        sysname = null,  -- Wildcard pattern matching IS NOT supported.
@@ -186720,8 +181655,8 @@ as
             COLUMN_NAME     = convert(sysname,NULL),
             DATA_TYPE       = convert(smallint,0),
             TYPE_NAME       = convert(sysname,NULL),
-            "PRECISION"     = convert(int,0),
-            "LENGTH"        = convert(int,0),
+            'PRECISION'     = convert(int,0),
+            'LENGTH'        = convert(int,0),
             SCALE           = convert(smallint,0),
             PSEUDO_COLUMN   = convert(smallint,0)
         where
@@ -186736,8 +181671,8 @@ as
             COLUMN_NAME     = convert(sysname,c.name),
             DATA_TYPE       = convert(smallint, -2),
             TYPE_NAME       = t.name,
-            "PRECISION"     = convert(int,8),
-            "LENGTH"        = convert(int,8),
+            'PRECISION'     = convert(int,8),
+            'LENGTH'        = convert(int,8),
             SCALE           = convert(smallint, NULL),
             PSEUDO_COLUMN   = convert(smallint,1)
         from
@@ -186787,13 +181722,13 @@ as
                                  when (t.system_type_id = 240 or t.user_type_id > 255) then t.name
                                  else d.TYPE_NAME collate catalog_default
                                  end),
-        "PRECISION"     = convert(int,case
+        'PRECISION'     = convert(int,case
                                  when d.DATA_TYPE in (6,7) then d.data_precision         -- FLOAT/REAL
                                  when (c.max_length = -1 and d.ss_dtype = 240) then -- Large UDT => same precision as varbinary(max)
                                      0
                                  else OdbcPrec(c.system_type_id,c.max_length,c.precision)
                                  end),
-        "LENGTH"        = convert(int,case
+        'LENGTH'        = convert(int,case
                                  when type_name(d.ss_dtype) IN ('numeric','decimal') then    -- decimal/numeric types
                                      OdbcPrec(c.system_type_id,c.max_length,c.precision)+2
                                  when (c.max_length = -1 and d.ss_dtype = 240) then -- Large UDT => same length as varbinary(max)
@@ -186828,8 +181763,7 @@ as
             )
 go
 
-
-create procedure sys.sp_special_columns_90
+create procedure BP_PRD.sys.sp_special_columns_90
 (
     @table_name         sysname,         -- Wildcard pattern matching IS NOT supported.
     @table_owner        sysname = null,  -- Wildcard pattern matching IS NOT supported.
@@ -186901,8 +181835,8 @@ as
             COLUMN_NAME     = convert(sysname,NULL),
             DATA_TYPE       = convert(smallint,0),
             TYPE_NAME       = convert(sysname,NULL),
-            "PRECISION"     = convert(int,0),
-            "LENGTH"        = convert(int,0),
+            'PRECISION'     = convert(int,0),
+            'LENGTH'        = convert(int,0),
             SCALE           = convert(smallint,0),
             PSEUDO_COLUMN   = convert(smallint,0)
         where
@@ -186917,8 +181851,8 @@ as
             COLUMN_NAME     = convert(sysname,c.name),
             DATA_TYPE       = convert(smallint, -2),
             TYPE_NAME       = t.name,
-            "PRECISION"     = convert(int,8),
-            "LENGTH"        = convert(int,8),
+            'PRECISION'     = convert(int,8),
+            'LENGTH'        = convert(int,8),
             SCALE           = convert(smallint, NULL),
             PSEUDO_COLUMN   = convert(smallint,1)
         from
@@ -186976,13 +181910,13 @@ as
                                 when (t.system_type_id = 240 or t.user_type_id > 255) then t.name
                                 else d.TYPE_NAME collate catalog_default
                                 end),
-        "PRECISION"     = convert(int,case
+        'PRECISION'     = convert(int,case
                                 when d.DATA_TYPE in (6,7) then d.data_precision         -- FLOAT/REAL
                                 when (c.max_length = -1 and d.ss_dtype = 240) then -- Large UDT => same precision as varbinary(max) for 9.0 clients
                                     0
                                 else OdbcPrec(c.system_type_id,c.max_length,c.precision)
                                 end),
-        "LENGTH"        = convert(int,case
+        'LENGTH'        = convert(int,case
                                 when type_name(d.ss_dtype) IN ('numeric','decimal') then    -- decimal/numeric types
                                     OdbcPrec(c.system_type_id,c.max_length,c.precision)+2
                                 when d.ss_dtype IN (40,41,42,43) then 
@@ -187022,8 +181956,7 @@ as
             )
 go
 
-
-create procedure sys.sp_sproc_columns
+create procedure BP_PRD.sys.sp_sproc_columns
 (
     @procedure_name         nvarchar(390) = '%',
     @procedure_owner        nvarchar(384) = null,
@@ -187095,7 +182028,6 @@ as
 
     select @procedure_id = object_id(@full_procedure_name)
 
-
     if (@fUsePattern = 1) -- Does the user want it?
     begin
         if ((isnull(charindex('%', @full_procedure_name),0) = 0) and
@@ -187139,8 +182071,8 @@ as
             COLUMN_TYPE                 = s_scov.COLUMN_TYPE,
             DATA_TYPE                   = s_scov.DATA_TYPE_28,
             TYPE_NAME                   = s_scov.TYPE_NAME_28,
-            "PRECISION"                 = s_scov.PRECISION_28,
-            "LENGTH"                    = s_scov.LENGTH_28,
+            'PRECISION'                 = s_scov.PRECISION_28,
+            'LENGTH'                    = s_scov.LENGTH_28,
             SCALE                       = s_scov.SCALE,
             RADIX                       = s_scov.RADIX,
             NULLABLE                    = s_scov.NULLABLE,
@@ -187171,8 +182103,8 @@ as
             COLUMN_TYPE                 = s_scrvov.COLUMN_TYPE,
             DATA_TYPE                   = s_scrvov.DATA_TYPE, -- SNAC == MDAC, return value can only be int or table
             TYPE_NAME                   = s_scrvov.TYPE_NAME, -- SNAC == MDAC, return value can only be int or table
-            "PRECISION"                 = s_scrvov.PRECISION,
-            "LENGTH"                    = s_scrvov.LENGTH,
+            'PRECISION'                 = s_scrvov.PRECISION,
+            'LENGTH'                    = s_scrvov.LENGTH,
             SCALE                       = s_scrvov.SCALE,
             RADIX                       = s_scrvov.RADIX,
             NULLABLE                    = s_scrvov.NULLABLE,
@@ -187227,8 +182159,8 @@ as
             COLUMN_TYPE                 = s_scov.COLUMN_TYPE,
             DATA_TYPE                   = s_scov.DATA_TYPE_28,
             TYPE_NAME                   = s_scov.TYPE_NAME_28,
-            "PRECISION"                 = s_scov.PRECISION_28,
-            "LENGTH"                    = s_scov.LENGTH_28,
+            'PRECISION'                 = s_scov.PRECISION_28,
+            'LENGTH'                    = s_scov.LENGTH_28,
             SCALE                       = s_scov.SCALE,
             RADIX                       = s_scov.RADIX,
             NULLABLE                    = s_scov.NULLABLE,
@@ -187260,8 +182192,8 @@ as
             COLUMN_TYPE                 = s_scrvov.COLUMN_TYPE,
             DATA_TYPE                   = s_scrvov.DATA_TYPE, -- SNAC == MDAC, return value can only be int or table
             TYPE_NAME                   = s_scrvov.TYPE_NAME, -- SNAC == MDAC, return value can only be int or table
-            "PRECISION"                 = s_scrvov.PRECISION,
-            "LENGTH"                    = s_scrvov.LENGTH,
+            'PRECISION'                 = s_scrvov.PRECISION,
+            'LENGTH'                    = s_scrvov.LENGTH,
             SCALE                       = s_scrvov.SCALE,
             RADIX                       = s_scrvov.RADIX,
             NULLABLE                    = s_scrvov.NULLABLE,
@@ -187289,10 +182221,7 @@ as
         order by 1, 2, 3, 18
     end
 
-go
-
-
-create procedure sys.sp_sproc_columns_100
+create procedure BP_PRD.sys.sp_sproc_columns_100
 (
     @procedure_name         nvarchar(390) = '%',
     @procedure_owner        nvarchar(384) = null,
@@ -187364,7 +182293,6 @@ as
 
     select @procedure_id = object_id(@full_procedure_name)
 
-
     if (@fUsePattern = 1) -- Does the user want it?
     begin
         if ((isnull(charindex('%', @full_procedure_name),0) = 0) and
@@ -187408,8 +182336,8 @@ as
             COLUMN_TYPE                 = s_scov.COLUMN_TYPE,
             DATA_TYPE                   = s_scov.DATA_TYPE,
             TYPE_NAME                   = s_scov.TYPE_NAME,
-            "PRECISION"                 = s_scov.PRECISION,
-            "LENGTH"                    = s_scov.LENGTH,
+            'PRECISION'                 = s_scov.PRECISION,
+            'LENGTH'                    = s_scov.LENGTH,
             SCALE                       = s_scov.SCALE,
             RADIX                       = s_scov.RADIX,
             NULLABLE                    = s_scov.NULLABLE,
@@ -187448,8 +182376,8 @@ as
             COLUMN_TYPE                 = s_scrvov.COLUMN_TYPE,
             DATA_TYPE                   = s_scrvov.DATA_TYPE,
             TYPE_NAME                   = s_scrvov.TYPE_NAME,
-            "PRECISION"                 = s_scrvov.PRECISION,
-            "LENGTH"                    = s_scrvov.LENGTH,
+            'PRECISION'                 = s_scrvov.PRECISION,
+            'LENGTH'                    = s_scrvov.LENGTH,
             SCALE                       = s_scrvov.SCALE,
             RADIX                       = s_scrvov.RADIX,
             NULLABLE                    = s_scrvov.NULLABLE,
@@ -187512,8 +182440,8 @@ as
             COLUMN_TYPE                 = s_scov.COLUMN_TYPE,
             DATA_TYPE                   = s_scov.DATA_TYPE,
             TYPE_NAME                   = s_scov.TYPE_NAME,
-            "PRECISION"                 = s_scov.PRECISION,
-            "LENGTH"                    = s_scov.LENGTH,
+            'PRECISION'                 = s_scov.PRECISION,
+            'LENGTH'                    = s_scov.LENGTH,
             SCALE                       = s_scov.SCALE,
             RADIX                       = s_scov.RADIX,
             NULLABLE                    = s_scov.NULLABLE,
@@ -187553,8 +182481,8 @@ as
             COLUMN_TYPE                 = s_scrvov.COLUMN_TYPE,
             DATA_TYPE                   = s_scrvov.DATA_TYPE,
             TYPE_NAME                   = s_scrvov.TYPE_NAME,
-            "PRECISION"                 = s_scrvov.PRECISION,
-            "LENGTH"                    = s_scrvov.LENGTH,
+            'PRECISION'                 = s_scrvov.PRECISION,
+            'LENGTH'                    = s_scrvov.LENGTH,
             SCALE                       = s_scrvov.SCALE,
             RADIX                       = s_scrvov.RADIX,
             NULLABLE                    = s_scrvov.NULLABLE,
@@ -187589,10 +182517,7 @@ as
         order by 1, 2, 3, 18
     end
 
-go
-
-
-create procedure sys.sp_sproc_columns_90
+create procedure BP_PRD.sys.sp_sproc_columns_90
 (
     @procedure_name         nvarchar(390) = '%',
     @procedure_owner        nvarchar(384) = null,
@@ -187664,7 +182589,6 @@ as
 
     select @procedure_id = object_id(@full_procedure_name)
 
-
     if (@fUsePattern = 1) -- Does the user want it?
     begin
         if ((isnull(charindex('%', @full_procedure_name),0) = 0) and
@@ -187708,8 +182632,8 @@ as
             COLUMN_TYPE                 = s_scov.COLUMN_TYPE,
             DATA_TYPE                   = s_scov.DATA_TYPE_90,
             TYPE_NAME                   = s_scov.TYPE_NAME,
-            "PRECISION"                 = s_scov.PRECISION,
-            "LENGTH"                    = s_scov.LENGTH_90,
+            'PRECISION'                 = s_scov.PRECISION,
+            'LENGTH'                    = s_scov.LENGTH_90,
             SCALE                       = s_scov.SCALE_90,
             RADIX                       = s_scov.RADIX,
             NULLABLE                    = s_scov.NULLABLE,
@@ -187746,8 +182670,8 @@ as
             COLUMN_TYPE                 = s_scrvov.COLUMN_TYPE,
             DATA_TYPE                   = s_scrvov.DATA_TYPE,
             TYPE_NAME                   = s_scrvov.TYPE_NAME,
-            "PRECISION"                 = s_scrvov.PRECISION,
-            "LENGTH"                    = s_scrvov.LENGTH,
+            'PRECISION'                 = s_scrvov.PRECISION,
+            'LENGTH'                    = s_scrvov.LENGTH,
             SCALE                       = s_scrvov.SCALE,
             RADIX                       = s_scrvov.RADIX,
             NULLABLE                    = s_scrvov.NULLABLE,
@@ -187808,8 +182732,8 @@ as
             COLUMN_TYPE                 = s_scov.COLUMN_TYPE,
             DATA_TYPE                   = s_scov.DATA_TYPE_90,
             TYPE_NAME                   = s_scov.TYPE_NAME,
-            "PRECISION"                 = s_scov.PRECISION,
-            "LENGTH"                    = s_scov.LENGTH_90,
+            'PRECISION'                 = s_scov.PRECISION,
+            'LENGTH'                    = s_scov.LENGTH_90,
             SCALE                       = s_scov.SCALE_90,
             RADIX                       = s_scov.RADIX,
             NULLABLE                    = s_scov.NULLABLE,
@@ -187847,8 +182771,8 @@ as
             COLUMN_TYPE                 = s_scrvov.COLUMN_TYPE,
             DATA_TYPE                   = s_scrvov.DATA_TYPE,
             TYPE_NAME                   = s_scrvov.TYPE_NAME,
-            "PRECISION"                 = s_scrvov.PRECISION,
-            "LENGTH"                    = s_scrvov.LENGTH,
+            'PRECISION'                 = s_scrvov.PRECISION,
+            'LENGTH'                    = s_scrvov.LENGTH,
             SCALE                       = s_scrvov.SCALE,
             RADIX                       = s_scrvov.RADIX,
             NULLABLE                    = s_scrvov.NULLABLE,
@@ -187880,8 +182804,6 @@ as
 
         order by 1, 2, 3, 18
     end
-
-go
 
 CREATE PROCEDURE sys.sp_sqlagent_add_job
     @job_name               SYSNAME, 
@@ -187901,7 +182823,6 @@ BEGIN
     BEGIN
         RETURN(@retval)
     END
-
 
     IF (@job_id IS NULL) 
     BEGIN 
@@ -187958,7 +182879,6 @@ BEGIN
     
 END 
 go
-
 
 CREATE PROCEDURE sys.sp_sqlagent_add_jobstep
     @job_id                UNIQUEIDENTIFIER = NULL,   -- Must provide either this or job_name
@@ -188103,7 +183023,6 @@ BEGIN
         RETURN(@retval)
     END
 
-
     -- Notify SQL Agent that job was updated
     EXECUTE @retval = master.dbo.xp_sqlagent_notify 
         N'J',
@@ -188132,7 +183051,6 @@ BEGIN
     BEGIN
         RETURN(@retval)
     END
-
 
     -- If  job_id is null, then throw validation error
     IF(@job_id IS NULL)
@@ -188227,7 +183145,6 @@ BEGIN
 END 
 go
 
-
 CREATE PROCEDURE sys.sp_sqlagent_help_jobstep 
   @job_id                UNIQUEIDENTIFIER
 AS
@@ -188290,7 +183207,6 @@ BEGIN
     RETURN(0) -- Success
 END
 go
-
 
 CREATE PROCEDURE sys.sp_sqlagent_log_job_history
     @job_id               UNIQUEIDENTIFIER,
@@ -188370,7 +183286,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_sqlagent_start_job 
   @job_id      UNIQUEIDENTIFIER
 AS
@@ -188420,7 +183335,6 @@ BEGIN
      RETURN(@retval) -- 0 means success 
 END
 go
-
 
 CREATE PROCEDURE sys.sp_sqlagent_stop_job 
   @job_id      UNIQUEIDENTIFIER
@@ -188488,7 +183402,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_sqlagent_write_jobstep_log
     @job_id    UNIQUEIDENTIFIER, 
     @step_id   INT,
@@ -188540,13 +183453,13 @@ BEGIN
 END
 go
 
-create procedure sys.sp_sqlexec @p1 text as
+create procedure BP_PRD.sys.sp_sqlexec @p1 text as
 	declare @execstr nvarchar(max)
 	set @execstr = CONVERT(nvarchar(max),@p1)
 	exec(@execstr)
 go
 
-create procedure sys.sp_srvrolepermission
+create procedure BP_PRD.sys.sp_srvrolepermission
 	@srvrolename       sysname = NULL
 AS
 	if @srvrolename is not null
@@ -188581,11 +183494,7 @@ AS
     return (0) -- sp_srvrolepermission
 go
 
-create procedure sys.sp_start_user_instance() as
--- missing source code
-go
-
-create procedure sys.sp_startmergepullsubscription_agent
+create procedure BP_PRD.sys.sp_startmergepullsubscription_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -188614,7 +183523,7 @@ begin
 end
 go
 
-create procedure sys.sp_startmergepushsubscription_agent
+create procedure BP_PRD.sys.sp_startmergepushsubscription_agent
 (
     @publication    sysname,
     @subscriber     sysname,
@@ -188636,7 +183545,7 @@ begin
 end
 go
 
-create procedure sys.sp_startpublication_snapshot
+create procedure BP_PRD.sys.sp_startpublication_snapshot
 (
     @publication    sysname,
     @publisher      sysname = null
@@ -188668,7 +183577,7 @@ begin
 end
 go
 
-create procedure sys.sp_startpullsubscription_agent
+create procedure BP_PRD.sys.sp_startpullsubscription_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -188697,7 +183606,7 @@ begin
 end
 go
 
-create procedure sys.sp_startpushsubscription_agent
+create procedure BP_PRD.sys.sp_startpushsubscription_agent
 (
     @publication    sysname,
     @subscriber     sysname,
@@ -188732,12 +183641,10 @@ begin
                     @action = @start    
     return @retcode
 
-
 end
 go
 
-
-create procedure sys.sp_statistics
+create procedure BP_PRD.sys.sp_statistics
 (
     @table_name         sysname,        -- Wildcard pattern matching IS NOT supported.
     @table_owner        sysname = null, -- Wildcard pattern matching IS NOT supported.
@@ -188889,8 +183796,7 @@ as
     order by 4, 7, 6, 8
 go
 
-
-create procedure sys.sp_statistics_100 
+create procedure BP_PRD.sys.sp_statistics_100 
 (
     @table_name         sysname,        -- Wildcard pattern matching IS NOT supported.
     @table_owner        sysname = null, -- Wildcard pattern matching IS NOT supported.
@@ -189002,7 +183908,7 @@ as
             (
                 s_ic.object_id = o.object_id and
                 s_ic.index_id = x.index_id and
-                (s_ic.key_ordinal > 0 or x.type = 3 or x.type = 4) -- include spatial and xml indexes which don't have "key" columns
+                (s_ic.key_ordinal > 0 or x.type = 3 or x.type = 4) -- include spatial and xml indexes which don't have 'key' columns
             ) left join
         sys.index_counts p on
             (
@@ -189051,8 +183957,7 @@ as
     order by 4, 7, 6, 8
 go
 
-
-create procedure sys.sp_statistics_rowset
+create procedure BP_PRD.sys.sp_statistics_rowset
 (
     @table_name     sysname,
     @table_schema   sysname = null
@@ -189082,15 +183987,11 @@ as
     order by 2, 3
 go
 
-
-create procedure sys.sp_statistics_rowset2
+create procedure BP_PRD.sys.sp_statistics_rowset2
 (
     @table_schema   sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG = db_name(),
         TABLE_SCHEMA = schema_name(o.schema_id),
@@ -189112,7 +184013,7 @@ as
     order by 2, 3
 go
 
-create procedure sys.sp_stopmergepullsubscription_agent
+create procedure BP_PRD.sys.sp_stopmergepullsubscription_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -189141,7 +184042,7 @@ begin
 end
 go
 
-create procedure sys.sp_stopmergepushsubscription_agent
+create procedure BP_PRD.sys.sp_stopmergepushsubscription_agent
 (
     @publication    sysname,
     @subscriber     sysname,
@@ -189163,7 +184064,7 @@ begin
 end
 go
 
-create procedure sys.sp_stoppublication_snapshot
+create procedure BP_PRD.sys.sp_stoppublication_snapshot
 (
     @publication    sysname,
     @publisher      sysname = null
@@ -189195,7 +184096,7 @@ begin
 end
 go
 
-create procedure sys.sp_stoppullsubscription_agent
+create procedure BP_PRD.sys.sp_stoppullsubscription_agent
 (
     @publisher      sysname,
     @publisher_db   sysname,
@@ -189224,7 +184125,7 @@ begin
 end
 go
 
-create procedure sys.sp_stoppushsubscription_agent
+create procedure BP_PRD.sys.sp_stoppushsubscription_agent
 (
     @publication    sysname,
     @subscriber     sysname,
@@ -189259,12 +184160,10 @@ begin
                     @action = @stop    
     return @retcode
 
-
 end
 go
 
-
-create procedure sys.sp_stored_procedures
+create procedure BP_PRD.sys.sp_stored_procedures
 (
     @sp_name            nvarchar(390) = null, -- Wildcard pattern matching is supported.
     @sp_owner           nvarchar(384) = null, -- Wildcard pattern matching is supported.
@@ -189424,7 +184323,7 @@ as
     end
 go
 
-create procedure sys.sp_subscribe 
+create procedure BP_PRD.sys.sp_subscribe 
 (
     @publication sysname,          /* publication name */
     @article sysname = 'all',          /* article name */
@@ -189475,7 +184374,7 @@ begin
 end
 go
 
-create procedure sys.sp_subscription_cleanup
+create procedure BP_PRD.sys.sp_subscription_cleanup
 (
     @publisher      sysname,
     @publisher_db   sysname = NULL,
@@ -190134,7 +185033,6 @@ BEGIN
 END
 go
 
-
 CREATE PROCEDURE sys.sp_subscriptionsummary
 (
     @publication    sysname,
@@ -190371,7 +185269,6 @@ AS
 		EXEC [msdb].[dbo].[sp_syspolicy_dispatch_event] @event_data = @event_data, @synchronous = 1
 	END'
 
-
 	EXEC sp_executesql @statement
 
 	RETURN (0)
@@ -190443,8 +185340,7 @@ AS
 	RETURN (0)
 go
 
-
-create procedure sys.sp_table_constraints_rowset
+create procedure BP_PRD.sys.sp_table_constraints_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null,
@@ -190462,15 +185358,10 @@ as
         TABLE_CATALOG       = db_name(),
         TABLE_SCHEMA        = schema_name(t_obj.schema_id),
         TABLE_NAME          = t_obj.name,
---        CONSTRAINT_TYPE     = case (syscon.status & 0xf)
         CONSTRAINT_TYPE     = case syscon.type
---                                when 1 then N'PRIMARY KEY'
                                 when 'PK' then N'PRIMARY KEY'
---                                when 2 then N'UNIQUE'
                                 when 'UQ' then N'UNIQUE'
---                                when 3 then N'FOREIGN KEY'
                                 when 'F' then N'FOREIGN KEY'
---                                when 4 then N'CHECK'
                                 when 'C' then N'CHECK'
                                 else null
                               end,
@@ -190481,7 +185372,6 @@ as
     from
         sys.all_objects o,
         sys.all_objects t_obj,
---        sysconstraints syscon
         sys.all_objects syscon
     where
         t_obj.name  = @table_name and
@@ -190505,8 +185395,7 @@ as
     order by 2,3,5,6,7
 go
 
-
-create procedure sys.sp_table_constraints_rowset2
+create procedure BP_PRD.sys.sp_table_constraints_rowset2
 (
     @table_schema       sysname = null,
     @table_catalog      sysname = null,
@@ -190516,9 +185405,6 @@ create procedure sys.sp_table_constraints_rowset2
     @constraint_type    nvarchar(255) = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         CONSTRAINT_CATALOG  = db_name(),
         CONSTRAINT_SCHEMA   = schema_name(o.schema_id),
@@ -190526,15 +185412,10 @@ as
         TABLE_CATALOG       = db_name(),
         TABLE_SCHEMA        = schema_name(t_obj.schema_id),
         TABLE_NAME          = t_obj.name,
---        CONSTRAINT_TYPE     = case (syscon.status & 0xf)
         CONSTRAINT_TYPE     = case syscon.type
---                                when 1 then N'PRIMARY KEY'
                                 when 'PK' then N'PRIMARY KEY'
---                                when 2 then N'UNIQUE'
                                 when 'UQ' then N'UNIQUE'
---                                when 3 then N'FOREIGN KEY'
                                 when 'F' then N'FOREIGN KEY'
---                                when 4 then N'CHECK'
                                 when 'C' then N'CHECK'
                                 else null
                               end,
@@ -190545,7 +185426,6 @@ as
     from
         sys.all_objects o,
         sys.all_objects t_obj,
---        sysconstraints syscon
         sys.all_objects syscon
     where
         t_obj.type in ('U','S') and
@@ -190568,8 +185448,7 @@ as
     order by 2,3,5,6,7
 go
 
-
-create procedure sys.sp_table_privileges
+create procedure BP_PRD.sys.sp_table_privileges
 (
     @table_name         nvarchar(384),          -- Wildcard pattern matching is supported.
     @table_owner        nvarchar(384) = null,   -- Wildcard pattern matching is supported.
@@ -190662,8 +185541,7 @@ as
     end
 go
 
-
-create procedure sys.sp_table_privileges_ex
+create procedure BP_PRD.sys.sp_table_privileges_ex
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -190754,8 +185632,7 @@ as
     end
 go
 
-
-create procedure sys.sp_table_privileges_rowset
+create procedure BP_PRD.sys.sp_table_privileges_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null,
@@ -190781,17 +185658,13 @@ as
     order by 4,5,6,1,2
 go
 
-
-create procedure sys.sp_table_privileges_rowset2
+create procedure BP_PRD.sys.sp_table_privileges_rowset2
 (
     @table_schema       sysname = null,
     @grantor            sysname = null,
     @grantee            sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         GRANTOR         = s_tpv.GRANTOR,
         GRANTEE         = s_tpv.GRANTEE,
@@ -190809,8 +185682,7 @@ as
     order by 4,5,6,1,2
 go
 
-
-create procedure sys.sp_table_privileges_rowset_rmt
+create procedure BP_PRD.sys.sp_table_privileges_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -190838,8 +185710,7 @@ as
     order by 3,4,5,6,1,2
 go
 
-
-create procedure sys.sp_table_statistics2_rowset
+create procedure BP_PRD.sys.sp_table_statistics2_rowset
 (
     @table_name         sysname,
     @table_schema       sysname = null,
@@ -190979,8 +185850,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_table_statistics_rowset
+create procedure BP_PRD.sys.sp_table_statistics_rowset
 (
     @table_name_dummy   sysname = null -- dummy parameter, for consistency with other SProcs, where 1st parameter is table_name
 )
@@ -191007,8 +185877,7 @@ as
     where 1=0
 go
 
-
-create procedure sys.sp_table_type_columns_100
+create procedure BP_PRD.sys.sp_table_type_columns_100
 (
     @table_name         nvarchar(384),
     @table_owner        nvarchar(384) = null,
@@ -191033,7 +185902,7 @@ as
         end
     end
 
-    -- "ALL" is represented by NULL value.
+    -- 'ALL' is represented by NULL value.
     if @table_name = '%'
         select @table_name = null
     if @table_owner = '%'
@@ -191088,8 +185957,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE,
             TYPE_NAME                   = s_cov.TYPE_NAME,
-            "PRECISION"                 = s_cov.PRECISION,
-            "LENGTH"                    = s_cov.LENGTH,
+            'PRECISION'                 = s_cov.PRECISION,
+            'LENGTH'                    = s_cov.LENGTH,
             SCALE                       = s_cov.SCALE,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -191145,8 +186014,8 @@ as
             COLUMN_NAME                 = s_cov.COLUMN_NAME,
             DATA_TYPE                   = s_cov.DATA_TYPE,
             TYPE_NAME                   = s_cov.TYPE_NAME,
-            "PRECISION"                 = s_cov.PRECISION,
-            "LENGTH"                    = s_cov.LENGTH,
+            'PRECISION'                 = s_cov.PRECISION,
+            'LENGTH'                    = s_cov.LENGTH,
             SCALE                       = s_cov.SCALE,
             RADIX                       = s_cov.RADIX,
             NULLABLE                    = s_cov.NULLABLE,
@@ -191186,8 +186055,7 @@ as
     end
 go
 
-
-create procedure sys.sp_table_type_columns_100_rowset
+create procedure BP_PRD.sys.sp_table_type_columns_100_rowset
 (
     @table_name     sysname = NULL,
     @table_schema   sysname = NULL,
@@ -191249,8 +186117,7 @@ as
     order by 1, 2, 3, 7
 go
 
-
-create procedure sys.sp_table_type_pkeys
+create procedure BP_PRD.sys.sp_table_type_pkeys
 (
     @table_name      sysname,
     @table_owner     sysname = null,
@@ -191281,8 +186148,7 @@ as
     order by 1, 2, 3, 5
 go
 
-
-create procedure sys.sp_table_type_primary_keys_rowset
+create procedure BP_PRD.sys.sp_table_type_primary_keys_rowset
 (
     @table_name         sysname = null,
     @table_schema       sysname = null
@@ -191305,8 +186171,7 @@ as
     order by 2, 3
 go
 
-
-create procedure sys.sp_table_types
+create procedure BP_PRD.sys.sp_table_types
 (
     @table_name         nvarchar(384)   = null,
     @table_owner        nvarchar(384)   = null,
@@ -191352,8 +186217,7 @@ as
     order by 4, 1, 2, 3
 go
 
-
-create procedure sys.sp_table_types_rowset
+create procedure BP_PRD.sys.sp_table_types_rowset
 (
     @table_name     sysname = null,
     @table_schema   sysname = null
@@ -191377,7 +186241,7 @@ as
     order by 4, 2, 3
 go
 
-create procedure sys.sp_table_validation
+create procedure BP_PRD.sys.sp_table_validation
 (
     @table sysname,                -- table name or sync object name
     @expected_rowcount bigint = NULL OUTPUT,
@@ -191392,8 +186256,8 @@ create procedure sys.sp_table_validation
     In 7.0, this was a bit column.  0 meant do not do just a rowcount - do a checksum.  1 meant just do a 
     rowcount.
 
-    For Shiloh, this parameter is changed to a smallint.  The name "rowcount_only" is now a 
-    misnomer given the overloaded functionality.  It is really a "type of check requested"
+    For Shiloh, this parameter is changed to a smallint.  The name 'rowcount_only' is now a 
+    misnomer given the overloaded functionality.  It is really a 'type of check requested'
     parameter.   But, the old name is retained for backward compatibility.   It can take 
     these values:
 
@@ -191438,8 +186302,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_tablecollations
+create procedure BP_PRD.sys.sp_tablecollations
 (
     @object nvarchar(4000)
 )
@@ -191448,7 +186311,7 @@ as
         colid               = s_tcv.colid,
         name                = s_tcv.name,
         tds_collation       = s_tcv.tds_collation_28,
-        "collation"         = s_tcv.collation_28
+        'collation'         = s_tcv.collation_28
     from
         sys.spt_tablecollations_view s_tcv
     where
@@ -191456,7 +186319,7 @@ as
     order by colid
 go
 
-create procedure sys.sp_tablecollations_100
+create procedure BP_PRD.sys.sp_tablecollations_100
 (
     @object nvarchar(4000)
 )
@@ -191465,7 +186328,7 @@ as
         colid               = s_tcv.colid,
         name                = s_tcv.name,
         tds_collation       = s_tcv.tds_collation_100,
-        "collation"         = s_tcv.collation_100
+        'collation'         = s_tcv.collation_100
     from
         sys.spt_tablecollations_view s_tcv
     where
@@ -191473,8 +186336,7 @@ as
     order by colid
 go
 
-
-create procedure sys.sp_tablecollations_90
+create procedure BP_PRD.sys.sp_tablecollations_90
 (
     @object nvarchar(4000)
 )
@@ -191483,7 +186345,7 @@ as
         colid               = s_tcv.colid,
         name                = s_tcv.name,
         tds_collation       = s_tcv.tds_collation_90,
-        "collation"         = s_tcv.collation_90
+        'collation'         = s_tcv.collation_90
     from
         sys.spt_tablecollations_view s_tcv
     where
@@ -191491,7 +186353,7 @@ as
     order by colid
 go
 
-create procedure sys.sp_tableoption
+create procedure BP_PRD.sys.sp_tableoption
     @TableNamePattern      nvarchar(776)
    ,@OptionName            varchar(35)
    ,@OptionValue           varchar(12)
@@ -191649,8 +186511,7 @@ as
 	return 0  --sp_tableoption
 go
 
-
-create procedure sys.sp_tables
+create procedure BP_PRD.sys.sp_tables
 (
     @table_name         nvarchar(384)   = null,
     @table_owner        nvarchar(384)   = null,
@@ -191666,7 +186527,7 @@ as
     if @table_qualifier = '%' and @table_owner = '' and @table_name = ''
     begin
         -- Debug output, do not remove it.
-        -- print 'Special feature #1:  enumerate databases when owner and name are blank but qualifier is explicitly "%".'
+        -- print 'Special feature #1:  enumerate databases when owner and name are blank but qualifier is explicitly '%'.'
         select
             TABLE_QUALIFIER = convert(sysname,d.name),
             TABLE_OWNER     = convert(sysname,null),
@@ -191684,7 +186545,7 @@ as
     if @table_qualifier = '' and @table_owner = '%' and @table_name = ''
     begin
         -- Debug output, do not remove it.
-        -- print 'Special feature #2:  enumerate owners when qualifier and name are blank but owner is explicitly "%".
+        -- print 'Special feature #2:  enumerate owners when qualifier and name are blank but owner is explicitly '%'.
         select distinct
             TABLE_QUALIFIER = convert(sysname,null),
             TABLE_OWNER     = convert(sysname,schema_name(o.schema_id)),
@@ -191702,7 +186563,7 @@ as
     if @table_qualifier = '' and @table_owner = '' and @table_name = '' and @table_type = '%'
     begin
         -- Debug output, do not remove it.
-        -- print 'Special feature #3:  enumerate table types when qualifier, owner and name are blank but table type is explicitly "%".'
+        -- print 'Special feature #3:  enumerate table types when qualifier, owner and name are blank but table type is explicitly '%'.'
         select
             TABLE_QUALIFIER = convert(sysname,null),
             TABLE_OWNER     = convert(sysname,null),
@@ -191862,8 +186723,7 @@ as
     end
 go
 
-
-create procedure sys.sp_tables_ex
+create procedure BP_PRD.sys.sp_tables_ex
 (
     @table_server       sysname,
     @table_name         sysname = null,
@@ -191959,8 +186819,7 @@ as
     end
 go
 
-
-create procedure sys.sp_tables_info_90_rowset
+create procedure BP_PRD.sys.sp_tables_info_90_rowset
 (
     @table_name     sysname,
     @table_schema   sysname = null,
@@ -191994,16 +186853,12 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_90_rowset2
+create procedure BP_PRD.sys.sp_tables_info_90_rowset2
 (
     @table_schema   sysname = null,
     @table_type     nvarchar(255) = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG           = s_tiv.TABLE_CATALOG,
         TABLE_SCHEMA            = s_tiv.TABLE_SCHEMA,
@@ -192028,16 +186883,12 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_90_rowset2_64
+create procedure BP_PRD.sys.sp_tables_info_90_rowset2_64
 (
     @table_schema   sysname = null,
     @table_type     nvarchar(255) = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG           = s_tiv.TABLE_CATALOG,
         TABLE_SCHEMA            = s_tiv.TABLE_SCHEMA,
@@ -192062,8 +186913,7 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_90_rowset_64
+create procedure BP_PRD.sys.sp_tables_info_90_rowset_64
 (
     @table_name     sysname,
     @table_schema   sysname = null,
@@ -192097,8 +186947,7 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_rowset
+create procedure BP_PRD.sys.sp_tables_info_rowset
 (
     @table_name     sysname,
     @table_schema   sysname = null,
@@ -192131,16 +186980,12 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_rowset2
+create procedure BP_PRD.sys.sp_tables_info_rowset2
 (
     @table_schema   sysname = null,
     @table_type     nvarchar(255) = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG           = s_tiv.TABLE_CATALOG,
         TABLE_SCHEMA            = s_tiv.TABLE_SCHEMA,
@@ -192164,16 +187009,12 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_rowset2_64
+create procedure BP_PRD.sys.sp_tables_info_rowset2_64
 (
     @table_schema   sysname = null,
     @table_type     nvarchar(255) = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG           = s_tiv.TABLE_CATALOG,
         TABLE_SCHEMA            = s_tiv.TABLE_SCHEMA,
@@ -192197,8 +187038,7 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_info_rowset_64
+create procedure BP_PRD.sys.sp_tables_info_rowset_64
 (
     @table_name     sysname,
     @table_schema   sysname = null,
@@ -192231,8 +187071,7 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_rowset
+create procedure BP_PRD.sys.sp_tables_rowset
 (
     @table_name     sysname,
     @table_schema   sysname = null,
@@ -192260,16 +187099,12 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_rowset2
+create procedure BP_PRD.sys.sp_tables_rowset2
 (
     @table_schema   sysname = null,
     @table_type     nvarchar(255) = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG   = s_tr.TABLE_CATALOG,
         TABLE_SCHEMA    = s_tr.TABLE_SCHEMA,
@@ -192288,8 +187123,7 @@ as
     order by 4, 2, 3
 go
 
-
-create procedure sys.sp_tables_rowset_rmt
+create procedure BP_PRD.sys.sp_tables_rowset_rmt
 (
     @table_server       sysname,
     @table_catalog      sysname = null,
@@ -192317,8 +187151,7 @@ as
     order by 4,1,2,3
 go
 
-
-create procedure sys.sp_tableswc
+create procedure BP_PRD.sys.sp_tableswc
 (
     @table_name         nvarchar(384)   = null,
     @table_owner        nvarchar(384)   = null,
@@ -192422,7 +187255,6 @@ as
 
         deallocate cursDB
 
-
     end
 
     if @fTableCreated = 0
@@ -192437,19 +187269,7 @@ as
     end
 go
 
-create procedure sys.sp_testlinkedserver() as
--- missing source code
-go
-
-create procedure sys.sp_trace_create() as
--- missing source code
-go
-
-create procedure sys.sp_trace_generateevent() as
--- missing source code
-go
-
-create procedure sys.sp_trace_getdata
+create procedure BP_PRD.sys.sp_trace_getdata
 	(@traceid int,
 	 @records int = 0
 	)
@@ -192457,19 +187277,7 @@ as
 select * from OpenRowset(TABLE TRCDATA, @traceid, @records)
 go
 
-create procedure sys.sp_trace_setevent() as
--- missing source code
-go
-
-create procedure sys.sp_trace_setfilter() as
--- missing source code
-go
-
-create procedure sys.sp_trace_setstatus() as
--- missing source code
-go
-
-create procedure sys.sp_unbindefault --- 1996/08/13 13:34
+create procedure BP_PRD.sys.sp_unbindefault --- 1996/08/13 13:34
 	@objname nvarchar(776),			-- table/column or datatype name
 	@futureonly varchar(15) = NULL  -- flag to indicate extent of binding
 as
@@ -192700,7 +187508,7 @@ as
 	return (0) -- sp_unbindefault
 go
 
-create procedure sys.sp_unbindrule --- 1996/08/13 13:33
+create procedure BP_PRD.sys.sp_unbindrule --- 1996/08/13 13:33
 	@objname nvarchar(776),        -- table/column or datatype name
 	@futureonly varchar(15) = NULL -- flag to indicate extent of binding
 as
@@ -192917,11 +187725,7 @@ as
 	return (0)	--sp_unbindrule
 go
 
-create procedure sys.sp_unprepare() as
--- missing source code
-go
-
-create procedure sys.sp_unregister_custom_scripting 
+create procedure BP_PRD.sys.sp_unregister_custom_scripting 
 (
     @type varchar(16) 		-- one of 'insert', 'delete', 'update', 'custom_script'
     ,@publication sysname = NULL	-- publication to apply this to, NULL means all publications with articles  with @schema_option & 0x02 = 0x02
@@ -192935,20 +187739,7 @@ begin
 end
 go
 
---
--- Name: sp_unregistercustomresolver
---
--- Descriptions: 
---          Delete the custom resolver row from the MSmerge_articleresolver table in the distribution database
---          this proc should be called in the context of the distribution database
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
---
-create procedure sys.sp_unregistercustomresolver
+create procedure BP_PRD.sys.sp_unregistercustomresolver
     @article_resolver nvarchar(255)
 
     AS
@@ -192977,7 +187768,7 @@ create procedure sys.sp_unregistercustomresolver
     return @retcode
 go
 
-create procedure sys.sp_unsetapprole
+create procedure BP_PRD.sys.sp_unsetapprole
     @cookie varbinary(8000)        -- cookie 
 as
     -- SETUP RUNTIME OPTIONS / DECLARE VARIABLES --
@@ -193006,7 +187797,7 @@ as
     return (0)	-- sp_unsetapprole
 go
 
-create procedure sys.sp_unsubscribe (
+create procedure BP_PRD.sys.sp_unsubscribe (
     @publication sysname = NULL,       /* publication name */
     @article sysname = NULL            /* article name */
     ) AS
@@ -193041,7 +187832,6 @@ create procedure sys.sp_unsubscribe (
     
 go
 
--- Update the profile for an agent
 CREATE PROCEDURE sys.sp_update_agent_profile 
 (
     @agent_type     int,
@@ -193132,11 +187922,7 @@ begin
 end
 go
 
-create procedure sys.sp_update_user_instance() as
--- missing source code
-go
-
-create procedure sys.sp_updateextendedproperty
+create procedure BP_PRD.sys.sp_updateextendedproperty
 	@name sysname,
 	@value sql_variant			= NULL,
 	@level0type	varchar(128)	= NULL,
@@ -193183,8 +187969,7 @@ as
 	return (0)
 go
 
-
-create procedure sys.sp_updatestats
+create procedure BP_PRD.sys.sp_updatestats
 	@resample char(8)='NO'
 as
 	
@@ -193220,9 +188005,9 @@ as
 	set concat_null_yields_null on
 	set numeric_roundabort off
 
-	declare @exec_stmt nvarchar(4000)		-- "UPDATE STATISTICS [sysname].[sysname] [sysname] WITH RESAMPLE NORECOMPUTE"
-	declare @exec_stmt_head nvarchar(4000)	-- "UPDATE STATISTICS [sysname].[sysname] "
-	declare @options nvarchar(100)			-- "RESAMPLE NORECOMPUTE"
+	declare @exec_stmt nvarchar(4000)		-- 'UPDATE STATISTICS [sysname].[sysname] [sysname] WITH RESAMPLE NORECOMPUTE'
+	declare @exec_stmt_head nvarchar(4000)	-- 'UPDATE STATISTICS [sysname].[sysname] '
+	declare @options nvarchar(100)			-- 'RESAMPLE NORECOMPUTE'
 
 	declare @index_names cursor
 
@@ -193282,7 +188067,7 @@ as
 				-- indices and stats (user and auto-created)
 				-- Hekaton indexes do not appear in sys.sysindexes so we need to use sys.stats instead
 				-- Hekaton indexes do not support rowmodctr so we just return 1 which will force update stats
-				-- Note that OBJECTPROPERTY returns NULL on type="IT" tables, thus we only call it on type='U' tables
+				-- Note that OBJECTPROPERTY returns NULL on type='IT' tables, thus we only call it on type='U' tables
 				if ((@table_type = 'U') and (1 = OBJECTPROPERTY(@table_id, 'TableIsMemoryOptimized')))	-- Hekaton tables
 				begin
 					set @index_names = cursor local fast_forward read_only for
@@ -193328,7 +188113,7 @@ as
 							select @exec_stmt = @exec_stmt_head + @ind_name_quoted
 
 							-- Add FULLSCAN for hekaton tables
-							-- Note that OBJECTPROPERTY returns NULL on type="IT" tables, thus we only call it on type='U' tables
+							-- Note that OBJECTPROPERTY returns NULL on type='IT' tables, thus we only call it on type='U' tables
 							if ((@table_type = 'U') and (1 = OBJECTPROPERTY(@table_id, 'TableIsMemoryOptimized')))	-- Hekaton tables
 								select @options = 'FULLSCAN'
 
@@ -193376,7 +188161,7 @@ as
 	return(0) -- sp_updatestats
 go
 
-create procedure sys.sp_upgrade_log_shipping 
+create procedure BP_PRD.sys.sp_upgrade_log_shipping 
 as
 begin
     set nocount on
@@ -193688,7 +188473,7 @@ begin
 
     -- Update backup job steps
     update msdb.dbo.sysjobsteps
-    set command = stuff(command, 1, patindex(N'%-backup%', lower(command))-1, N'"' + @toolpath + N'sqllogship.exe" ')
+    set command = stuff(command, 1, patindex(N'%-backup%', lower(command))-1, N''' + @toolpath + N'sqllogship.exe' ')
     where patindex(N'%-backup%', lower(command)) != 0
         and patindex(N'%' + lower(@toolpath) + N'%', lower(command)) = 0
         and patindex(N'%sqllogship.exe%', lower(command)) != 0
@@ -193699,7 +188484,7 @@ begin
 
     -- Update copy job steps
     update msdb.dbo.sysjobsteps
-    set command = stuff(command, 1, patindex(N'%-copy%', lower(command))-1, N'"' + @toolpath + N'sqllogship.exe" ')
+    set command = stuff(command, 1, patindex(N'%-copy%', lower(command))-1, N''' + @toolpath + N'sqllogship.exe' ')
     where patindex(N'%-copy%', lower(command)) != 0
         and patindex(N'%' + lower(@toolpath) + N'%', lower(command)) = 0
         and patindex(N'%sqllogship.exe%', lower(command)) != 0
@@ -193711,7 +188496,7 @@ begin
 
     -- Update restore job steps
     update msdb.dbo.sysjobsteps
-    set command = stuff(command, 1, patindex(N'%-restore%', lower(command))-1, N'"' + @toolpath + N'sqllogship.exe" ')
+    set command = stuff(command, 1, patindex(N'%-restore%', lower(command))-1, N''' + @toolpath + N'sqllogship.exe' ')
     where patindex(N'%-restore%', lower(command)) != 0
         and patindex(N'%' + lower(@toolpath) + N'%', lower(command)) = 0
         and patindex(N'%sqllogship.exe%', lower(command)) != 0
@@ -193728,49 +188513,47 @@ begin
 end
 go
 
-
-create procedure sys.sp_user_counter1 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter1 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 1', @newvalue)
 go
 
-create procedure sys.sp_user_counter10 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter10 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 10', @newvalue)
 go
 
-create procedure sys.sp_user_counter2 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter2 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 2', @newvalue)
 go
 
-create procedure sys.sp_user_counter3 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter3 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 3', @newvalue)
 go
 
-create procedure sys.sp_user_counter4 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter4 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 4', @newvalue)
 go
 
-create procedure sys.sp_user_counter5 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter5 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 5', @newvalue)
 go
 
-create procedure sys.sp_user_counter6 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter6 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 6', @newvalue)
 go
 
-create procedure sys.sp_user_counter7 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter7 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 7', @newvalue)
 go
 
-create procedure sys.sp_user_counter8 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter8 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 8', @newvalue)
 go
 
-create procedure sys.sp_user_counter9 @newvalue int as
+create procedure BP_PRD.sys.sp_user_counter9 @newvalue int as
 dbcc setinstance ('SQLServer:User Settable', 'Query', 'User counter 9', @newvalue)
 go
 
-
-create procedure sys.sp_usertypes_rowset
+create procedure BP_PRD.sys.sp_usertypes_rowset
 (
     @type_name      sysname,
     @type_schema    sysname = null
@@ -193793,8 +188576,7 @@ as
     order by 1, 2, 3
 go
 
-
-create procedure sys.sp_usertypes_rowset2
+create procedure BP_PRD.sys.sp_usertypes_rowset2
 (
     @type_schema    sysname = null
 )
@@ -193815,8 +188597,7 @@ as
     order by 1, 2, 3
 go
 
-
-create procedure sys.sp_usertypes_rowset_rmt
+create procedure BP_PRD.sys.sp_usertypes_rowset_rmt
 (
     @type_server       sysname,
     @type_catalog      sysname = null,
@@ -193845,30 +188626,7 @@ as
     order by 1, 2, 3
 go
 
---
--- Name: sp_validate_redirected_publisher
---
--- Descriptions: Retrieve the redirected publisher for the specified 
---               publisher database pair. If the publisher is not
---               currently redirected, return NULL. 
---
---               For redirected publishers, validation checks are performed
---               to verify that the target of the redirection is a suitable
---               host for the published database. Both informational and
---               error messages may be raised.
---
---               NOTE: On error, all called stored procedures will first
---                     return the temporary linked server and then raise
---                     the error. No errors are caught here.  
---
--- Parameters: as defined in create statement
---
--- Returns: 0 on success, 1 on failure; on failure errors are raised
---
--- Security: Public procedure invoked via RPC. check caller for db_owner 
---           or in the PAL of a publication of the named pubisher check
---
-create procedure sys.sp_validate_redirected_publisher
+create procedure BP_PRD.sys.sp_validate_redirected_publisher
 (
     @original_publisher sysname,
     @publisher_db sysname,
@@ -194009,36 +188767,7 @@ begin
 end
 go
 
---
--- Name: sp_validate_replica_hosts_as_publishers
---
--- Descriptions: Retrieve the redirected publisher for the specified 
---               publisher database pair. If the publisher is not
---               currently redirected, return NULL. 
---
---               For redirected publishers, a connection is made to the
---               redirected publisher to determine whether the target of
---               redirection is an availability group VNN Name. If it is
---               not, a message is returned indicating that the redirected
---               publisher is not associated with an availability group.
---
---				 The availability group primary is then queried for the
---				 names of the hosts of the member replicas. Each host in 
---				 turn is validated as a publisher for the database.
---
---               In general, the stored procedure will attempt to continue
---				 after encountering errors, and will try to validate all
---				 of the known replica hosts associated with the availability
---				 group.
---
--- Parameters: as defined in create statement
---
--- Returns: 0 on success, 1 on failure; on failure errors are raised
---
--- Security: Public procedure invoked via RPC. check caller for db_owner 
---           or in the PAL of a publication of the named pubisher check
---
-create procedure sys.sp_validate_replica_hosts_as_publishers
+create procedure BP_PRD.sys.sp_validate_replica_hosts_as_publishers
 (
     @original_publisher sysname,
     @publisher_db sysname,
@@ -194150,76 +188879,6 @@ begin
 end
 go
 
-
---
--- Name:
---		sp_validatecache
---
--- Description:
---		Validate the distributor side Oracle meta data (Oracle specific)
---
--- Inputs:
---		@publisher		== name of Oracle publisher
---		@publication		== publication name (default '%')
---		@article		== table name (defulat '%') 
---
--- Returns:
---		Return code (0 for success, 1 for failure)
---
---		Result set
---
---		column				description
---
---		publication			publication name
---		article				article name
---		column				column name
---		index_or_constraint index or constraint name
---		columnordinal		column ordinal
---		type				column, index, or constraint type
---		length				length
---		prec				precision
---		scale				scale
---		isnullable			is nullable
---      validate            primary key validated
---      consstatus          constraint status
---      idxstatus           index status 
---		description			'Column dropped'
---							'Column added'
---							'Column changed from'
---							'Column changed to'
---							'Index dropped'
---							'Index added'
---							'Index changed from'
---							'Index changed to'
---							'Constraint dropped'
---							'Constraint added'
---							'Constraint changed from'
---							'Constraint changed to'
---							'Index column dropped'
---							'Index column added'
---							'Constraint column dropped'
---							'Constraint column added'
---
--- Security:
---		public -- caller must be sysadmin
---
--- Notes:
---		This stored procedure is provided so that the administrator of Oracle
---		publishing can determine whether the current meta data for published
---		Oracle tables that is cached at the distributor, is still valid.  It is
---		intended to assist in diagnosing problems resulting from a meta data
---		mismatch between the Oracle database and the distributor meta data cache.
---
---		If the @publication parameter is not specified, all publications for the
---		Oracle publisher are examined.  If the @article parameter is not specified,
---		all articles for the given publication are examined.  If @article is non NULL,
---		and @publication is NULL, articles of the specified name from all publications
---		are examined.
---
---		If an empty rowset is returned, the distributor meta data is valid.
---		If a non-empty rowset is returned, the distributor meta data has been invalidated
---		by meta data changes at the Oracle publisher.  
-
 CREATE PROCEDURE sys.sp_validatecache
 (
 	@publisher		sysname,
@@ -194263,7 +188922,7 @@ BEGIN
 END
 go
 
-create procedure sys.sp_validatelogins
+create procedure BP_PRD.sys.sp_validatelogins
 AS
 	-- Must be securityadmin (or sysadmin) to execute
 	if is_srvrolemember('securityadmin') = 0 and is_srvrolemember('sysadmin') = 0
@@ -194278,8 +188937,7 @@ AS
 	return 0 -- sp_validatelogins
 go
 
-
-create procedure sys.sp_validatemergepublication
+create procedure BP_PRD.sys.sp_validatemergepublication
 	(@publication			sysname,
 	 @level					tinyint
 	 ) AS
@@ -194341,7 +188999,7 @@ create procedure sys.sp_validatemergepublication
 	return (0)
 go
 
-create procedure sys.sp_validatemergepullsubscription
+create procedure BP_PRD.sys.sp_validatemergepullsubscription
     (@publication            sysname,
      @publisher                sysname,
      @publisher_db            sysname,
@@ -194392,10 +189050,7 @@ create procedure sys.sp_validatemergepullsubscription
         return (1)
     return (0)
 
-go
-
-
-create procedure sys.sp_validatemergesubscription
+create procedure BP_PRD.sys.sp_validatemergesubscription
 	(@publication			sysname,
 	 @subscriber			sysname,
 	 @subscriber_db			sysname,
@@ -194439,7 +189094,6 @@ create procedure sys.sp_validatemergesubscription
 		return (1)
 	end
 
-
 	update dbo.MSmerge_replinfo 
 	    set validation_level=@level 
 	    where repid = @subid
@@ -194447,10 +189101,6 @@ create procedure sys.sp_validatemergesubscription
 		return (1)
 	return (0)
 
-go
-
-
----------------------------- sp_validlang ------------------------------
 CREATE PROCEDURE sys.sp_validlang
 	@name	sysname
 AS
@@ -194463,8 +189113,6 @@ AS
 	return (1) -- sp_validlang
 go
 
-
----------------------------- sp_validname ------------------------------
 CREATE PROCEDURE sys.sp_validname
 	@name			sysname,
 	@raise_error	bit = 1
@@ -194482,33 +189130,6 @@ AS
 		raiserror (15004,-1,-1)
 	return (1) -- sp_validname
 go
-
-
---
--- Name:
---		sp_verifypublisher
---
--- Description:
---		Verify that publisher state is valid for HREPL
---
--- Returns:
---		0      == Valid
---		1      == Error in publisher state
---
--- Security:
---		Internal
---
--- Notes:
---		Used by any routine that wants to validate
---		the state of the HREPL publisher before
---		performing any actions against it.
---		Errors are issued at warning level to allow
---		the calling proc to decide how to handle it.
---		For example, drop procedures would typically
---		choose to ignore the errors since everything
---		is being dropped.  Add procedures would tend
---		to error out immediately.
---
 
 CREATE PROCEDURE sys.sp_verifypublisher
 (
@@ -194550,8 +189171,7 @@ BEGIN
 END
 go
 
-
-create procedure sys.sp_views_rowset
+create procedure BP_PRD.sys.sp_views_rowset
 (
     @view_name      sysname,
     @view_schema    sysname = null
@@ -194580,15 +189200,11 @@ as
     order by 1, 2, 3
 go
 
-
-create procedure sys.sp_views_rowset2
+create procedure BP_PRD.sys.sp_views_rowset2
 (
     @view_schema    sysname = null
 )
 as
--------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
--------------------------------------------------------------------------------------------
     select
         TABLE_CATALOG   = db_name(),
         TABLE_SCHEMA    = schema_name(a_v.schema_id),
@@ -194609,8 +189225,7 @@ as
     order by 1, 2, 3
 go
 
-
-create procedure sys.sp_vupgrade_mergeobjects( @login sysname = NULL,  @password sysname = N'', @security_mode bit = 1) 
+create procedure BP_PRD.sys.sp_vupgrade_mergeobjects( @login sysname = NULL,  @password sysname = N'', @security_mode bit = 1) 
 as
 begin
     declare @qual_source_object nvarchar(540),
@@ -194625,8 +189240,6 @@ begin
     declare @publication_number smallint
     declare @partition_id_eval_proc sysname
     declare @pubidstr sysname
-
-
 
     -----------------------------------------------------------------
     -- verify input parameters (1,2.3)
@@ -194748,7 +189361,7 @@ error:
 end
 go
 
-create procedure sys.sp_vupgrade_mergetables( @remove_repl bit = 0 )
+create procedure BP_PRD.sys.sp_vupgrade_mergetables( @remove_repl bit = 0 )
 as
 begin
 
@@ -194803,7 +189416,6 @@ begin
     DECLARE @cnt int, @idx  int    /* Loop counter, index */
     DECLARE @columnid smallint     /* Columnid-1 = bit to set */
     DECLARE @columns binary(128)   /* Temporary storage for the converted column */
-
 
     select @additive_resolver_clsid = '{408547ED-AA55-4077-AD6E-621B279DC81C}'
     select @average_resolver_clsid  = '{0BEE7B25-09E9-4B74-AA8C-B306EA1C4072}'
@@ -195029,7 +189641,7 @@ begin
         end
      	 if exists(select * from syscolumns where id = object_id('sysmergepublications') and name = 'status')
 	 begin
-	 	create index nc2sysmergepublications on dbo.sysmergepublications(status)
+	 	create index nc2BP_PRD.create index nc2sysmergepublications on dbo.sysmergepublications(status)
 	 end
  
 				   
@@ -195181,7 +189793,7 @@ begin
 	end
 	if exists(select * from syscolumns where id = object_id('MSmerge_contents') and name = 'rowguid')
 	begin
-		create index nc4MSmerge_contents on dbo.MSmerge_contents(rowguid)
+		create index nc4MSmerge_contents on BP_PRD.create index nc4MSmerge_contents on dbo.MSmerge_contents(rowguid)
 	end
     end
 
@@ -195301,8 +189913,6 @@ begin
             if @@error <> 0 goto error            
         end
 
-
-
         if exists (select * from sysconstraints where id = object_id('dbo.sysmergesubscriptions') and 
                             object_name(constid) = 'unique_pubsrvdb')
         begin
@@ -195376,10 +189986,10 @@ begin
   		
 
             -- recreate indexes
-            create unique clustered index uc1sysmergesubscriptions on dbo.sysmergesubscriptions (subid) 
+            create unique clustered index uc1BP_PRD.create unique clustered index uc1sysmergesubscriptions on dbo.sysmergesubscriptions (subid) 
             if @@error <> 0 goto error
 
-            create index nc2sysmergesubscriptions on dbo.sysmergesubscriptions (subscriber_server, db_name)
+            create index nc2BP_PRD.create index nc2sysmergesubscriptions on dbo.sysmergesubscriptions (subscriber_server, db_name)
             if @@error <> 0 goto error
 
             -- mark as system object
@@ -195458,11 +190068,10 @@ begin
 		close drop_old_views_cursor
         deallocate drop_old_views_cursor
 
-
         IF NOT EXISTS ( SELECT * FROM sysindexes WHERE name = 'nc2sysmergesubscriptions' AND
             id = object_id('dbo.sysmergesubscriptions') )
         begin
-            create index nc2sysmergesubscriptions on dbo.sysmergesubscriptions (subscriber_server, db_name)
+            create index nc2BP_PRD.create index nc2sysmergesubscriptions on dbo.sysmergesubscriptions (subscriber_server, db_name)
             if @@error <> 0 goto error
         end
 
@@ -195490,8 +190099,6 @@ begin
         end
     end 
 
-
-
     -- move of columns from sysmergesubscriptions to MSmerge_replinfo and vice versa for the sake of 
     -- better consistency and subscriber tracking.
     if @remove_repl=0 and object_id('sysmergesubscriptions') is not NULL and
@@ -195517,7 +190124,7 @@ begin
             if @@error<>0
                 goto err_upgrademergesubtables
 
-            -- this creates the sysmergesubscription and MSmerge_replinfo tables with new schema
+            -- this creates the BP_PRD.creates the sysmergesubscription and MSmerge_replinfo tables with new schema
             exec @retcode = sys.sp_MSmerge_create_sub_table
             if @retcode<>0 or @@error<>0
                 goto err_upgrademergesubtables
@@ -195628,10 +190235,9 @@ begin
 	 end
 	 if exists(select * from syscolumns where id = object_id('dbo.sysmergesubscriptions') and name = 'replnickname')
 	 begin  -- if column replnickname exists create the index on it
-	 	create index nc3sysmergesubscriptions on dbo.sysmergesubscriptions(replnickname)
+	 	create index nc3BP_PRD.create index nc3sysmergesubscriptions on dbo.sysmergesubscriptions(replnickname)
 	 end
     end
-
 
     /*
      * dbo.sysmergearticles
@@ -195712,7 +190318,7 @@ begin
         -- Add new non-clustered idx on nickname.
         if not exists (select * from sys.indexes where name = 'nc1sysmergearticles')
         begin
-            create nonclustered index nc1sysmergearticles on dbo.sysmergearticles(nickname) 
+            create nonclustered index nc1BP_PRD.create nonclustered index nc1sysmergearticles on dbo.sysmergearticles(nickname) 
             if @@error <> 0 goto error
         end
 
@@ -195744,7 +190350,6 @@ begin
         fetch articlescurs into @article, @objid, @pubid
         while(@@fetch_status <> -1)
         begin
-
 
             SELECT @cnt = max(column_id), @idx = 1 FROM sys.columns WHERE object_id = @objid 
             SELECT @columns = NULL
@@ -195925,13 +190530,13 @@ begin
         
         if not exists (select * from sys.indexes where name = 'nc2sysmergearticles')
         begin
-            create nonclustered index nc2sysmergearticles on sysmergearticles(processing_order) 
+            create nonclustered index nc2BP_PRD.create nonclustered index nc2sysmergearticles on sysmergearticles(processing_order) 
             if @@error <> 0 goto error
         end
         
         if not exists (select * from sys.indexes where name = 'nc3sysmergearticles')
         begin
-            create unique nonclustered index nc3sysmergearticles on dbo.sysmergearticles(objid, pubid) 
+            create unique nonclustered index nc3BP_PRD.create unique nonclustered index nc3sysmergearticles on dbo.sysmergearticles(objid, pubid) 
             if @@ERROR <> 0    goto error
         end
         --
@@ -195995,7 +190600,7 @@ begin
         -- this table exists at publisher and subscriber dbs
         if object_id('MSmerge_identity_range') is NULL
         begin
-            create table dbo.MSmerge_identity_range (
+            create table BP_PRD.create table dbo.MSmerge_identity_range (
                 subid               uniqueidentifier not NULL,
                 artid               uniqueidentifier not NULL,
                 range_begin         numeric(38,0) NULL,
@@ -196030,7 +190635,7 @@ begin
             --  In future add publication related event below 100 and
             --  article related events about 100 to make searching easier
 
-            create table dbo.MSmerge_settingshistory
+            create table BP_PRD.create table dbo.MSmerge_settingshistory
             (
                 eventtime        datetime           null default getdate(),
                 pubid            uniqueidentifier    NOT NULL,
@@ -196059,7 +190664,7 @@ begin
 
         if object_id('sysmergepartitioninfo') is NULL
         begin
-            create table dbo.sysmergepartitioninfo 
+            create table BP_PRD.create table dbo.sysmergepartitioninfo 
             (
                 artid                           uniqueidentifier     NOT NULL,
                 pubid                           uniqueidentifier     NOT NULL,
@@ -196080,7 +190685,7 @@ begin
             )
             if @@error <> 0 goto error
             
-            create unique clustered index uc1sysmergepartitioninfo
+            create unique clustered index uc1BP_PRD.create unique clustered index uc1sysmergepartitioninfo
                 on dbo.sysmergepartitioninfo(artid, pubid) 
             if @@error <> 0 goto error
             
@@ -196108,7 +190713,7 @@ begin
             drop view dbo.sysmergepartitioninfoview
         end
         
-        exec ('create view dbo.sysmergepartitioninfoview as
+        exec ('create view BP_PRD.create view dbo.sysmergepartitioninfoview as
             select sma.*, smaw.partition_view_id, 
                 smaw.repl_view_id,
                 smaw.partition_deleted_view_rule,
@@ -196133,7 +190738,7 @@ begin
         -- Schema only articles (Shiloh)
         if object_id('dbo.sysmergeschemaarticles', 'U') is null
         begin
-            exec @retcode= sys.sp_MScreate_sysmergeschemaarticles_table
+            exec @retcode= sys.sp_MScreate_BP_PRD.create_sysmergeschemaarticles_table
             if @@error <> 0 or @retcode <> 0 goto error
         end
         else
@@ -196146,14 +190751,14 @@ begin
             end
         end
 
-        -- create view now that sysmergearticles is altered and sysmergeextendedarticles is created
+        -- create view now that BP_PRD.create view now that sysmergearticles is altered and sysmergeextendedarticles is created
         if object_id('sysmergeextendedarticlesview') is not NULL
         begin
             drop view dbo.sysmergeextendedarticlesview
         end    
 
         -- cannot create view directly in proc
-        exec @retcode= sys.sp_MScreate_sysmergeextendedarticlesview
+        exec @retcode= sys.sp_MScreate_BP_PRD.create_sysmergeextendedarticlesview
         if @@error<>0 or @retcode<>0 goto error
 
         exec dbo.sp_MS_marksystemobject sysmergeextendedarticlesview
@@ -196203,7 +190808,7 @@ begin
         -- MSmerge_errorlineage (Shiloh)
         if object_id('MSmerge_errorlineage') is NULL
         begin
-            create table dbo.MSmerge_errorlineage (
+            create table BP_PRD.create table dbo.MSmerge_errorlineage (
             tablenick          int NOT NULL,
             rowguid            uniqueidentifier NOT NULL,
             lineage            varbinary(311) null
@@ -196246,7 +190851,7 @@ begin
         -- MSmerge_altsyncpartners (Shiloh)
         if object_id('MSmerge_altsyncpartners') is NULL
         begin
-            create table dbo.MSmerge_altsyncpartners (
+            create table BP_PRD.create table dbo.MSmerge_altsyncpartners (
                 subid           uniqueidentifier    not null,
                 alternate_subid uniqueidentifier    not null,
                 description     nvarchar(255)       NULL
@@ -196267,7 +190872,7 @@ begin
         -- new tables added for the first time after SQL2000.
         if object_id('MSmerge_partition_groups') is NULL
         begin
-            create table dbo.MSmerge_partition_groups (partition_id int identity not null primary key clustered, 
+            create table BP_PRD.create table dbo.MSmerge_partition_groups (partition_id int identity not null primary key clustered, 
             					publication_number smallint not null, maxgen_whenadded bigint null, 
             					using_partition_groups bit null default 0, is_partition_active bit default 1 not null)
             if @@ERROR <> 0 goto error
@@ -196275,7 +190880,7 @@ begin
             exec dbo.sp_MS_marksystemobject MSmerge_partition_groups
             if @@ERROR <> 0 goto error
 
-            create nonclustered index nc1MSmerge_partition_groups on dbo.MSmerge_partition_groups (publication_number)
+            create nonclustered index nc1MSmerge_partition_groups on BP_PRD.create nonclustered index nc1MSmerge_partition_groups on dbo.MSmerge_partition_groups (publication_number)
             if @@ERROR <> 0 goto error
 
             grant select on dbo.MSmerge_partition_groups to public    
@@ -196296,7 +190901,7 @@ begin
 
         if object_id('MSmerge_generation_partition_mappings') is NULL
         begin
-            create table dbo.MSmerge_generation_partition_mappings 
+            create table BP_PRD.create table dbo.MSmerge_generation_partition_mappings 
                 (
                 publication_number smallint not null, 
                 generation bigint not null, 
@@ -196308,26 +190913,26 @@ begin
             exec dbo.sp_MS_marksystemobject MSmerge_generation_partition_mappings
             if @@ERROR <> 0 goto error
 
-            create clustered index cMSmerge_generation_partition_mappings on dbo.MSmerge_generation_partition_mappings (partition_id, publication_number)
+            create clustered index cMSmerge_generation_partition_mappings on BP_PRD.create clustered index cMSmerge_generation_partition_mappings on dbo.MSmerge_generation_partition_mappings (partition_id, publication_number)
             if @@ERROR <> 0 goto error
 
-            create nonclustered index nc1MSmerge_generation_partition_mappings on dbo.MSmerge_generation_partition_mappings (generation) include (changecount)
+            create nonclustered index nc1MSmerge_generation_partition_mappings on BP_PRD.create nonclustered index nc1MSmerge_generation_partition_mappings on dbo.MSmerge_generation_partition_mappings (generation) include (changecount)
             if @@ERROR <> 0 goto error
         end
 
         if object_id('MSmerge_current_partition_mappings') is NULL
         begin
-            create table dbo.MSmerge_current_partition_mappings (publication_number smallint not null, tablenick int not null, rowguid uniqueidentifier not null, partition_id int not null)
+            create table BP_PRD.create table dbo.MSmerge_current_partition_mappings (publication_number smallint not null, tablenick int not null, rowguid uniqueidentifier not null, partition_id int not null)
             if @@ERROR <> 0 goto error
 
             exec dbo.sp_MS_marksystemobject MSmerge_current_partition_mappings
             if @@ERROR <> 0 goto error
 
-            create clustered index cMSmerge_current_partition_mappings on dbo.MSmerge_current_partition_mappings (tablenick, rowguid)
+            create clustered index cMSmerge_current_partition_mappings on BP_PRD.create clustered index cMSmerge_current_partition_mappings on dbo.MSmerge_current_partition_mappings (tablenick, rowguid)
             if @@ERROR <> 0
                 goto error
 
-            create nonclustered index ncMSmerge_current_partition_mappings on dbo.MSmerge_current_partition_mappings (publication_number, partition_id)
+            create nonclustered index ncMSmerge_current_partition_mappings on BP_PRD.create nonclustered index ncMSmerge_current_partition_mappings on dbo.MSmerge_current_partition_mappings (publication_number, partition_id)
             if @@ERROR <> 0
                 goto error
             
@@ -196335,28 +190940,28 @@ begin
 
         if object_id('MSmerge_past_partition_mappings') is NULL
         begin
-            create table dbo.MSmerge_past_partition_mappings (publication_number smallint not null, tablenick int not null, rowguid uniqueidentifier not null, partition_id int not null, generation bigint null, reason tinyint not null default(0))
+            create table BP_PRD.create table dbo.MSmerge_past_partition_mappings (publication_number smallint not null, tablenick int not null, rowguid uniqueidentifier not null, partition_id int not null, generation bigint null, reason tinyint not null default(0))
             if @@ERROR <> 0 goto error
 
             exec dbo.sp_MS_marksystemobject MSmerge_past_partition_mappings
             if @@ERROR <> 0 goto error
 
-            create clustered index cMSmerge_past_partition_mappings on dbo.MSmerge_past_partition_mappings (tablenick, rowguid)
+            create clustered index cMSmerge_past_partition_mappings on BP_PRD.create clustered index cMSmerge_past_partition_mappings on dbo.MSmerge_past_partition_mappings (tablenick, rowguid)
             if @@ERROR <> 0
                 goto error
 
-            create nonclustered index nc1MSmerge_past_partition_mappings on dbo.MSmerge_past_partition_mappings (publication_number, partition_id)
+            create nonclustered index nc1MSmerge_past_partition_mappings on BP_PRD.create nonclustered index nc1MSmerge_past_partition_mappings on dbo.MSmerge_past_partition_mappings (publication_number, partition_id)
             if @@ERROR <> 0
                 goto error
                 
-            create nonclustered index nc2MSmerge_past_partition_mappings on dbo.MSmerge_past_partition_mappings (generation)
+            create nonclustered index nc2MSmerge_past_partition_mappings on BP_PRD.create nonclustered index nc2MSmerge_past_partition_mappings on dbo.MSmerge_past_partition_mappings (generation)
             if @@ERROR <> 0
                 goto error
         end
         
         if object_id('MSmerge_dynamic_snapshots') is NULL
         begin
-            create table dbo.MSmerge_dynamic_snapshots (
+            create table BP_PRD.create table dbo.MSmerge_dynamic_snapshots (
                     partition_id int not null primary key clustered foreign key references dbo.MSmerge_partition_groups(partition_id) on delete cascade, 
                     dynamic_snapshot_location nvarchar(255) null, 
                     last_updated datetime null,
@@ -196379,7 +190984,7 @@ begin
         -- Added in Yukon
         if object_id('MSmerge_supportability_settings') is NULL
         begin
-            create table dbo.MSmerge_supportability_settings (
+            create table BP_PRD.create table dbo.MSmerge_supportability_settings (
                     pubid                uniqueidentifier    NULL,
                     subid                uniqueidentifier    NULL,
                     web_server           sysname             NULL,                
@@ -196435,7 +191040,7 @@ begin
         -- Added in Yukon
         if object_id('MSmerge_log_files') is NULL
         begin
-            create table dbo.MSmerge_log_files (
+            create table BP_PRD.create table dbo.MSmerge_log_files (
                     id                   int identity(1,1),
                     pubid                uniqueidentifier    NULL,
                     subid                uniqueidentifier    NULL,
@@ -196456,7 +191061,7 @@ begin
         -- Added in Yukon
         if object_id('dbo.MSmerge_metadataaction_request', 'U') is null
         begin
-            create table dbo.MSmerge_metadataaction_request
+            create table BP_PRD.create table dbo.MSmerge_metadataaction_request
             (
                 tablenick int not null,
                 rowguid uniqueidentifier not null,
@@ -196478,7 +191083,7 @@ begin
         begin
             --raiserror('Creating table MSmerge_agent_parameters',0,1)
             
-            create table dbo.MSmerge_agent_parameters
+            create table BP_PRD.create table dbo.MSmerge_agent_parameters
             (
             profile_name         sysname        NOT NULL,
             parameter_name       sysname        NOT NULL,
@@ -196599,7 +191204,7 @@ begin
 
         if object_id('MSdynamicsnapshotviews') is NULL
         begin
-            create table dbo.MSdynamicsnapshotviews (
+            create table BP_PRD.create table dbo.MSdynamicsnapshotviews (
                 dynamic_snapshot_view_name sysname primary key,
             )
             if @@ERROR <> 0 goto error
@@ -196612,7 +191217,7 @@ begin
         */
         if object_id('MSdynamicsnapshotjobs') is NULL
         begin
-            create table dbo.MSdynamicsnapshotjobs (
+            create table BP_PRD.create table dbo.MSdynamicsnapshotjobs (
                 id int identity,
                 name sysname not null unique,
                 pubid uniqueidentifier not null,
@@ -196753,7 +191358,6 @@ begin
 					ON sysmergepublications(status)
                  if @@ERROR <> 0 goto error
 
-
 				 -- add default constraint on allow_anonymous column 
 				if not exists(
 				select * 
@@ -196767,7 +191371,6 @@ begin
 				begin
 					exec(N'alter table dbo.sysmergepublications add default 1 for allow_anonymous')
 				end
-
 
 				-- Changing default constraint on publisher from @@servername to publishingservername() 
 				if exists(select * from sys.columns where object_id = object_id('dbo.sysmergepublications') and name = 'publisher')
@@ -196792,7 +191395,6 @@ begin
 				end
 
         END 
-
 
         --  MSmerge_conflicts_info
         SELECT @table_name = N'MSmerge_conflicts_info'
@@ -196869,7 +191471,6 @@ begin
             
          END
 
-
         --  sysmergesubsetfilters    
         SELECT @table_name = N'sysmergesubsetfilters'
         IF object_id('sysmergesubsetfilters') is not NULL
@@ -196905,7 +191506,6 @@ begin
             end
         END -- end index updates from SQL7.0 SP1
 
-
         declare @binames table (biname sysname)
         insert into @binames select name from sys.objects where type='U' and is_ms_shipped=1 and name like 'MS_bi%'
         declare @biname sysname
@@ -196921,7 +191521,6 @@ begin
             delete from @binames where biname=@biname
             set @biname= (select top 1 biname from @binames)
         end
-
 
         if object_id('sysmergearticles') is not NULL
         begin
@@ -196952,7 +191551,7 @@ begin
         begin
             if object_id('MSmerge_upgrade_in_progress', 'U') is NULL
             begin
-                create table dbo.MSmerge_upgrade_in_progress
+                create table BP_PRD.create table dbo.MSmerge_upgrade_in_progress
                 (
                     status tinyint not NULL
                 )
@@ -196970,9 +191569,7 @@ error:
     
 end
 
-go
-
-create procedure sys.sp_vupgrade_replication ( @login sysname = NULL, @password sysname = N'', @ver_old int = 517, @force_remove tinyint = 0, @security_mode bit = 1 )
+create procedure BP_PRD.sys.sp_vupgrade_replication ( @login sysname = NULL, @password sysname = N'', @ver_old int = 517, @force_remove tinyint = 0, @security_mode bit = 1 )
 as
 begin
 
@@ -197166,14 +191763,14 @@ BEGIN
 	-- Security Check
 	IF ISNULL(IS_SRVROLEMEMBER('sysadmin'), 0) = 0
 	BEGIN
-		-- "Only members of the sysadmin fixed server role can perform this operation."
+		-- 'Only members of the sysadmin fixed server role can perform this operation.'
 		RAISERROR(21089,16,-1) 
 		RETURN 1
 	END
 
 	IF LOWER(DB_NAME()) != N'master'
 	BEGIN
-		-- "sp_vupgrade_replsecurity_metadata can only be executed in the master database."
+		-- 'sp_vupgrade_replsecurity_metadata can only be executed in the master database.'
 		RAISERROR (21482, 16, -1, 'sp_vupgrade_replsecurity_metadata', 'master')
 		RETURN 1
 	END
@@ -197184,7 +191781,7 @@ BEGIN
 				WHERE object_id = OBJECT_ID(N'msdb.dbo.sysjobsteps') 
 					AND name = N'step_uid')
 	BEGIN
-		-- "The replication %s could not be upgraded for %s database(s). Please ensure that %s is upgraded and re-execute %s."
+		-- 'The replication %s could not be upgraded for %s database(s). Please ensure that %s is upgraded and re-execute %s.'
 		RAISERROR(21450, 16, -1, 'security meta-data', 'all',  'msdb database', 'sp_vupgrade_replsecurity_metadata')
 		RETURN 1
 	END
@@ -197240,7 +191837,7 @@ BEGIN
 				END
 				ELSE
 				BEGIN
-					-- "The replication %s could not be upgraded for %s database(s). Please ensure that %s is upgraded and re-execute %s."
+					-- 'The replication %s could not be upgraded for %s database(s). Please ensure that %s is upgraded and re-execute %s.'
 					RAISERROR(21450, 10, -1, 'distributor security meta-data', @database,  @database, 'sp_vupgrade_replsecurity_metadata') WITH NOWAIT
 				END
 				--
@@ -197307,14 +191904,14 @@ BEGIN
 				END
 				ELSE
 				BEGIN
-					-- "The replication %s could not be upgraded for %s database(s). Please ensure that %s is upgraded and re-execute %s."
+					-- 'The replication %s could not be upgraded for %s database(s). Please ensure that %s is upgraded and re-execute %s.'
 					RAISERROR(21450, 10, -1, 'subscriber security meta-data', @database,  @database, 'sp_vupgrade_replsecurity_metadata') WITH NOWAIT
 				END
 			END
 		END
 		ELSE
 		BEGIN
-			-- "Could not open database %s. Upgrade of replication %s could not be performed. Please rerun %s from %s database once the %s is accessible."
+			-- 'Could not open database %s. Upgrade of replication %s could not be performed. Please rerun %s from %s database once the %s is accessible.'
 			RAISERROR(21733, 10, -1, @database, 'security meta-data', 'sp_vupgrade_replsecurity_metadata', '[master]', @database) WITH NOWAIT
 		END
 
@@ -197335,7 +191932,7 @@ UNDO:
 END
 go
 
-create procedure sys.sp_who  --- 1995/11/28 15:48
+create procedure BP_PRD.sys.sp_who  --- 1995/11/28 15:48
 	   @loginame sysname = NULL --or 'active'
 as
 
@@ -197346,7 +191943,6 @@ declare	 @spidlow	int,
 
 select	 @spidlow	=     0
 		,@spidhigh	= 32767
-
 
 if (	@loginame is not NULL
    AND	upper(@loginame collate Latin1_General_CI_AS) = 'ACTIVE'
@@ -197411,8 +192007,6 @@ begin
 	return (0)
 end
 
-
--- loginame arg is null
 select spid,
 	   ecid,
 	   status,
@@ -197431,7 +192025,7 @@ where spid >= @spidlow and spid <= @spidhigh
 return (0) -- sp_who
 go
 
-create procedure sys.sp_who2  --- 1995/11/03 10:16
+create procedure BP_PRD.sys.sp_who2  --- 1995/11/03 10:16
 	@loginame     sysname = NULL
 as
 
@@ -197463,8 +192057,6 @@ declare
    ,@charspidlow              varchar(11)
    ,@charspidhigh             varchar(11)
 
--- defaults
-
 select @retcode         = 0      -- 0=good ,1=bad.
 select @sidlow = convert(varbinary(85), (replicate(char(0), 85)))
 select @sidhigh = convert(varbinary(85), (replicate(char(1), 85)))
@@ -197473,11 +192065,9 @@ select
 	@spidlow         = 0
    ,@spidhigh        = 32767
 
---------------------------------------------------------------
 IF (@loginame IS     NULL)  --Simple default to all LoginNames.
 	  GOTO LABEL_17PARM1EDITED
 
--- select @sid1 = suser_sid(@loginame)
 select @sid1 = null
 if exists(select * from sys.syslogins where loginname = @loginame)
 	select @sid1 = sid from sys.syslogins where loginname = @loginame
@@ -197489,15 +192079,11 @@ IF (@sid1 IS NOT NULL)  --Parm is a recognized login name.
    GOTO LABEL_17PARM1EDITED
    end
 
---------
-
 IF (lower(@loginame collate Latin1_General_CI_AS) IN ('active'))  --Special action, not sleeping.
    begin
    select @loginame = lower(@loginame collate Latin1_General_CI_AS)
    GOTO LABEL_17PARM1EDITED
    end
-
---------
 
 IF (patindex ('%[^0-9]%' , isnull(@loginame,'z')) = 0)  --Is a number.
    begin
@@ -197507,17 +192093,11 @@ IF (patindex ('%[^0-9]%' , isnull(@loginame,'z')) = 0)  --Is a number.
    GOTO LABEL_17PARM1EDITED
    end
 
---------
-
 raiserror(15007,-1,-1,@loginame)
 select @retcode = 1
 GOTO LABEL_86RETURN
 
-
 LABEL_17PARM1EDITED:
-
-
---------------------  Capture consistent sysprocesses.  -------------------
 
 select
 
@@ -197549,8 +192129,6 @@ if @@error <> 0
 		GOTO LABEL_86RETURN
 	end
 
---------Screen out any rows?
-
 if (@loginame in ('active'))
    delete #tb1_sysprocesses
 		 where   lower(status)  = 'sleeping'
@@ -197562,18 +192140,11 @@ if (@loginame in ('active'))
 
 		 and     blocked       = 0
 
-
-
---------Prepare to dynamically optimize column widths.
-
-
 select
 	@charsidlow     = convert(varchar(85),@sidlow)
    ,@charsidhigh    = convert(varchar(85),@sidhigh)
    ,@charspidlow     = convert(varchar,@spidlow)
    ,@charspidhigh    = convert(varchar,@spidhigh)
-
-
 
 select
 			 @charMaxLenLoginName =
@@ -197620,11 +192191,6 @@ select
 	  where
 			 spid >= @spidlow
 	  and    spid <= @spidhigh
-
-
-
---------Output the report.
-
 
 EXEC(
 '
@@ -197677,9 +192243,7 @@ SET nocount on
 '
 )
 
-
 LABEL_86RETURN:
-
 
 if (object_id('tempdb..#tb1_sysprocesses') is not null)
 			drop table #tb1_sysprocesses
@@ -197687,16 +192251,7 @@ if (object_id('tempdb..#tb1_sysprocesses') is not null)
 return @retcode -- sp_who2
 go
 
-create procedure sys.sp_xml_preparedocument() as
--- missing source code
-go
-
-create procedure sys.sp_xml_removedocument() as
--- missing source code
-go
-
-
-create procedure sys.sp_xml_schema_rowset
+create procedure BP_PRD.sys.sp_xml_schema_rowset
 (
     @collection_name    sysname,
     @schema_name        sysname = null,
@@ -197721,16 +192276,12 @@ as
     order by 1,2,3,4
 go
 
-
-create procedure sys.sp_xml_schema_rowset2
+create procedure BP_PRD.sys.sp_xml_schema_rowset2
 (
     @schema_name        sysname = null,
     @target_namespace   sysname = null
 )
 as
----------------------------------------------------------------------------------------------
--- copy & pasted from version 1 of the SProc and removed checks for 1st parameter !
----------------------------------------------------------------------------------------------
     select
         SCHEMACOLLECTION_CATALOGNAME    = xsv.SCHEMACOLLECTION_CATALOGNAME,
         SCHEMACOLLECTION_SCHEMANAME     = xsv.SCHEMACOLLECTION_SCHEMANAME,
@@ -197749,12 +192300,7 @@ as
     order by 1,2,3,4
 go
 
-create procedure sys.sp_xp_cmdshell_proxy_account() as
--- missing source code
-go
-
-
-create procedure sys.sp_xtp_bind_db_resource_pool
+create procedure BP_PRD.sys.sp_xtp_bind_db_resource_pool
 (
 	@database_name sysname,
 	@pool_name sysname
@@ -197763,8 +192309,7 @@ as
 	exec sys.sp_xtp_bind_db_resource_pool_internal @database_name, @pool_name
 go
 
-
-create procedure sys.sp_xtp_checkpoint_force_garbage_collection
+create procedure BP_PRD.sys.sp_xtp_checkpoint_force_garbage_collection
 (
 	@dbname sysname = NULL		-- name of the database where to collect
 )
@@ -197780,8 +192325,7 @@ begin
 end
 go
 
-
-create procedure sys.sp_xtp_control_proc_exec_stats
+create procedure BP_PRD.sys.sp_xtp_control_proc_exec_stats
 (
 	@new_collection_value bit = NULL,
 	@old_collection_value bit = NULL OUTPUT
@@ -197790,7 +192334,7 @@ as
 	exec sys.sp_xtp_control_proc_exec_stats_internal @new_collection_value, @old_collection_value OUTPUT
 go
 
-create procedure sys.sp_xtp_control_query_exec_stats
+create procedure BP_PRD.sys.sp_xtp_control_query_exec_stats
 (
 	@new_collection_value bit = NULL,
 	@database_id 	int = NULL,
@@ -197801,8 +192345,7 @@ as
 	exec sys.sp_xtp_control_query_exec_stats_internal @new_collection_value, @database_id, @xtp_object_id, @old_collection_value OUTPUT
 go
 
-
-create procedure sys.sp_xtp_merge_checkpoint_files
+create procedure BP_PRD.sys.sp_xtp_merge_checkpoint_files
 ( 
 	@database_name sysname,
 	@transaction_lower_bound bigint,
@@ -197812,8 +192355,7 @@ as
 	exec sys.sp_xtp_merge_checkpoint_files_internal @database_name, @transaction_lower_bound, @transaction_upper_bound
 go
 
-
-create procedure sys.sp_xtp_unbind_db_resource_pool
+create procedure BP_PRD.sys.sp_xtp_unbind_db_resource_pool
 (
 	@database_name sysname
 )
@@ -197850,8 +192392,6 @@ BEGIN
     RETURN @AEST
 END
 go
-
-
 
 CREATE function ufn_GetQueueEvents (
     @queueIdent int,
@@ -197926,8 +192466,6 @@ begin
 end
 go
 
-
-
 CREATE function ufn_GetReportDays (
 	@Number int)
 returns @Days table (
@@ -197946,8 +192484,6 @@ begin
   return;
 end
 go
-
-
 
 CREATE function ufn_GetReportMonths (
 	@Number int)
@@ -197969,8 +192505,6 @@ begin
 end
 go
 
-
-
 CREATE procedure usp_CalculateQueueTrends
     @queueIdent int,
     @snapshotDate date,
@@ -197979,10 +192513,8 @@ as
 
 declare @trendDate date = CAST(DATEADD(day, -1, @snapshotDate) as date);
 
--- Delete existing trend data for this queue
 delete from BPMIQueueTrend where queueident = @queueIdent;
 
--- Calculate trend over last 7 days
 insert into BPMIQueueTrend
     (snapshottimeofdaysecs, queueident, trendid,
      averagetotalitems, averageitemspending, averageitemscompleted, averageitemsreferred,
@@ -198016,7 +192548,6 @@ where configuration.queueident = @queueIdent
     and CAST(snapshots.snapshotdate as date) <= @trendDate
 group by configuration.timeofdaysecs, snapshots.queueident
 
--- Calculate trend over last 28 days
 insert into BPMIQueueTrend
     (snapshottimeofdaysecs, queueident, trendid,
      averagetotalitems, averageitemspending, averageitemscompleted, averageitemsreferred,
@@ -198050,7 +192581,6 @@ where configuration.queueident = @queueIdent
     and CAST(snapshots.snapshotdate as date) <= @trendDate
 group by configuration.timeofdaysecs, snapshots.queueident
 
--- Calculate trend over last 4 instances of the current snapshot weekday
 insert into BPMIQueueTrend
     (snapshottimeofdaysecs, queueident, trendid,
      averagetotalitems, averageitemspending, averageitemscompleted, averageitemsreferred,
@@ -198085,12 +192615,10 @@ where configuration.queueident = @queueIdent
     and DATEPART(weekday, snapshots.snapshotdate) = DATEPART(weekday, @snapshotDate)
 group by configuration.timeofdaysecs, snapshots.queueident
 
--- Purge any old snapshot rows
 delete from BPMIQueueSnapshot
 where queueident = @queueIdent and
     snapshotdate < DATEADD(day, -28, @trendDate);
 
--- Set the last snapshot id of the queue trend snapshot calculation we have just taken so the server doesn't repeat the process unnessecarily.
 UPDATE BPAWorkQueue
 SET lastsnapshotid = @snapshotId
 WHERE ident = @queueIdent;
@@ -198098,8 +192626,6 @@ go
 
 grant execute on dbo.usp_CalculateQueueTrends to bpa_ExecuteSP_System
 go
-
-
 
 CREATE procedure usp_CreateFirstQueueSnapshot
     @queueIdent int,
@@ -198120,7 +192646,6 @@ declare @addedSince table (
     newSinceMidnight int,
     newLast24Hours int)
 
--- Get queue item summary
 insert into @itemSummary
     (queueIdent, pending, completed, referred)
 select
@@ -198131,10 +192656,8 @@ select
 from BPAWorkQueueItem
 where queueident = @queueIdent;
 
--- Calculate UTC dates
 declare @24HoursAgoUtc datetime = DATEADD(hour, -24, @snapshotDateUtc);
 
--- Get items added since midnight/in last 24 hours
 insert into @addedSince
 select
     @queueIdent,
@@ -198146,7 +192669,6 @@ where queueident = @queueIdent and
     eventdatetime > @24HoursAgoUtc and
     eventdatetime <= @snapshotDateUtc;
 
--- Insert data into snapshot table
 insert into BPMIQueueSnapshot
     (snapshotid, queueident, snapshotdate, totalitems, itemspending, itemscompleted, itemsreferred, newitemsdelta,
      completeditemsdelta, referreditemsdelta, totalworktimecompleted, totalworktimereferred, totalidletime,
@@ -198179,18 +192701,14 @@ go
 grant execute on dbo.usp_CreateFirstQueueSnapshot to bpa_ExecuteSP_System
 go
 
-
-
 CREATE procedure usp_CreateInterimQueueSnapshot
     @queueIdent int,
     @snapshotDate datetimeoffset,
     @snapshotId BIGINT
 as
 
--- Calculate UTC datetime of this interim snapshot
 declare @snapshotDateUtc datetime = CONVERT(datetime, DATEADD(minute, -DATEPART(TzOffset, @snapshotDate), @snapshotDate))
 
--- Create or update the interim snapshot table for this queue with events in last 48 hours
 if not exists (select queueident from BPMIQueueInterimSnapshot where queueident = @queueIdent)
     begin
         insert into BPMIQueueInterimSnapshot
@@ -198231,7 +192749,6 @@ else
         where interim.queueident = @queueIdent;
     end
 
--- Set the last snapshot id of the interim snapshot we have just taken so the server doesn't repeat the process unnessecarily.
 UPDATE BPAWorkQueue
 SET lastsnapshotid = @snapshotId
 WHERE ident = @queueIdent;
@@ -198239,8 +192756,6 @@ go
 
 grant execute on dbo.usp_CreateInterimQueueSnapshot to bpa_ExecuteSP_System
 go
-
-
 
 CREATE procedure usp_CreateNextQueueSnapshot
     @queueIdent int,
@@ -198277,7 +192792,6 @@ declare @addedSince table (
     createdSinceMidnight int,
     createdInLast24Hours int)
 
--- Get values from previous snapshot
 insert into @previousSnapshot
     (queueIdent, snapshotDate, allItems, pendingItems, completedItems, referredItems)
 select top 1
@@ -198291,7 +192805,6 @@ from BPMIQueueSnapshot
 where queueident = @queueIdent
 order by id desc;
 
--- Get values from any interim snapshot
 insert into @InterimSnapshot
     (queueIdent, snapshotDate, allItems, pendingItems, completedItems,
      referredItems, createdSinceLast, completedSinceLast, referredSinceLast,
@@ -198313,7 +192826,6 @@ from BPMIQueueInterimSnapshot
 where queueident = @queueIdent
 order by queueident;
 
--- Calculate UTC dates
 declare @24HoursAgoUtc datetime = DATEADD(hour, -24, @snapshotDateUtc);
 declare @lastSnapshotDate datetimeoffset;
 select @lastSnapshotDate = ISNULL(interim.snapshotDate, previous.snapshotDate) from @previousSnapshot previous
@@ -198321,7 +192833,6 @@ select @lastSnapshotDate = ISNULL(interim.snapshotDate, previous.snapshotDate) f
 declare @lastSnapshotDateUtc datetime;
 set @lastSnapshotDateUtc = CONVERT(datetime, DATEADD(minute, -DATEPART(TzOffset, @lastSnapshotDate), @lastSnapshotDate));
 
--- Get items added since midnight/in last 24 hours
 insert into @addedSince
     (queueIdent, createdSinceMidnight, createdInLast24Hours)
 select
@@ -198334,7 +192845,6 @@ where queueident = @queueIdent and
     eventdatetime > @24HoursAgoUtc and
     eventdatetime <= @snapshotDateUtc;
 
--- Insert data into snapshot table
 insert into BPMIQueueSnapshot
     (snapshotid, queueident, snapshotdate, totalitems, itemspending, itemscompleted, itemsreferred, newitemsdelta,
      completeditemsdelta, referreditemsdelta, totalworktimecompleted, totalworktimereferred, totalidletime,
@@ -198363,15 +192873,12 @@ from @previousSnapshot previous
     inner join @addedSince added on added.queueident = previous.queueident
     inner join ufn_GetQueueEvents(@queueIdent, @lastSnapshotDateUtc, @snapshotDateUtc) deltas on deltas.queueIdent = previous.queueIdent;
 
--- Update queue and tidy up any interim snapshot data
 update BPAWorkQueue set lastsnapshotid = @snapshotId where ident = @queueIdent;
 delete from BPMIQueueInterimSnapshot where queueident = @queueIdent;
 go
 
 grant execute on dbo.usp_CreateNextQueueSnapshot to bpa_ExecuteSP_System
 go
-
-
 
 create procedure [usp_CreateUpdateEnvironmentData] 
     @environmentTypeId int, 
@@ -198417,8 +192924,6 @@ if not exists (select 1 from [BPAEnvironment]
 return;
 go
 
-
-
 CREATE PROCEDURE [usp_GetCacheETag]
 	@cacheKey NVARCHAR(50)
 AS
@@ -198437,8 +192942,6 @@ go
 grant execute on dbo.usp_GetCacheETag to bpa_ExecuteSP_System
 go
 
-
-
 CREATE procedure usp_RefreshMI as
 declare
 	@Today datetime,
@@ -198448,7 +192951,6 @@ declare
 	@MonthsToKeep int,
 	@MIEnabled bit;
 
---Get MI config settings
 select
 	@MIEnabled=mienabled,
 	@DaysToKeep=dailyfor,
@@ -198456,21 +192958,17 @@ select
 	@LastRefresh=lastrefresh
 from BPAMIControl where id=1;
 
---Exit if not enabled
 if @MIEnabled=0 return;
 
---Calculate reporting period start date
 set @Today=CAST(FLOOR(CAST(GETDATE() as float)) as datetime);
 if @LastRefresh is null
 	set @ReportDate=CAST(FLOOR(CAST(DATEADD(DAY, -1, @Today) as float)) as datetime);
 else
 	set @ReportDate=CAST(FLOOR(CAST(DATEADD(DAY, 1, @LastRefresh) as float)) as datetime);
 
---Acquire MI refresh lock
 update BPAMIControl set refreshinprogress=1 where id=1 and refreshinprogress=0;
 if @@ROWCOUNT <> 1 return;
 
---Execute stored procedures to collect/aggregate MI data
 begin try
 	while @ReportDate<@Today
 	begin
@@ -198490,7 +192988,6 @@ begin catch
 	raiserror(@ErrMsg, @ErrSeverity, 1)
 end catch
 
---Release MI refresh lock
 update BPAMIControl set refreshinprogress=0 where id=1;
 
 return;
@@ -198498,8 +192995,6 @@ go
 
 grant execute on dbo.usp_RefreshMI to bpa_ExecuteSP_System
 go
-
-
 
 CREATE procedure usp_RefreshProductivityData
 	@ReportDate datetime,
@@ -198539,10 +193034,8 @@ from BPMIProductivityShadow
 where eventdatetime >= @ReportDate and eventdatetime < @ReportTo
 group by queueident;
 
---Create daily records
 insert into BPMIProductivityDaily select @ReportDate, * from @DailyProductivity;
 
---Update any existing monthly records
 update BPMIProductivityMonthly set
 	created = m.created + d.created,
 	deferred = m.deferred + d.deferred,
@@ -198562,7 +193055,6 @@ from BPMIProductivityMonthly m
 	inner join @DailyProductivity d on m.queueident = d.queueident
 where m.reportyear = DATEPART(YEAR, @ReportDate) and m.reportmonth = DATEPART(MONTH, @ReportDate);
 
---Insert new monthly records where required
 insert into BPMIProductivityMonthly
 select DATEPART(YEAR, @ReportDate), DATEPART(MONTH, @ReportDate), d.*
 from @DailyProductivity d
@@ -198570,15 +193062,12 @@ from @DailyProductivity d
 	and m.reportyear = DATEPART(YEAR, @ReportDate) and m.reportmonth = DATEPART(MONTH, @ReportDate)
 where m.reportyear is null;
 
---Age out any old daily records
 delete from BPMIProductivityDaily where reportdate < DATEADD(DAY, -@DaysToKeep, @ReportDate);
 
---Age out any old monthly records
 delete from BPMIProductivityMonthly
 where reportyear <= DATEPART(YEAR, (DATEADD(MONTH, -@MonthsToKeep, @ReportDate))) and
 	  reportmonth < DATEPART(MONTH, (DATEADD(MONTH, -@MonthsToKeep, @ReportDate)));
 
---Purge down shadow table (any events that occured before the day just reported on)
 delete from BPMIProductivityShadow where eventdatetime < @ReportDate;
 
 return;
@@ -198587,9 +193076,6 @@ go
 grant execute on dbo.usp_RefreshProductivityData to bpa_ExecuteSP_System
 go
 
-
-
--- Recreate MI Refresh procedures
 CREATE procedure usp_RefreshUtilisationData
 	@ReportDate datetime,
 	@DaysToKeep int,
@@ -198654,10 +193140,8 @@ from(
 ) as src
 pivot (SUM(Duration) for [Hour] in ([0],[1],[2],[3],[4],[5],[6],[7],[8],[9],[10],[11],[12],[13],[14],[15],[16],[17],[18],[19],[20],[21],[22],[23])) as piv;
 
---Create daily records
 insert into BPMIUtilisationDaily select @ReportDate, * from @DailyUtilisation;
 
---Update any existing monthly records
 update BPMIUtilisationMonthly set
 	hr0 = hr0 + d.h0, hr1 = hr1 + d.h1, hr2 = hr2 + d.h2, hr3 = hr3 + d.h3, hr4 = hr4 + d.h4, hr5 = hr5 + d.h5,
 	hr6 = hr6 + d.h6, hr7 = hr7 + d.h7, hr8 = hr8 + d.h8, hr9 = hr9 + d.h9, hr10 = hr10 + d.h10, hr11 = hr11 + d.h11,
@@ -198667,7 +193151,6 @@ from BPMIUtilisationMonthly m
 	inner join @DailyUtilisation d on m.resourceid = d.resourceid and m.processid = d.processid
 where m.reportyear = DATEPART(YEAR, @ReportDate) and m.reportmonth = DATEPART(MONTH, @ReportDate);
 
---Insert new monthly records where required
 insert into BPMIUtilisationMonthly
 select DATEPART(YEAR, @ReportDate), DATEPART(MONTH, @ReportDate), d.*
 from @DailyUtilisation d
@@ -198675,15 +193158,12 @@ from @DailyUtilisation d
 	and m.reportyear = DATEPART(YEAR, @ReportDate) and m.reportmonth = DATEPART(MONTH, @ReportDate)
 where m.reportyear is null;
 
---Age out any old daily records
 delete from BPMIUtilisationDaily where reportdate < DATEADD(DAY, -@DaysToKeep, @ReportDate);
 
---Age out any old monthly records
 delete from BPMIUtilisationMonthly
 where reportyear <= DATEPART(YEAR, (DATEADD(MONTH, -@MonthsToKeep, @ReportDate))) and 
 	  reportmonth < DATEPART(MONTH, (DATEADD(MONTH, -@MonthsToKeep, @ReportDate)));
 
---Purge down shadow table (any sessions that completed before the day just reported on)
 delete from BPMIUtilisationShadow where enddatetime is not null and enddatetime < @ReportDate;
 
 return;
@@ -198720,8 +193200,6 @@ go
 grant execute on dbo.usp_SetCacheETag to bpa_ExecuteSP_System
 go
 
-
-
 CREATE procedure usp_TriggerQueueSnapshot
 as
 
@@ -198737,7 +193215,6 @@ declare @regularSnapshot int = 1;
 declare @interimSnapshot int = 2;
 declare @trendCalculation int = 4;
 
--- Load current snapshot triggers into memory
 insert into @triggers select
     queueIdent,
     snapshotId,
@@ -198820,36 +193297,26 @@ go
 grant execute on dbo.usp_TriggerQueueSnapshot to bpa_ExecuteSP_System
 go
 
-
 CREATE PROCEDURE [dbo].[usp_cleanup] @daystokeep int
 WITH RECOMPILE
 
 AS
 
 BEGIN
--- Delete templog table hanging around from the last run if there
 IF object_id('tempdb..#tempbplog_wide') is not null drop table #tempbplog_wide
 IF object_id('tempdb..#tempbplog_byte') is not null drop table #tempbplog_byte
 IF object_id('tempdb..#tempbplog_orig') is not null drop table #tempbplog_orig
 
-
 BEGIN TRAN;
 
--- The days of logs to keep
--- It will keep any logs which started after this number of days
--- ago, or have not started or have not ended
 IF @daystokeep IS NULL
 set @daystokeep = 395;
 
--- Set this to midnight on the day @daystokeep days ago
 declare @threshold datetime;
 set @threshold = DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()), -@daystokeep);
 
--- very temp table to hold sessions that we are saving
 declare @sessions table (sessno int not null PRIMARY KEY CLUSTERED);
 
--- Get all the unstarted or unfinished sessions as well as those
--- which have finished, but were started before the threshold date
 insert into @sessions (sessno)
 select sessionnumber
   from BPASession
@@ -198859,8 +193326,6 @@ select sessionnumber
 insert into dbo.sessionlog
 select sessno,getdate() from @sessions;
 
--- Get all of the entries corresponding to those logs
--- then get rid of all the data in the session log tables
 if object_id(N'BPASessionLog_Unicode', N'U') is not null begin
     select l.*
       into #tempbplog_wide
@@ -198889,15 +193354,11 @@ else begin
 
 end;
 
--- and delete all of the sessions which we have not marked as
--- being saved (ie. those which are not in the @sessions table)
 delete s
   from BPASession s
     left join @sessions ts on s.sessionnumber = ts.sessno
   where ts.sessno is null;
 
--- now restore all the data from the #tempbplog table back into
--- the now empty BPASessionLog(_XXX) table(s)
 if object_id(N'BPASessionLog_Unicode', N'U') is not null begin
 
     insert into BPASessionLog_Unicode
@@ -198912,12 +193373,9 @@ else begin
 
 end;
 
--- job done.
 commit
--- rollback
 END
 go
-
 
 CREATE PROCEDURE [dbo].[usp_cleanup_v2] @daystokeep int
 WITH RECOMPILE
@@ -198925,42 +193383,29 @@ WITH RECOMPILE
 AS
 
 BEGIN
--- Delete templog table hanging around from the last run if there
 IF object_id('tempdb..#tempbplog_wide') is not null drop table #tempbplog_wide
 IF object_id('tempdb..#tempbplog_byte') is not null drop table #tempbplog_byte
 IF object_id('tempdb..#tempbplog_orig') is not null drop table #tempbplog_orig
 
-
 BEGIN TRAN;
 
--- The days of logs to keep
--- It will keep any logs which started after this number of days
--- ago, or have not started or have not ended
 IF @daystokeep IS NULL
 set @daystokeep = 395;
 
--- Set this to midnight on the day @daystokeep days ago
 declare @threshold datetime;
 set @threshold = DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()), -@daystokeep);
 
--- very temp table to hold sessions that we are saving
 declare @sessions table (sessno int not null PRIMARY KEY CLUSTERED);
 
--- Get all the unstarted or unfinished sessions as well as those
--- which have finished, but were started before the threshold date
 insert into @sessions (sessno)
 select sessionnumber
   from BPASession
   where (startdatetime is not null or enddatetime is not null) and startdatetime < @threshold
 ;
 
---TRUNCATE TABLE dbo.sessionlog
-
 insert into dbo.sessionlog
 select sessno,getdate() from @sessions;
 
--- Get all of the entries corresponding to those logs
--- then get rid of all the data in the session log tables
 if object_id(N'BPASessionLog_Unicode', N'U') is not null begin
     --select l.*
     --  into #tempbplog_wide
@@ -198991,48 +193436,15 @@ if object_id(N'BPASessionLog_Unicode', N'U') is not null begin
     --truncate table BPASessionLog_NonUnicode;
     
 end
---else begin
---    --select l.*
---    --  into #tempbplog_orig 
---    --  from BPASessionLog l WITH (TABLOCKX)
---    --    join @sessions s on l.sessionnumber = s.sessno
---    --;
 
---    --truncate table BPASessionLog;
-
---end;
-
--- and delete all of the sessions which we have not marked as
--- being saved (ie. those which are not in the @sessions table)
 delete s
   from BPASession s
     left join @sessions ts on s.sessionnumber = ts.sessno
   where ts.sessno is null;
 
--- now restore all the data from the #tempbplog table back into
--- the now empty BPASessionLog(_XXX) table(s)
---if object_id(N'BPASessionLog_Unicode', N'U') is not null begin
-
---    insert into BPASessionLog_Unicode
---      select * from #tempbplog_wide;
---    insert into BPASessionLog_NonUnicode
---      select * from #tempbplog_byte;
-
---end
---else begin
---    insert into BPASessionLog
---      select * from #tempbplog_orig;
-
---end;
-
--- job done.
 commit
--- rollback
 END
 go
-
-
-
 
 CREATE PROCEDURE [dbo].[usp_cleanup_v3] @daystokeep int
 WITH RECOMPILE
@@ -199041,22 +193453,14 @@ AS
 
 BEGIN
 
-
--- The days of logs to keep
--- It will keep any logs which started after this number of days
--- ago, or have not started or have not ended
 IF @daystokeep IS NULL
 set @daystokeep = 395;
 
--- Set this to midnight on the day @daystokeep days ago
 declare @threshold datetime;
 set @threshold = DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()), -@daystokeep);
 
--- very temp table to hold sessions that we are saving
 declare @sessions table (sessno int not null PRIMARY KEY CLUSTERED);
 
--- Get all the unstarted or unfinished sessions as well as those
--- which have finished, but were started before the threshold date
 insert into @sessions (sessno)
 select sessionnumber
   from BPASession
@@ -199068,12 +193472,9 @@ TRUNCATE TABLE dbo.sessionlog
 insert into dbo.sessionlog
 select sessno,getdate() from @sessions;
 
--- Get all of the entries corresponding to those logs
--- then get rid of all the data in the session log tables
 if object_id(N'BPASessionLog_Unicode', N'U') is not null 
 
 BEGIN
-
 
       DECLARE @startno int
 	  DECLARE @endnum int 
@@ -199115,8 +193516,6 @@ END
 END
 go
 
-
-
 create procedure [usp_getitembyid]
     @queueName nvarchar(255),
     @sessionId uniqueidentifier,
@@ -199153,7 +193552,6 @@ begin
     end
 end
 go
-
 
 ​
 create procedure usp_getmappedadusers
@@ -199391,7 +193789,7 @@ as
                     continue;
                 -- If we've overshot the max attempts, just rethrow the last error
             end;
-            -- Otherwise "rethrow" (which doesn't become a keyword until SQL Server 2012)
+            -- Otherwise 'rethrow' (which doesn't become a keyword until SQL Server 2012)
             exec usp_rethrow;
             return;
         end catch
@@ -199406,8 +193804,6 @@ go
 
 grant execute on dbo.usp_getnextcase to bpa_ExecuteSP_System
 go
-
-
 
 CREATE procedure usp_gettagids
     @tag nvarchar(255)
@@ -199433,11 +193829,6 @@ go
 grant execute on dbo.usp_gettagids to bpa_ExecuteSP_System
 go
 
-
-
--- create the stored procedure to generate an error using
--- raiserror. the original error information is used to
--- construct the msg_str for raiserror.
 CREATE procedure usp_rethrow as
     -- return if there is no error information to retrieve.
     if error_number() is null
@@ -199488,8 +193879,6 @@ go
 grant execute on dbo.usp_rethrow to bpa_ExecuteSP_System
 go
 
-
-
 CREATE procedure usp_setupDataSource
      @spName nvarchar(128),
 	 @grant bit
@@ -199511,55 +193900,7 @@ begin
 end
 go
 
-create procedure sys.xp_availablemedia() as
--- missing source code
-go
-
-create procedure sys.xp_cmdshell() as
--- missing source code
-go
-
-create procedure sys.xp_create_subdir() as
--- missing source code
-go
-
-create procedure sys.xp_delete_file() as
--- missing source code
-go
-
-create procedure sys.xp_dirtree() as
--- missing source code
-go
-
-create procedure sys.xp_enum_oledb_providers() as
--- missing source code
-go
-
-create procedure sys.xp_enumerrorlogs() as
--- missing source code
-go
-
-create procedure sys.xp_enumgroups() as
--- missing source code
-go
-
-create procedure sys.xp_fileexist() as
--- missing source code
-go
-
-create procedure sys.xp_fixeddrives() as
--- missing source code
-go
-
-create procedure sys.xp_get_tape_devices() as
--- missing source code
-go
-
-create procedure sys.xp_getnetname() as
--- missing source code
-go
-
-create procedure sys.xp_grantlogin
+create procedure BP_PRD.sys.xp_grantlogin
     @loginame       sysname,
     @logintype      varchar(5) = Null       -- ignored unless 'admin'
 AS
@@ -199578,50 +193919,7 @@ AS
     return (@ret)
 go
 
-create procedure sys.xp_instance_regaddmultistring() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regdeletekey() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regdeletevalue() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regenumkeys() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regenumvalues() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regread() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regremovemultistring() as
--- missing source code
-go
-
-create procedure sys.xp_instance_regwrite() as
--- missing source code
-go
-
-create procedure sys.xp_logevent() as
--- missing source code
-go
-
-create procedure sys.xp_loginconfig() as
--- missing source code
-go
-
-
-------------------------------- xp_logininfo ----------------------------------
-
-create procedure sys.xp_logininfo
+create procedure BP_PRD.sys.xp_logininfo
 	@acctname		sysname = null,				-- IN: NT login name
 	@option			varchar(10) = null,			-- IN: 'all' | 'members' | null
 	@privilege		varchar(10) = 'Not wanted' OUTPUT	-- OUT: 'admin' | 'user' | null
@@ -199638,7 +193936,6 @@ as
         raiserror(15600,-1,-1,'sys.xp_logininfo')
         return 1
 	end
-
 
 	-- HANDLE case where NO @acctname GIVEN --
 	if (@acctname is null)
@@ -199676,7 +193973,6 @@ as
 		return @@error
 	end
 
-
 	-- CREATE TEMP TABLE AND POPULATE WITH THE REQUIRED DATA --
 	CREATE TABLE #nt (name sysname collate catalog_default, sid varbinary(85), sidtype int)
 	insert #nt select loginname, sid, isntgroup + 1 from master..syslogins
@@ -199690,7 +193986,6 @@ as
 	if exists (select * from master..syslogins where sid in (select #nt.sid from #nt) and denylogin = 1)
 		delete #nt
 
-
 	-- HANDLE case where OUTPUT REQUESTED --
 	if (@privilege is null OR @privilege <> 'Not wanted')
 	begin
@@ -199702,7 +193997,6 @@ as
 			AND sid in (select sid from #nt)
 		return @@error
 	end
-
 
 	-- GET NT TYPE FOR NEXT OPTIONS --
 	declare @type varchar(8)
@@ -199722,7 +194016,6 @@ as
 		return @@error
 	end
 
-
 	-- HANDLE DEFAULT QUERY --
 	select	TOP 1
 			'account name' = @acctname,
@@ -199735,77 +194028,7 @@ as
 	order by 3, 5
 	return @@error
 go
-
-create procedure sys.xp_msver() as
--- missing source code
-go
-
-create procedure sys.xp_msx_enlist() as
--- missing source code
-go
-
-create procedure sys.xp_passAgentInfo() as
--- missing source code
-go
-
-create procedure sys.xp_prop_oledb_provider() as
--- missing source code
-go
-
-create procedure sys.xp_qv() as
--- missing source code
-go
-
-create procedure sys.xp_readerrorlog() as
--- missing source code
-go
-
-create procedure sys.xp_regaddmultistring() as
--- missing source code
-go
-
-create procedure sys.xp_regdeletekey() as
--- missing source code
-go
-
-create procedure sys.xp_regdeletevalue() as
--- missing source code
-go
-
-create procedure sys.xp_regenumkeys() as
--- missing source code
-go
-
-create procedure sys.xp_regenumvalues() as
--- missing source code
-go
-
-create procedure sys.xp_regread() as
--- missing source code
-go
-
-create procedure sys.xp_regremovemultistring() as
--- missing source code
-go
-
-create procedure sys.xp_regwrite() as
--- missing source code
-go
-
---
--- Name: xp_repl_convert_encrypt_sysadmin_wrapper
---
--- Descriptions: 
---
--- Parameters: as defined in create statement
---
--- Returns: 0 - success
---          1 - Otherwise
---
--- Security: 
--- Requires Certificate signature for catalog access
---
-create procedure sys.xp_repl_convert_encrypt_sysadmin_wrapper
+create procedure BP_PRD.sys.xp_repl_convert_encrypt_sysadmin_wrapper
 (
     @password nvarchar(524) output
 ) 
@@ -199833,11 +194056,7 @@ begin
 end
 go
 
-create procedure sys.xp_replposteor() as
--- missing source code
-go
-
-create procedure sys.xp_revokelogin
+create procedure BP_PRD.sys.xp_revokelogin
     @loginame       sysname
 AS
 	set nocount on
@@ -199851,57 +194070,5 @@ AS
 	Declare @ret   int     -- return value of sp call
     execute @ret = sys.sp_revokelogin @loginame
     return (@ret)
-go
-
-create procedure sys.xp_servicecontrol() as
--- missing source code
-go
-
-create procedure sys.xp_sprintf() as
--- missing source code
-go
-
-create procedure sys.xp_sqlagent_enum_jobs() as
--- missing source code
-go
-
-create procedure sys.xp_sqlagent_is_starting() as
--- missing source code
-go
-
-create procedure sys.xp_sqlagent_monitor() as
--- missing source code
-go
-
-create procedure sys.xp_sqlagent_notify() as
--- missing source code
-go
-
-create procedure sys.xp_sqlagent_param() as
--- missing source code
-go
-
-create procedure sys.xp_sqlmaint() as
--- missing source code
-go
-
-create procedure sys.xp_sscanf() as
--- missing source code
-go
-
-create procedure sys.xp_subdirs() as
--- missing source code
-go
-
-create procedure sys.xp_sysmail_activate() as
--- missing source code
-go
-
-create procedure sys.xp_sysmail_attachment_load() as
--- missing source code
-go
-
-create procedure sys.xp_sysmail_format_query() as
--- missing source code
 go
 

@@ -4,7 +4,8 @@
 " Find more examples here: https://jb.gg/share-ideavimrc
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
-
+set visualbell
+set noerrorbells
 " Highlight copied text
 set highlightedyank
 " Commentary plugin
@@ -63,7 +64,7 @@ set showmode
 " Do incremental searching.
 set incsearch
 set hlsearch
-nnoremap <silent> <CR> :nohlsearch<CR><CR>
+nnoremap <silent> <CR> :nohlsearch<CR>
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 

@@ -1,4 +1,5 @@
-function ca --wraps='clear & ls -la' --description 'alias ca=clear & ls -la'
-  clear & ls -la $argv
-        
+# Clear and list contents with detailed information
+function ca
+    clear
+    ls -lah --color=auto --full-time
 end

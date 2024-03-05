@@ -3,9 +3,12 @@
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
 
-" Set the default shell
-set shell=C:\Program\ Files\Git\usr\bin\bash.exe
-set shellcmdflag=-lc -i -i
+
+" Set default shell
+set shell=bash
+set shellcmdflag=-c
+set shellquote=''
+set shellxquote=''
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 set visualbell

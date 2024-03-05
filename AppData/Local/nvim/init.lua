@@ -56,7 +56,10 @@ vim.keymap.set({'n', 'v'}, '<CR>', '<cmd>nohl<CR>', { silent = true, noremap = t
 -- vim.o.shellquote = ''
 -- vim.o.shellxquote = ''
 -- for git bash:
-vim.o.shell = 'bash.exe'
+--vim.o.shell = 'sh.exe'
+vim.o.shell = 'fish'
+vim.o.shellquote = ''
+vim.o.shellxquote = ''
 vim.o.shellcmdflag = '-c'
 
 -- Default sets

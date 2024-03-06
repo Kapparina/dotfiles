@@ -49,18 +49,18 @@ vim.keymap.set({'n', 'v'}, '<CR>', '<cmd>nohl<CR>', { silent = true, noremap = t
 
 -- Configuring terminal to use
 -- for PowerShell:
--- vim.o.shell = 'pwsh.exe'
--- vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
--- vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
--- vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF %s; exit $LastExitCode'
+vim.o.shell = 'pwsh.exe'
+vim.o.shellcmdflag = '-NoLogo -NonInteractive -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;$PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText;'
+vim.o.shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+vim.o.shellpipe = '2>&1 | Out-File -Encoding UTF %s; exit $LastExitCode'
+vim.o.shellquote = ''
+vim.o.shellxquote = ' '
+-- for git bash:
+-- vim.o.shell = 'sh.exe'
+-- vim.o.shell = 'fish'
 -- vim.o.shellquote = ''
 -- vim.o.shellxquote = ''
--- for git bash:
---vim.o.shell = 'sh.exe'
-vim.o.shell = 'fish'
-vim.o.shellquote = ''
-vim.o.shellxquote = ''
-vim.o.shellcmdflag = '-c'
+-- vim.o.shellcmdflag = '-c'
 
 -- Default sets
 vim.opt.showcmd = true

@@ -13,9 +13,7 @@ end
 
 require("keys").apply(config)
 
-config.default_prog = { "wsl" }
 config.front_end =  "WebGpu"
-config.window_padding = { left = 0.5, right = 0.5, top = 0.5, bottom = 0.5 }
 config.window_decorations = "RESIZE|INTEGRATED_BUTTONS"
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -48,6 +46,7 @@ config.set_environment_variables = {
 config.color_scheme = scheme_for_appearance(get_appearance())
 
 if utils.is_darwin() then
+	config.window_padding = { left = 0.5, right = 0.5, top = 50, bottom = 0.5 }
 	wezterm.plugin
 		.require("https://github.com/mrjones2014/smart-splits.nvim")
 		.apply_to_config(config)
@@ -55,6 +54,8 @@ if utils.is_darwin() then
 		.require("https://github.com/nekowinston/wezterm-bar")
 		.apply_to_config(config)
 else
+	config.default_prog = { "wsl" }
+	config.window_padding = { left = 0.5, right = 0.5, top = 0.5, bottom = 0.5 }
 	wezterm.plugin
 		.require("C:/Applications/WezTerm/plugins/wezterm-bar")
 		.apply_to_config(config)

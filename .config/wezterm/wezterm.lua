@@ -47,12 +47,20 @@ config.set_environment_variables = {
 }
 config.color_scheme = scheme_for_appearance(get_appearance())
 
+if utils.is_darwin() then
+	wezterm.plugin
+		.require("https://github.com/mrjones2014/smart-splits.nvim")
+		.apply_to_config(config)
+	wezterm.plugin
+		.require("https://github.com/nekowinston/wezterm-bar")
+		.apply_to_config(config)
+else
+	wezterm.plugin
+		.require("C:/Applications/WezTerm/plugins/wezterm-bar")
+		.apply_to_config(config)
+	wezterm.plugin
+		.require('C:/Applications/WezTerm/plugins/smart-splits.nvim')
+		.apply_to_config(config)
+end
 
-wezterm.plugin
-	.require("C:/Applications/WezTerm/plugins/wezterm-bar")
-	.apply_to_config(config)
-wezterm.plugin
-	.require('C:/Applications/WezTerm/plugins/smart-splits.nvim')
-	.apply_to_config(config)
--- and finally, return the configuration to wezterm
 return config

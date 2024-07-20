@@ -1,0 +1,109 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" --- General ---
+"set clipboard+=unnamed
+set nocompatible
+
+" Set default shell
+" For PowerShell
+"set shell = 'pwsh'
+"set shellcmdflag = '-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;$PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText;'
+"set shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+"set shellpipe = '2>&1 | Out-File -Encoding UTF %s; exit $LastExitCode'
+"set shellquote = ''
+"set shellxquote = ' '
+
+" For WSL
+set shell=wsl
+set shellcmdflag=
+set shellxquote=
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+set visualbell
+set noerrorbells
+" Highlight copied text
+set highlightedyank
+" Commentary plugin
+set commentary
+set ReplaceWithRegister
+"" textobj
+set argtextobj
+let g:argtextobj_paris="(:),{:},[:],<:>"
+set textobj-entire
+set textobj-indent
+"" navigation
+set NERDTree
+set quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+set vim-paragraph-motion
+
+"" editing
+set multiple-cursors
+set surround
+set matchit
+set ideajoin
+set idearefactormode=keep
+set exchange
+"" WhichKey
+"set which-key
+"set notimeout
+"let g: WhichKeyDesc_windows = "<leader>wm maximize"
+
+
+" --- Custom key mappings ---
+nnoremap <space> <Nop>
+let mapleader = " "
+nnoremap <leader><space> :nohlsearch<CR>
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+
+"" Map \r to the Reformat Code action
+map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+map \b <Action>(ToggleLineBreakpoint)
+
+"" Map tab keys
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+inoremap <S-Tab> <C-D>
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+"" Map to be consistent with neovim
+xnoremap <leader>p "_dp
+noremap <leader>P "+p
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
+
+"" Map to centre the screen
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
+
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set rnu
+set number
+set scrolloff=5
+set showmode
+" Do incremental searching.
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+nnoremap <silent> <CR> :nohlsearch<CR>
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+nmap gi :action GotoImplementation<CR>zz
+nmap gd gdzz

@@ -1,7 +1,6 @@
 ---@type wezterm
 -- Pull in the wezterm API
 local wezterm = require('wezterm')
-local os = require 'os'
 local utils = require("utils")
 
 -- This will hold the configuration.

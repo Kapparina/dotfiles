@@ -3,7 +3,6 @@ local wezterm = require("wezterm")
 local io = require 'io'
 local os = require 'os'
 local act = wezterm.action
-local utils = require("utils")
 
 local shortcuts = {}
 
@@ -164,8 +163,9 @@ local key_tables = {
 
 -- add a common escape sequence to all key tables
 for k, _ in pairs(key_tables) do
-  table.insert(key_tables[k], { key = "Escape", action = "PopKeyTable" })
-  table.insert(key_tables[k], { key = "Enter", action = "PopKeyTable" })
+  -- These might not be needed, experimenting with not having them:
+  -- table.insert(key_tables[k], { key = "Escape", action = "PopKeyTable" })
+  -- table.insert(key_tables[k], { key = "Enter", action = "PopKeyTable" })
   table.insert(
     key_tables[k],
     { key = "c", mods = "CTRL", action = "PopKeyTable" }

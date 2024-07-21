@@ -1,2 +1,2 @@
-[flavor]
-use = "catppuccin-mocha"
+[manager] 
+syntect_theme = "/home/kapparina/.config/bat/themes/Catppuccin Mocha.tmTheme"

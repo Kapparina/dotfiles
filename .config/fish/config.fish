@@ -16,5 +16,5 @@ if status is-interactive
   fish_vi_key_bindings
   # ---- Setting up zoxide ----
   zoxide init fish | source
-end 
+end
 

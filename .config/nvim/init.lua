@@ -6,19 +6,19 @@ vim.g.maplocalleader = ' '
 
 vim.keymap.set('n', '<Leader>e', vim.cmd.Ex, { desc = 'Explorer' })
 vim.keymap.set("x", "<leader>p", "\"_dp")
-vim.keymap.set("n", "<leader>P", "\"+p")
-vim.keymap.set({"n", "v"}, "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
-vim.keymap.set({'n', 'v'}, '<CR>', '<cmd>nohl<CR>', { silent = true, noremap = true })
+vim.keymap.set({"n", "x"}, "<leader>P", "\"+p")
+vim.keymap.set({"n", "x"}, "<leader>y", "\"+y")
+vim.keymap.set({"n", "x"}, "<leader>Y", "\"+Y")
+vim.keymap.set({'n', 'x'}, '<CR>', '<cmd>nohl<CR>', { silent = true, noremap = true })
 
-if vim.fn.has("wsl") == 1 then
-  vim.api.nvim_create_autocmd("TextYankPost", {
-    group = vim.api.nvim_create_augroup("Yank", { clear = true }),
-    callback = function()
-      vim.fn.system("clip.exe", vim.fn.getreg('"'))
-    end,
-  })
-end
+-- if vim.fn.has("wsl") == 1 then
+--   vim.api.nvim_create_autocmd("TextYankPost", {
+--     group = vim.api.nvim_create_augroup("Yank", { clear = true }),
+--     callback = function()
+--       vim.fn.system("clip.exe", vim.fn.getreg('"'))
+--     end,
+--   })
+-- end
 
 
 -- Configuring terminal to use

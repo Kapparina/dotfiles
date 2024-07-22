@@ -35,6 +35,7 @@ let g:argtextobj_pairs="(:),{:},[:],<:>"
 set textobj-entire
 set textobj-indent
 "" navigation
+set easymotion
 set ideamarks
 set NERDTree
 set quickscope
@@ -53,6 +54,10 @@ set exchange
 "set notimeout
 "let g: WhichKeyDesc_windows = "<leader>wm maximize"
 
+"" --- Custom settings ---
+set handler <C-D> a:vim
+set handler <C-U> a:vim
+set handler <C-R> n:ide
 
 " --- Custom key mappings ---
 nnoremap <space> <Nop>
@@ -70,6 +75,16 @@ map \r <Action>(ReformatCode)
 "" Map \b to toggle the breakpoint on the current line
 map \b <Action>(ToggleLineBreakpoint)
 
+"" Various binds
+map <leader>a <Action>(Annotate)
+map <leader>u <Action>(LocalHistory.ShowHistory)
+map <leader>rn <Action>(RenameElement)
+
+"" Function/Method bindings
+map <leader>df V$%d "Delete function
+map [f <Action>(MethodUp)
+map ]f <Action>(MethodDown)
+
 "" Easier split navigation
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-j> <C-w><C-j>
@@ -82,6 +97,16 @@ nnoremap <S-Tab> <<_
 inoremap <S-Tab> <C-D>
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+"" Easier tab navigation
+map <A-,> <Action>(PreviousTab)
+map <A-.> <Action>(NextTab)
+map <A-s> <Action>(NewScratchFile)
+map <A-x> <Action>(CloseContent)
+
+"" Easier navigation
+map [d <Action>(GotoPreviousError)
+map ]d <Action>(GotoNextError)
 
 "" Map to be consistent with neovim
 xnoremap <leader>p "_dp
@@ -112,5 +137,6 @@ set hlsearch
 nnoremap <silent> <CR> :nohlsearch<CR>
 " Don't use Ex mode, use Q for formatting.
 map Q gq
+map <leader>d <Action>(ShowErrorDescription)
 nmap gi :action GotoImplementation<CR>zz
 nmap gd gdzz

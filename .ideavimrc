@@ -31,10 +31,11 @@ set commentary
 set ReplaceWithRegister
 "" textobj
 set argtextobj
-let g:argtextobj_paris="(:),{:},[:],<:>"
+let g:argtextobj_pairs="(:),{:},[:],<:>"
 set textobj-entire
 set textobj-indent
 "" navigation
+set ideamarks
 set NERDTree
 set quickscope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -68,6 +69,12 @@ map \r <Action>(ReformatCode)
 
 "" Map \b to toggle the breakpoint on the current line
 map \b <Action>(ToggleLineBreakpoint)
+
+"" Easier split navigation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
 
 "" Map tab keys
 nnoremap <Tab> >>_

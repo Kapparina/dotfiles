@@ -53,7 +53,10 @@ if utils.is_darwin() then
 		.require("https://github.com/nekowinston/wezterm-bar")
 		.apply_to_config(config)
 else
-	config.default_prog = { "wsl" }
+	-- config.default_prog = { "wsl" }
+	config.default_domain = "WSL:Ubuntu"
+	-- config.default_prog = { "/usr/bin/fish", "-l" }
+	config.default_prog = { "vim" }
 	config.window_padding = { left = 0.5, right = 0.5, top = 0.5, bottom = 0.5 }
 	wezterm.plugin
 		.require("C:/Applications/WezTerm/plugins/wezterm-bar")
@@ -62,5 +65,6 @@ else
 		.require('C:/Applications/WezTerm/plugins/smart-splits.nvim')
 		.apply_to_config(config)
 end
+
 
 return config

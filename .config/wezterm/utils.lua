@@ -46,4 +46,10 @@ M.is_darwin = function()
   return wezterm.target_triple:find("darwin") ~= nil
 end
 
+---check if we're on Windows
+---@return boolean
+M.is_windows = function()
+  return wezterm.target_triple == "x86_64-pc-windows-msvc"
+end
+
 return M

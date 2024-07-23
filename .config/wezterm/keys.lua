@@ -2,6 +2,7 @@
 local wezterm = require("wezterm")
 local io = require 'io'
 local os = require 'os'
+local utils = require 'utils'
 local act = wezterm.action
 
 local shortcuts = {}
@@ -20,27 +21,10 @@ local map = function(key, mods, action)
   end
 end
 
-
-local toggleTabBar = wezterm.action_callback(function(window)
-  window:set_config_overrides({
-    enable_tab_bar = not window:effective_config().enable_tab_bar,
-  })
-end)
-
-local openUrl = act.QuickSelectArgs({
-  label = "open url",
-  patterns = { "https?://\\S+" },
-  action = wezterm.action_callback(function(window, pane)
-    local url = window:get_selection_text_for_pane(pane)
-    wezterm.open_with(url)
-  end),
-})
-
 -- use 'CTRL e' to open the current scrollback in $EDITOR
-wezterm.on('trigger-vim-with-scrollback', function(window, pane)
+wezterm.on('trigger-editor-with-scrollback', function(window, pane)
   -- Retrieve the text from the pane
   local text = pane:get_lines_as_text(pane:get_dimensions().scrollback_rows)
-
   -- Create a temporary file to pass to vim
   local name = os.tmpname()
   local f = io.open(name, 'w+')
@@ -48,14 +32,21 @@ wezterm.on('trigger-vim-with-scrollback', function(window, pane)
   f:flush()
   f:close()
 
+  local args = nil
+
   -- Open a new window running vim and tell it to open the file
+  if utils.is_windows() then
+    args = { "fish", "-c", string.format('$EDITOR (wslpath "%s")', name) }
+  else
+    args = { "$EDITOR", name }
+  end
+
   window:perform_action(
-    act.SpawnTab {
-      args = { '$EDITOR', name },
+    act.SpawnCommandInNewWindow {
+      args = args,
     },
     pane
   )
-
   -- Wait "enough" time for vim to read the file before we remove it.
   -- The window creation and process spawn are asynchronous wrt. running
   -- this script and are not awaitable, so we just pick a number.
@@ -65,7 +56,25 @@ wezterm.on('trigger-vim-with-scrollback', function(window, pane)
   wezterm.sleep_ms(1000)
   os.remove(name)
 end)
-map("e", "CTRL", act.EmitEvent "tigger-vim-with-scrollback")
+map("e", "CTRL", act.EmitEvent("trigger-editor-with-scrollback"))
+
+local toggleTabBar = wezterm.action_callback(function(window)
+  window:set_config_overrides({
+    enable_tab_bar = not window:effective_config().enable_tab_bar,
+  })
+end)
+
+local openUrl = act.QuickSelectArgs({
+  label = "open url",
+  patterns = {
+    "https?://\\S+",
+  },
+  action = wezterm.action_callback(function(window, pane)
+    local url = window:get_selection_text_for_pane(pane)
+    wezterm.open_with(url)
+  end),
+})
+
 
 -- use 'Backslash' to split horizontally
 map("\\", "LEADER", act.SplitHorizontal({ domain = "CurrentPaneDomain" }))
@@ -128,6 +137,20 @@ map(
   })
 )
 
+local new_copy_mode = wezterm.gui.default_key_tables().copy_mode
+local additional_bindings = {
+  -- Enter search mode to edit the pattern.
+  -- When the search pattern is an empty string the existing pattern is preserved
+    {key="/", mods="NONE", action=wezterm.action{Search={CaseSensitiveString=""}}},
+    -- navigate any search mode results
+    {key="n", mods="NONE", action=wezterm.action{CopyMode="NextMatch"}},
+    {key="N", mods="SHIFT", action=wezterm.action{CopyMode="PriorMatch"}},
+}
+
+for _, binding in ipairs(additional_bindings) do
+  table.insert(new_copy_mode, binding)
+end
+
 local key_tables = {
   resize_mode = {
     { key = "h", action = act.AdjustPaneSize({ "Left", 2 }) },
@@ -139,20 +162,7 @@ local key_tables = {
     { key = "UpArrow", action = act.AdjustPaneSize({ "Up", 1 }) },
     { key = "RightArrow", action = act.AdjustPaneSize({ "Right", 2 }) },
   },
-  copy_mode = {
-    {key="Escape", mods="NONE", action=wezterm.action{CopyMode="Close"}},
-    {key="h", mods="NONE", action=wezterm.action{CopyMode="MoveLeft"}},
-    {key="j", mods="NONE", action=wezterm.action{CopyMode="MoveDown"}},
-    {key="k", mods="NONE", action=wezterm.action{CopyMode="MoveUp"}},
-    {key="l", mods="NONE", action=wezterm.action{CopyMode="MoveRight"}},
-    -- {key=" ", mods="NONE", action=wezterm.action{CopyMode="ToggleSelectionByCell"}},
-    -- Enter search mode to edit the pattern.
-    -- When the search pattern is an empty string the existing pattern is preserved
-    {key="/", mods="NONE", action=wezterm.action{Search={CaseSensitiveString=""}}},
-    -- navigate any search mode results
-    {key="n", mods="NONE", action=wezterm.action{CopyMode="NextMatch"}},
-    {key="N", mods="SHIFT", action=wezterm.action{CopyMode="PriorMatch"}},
-  },
+  copy_mode = new_copy_mode,
   search_mode = {
     {key="Escape", mods="NONE", action=wezterm.action{CopyMode="Close"}},
     -- Go back to copy mode when pressing enter, so that we can use unmodified keys like "n"

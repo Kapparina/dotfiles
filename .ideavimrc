@@ -1,3 +1,4 @@
+# ~/.ideavim
 " .ideavimrc is a configuration file for IdeaVim plugin. It uses
 "   the same commands as the original .vimrc configuration.
 " You can find a list of commands here: https://jb.gg/h38q75
@@ -58,6 +59,7 @@ set exchange
 set handler <C-D> a:vim
 set handler <C-U> a:vim
 set handler <C-R> n:ide
+set iskeyword-=_,<,>
 
 " --- Custom key mappings ---
 nnoremap <space> <Nop>
@@ -140,3 +142,5 @@ map Q gq
 map <leader>d <Action>(ShowErrorDescription)
 nmap gi :action GotoImplementation<CR>zz
 nmap gd gdzz
+
+command! NS :action NewScratchFile

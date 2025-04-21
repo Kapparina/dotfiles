@@ -138,6 +138,12 @@ symbol = " "
 [pijul_channel]
 symbol = " "
 
+[profiles]
+short = """
+[\uE086](gh:purple)[$directory]\
+[\uE080](fg:12 bg:none) $character
+"""
+
 [python]
 symbol = " "
 

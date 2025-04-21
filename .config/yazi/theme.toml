@@ -1,2 +1,4 @@
 [manager] 
-syntect_theme = "/home/kapparina/.config/bat/themes/Catppuccin Mocha.tmTheme"
+syntect_theme = "C:/Users/schneet/.config/bat/themes/Catppuccin Mocha.tmTheme"
+[flavor]
+use = "catppuccin-latte"

@@ -1,0 +1,4 @@
+[manager] 
+syntect_theme = "C:/Users/schneet/.config/bat/themes/Catppuccin Mocha.tmTheme"
+[flavor]
+use = "catppuccin-latte"

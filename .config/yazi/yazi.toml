@@ -1,8 +1,8 @@
 # yazi.toml
-[manager]
+[mgr]
 show_hidden = true
 
 [opener]
 edit = [
-    { run = 'nvim "$@"', block = true },
+    { run = "%EDITOR% %*", block = true, desc = "nvim", for = "windows" },
 ]

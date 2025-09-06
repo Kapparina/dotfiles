@@ -1,122 +1,228 @@
-#Update OhMyPosh using this command -
-# winget upgrade JanDeDobbeleer.OhMyPosh -s winget
-#
-# Typer-Cli completion.
-# Installed via pip install typer-cli
+$currentPSModulePath = $env:PSModulePath
+$workDefaultPSModulePath = "C:\Applications\PowerShell_start\Modules"
+$env:PSModulePath=[NullString]
+$env:PYTHON_PATH=[NullString]
+$env:YAZI_CONFIG_HOME = "$HOME\.config\yazi"
+$env:XDG_CONFIG_HOME = "$HOME\.config"
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# Invoke-Expression (&starship init powershell)
+
+
+
+$LazyLoadProfile = [PowerShell]::Create()
+[void]$LazyLoadProfile.AddScript(@'
+    Import-Module PSReadLine
+    Import-Module -Name CompletionPredictor
+'@)
+
+
+$LazyLoadProfileRunspace = [RunspaceFactory]::CreateRunspace()
+$LazyLoadProfile.Runspace = $LazyLoadProfileRunspace
+$LazyLoadProfileRunspace.Open()
+[void]$LazyLoadProfile.BeginInvoke()
+
+$null = Register-ObjectEvent -InputObject $LazyLoadProfile -EventName InvocationStateChanged -Action {
+    $env:PYTHONIOENCODING='utf-8' 
+    iex "$(thefuck --alias)"
+    Import-Module PSReadLine
+    Import-Module -Name CompletionPredictor
+    $global:GitPromptSettings.DefaultPromptPrefix.Text = '$(Get-Date -f "MM-dd HH:mm:ss") '
+    $global:GitPromptSettings.DefaultPromptPrefix.ForegroundColor = [ConsoleColor]::Magenta
+    $global:GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
+    $global:GitPromptSettings.DefaultPromptAfterSuffix.Text = ''
+
+    $LazyLoadProfile.Dispose()
+    $LazyLoadProfileRunspace.Close()
+    $LazyLoadProfileRunspace.Dispose()
+}
+
 # Dotfiles copy
 $env:HOME_PROFILE = $false
-$env:POSH_GIT_ENABLED = $true
 $env:PDM_IGNORE_ACTIVE_VENV = $true
 
 $dotfiles_dir = "$HOME\dotfiles"
+# $config_dir = "$dotfiles_dir\.config"
 
-$work_app_dir = "C:\Applications"
-$work_scripts_dir = "$work_app_dir\PowerShell_start\scripts"
+# $work_app_dir = "C:\Applications"
+# $work_scripts_dir = "$work_app_dir\PowerShell_start\scripts"
 
 
 $powershell_dir = "$dotfiles_dir\powershell"
 $powershell_scripts_dir = "$powershell_dir\scripts"
-$powershell_completions = "$powershell_scripts_dir\completions\"
 
-### START MAIN SCRIPT
-Set-PSReadlineOption -BellStyle None
-# BEGIN - Alias(s)
-#Git aliases from Oh-my-zsh Git plugin for PWSH
-Import-Module git-aliases -DisableNameChecking
+$env:EDITOR = $env:VISUAL = 'nvim'
 
-
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile))
+function e ([Parameter(Mandatory = $false)][String] $target)
 {
-    Import-Module "$ChocolateyProfile"
-}
-# END - Alias(s)
+    $replace_hashmap = @{
+            "C:" = "/mnt/c"
+            "\\" = "/"
+    }
+    $unix_target = $target
 
+    foreach ($item in $replace_hashmap.GetEnumerator())
+    {
+        $unix_target = $unix_target -replace $item.Key, $item.Value
+    }
+    wsl -- nvim "$unix_target"
+}
 
 # BEGIN - Tooling Functions
 function Test-CommandExists ([Parameter(Mandatory = $true)][string] $Command)
 {
     return [bool](Get-Command $Command -ErrorAction SilentlyContinue)
 }
+
 # Work.sort of
 function checkEnvironment
 {
     if ($env:COMPUTERNAME -clike "*LG*")
     {
+        $env:HOME_PROFILE = $false
         return $true
     } else
     {
         return $false
     }
 }
-#
+
 # Ensure safe creation of aliases, all aliases are created in the helpful_alias_creation.ps1
 . "$powershell_scripts_dir\helpful_alias_creation.ps1"
 
 # END - Tooling Functions
 
 # Work
-if (checkEnvironment)
+if (checkEnvironment -eq $true)
 {
-    . "$work_scripts_dir\navigation_func_work.ps1"
-
-    . "$work_scripts_dir\python_func_work.ps1"
-
-    . "$work_scripts_dir\shell_alias_func_work.ps1"
-
+    $env:PSModulePath = $workDefaultPSModulePath
+        . "$powershell_scripts_dir\work_scripts.ps1"
 }
+
+Import-Module Catppuccin
+# $Flavor = $Catppuccin['Latte']
+$Flavor = $Catppuccin['Mocha']
+function prompt {
+    $(if (Test-Path variable:/PSDebugContext) { "$($Flavor.Red.Foreground())[DBG]: " }
+            else { '' }) + "$($Flavor.Teal.Foreground())PS $($Flavor.Yellow.Foreground())" + $(Get-Location) +
+        "$($Flavor.Green.Foreground())" + $(if ($NestedPromptLevel -ge 1) { '>>' }) + '> ' + $($PSStyle.Reset)
+}
+
+# The following colors are used by PowerShell's formatting
+# Again PS 7.2+ only
+$PSStyle.Formatting.Debug = $Flavor.Sky.Foreground()
+$PSStyle.Formatting.Error = $Flavor.Red.Foreground()
+$PSStyle.Formatting.ErrorAccent = $Flavor.Blue.Foreground()
+$PSStyle.Formatting.FormatAccent = $Flavor.Teal.Foreground()
+$PSStyle.Formatting.TableHeader = $Flavor.Rosewater.Foreground()
+$PSStyle.Formatting.Verbose = $Flavor.Yellow.Foreground()
+$PSStyle.Formatting.Warning = $Flavor.Peach.Foreground()
+
+$Colors = @{
+# Largely based on the Code Editor style guide
+# Emphasis, ListPrediction and ListPredictionSelected are inspired by the Catppuccin fzf theme
+    
+# Powershell colours
+        ContinuationPrompt     = $Flavor.Teal.Foreground()
+        Emphasis               = $Flavor.Red.Foreground()
+        Selection              = $Flavor.Surface0.Background()
+        
+# PSReadLine prediction colours
+        InlinePrediction       = $Flavor.Overlay0.Foreground()
+        ListPrediction         = $Flavor.Mauve.Foreground()
+        ListPredictionSelected = $Flavor.Surface0.Background()
+        
+# Syntax highlighting
+        Command                = $Flavor.Blue.Foreground()
+        Comment                = $Flavor.Overlay0.Foreground()
+        Default                = $Flavor.Text.Foreground()
+        Error                  = $Flavor.Red.Foreground()
+        Keyword                = $Flavor.Mauve.Foreground()
+        Member                 = $Flavor.Rosewater.Foreground()
+        Number                 = $Flavor.Peach.Foreground()
+        Operator               = $Flavor.Sky.Foreground()
+        Parameter              = $Flavor.Pink.Foreground()
+        String                 = $Flavor.Green.Foreground()
+        Type                   = $Flavor.Yellow.Foreground()
+        Variable               = $Flavor.Lavender.Foreground()
+}
+
+# Set the colours
+Set-PSReadLineOption -Colors $Colors
+
+# Modified from the official Catppuccin fzf configuration at: https://github.com/catppuccin/fzf/
+$ENV:FZF_DEFAULT_OPTS = @"
+--color=bg+:$($Flavor.Surface0),bg:$($Flavor.Base),spinner:$($Flavor.Rosewater)
+--color=hl:$($Flavor.Red),fg:$($Flavor.Text),header:$($Flavor.Red)
+--color=info:$($Flavor.Mauve),pointer:$($Flavor.Rosewater),marker:$($Flavor.Rosewater)
+--color=fg+:$($Flavor.Text),prompt:$($Flavor.Mauve),hl+:$($Flavor.Red)
+--color=border:$($Flavor.Surface2)
+"@
 
 # Not work/ AKA Home
 if (-not (checkEnvironment))
 {
-    # Not required at work
-    . "$powershell_scripts_dir\wsl_func_shell.ps1"
 
-    . "$powershell_scripts_dir\navigation_func_home.ps1"
-
-    . "$powershell_completions\completion_docker-compose.ps1"
-}
-
-#Raw Functions
-
-function workconf
-{
-    if (-not ($args))
-    {
-        Start-Process $work_scripts_dir
-    }
-    if ( $args)
-    {
-        if ($args -eq "vim")
-        {
-            vim $work_scripts_dir
-        }
-        if ($args -eq "code")
-        {
-            code $work_scripts_dir
-        }
-    }
-}
-
-function Assert-IsNonInteractiveShell {
-    # Test each Arg for match of abbreviated '-NonInteractive' command.
-    $NonInteractive = [Environment]::GetCommandLineArgs() | Where-Object{ $_ -like '-NonI*' }
-
-    if ([Environment]::UserInteractive -and -not $NonInteractive) {
-        # We are in an interactive shell.
-        return $false
-    }
-
-    return $true
-}
-
-if (!(Assert-IsNonInteractiveShell)) {
-    Write-Host "Let's interact!"
-
-    . "$powershell_scripts_dir\match_statement_tests.ps1"
-    . "$powershell_completions\completion_general.ps1"
-    . "$powershell_completions\completion_gh-cli.ps1"
-    . "$powershell_completions\completion_az-cli.ps1"
-    Invoke-Expression (&starship init powershell)
+    $env:PSModulePath = $currentPSModulePath
     Invoke-Expression (& { (zoxide init powershell | Out-String) })
+    . "$powershell_scripts_dir\home_scripts.ps1"
+}
+
+. "$powershell_scripts_dir\general_scripts.ps1"
+
+function .
+{
+    Start-Process .
+}
+
+function yy
+{
+    $tmp = [System.IO.Path]::GetTempFileName()
+        yazi $args --cwd-file="$tmp"
+        $cwd = Get-Content -Path $tmp
+        if (-not [String]::IsNullOrEmpty($cwd) -and $cwd -ne $PWD.Path) {
+            Set-Location -LiteralPath $cwd
+        }
+    Remove-Item -Path $tmp
+}
+
+function la
+{
+    param ($path = ".")
+    Get-ChildItem $path -Force
+}
+
+function l
+{
+    param ($path = ".")
+    Get-ChildItem $path -Force
+    # [System.IO.Directory]::GetFiles($path) -Force
+}
+
+function rbl([Parameter(Mandatory=$true, Position=0)][Object] $MachineNumbers)
+{
+    if ($MachineNumbers.GetType().Equals([Object[]]))
+    {
+        $MachineNumbers = [String]::Join(",", $MachineNumbers)
+    }    
+    & "C:\Users\schneet\OneDrive - Link Group\Documents\PowerShell\Scripts\AutomateBat.ps1" $MachineNumbers
+}
+
+
+function rb([Parameter(Mandatory=$true, Position=0)][Object] $MachineNumbers)
+{
+    if ($MachineNumbers.GetType().Equals([Object[]]))
+    {
+        $MachineNumbers = [String]::Join(",", $MachineNumbers)
+    }    
+    & "C:\Users\schneet\OneDrive - Link Group\Documents\PowerShell\Scripts\RestartVM.ps1" $MachineNumbers
+}
+
+
+Get-ChildItem "$PROFILE\..\Completions\" | ForEach-Object {
+    . $_.FullName
+}
+
+function gt() {
+    git describe --abbrev=0
 }

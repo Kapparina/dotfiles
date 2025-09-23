@@ -180,19 +180,18 @@ require('lazy').setup({
   --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
-    -- 'neovim/nvim-lspconfig',
-    'mason-org/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { 'mason-org/mason.nvim', config = true },
-      'mason-org/mason-lspconfig.nvim',
+      { 'williamboman/mason.nvim', config = true },
+      'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/lazydev.nvim',
+      'folke/neodev.nvim',
     },
   },
 
@@ -742,13 +741,13 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-        nmap('\\r', vim.lsp.buf.format, '[R]eformat buffer with LSP')
+        nmap('\r', vim.lsp.buf.format, '[R]eformat buffer with LSP')
 end
 
 -- Replace your entire LSP configuration section with this simpler approach:
 
 -- Setup neovim lua configuration
-require('lazydev').setup()
+require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -762,21 +761,20 @@ require('mason-lspconfig').setup({
 })
 
 -- Configure each server
-local lspconfig = vim.lsp.config
+local lspconfig = require('lspconfig')
 
-lspconfig.lua_ls = {
+lspconfig.lua_ls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  filetypes = { 'lua' },
   settings = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-}
+})
 
-lspconfig.gopls = {
+lspconfig.gopls.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -788,9 +786,9 @@ lspconfig.gopls = {
       },
     },
   },
-}
+})
 
-lspconfig.rust_analyzer = {
+lspconfig.rust_analyzer.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -803,16 +801,16 @@ lspconfig.rust_analyzer = {
       },
     },
   },
-}
+})
 
-lspconfig.html = {
+lspconfig.html.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { 'html', 'twig', 'hbs'}
-}
+})
 
 -- Replace pyright with ruff
-lspconfig.ruff = {
+lspconfig.ruff.setup({
   capabilities = capabilities,
   on_attach = on_attach,
   init_options = {
@@ -821,7 +819,7 @@ lspconfig.ruff = {
       args = {},
     }
   }
-}
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

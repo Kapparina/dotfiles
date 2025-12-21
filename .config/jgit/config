@@ -16,3 +16,18 @@
 [filesystem "JetBrains s.r.o.|21.0.6|1492953488"]
 	timestampResolution = 8015 microseconds
 	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|23.0.1|1492953488"]
+	timestampResolution = 2000 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "JetBrains s.r.o.|21.0.7|1492953488"]
+	timestampResolution = 1003 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|21.0.7|1492953488"]
+	timestampResolution = 8513 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "JetBrains s.r.o.|21.0.8|1492953488"]
+	timestampResolution = 1002 microseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "JetBrains s.r.o.|21.0.9|1492953488"]
+	timestampResolution = 1189 microseconds
+	minRacyThreshold = 0 nanoseconds

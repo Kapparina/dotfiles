@@ -2,14 +2,16 @@ $currentPSModulePath = $env:PSModulePath
 $workDefaultPSModulePath = "C:\Applications\PowerShell_start\Modules"
 $env:PSModulePath=[NullString]
 $env:PYTHON_PATH=[NullString]
+$env:YAZI_CONFIG_HOME = "$HOME\.config\yazi"
+$env:XDG_CONFIG_HOME = "$HOME\.config"
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
+
+# Invoke-Expression (&starship init powershell)
 
 $LazyLoadProfile = [PowerShell]::Create()
 [void]$LazyLoadProfile.AddScript(@'
-    Import-Module DockerCompletion
     Import-Module PSReadLine
     Import-Module -Name CompletionPredictor
-    Import-Module C:\Applications\PowerShell_start\Modules\posh-git\1.1.0\posh-git.psm1
 '@)
 
 
@@ -19,16 +21,15 @@ $LazyLoadProfileRunspace.Open()
 [void]$LazyLoadProfile.BeginInvoke()
 
 $null = Register-ObjectEvent -InputObject $LazyLoadProfile -EventName InvocationStateChanged -Action {
-    Import-Module PSReadLine
-    Import-Module posh-git
-    Import-Module -Name DockerCompletion
+    $env:PYTHONIOENCODING='utf-8' 
+    iex "$(thefuck --alias)"
     Import-Module PSReadLine
     Import-Module -Name CompletionPredictor
-    Import-Module "$HOME\scoop\apps\posh-git\1.1.0\posh-git.psm1"
     $global:GitPromptSettings.DefaultPromptPrefix.Text = '$(Get-Date -f "MM-dd HH:mm:ss") '
     $global:GitPromptSettings.DefaultPromptPrefix.ForegroundColor = [ConsoleColor]::Magenta
     $global:GitPromptSettings.DefaultPromptBeforeSuffix.Text = '`n'
     $global:GitPromptSettings.DefaultPromptAfterSuffix.Text = ''
+
     $LazyLoadProfile.Dispose()
     $LazyLoadProfileRunspace.Close()
     $LazyLoadProfileRunspace.Dispose()
@@ -36,7 +37,6 @@ $null = Register-ObjectEvent -InputObject $LazyLoadProfile -EventName Invocation
 
 # Dotfiles copy
 $env:HOME_PROFILE = $false
-$env:POSH_GIT_ENABLED = $true
 $env:PDM_IGNORE_ACTIVE_VENV = $true
 
 $dotfiles_dir = "$HOME\dotfiles"
@@ -48,19 +48,23 @@ $dotfiles_dir = "$HOME\dotfiles"
 
 $powershell_dir = "$dotfiles_dir\powershell"
 $powershell_scripts_dir = "$powershell_dir\scripts"
-# $powershell_completions = "$powershell_scripts_dir\completions\"
-
-### START MAIN SCRIPT
 
 $env:EDITOR = $env:VISUAL = 'nvim'
 
-# $ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-# if (Test-Path($ChocolateyProfile))
-# {
-#     Import-Module "$ChocolateyProfile"
-# }
-# END - Alias(s)
+function e ([Parameter(Mandatory = $false)][String] $target)
+{
+    $replace_hashmap = @{
+            "C:" = "/mnt/c"
+            "\\" = "/"
+    }
+    $unix_target = $target
 
+    foreach ($item in $replace_hashmap.GetEnumerator())
+    {
+        $unix_target = $unix_target -replace $item.Key, $item.Value
+    }
+    wsl -- nvim "$unix_target"
+}
 
 # BEGIN - Tooling Functions
 function Test-CommandExists ([Parameter(Mandatory = $true)][string] $Command)
@@ -90,6 +94,7 @@ function checkEnvironment
 if (checkEnvironment -eq $true)
 {
     $env:PSModulePath = $workDefaultPSModulePath
+        . "$powershell_scripts_dir\work_scripts.ps1"
 }
 
 Import-Module Catppuccin
@@ -114,17 +119,17 @@ $PSStyle.Formatting.Warning = $Flavor.Peach.Foreground()
 $Colors = @{
 # Largely based on the Code Editor style guide
 # Emphasis, ListPrediction and ListPredictionSelected are inspired by the Catppuccin fzf theme
-
+    
 # Powershell colours
         ContinuationPrompt     = $Flavor.Teal.Foreground()
         Emphasis               = $Flavor.Red.Foreground()
         Selection              = $Flavor.Surface0.Background()
-
+        
 # PSReadLine prediction colours
         InlinePrediction       = $Flavor.Overlay0.Foreground()
         ListPrediction         = $Flavor.Mauve.Foreground()
         ListPredictionSelected = $Flavor.Surface0.Background()
-
+        
 # Syntax highlighting
         Command                = $Flavor.Blue.Foreground()
         Comment                = $Flavor.Overlay0.Foreground()
@@ -163,9 +168,6 @@ if (-not (checkEnvironment))
 
 . "$powershell_scripts_dir\general_scripts.ps1"
 
-
-#Raw Functions
-
 function .
 {
     Start-Process .
@@ -200,7 +202,7 @@ function rbl([Parameter(Mandatory=$true, Position=0)][Object] $MachineNumbers)
     if ($MachineNumbers.GetType().Equals([Object[]]))
     {
         $MachineNumbers = [String]::Join(",", $MachineNumbers)
-    }
+    }    
     & "C:\Users\schneet\OneDrive - Link Group\Documents\PowerShell\Scripts\AutomateBat.ps1" $MachineNumbers
 }
 
@@ -210,7 +212,7 @@ function rb([Parameter(Mandatory=$true, Position=0)][Object] $MachineNumbers)
     if ($MachineNumbers.GetType().Equals([Object[]]))
     {
         $MachineNumbers = [String]::Join(",", $MachineNumbers)
-    }
+    }    
     & "C:\Users\schneet\OneDrive - Link Group\Documents\PowerShell\Scripts\RestartVM.ps1" $MachineNumbers
 }
 

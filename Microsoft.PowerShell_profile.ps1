@@ -1,14 +1,13 @@
 $currentPSModulePath = $env:PSModulePath
 $workDefaultPSModulePath = "C:\Applications\PowerShell_start\Modules"
-$env:PSModulePath=[NullString]
-$env:PYTHON_PATH=[NullString]
+$env:PSModulePath = [NullString]
+$env:PYTHON_PATH = [NullString]
 $env:YAZI_CONFIG_HOME = "$HOME\.config\yazi"
 $env:XDG_CONFIG_HOME = "$HOME\.config"
+$documentsPath = [Environment]::GetFolderPath("MyDocuments")
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 # Invoke-Expression (&starship init powershell)
-
-
 
 $LazyLoadProfile = [PowerShell]::Create()
 [void]$LazyLoadProfile.AddScript(@'
@@ -42,11 +41,6 @@ $env:HOME_PROFILE = $false
 $env:PDM_IGNORE_ACTIVE_VENV = $true
 
 $dotfiles_dir = "$HOME\dotfiles"
-# $config_dir = "$dotfiles_dir\.config"
-
-# $work_app_dir = "C:\Applications"
-# $work_scripts_dir = "$work_app_dir\PowerShell_start\scripts"
-
 
 $powershell_dir = "$dotfiles_dir\powershell"
 $powershell_scripts_dir = "$powershell_dir\scripts"
@@ -97,6 +91,27 @@ if (checkEnvironment -eq $true)
 {
     $env:PSModulePath = $workDefaultPSModulePath
         . "$powershell_scripts_dir\work_scripts.ps1"
+}
+
+
+# Not work/ AKA Home
+if (-not (checkEnvironment))
+{
+    $env:PSModulePath = $currentPSModulePath
+    Invoke-Expression (& { (zoxide init powershell | Out-String) })
+    . "$powershell_scripts_dir\home_scripts.ps1"
+}
+
+. "$powershell_scripts_dir\general_scripts.ps1"
+
+$catppuccinModulePath = "$(($env:PSModulePath -split ";")[0])\Catppuccin"
+if (-not (Test-Path -Path "$catppuccinModulePath"))
+{
+    & git clone "https://github.com/catppuccin/powershell" "$catppuccinModulePath"
+    if ($LASTEXITCODE -ne 0) 
+    {
+        Write-Host "Catppuccin setup failed: $error[0]"
+    }
 }
 
 Import-Module Catppuccin
@@ -159,17 +174,6 @@ $ENV:FZF_DEFAULT_OPTS = @"
 --color=border:$($Flavor.Surface2)
 "@
 
-# Not work/ AKA Home
-if (-not (checkEnvironment))
-{
-
-    $env:PSModulePath = $currentPSModulePath
-    Invoke-Expression (& { (zoxide init powershell | Out-String) })
-    . "$powershell_scripts_dir\home_scripts.ps1"
-}
-
-. "$powershell_scripts_dir\general_scripts.ps1"
-
 function .
 {
     Start-Process .
@@ -219,7 +223,7 @@ function rb([Parameter(Mandatory=$true, Position=0)][Object] $MachineNumbers)
 }
 
 
-Get-ChildItem "$PROFILE\..\Completions\" | ForEach-Object {
+Get-ChildItem "$powershell_scripts_dir\completions" | ForEach-Object {
     . $_.FullName
 }
 

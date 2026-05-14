@@ -222,3 +222,10 @@ Get-ChildItem "$PROFILE\..\Completions\" | ForEach-Object {
 function gt() {
     git describe --abbrev=0
 }
+
+function Connect-VSphere {
+    $servers = @("lgcdzvcs500", "aashbdrvc01", "lgnrvc01")
+    $cred = Get-Credential -UserName "APAC\schneet" -Message "Enter the password for vCenter"
+    Connect-VIServer -Server $servers -Credential $cred
+}
+try { $null = gcm pshazz -ea stop; pshazz init 'default' } catch { }

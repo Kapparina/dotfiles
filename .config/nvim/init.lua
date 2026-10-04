@@ -180,18 +180,19 @@ require('lazy').setup({
   --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
+    -- 'neovim/nvim-lspconfig',
+    'mason-org/mason-lspconfig.nvim',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
-      { 'williamboman/mason.nvim', config = true },
-      'williamboman/mason-lspconfig.nvim',
+      { 'mason-org/mason.nvim', config = true },
+      'mason-org/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+      'folke/lazydev.nvim',
     },
   },
 
@@ -409,14 +410,54 @@ require('lazy').setup({
   },
 
   {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-      'nvim-treesitter/nvim-treesitter-context',
-    },
-    build = ':TSUpdate',
+  'nvim-treesitter/nvim-treesitter',
+  lazy = false,
+  build = ':TSUpdate',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'nvim-treesitter/nvim-treesitter-context',
   },
+  config = function()
+    require('nvim-treesitter').setup({
+      ensure_installed = {
+        'c',
+        'cpp',
+        'go',
+        'lua',
+        'python',
+        'rust',
+        'tsx',
+        'javascript',
+        'typescript',
+        'vimdoc',
+        'vim',
+        'bash',
+        'query',
+      },
+
+      auto_install = true,
+      sync_install = false,
+
+      highlight = {
+        enable = true,
+      },
+
+      indent = {
+        enable = true,
+      },
+
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = '<c-space>',
+          node_incremental = '<c-space>',
+          scope_incremental = '<c-s>',
+          node_decremental = '<M-space>',
+        },
+      },
+    })
+  end,
+},
 
 }, {})
 
@@ -591,83 +632,6 @@ vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by 
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
--- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
-vim.defer_fn(function()
-  require('nvim-treesitter.configs').setup {
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
-
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
-    auto_install = true,
-    -- Install languages synchronously (only applied to `ensure_installed`)
-    sync_install = false,
-    -- List of parsers to ignore installing
-    ignore_install = {},
-    -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
-    modules = {},
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    indent = { enable = true },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = '<c-space>',
-        node_incremental = '<c-space>',
-        scope_incremental = '<c-s>',
-        node_decremental = '<M-space>',
-      },
-    },
-    textobjects = {
-      select = {
-        enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['af'] = '@function.outer',
-          ['if'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-        },
-      },
-      move = {
-        enable = true,
-        set_jumps = true, -- whether to set jumps in the jumplist
-        goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
-        },
-        goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
-        },
-        goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
-        },
-        goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
-        },
-      },
-    },
-  }
-end, 0)
-
 
 -- Mapping for undotree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -741,13 +705,13 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-        nmap('\r', vim.lsp.buf.format, '[R]eformat buffer with LSP')
+        nmap('\\r', vim.lsp.buf.format, '[R]eformat buffer with LSP')
 end
 
 -- Replace your entire LSP configuration section with this simpler approach:
 
 -- Setup neovim lua configuration
-require('neodev').setup()
+require('lazydev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -756,25 +720,26 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 -- Setup mason
 require('mason').setup()
 require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'gopls', 'rust_analyzer', 'html', 'ruff' },
+  ensure_installed = { 'lua_ls', 'html' },
   automatic_installation = true,
 })
 
 -- Configure each server
-local lspconfig = require('lspconfig')
+local lspconfig = vim.lsp.config
 
-lspconfig.lua_ls.setup({
+lspconfig.lua_ls = {
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = { 'lua' },
   settings = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
-})
+}
 
-lspconfig.gopls.setup({
+lspconfig.gopls = {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -786,9 +751,9 @@ lspconfig.gopls.setup({
       },
     },
   },
-})
+}
 
-lspconfig.rust_analyzer.setup({
+lspconfig.rust_analyzer = {
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {
@@ -801,16 +766,16 @@ lspconfig.rust_analyzer.setup({
       },
     },
   },
-})
+}
 
-lspconfig.html.setup({
+lspconfig.html = {
   capabilities = capabilities,
   on_attach = on_attach,
   filetypes = { 'html', 'twig', 'hbs'}
-})
+}
 
 -- Replace pyright with ruff
-lspconfig.ruff.setup({
+lspconfig.ruff = {
   capabilities = capabilities,
   on_attach = on_attach,
   init_options = {
@@ -819,8 +784,53 @@ lspconfig.ruff.setup({
       args = {},
     }
   }
-})
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
+-- yazi.nvim
+---@type LazySpec
+return {
+  "mikavilpas/yazi.nvim",
+  version = "*", -- use the latest stable version
+  event = "VeryLazy",
+  dependencies = {
+    { "nvim-lua/plenary.nvim", lazy = true },
+  },
+  keys = {
+    -- 👇 in this section, choose your own keymappings!
+    {
+      "<leader>-",
+      mode = { "n", "v" },
+      "<cmd>Yazi<cr>",
+      desc = "Open yazi at the current file",
+    },
+    {
+      -- Open in the current working directory
+      "<leader>cw",
+      "<cmd>Yazi cwd<cr>",
+      desc = "Open the file manager in nvim's working directory",
+    },
+    {
+      "<c-up>",
+      "<cmd>Yazi toggle<cr>",
+      desc = "Resume the last yazi session",
+    },
+  },
+  ---@type YaziConfig | {}
+  opts = {
+    -- if you want to open yazi instead of netrw, see below for more info
+    open_for_directories = false,
+    keymaps = {
+      show_help = "<f1>",
+    },
+  },
+  -- 👇 if you use `open_for_directories=true`, this is recommended
+  init = function()
+    -- mark netrw as loaded so it's not loaded at all.
+    --
+    -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
+    vim.g.loaded_netrwPlugin = 1
+  end,
+}

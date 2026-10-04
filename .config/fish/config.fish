@@ -1,19 +1,13 @@
 set -g fish_greeting
 
-# Paths
-# Find Git Bash
-set -q GITBASH; or set -gx GITBASH (where sh)
-
 # Variables
 set -q PAGER; or set -gx PAGER "less"
 set -q EDITOR; or set -gx EDITOR "nvim"
 
-# Set browser on Windows
-switch (uname -s)
-    case MINGW64_NT-10.0-19045
-        set -gx BROWSER open
-end
-
+alias bat="batcat"
+alias ls="eza"
+alias ll="eza -lah --icons"
+alias lt="eza --tree"
 
 if status is-interactive
     # Commands to run in interactive sessions can go here

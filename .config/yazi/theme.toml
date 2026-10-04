@@ -3,3 +3,8 @@
 [flavor]
 dark = "catppuccin-mocha"
 light = "catppuccin-latte"
+
+[icon]
+prepend_exts = [
+  { name = "toml", text = "", fg = "#89b4fa" },
+]

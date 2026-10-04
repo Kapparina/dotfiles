@@ -6,3 +6,4 @@ show_hidden = true
 edit = [
     { run = "%EDITOR% %*", block = true, desc = "nvim", for = "windows" },
 ]
+

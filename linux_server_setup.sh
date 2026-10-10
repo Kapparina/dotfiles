@@ -6,6 +6,9 @@ sudo -v
 # Symlink for .config
 ln -s ~/dotfiles/.config ~/.config
 
+# Eza
+sudo apt install eza
+
 # Yazi
 curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
 echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null

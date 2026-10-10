@@ -3,6 +3,8 @@ set -e
 
 sudo -v
 
+export NEEDRESTART_SUSPEND=1
+
 # Symlink for .config
 ln -sfn "$HOME/dotfiles/.config" "$HOME/.config"
 

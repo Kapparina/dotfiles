@@ -6,7 +6,6 @@ sudo -v
 # Symlink for .config
 ln -s ~/dotfiles/.config ~/.config
 
-
 # Yazi
 curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
 echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
@@ -46,7 +45,7 @@ sudo apt install fish -y
 command -v fish | sudo tee -a /etc/shells
 chsh -s "$(command -v fish)"
 # Finishing setup for Zoxide
-fish command fish_add_path ~/.local/bin
+fish -c "fish_add_path ~/.local/bin"
 
 # Finishing up
 sudo apt update

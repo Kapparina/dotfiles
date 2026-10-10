@@ -6,7 +6,13 @@ sudo -v
 export NEEDRESTART_SUSPEND=1
 
 # Symlink for .config
-ln -sfn "$HOME/dotfiles/.config" "$HOME/.config"
+mkdir "$HOME/.config"
+source="$HOME/dotfiles/.config"
+destination="$HOME/.config"
+shopt -s dotglob
+for item in "$source"/*; do
+    ln -s "$item" "$destination/"
+done
 
 # Eza
 sudo apt install eza
@@ -52,7 +58,7 @@ popd
 sudo add-apt-repository ppa:fish-shell/release-4 -y
 sudo apt install fish -y
 command -v fish | sudo tee -a /etc/shells
-sudo chsh -s "$(command -v fish)"
+chsh -s "$(command -v fish)"
 # Finishing setup for Zoxide
 fish -c "fish_add_path ~/.local/bin"
 

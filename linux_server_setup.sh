@@ -14,7 +14,7 @@ curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/sha
 echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null
 sudo apt update && sudo apt install yazi -y
 # Yazi optionals
-sudo apt install -y fzf ripgrep jq fd ffmpeg
+sudo apt install fzf ripgrep jq fd-find ffmpeg -y
 
 # Neovim
 sudo snap install nvim --classic

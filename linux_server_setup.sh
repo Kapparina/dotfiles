@@ -78,6 +78,7 @@ sudo apt-get install -y uidmap
 /usr/bin/dockerd-rootless-setuptool.sh install
 systemctl --user enable docker
 sudo loginctl enable-linger $(whoami)
+sudo apt install cifs-utils -y
 
 # Fish shell
 sudo add-apt-repository ppa:fish-shell/release-4 -y

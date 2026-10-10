@@ -49,7 +49,7 @@ popd
 
 
 # Fish shell
-sudo add-apt-repository ppa:fish-shell/release-4
+sudo add-apt-repository ppa:fish-shell/release-4 -y
 sudo apt install fish -y
 command -v fish | sudo tee -a /etc/shells
 chsh -s "$(command -v fish)"
@@ -57,6 +57,6 @@ chsh -s "$(command -v fish)"
 fish -c "fish_add_path ~/.local/bin"
 
 # Finishing up
-sudo apt update
-sudo apt upgrade
+sudo apt update -y
+sudo apt upgrade -y
 sudo apt autoremove

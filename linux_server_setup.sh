@@ -6,11 +6,6 @@ sudo -v
 # Symlink for .config
 ln -s ~/dotfiles/.config ~/.config
 
-# Fish shell
-sudo add-apt-repository ppa:fish-shell/release-4
-sudo apt install fish -y
-command -v fish | sudo tee -a /etc/shells
-chsh -s "$(command -v fish)"
 
 # Yazi
 curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
@@ -44,6 +39,13 @@ pushd ~/dotfiles
 git remote set-url origin git@github.com:Kapparina/dotfiles.git
 popd
 
+
+# Fish shell
+sudo add-apt-repository ppa:fish-shell/release-4
+sudo apt install fish -y
+command -v fish | sudo tee -a /etc/shells
+chsh -s "$(command -v fish)"
+# Finishing setup for Zoxide
 fish command fish_add_path ~/.local/bin
 
 # Finishing up

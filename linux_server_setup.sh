@@ -39,6 +39,12 @@ sudo apt install starship -y
 	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 	&& sudo apt update \
 	&& sudo apt install gh -y
+gh auth login
+pushd ~/dotfiles
+git remote set-url origin git@github.com:Kapparina/dotfiles.git
+popd
+
+fish command fish_add_path ~/.local/bin
 
 # Finishing up
 sudo apt update

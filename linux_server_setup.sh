@@ -41,7 +41,7 @@ sudo apt install starship -y
 	&& sudo apt update \
 	&& sudo apt install gh -y
 if ! gh auth status &>/dev/null; then
-    gh auth login
+    GH_BROWSER=/bin/true gh auth login --git-protocol ssh
 fi
 pushd ~/dotfiles
 git remote set-url origin git@github.com:Kapparina/dotfiles.git

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -e
-
 sudo -v
 
 export NEEDRESTART_SUSPEND=1
+
+sudo timedatectl set-timezone Australia/Sydney
 
 # Symlink for .config
 mkdir "$HOME/.config"
@@ -79,6 +80,7 @@ sudo apt-get install -y uidmap
 systemctl --user enable docker
 sudo loginctl enable-linger $(whoami)
 sudo apt install cifs-utils -y
+sudo apt install acl -y
 
 # Fish shell
 sudo add-apt-repository ppa:fish-shell/release-4 -y

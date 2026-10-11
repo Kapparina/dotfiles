@@ -88,6 +88,7 @@ packages=(
     fish # Shell
     gh # GitHub CLI
     gum # For pretty/functional scripts
+    sshpass
 )
 sudo apt update && sudo apt install -y "${packages[@]}"
 

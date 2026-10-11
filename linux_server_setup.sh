@@ -93,6 +93,10 @@ sudo systemctl enable --now bluetooth
 echo Installing Neovim...
 sudo snap install nvim --classic
 
+# Go
+echo Installing Go...
+sudo snap install go --classic
+
 # Zoxide
 echo Installing Zoxide...
 curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh

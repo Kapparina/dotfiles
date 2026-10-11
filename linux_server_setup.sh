@@ -18,6 +18,9 @@ done
 # Eza
 sudo apt install eza
 
+# App Armour
+sudo apt install apparmor-utils -y
+
 # Yazi
 curl -fsSL https://yazi-rs.github.io/builds/yazi-keyring.gpg | sudo tee /usr/share/keyrings/yazi-keyring.gpg >/dev/null
 echo 'deb [signed-by=/usr/share/keyrings/yazi-keyring.gpg] https://yazi-rs.github.io/builds/ stable main' | sudo tee /etc/apt/sources.list.d/yazi.list >/dev/null

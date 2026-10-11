@@ -57,6 +57,11 @@ sudo mkdir -p -m 755 /etc/apt/keyrings \
 && sudo mkdir -p -m 755 /etc/apt/sources.list.d \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 
+echo Charm...
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+
 packages=(
     eza # ls replacement
     apparmor-utils
@@ -82,6 +87,7 @@ packages=(
     acl
     fish # Shell
     gh # GitHub CLI
+    gum # For pretty/functional scripts
 )
 sudo apt update && sudo apt install -y "${packages[@]}"
 
